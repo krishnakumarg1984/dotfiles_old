@@ -197,7 +197,7 @@ nnoremap <C-k> <C-w>k
 nnoremap <C-h> <C-w>h
 nnoremap <C-l> <C-w>l
 packadd! matchit
-
+set viminfo='1000,f1,<500
 "func! DeleteTrailingWS()
 "  exe "normal mz"
 "  %s/\s\+$//ge
