@@ -1,4 +1,5 @@
-set guifont=DejaVu\ Sans\ Mono:h14:cANSI
+"set guifont=DejaVu\ Sans\ Mono:h14:cANSI
+set guifont=Consolas:h14:cANSI
 silent function! OSX()
     return has('macunix')
 endfunction
@@ -19,6 +20,24 @@ endif
 if WINDOWS()
   set runtimepath=$HOME/.vim,$VIM/vimfiles,$VIMRUNTIME,$VIM/vimfiles/after,$HOME/.vim/after
 endif
+
+call plug#begin('~/.vim/plugged')
+    Plug 'easymotion/vim-easymotion'
+    Plug 'bling/vim-airline'
+    Plug 'tpope/vim-surround'
+    Plug 'godlygeek/tabular'
+    Plug 'vim-airline/vim-airline-themes'
+    Plug 'jiangmiao/auto-pairs'
+    "Plug 'tyru/open-browser.vim'
+    Plug 'junegunn/vim-peekaboo'
+    Plug 'nathanaelkane/vim-indent-guides'
+    Plug 'flazz/vim-colorschemes'
+    Plug 'gabrielelana/awesome-terminal-fonts'
+    Plug 'thinca/vim-fontzoom'
+    Plug 'wincent/terminus'
+    Plug 'wimproved.vim'
+call plug#end()
+
 
 " https://github.com/spf13/spf13-vim/issues/780
 if &term[:4] == "xterm" || &term[:5] == 'screen' || &term[:3] == 'rxvt'
@@ -51,6 +70,7 @@ hi CursorLineNr guifg=#050505
 
 :au FocusLost * :wa
 set t_Co=256
+
 
 set incsearch                   " Find as you type search
 set hlsearch                    " Highlight search terms
@@ -169,6 +189,8 @@ endfunction
 highlight ColorColumn ctermbg=magenta
 call matchadd('ColorColumn', '\%81v', 100)
 colorscheme summerfruit256
+let g:airline_theme='papercolor'
+"let g:airline_powerline_fonts = 1
 autocmd FileType text setlocal textwidth=78
 set nowrap                      " Do not wrap long lines
 "set autoindent                  " Indent at the same level of the previous line
