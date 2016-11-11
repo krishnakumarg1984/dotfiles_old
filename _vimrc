@@ -22,23 +22,56 @@ if WINDOWS()
 endif
 
 call plug#begin('~/.vim/plugged')
-    Plug 'easymotion/vim-easymotion'
-    Plug 'bling/vim-airline'
-    Plug 'tpope/vim-surround'
-    Plug 'godlygeek/tabular'
-    Plug 'vim-airline/vim-airline-themes'
-    Plug 'jiangmiao/auto-pairs'
-    "Plug 'tyru/open-browser.vim'
-    Plug 'junegunn/vim-peekaboo'
-    Plug 'nathanaelkane/vim-indent-guides'
-    Plug 'flazz/vim-colorschemes'
-    Plug 'gabrielelana/awesome-terminal-fonts'
-    Plug 'thinca/vim-fontzoom'
-    Plug 'wincent/terminus'
-    Plug 'wimproved.vim'
+   Plug 'easymotion/vim-easymotion'
+   Plug 'bling/vim-airline'
+   Plug 'tpope/vim-sensible'
+   Plug 'tpope/vim-surround'
+    Plug 'tpope/vim-repeat'
+   Plug 'scrooloose/nerdtree'
+   Plug 'scrooloose/nerdcommenter'
+   "Plug 'godlygeek/tabular'
+   Plug 'vim-airline/vim-airline-themes'
+   "Plug 'jiangmiao/auto-pairs'
+   ""Plug 'tyru/open-browser.vim'
+   Plug 'junegunn/vim-peekaboo'
+   Plug 'nathanaelkane/vim-indent-guides'
+   Plug 'flazz/vim-colorschemes'
+   "Plug 'gabrielelana/awesome-terminal-fonts'
+   "Plug 'thinca/vim-fontzoom'
+   "Plug 'wincent/terminus'
+   "Plug 'wimproved.vim'
+   "Plug 'https://github.com/JeroenMulkers/matvim'
+    Plug 'jpalardy/vim-slime'
+    Plug 'daeyun/vim-matlab'
+    Plug 'ctrlpvim/ctrlp.vim'
+    Plug 'ervandew/supertab'
+    Plug 'ervandew/supertab'
+    Plug 'sickill/vim-pasta'
 call plug#end()
 
+autocmd vimenter * NERDTree
 
+set runtimepath+=~/.vim/plugged/matvim/ftplugin/matlab/matvim.vim/
+ " Add spaces after comment delimiters by default
+let g:NERDSpaceDelims = 1
+
+" Use compact syntax for prettified multi-line comments
+let g:NERDCompactSexyComs = 1
+
+" Align line-wise comment delimiters flush left instead of following code indentation
+let g:NERDDefaultAlign = 'left'
+
+" Set a language to use its alternate delimiters by default
+let g:NERDAltDelims_java = 1
+
+" Add your own custom formats or override the defaults
+let g:NERDCustomDelimiters = { 'c': { 'left': '/**','right': '*/' } }
+
+" Allow commenting and inverting empty lines (useful when commenting a region)
+let g:NERDCommentEmptyLines = 1
+
+" Enable trimming of trailing whitespace when uncommenting
+let g:NERDTrimTrailingWhitespace = 1
 " https://github.com/spf13/spf13-vim/issues/780
 if &term[:4] == "xterm" || &term[:5] == 'screen' || &term[:3] == 'rxvt'
     inoremap <silent> <C-[>OC <RIGHT>
@@ -188,7 +221,8 @@ endfunction
 
 highlight ColorColumn ctermbg=magenta
 call matchadd('ColorColumn', '\%81v', 100)
-colorscheme summerfruit256
+"colorscheme summerfruit256
+colorscheme github
 let g:airline_theme='papercolor'
 "let g:airline_powerline_fonts = 1
 autocmd FileType text setlocal textwidth=78
