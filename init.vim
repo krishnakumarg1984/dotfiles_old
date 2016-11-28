@@ -1,16 +1,22 @@
 set nocompatible
 set esckeys
 
+let g:python_host_prog='/opt/intel/intelpython27/bin/python'
+call plug#begin('~/.config/nvim/plugged')
+    Plug 'flazz/vim-colorschemes'
+    Plug 'daeyun/vim-matlab'
+    Plug 'szw/vim-g'
+    Plug 'tpope/vim-surround'
+    Plug 'tommcdo/vim-exchange'
+call plug#end()
+
 filetype on
 filetype plugin indent on
 
-call plug#begin()
-    Plug 'flazz/vim-colorschemes'
-    Plug 'daeyun/vim-matlab'
-call plug#end()
-
 colorscheme gruvbox
 
+set path=**                     "Find will start working (under the current directory)
+set suffixesadd=.py,.m,.mat     " Find will work harder
 
 if has('persistent_undo')
     set undofile
@@ -163,16 +169,18 @@ endif
 set cmdheight=2                 " Height of command-line (easy-readable)
 
 
-" Completion settings
+" Completion settings in insert mode
 set completeopt=menuone
-set complete=.,w,t
+set complete=.,w,b,u,t,i,kspell ". till i is the default. . = current buffer. w  = any other windows, b = any other buffers opened, u = unopened buffers, t = tags, i = current and included files
+"kspell = k means also look in the dictionary, kspell is the same, but only
+"look up when spell-check is enabled
 
 set ttyfast
 set pumheight=20                " Set popup menu max height
 
 set wildmode=list:longest,full
 " Ingore the following stuff when tab completing
-set wildignore+=.hg,.git,.svn,*.o,*.obj,*.pyc,*.luac,*.jpg,*.jpeg,*.png,*.gif,*.bmp,*.pdf,*.class,*.dmg,*.DS_Store,*.lnk,*.ini,*.dat
+set wildignore+=.hg,.git,.svn,*.o,*.obj,*.pyc,*.luac,*.jpg,*.jpeg,*.png,*.gif,*.bmp,*.pdf,*.class,*.dmg,*.DS_Store,*.lnk,*.ini,*.dats
 
 
 "Adjust window size of preview and help
@@ -278,3 +286,5 @@ nnoremap <C-l> <C-w>l
 
 
 nmap <leader><space> ;nohls<CR>
+
+inoremap <C-c> <Esc>
