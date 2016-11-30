@@ -5,9 +5,10 @@ set esckeys
 silent function! WINDOWS()
     return  (has('win32') || has('win64'))
 endfunction
+
 if WINDOWS()
-  set runtimepath=$HOME/.vim,$VIM/vimfiles,$VIMRUNTIME,$VIM/vimfiles/after,$HOME/.vim/after
-  set guifont=Consolas:h14:cANSI
+    set runtimepath=$HOME/.vim,$VIM/vimfiles,$VIMRUNTIME,$VIM/vimfiles/after,$HOME/.vim/after
+    set guifont=Consolas:h14:cANSI
 endif
 
 "let g:python_host_prog='/opt/intel/intelpython27/bin/python'
@@ -20,10 +21,10 @@ call plug#begin()
      Plug 'tpope/vim-surround'
      Plug 'tommcdo/vim-exchange'
     "Plug 'numkil/ag.nvim' "works only in nvim
-"    Plug 'Chiel92/vim-autoformat'           "enable as and when required
+    "Plug 'Chiel92/vim-autoformat'           "enable as and when required
      Plug 'terryma/vim-smooth-scroll'
-  "  Plug 'mhinz/vim-grepper'
-   " Plug 'w0rp/ale'
+    "Plug 'mhinz/vim-grepper'
+    "Plug 'w0rp/ale'
      Plug 'rhysd/clever-f.vim'
      Plug 'terryma/vim-expand-region'
     "Plug 'jez/vim-superman'    "for unix-like systems only
@@ -85,7 +86,7 @@ if has('persistent_undo')
     set undolevels=1000
     set undoreload=10000        " Maximum number lines to save for undo on a buffer reload
 endif
-                
+
 
 "let $NVIM_TUI_ENABLE_CURSOR_SHAPE = 1 "only nvim
 " Use true color feature
@@ -97,13 +98,11 @@ set history=1000               " store lots of :cmdline history
 set incsearch                  " search as characters are entered
 set backspace=indent,eol,start " Make backspace behave in a sane manner.
 
-
 set noshowmatch                  " when on a [{(, highlight the matching )}]
 set cpoptions-=m    " Highlight when CursorMoved
 set matchpairs+=<:> " Highlight <>
 set matchtime=1
 set hlsearch                   " highlight search matches
-
 
 set expandtab                  " Convert all TAB characters in the file to spaces
 if has('mouse') | set mouse=a | endif"+
@@ -111,15 +110,14 @@ set mousehide
 
 set number                     " Visible line numbering
 function! NumberToggle()
-  if(&relativenumber == 1)
-    set norelativenumber
-  else
-    set relativenumber
-  endif
+    if(&relativenumber == 1)
+        set norelativenumber
+    else
+        set relativenumber
+    endif
 endfunc
 
 nnoremap <C-n> :call NumberToggle()<cr>
-
 
 set cursorline                 " highlight current line
 
@@ -158,7 +156,6 @@ set iskeyword-=#                    " '#' is an end of word designator
 set iskeyword-=-                    " '-' is an end of word designator
 set iskeyword-=!                    " '!' is an end of word designator
 
-
 set autochdir
 set autowrite                       " Automatically write a file when leaving a modified buffer
 set autoread                        " Autoread when a file is changed from outside
@@ -167,7 +164,6 @@ set history=1000                    " Store a ton of history (default is 20)
 set spell                           " Spell checking on
 
 set viewoptions=folds,options,cursor,unix,slash " Better Unix / Windows compatibility
-
 
 set fileformat=unix          " Default fileformat
 set fileformats=unix,dos,mac
@@ -291,18 +287,18 @@ set showmode                    " Display the current mode
 highlight clear SignColumn      " SignColumn should match background
 
 if has('cmdline_info')
-   set ruler                   " Show the ruler
-   set rulerformat=%30(%=\:b%n%y%m%r%w\ %l,%c%V\ %P%)
-   set showcmd
+    set ruler                   " Show the ruler
+    set rulerformat=%30(%=\:b%n%y%m%r%w\ %l,%c%V\ %P%)
+    set showcmd
 endif
 
 if has('statusline')
-   set laststatus=2
-   set statusline=%<%f\
-   set statusline+=%w%h%m%r
-   set statusline+=\ [%{&ff}/%Y]
-   set statusline+=\ [%{getcwd()}]
-   set statusline+=%=%-14.(%l,%c%V%)\ %p%%
+    set laststatus=2
+    set statusline=%<%f\
+    set statusline+=%w%h%m%r
+    set statusline+=\ [%{&ff}/%Y]
+    set statusline+=\ [%{getcwd()}]
+    set statusline+=%=%-14.(%l,%c%V%)\ %p%%
 endif
 
 set viminfo='1000,f1,<500
@@ -329,10 +325,10 @@ set updatecount=0
 set updatetime=250             "Use a low updatetime. This is used by Cursorhold
 
 function! HLNext (blinktime)
-  set invcursorline
-  redraw
-  exec 'sleep ' . float2nr(a:blinktime * 1000) . 'm'
-  set invcursorline
+    set invcursorline
+    redraw
+    exec 'sleep ' . float2nr(a:blinktime * 1000) . 'm'
+    set invcursorline
 endfunction
 
 nnoremap <silent> n   n:call HLNext(0.3)<cr>
@@ -354,24 +350,16 @@ nnoremap <C-k> <C-w>k
 nnoremap <C-h> <C-w>h
 nnoremap <C-l> <C-w>l
 
-
 nmap <leader><space> ;nohls<CR>
 
 inoremap <C-c> <Esc>
 
 " listchar=trail is not as flexible, use the below to highlight trailing whitespace
 func! ShowTrailingWS()
-	highlight ExtraWhitespace ctermbg=yellow guibg=yellow
-	match ExtraWhitespace /\s\+$/
+    highlight ExtraWhitespace ctermbg=yellow guibg=yellow
+    match ExtraWhitespace /\s\+$/
 endfunc
 nnoremap <F6> :call ShowTrailingWS()<CR>
-
-
-set guioptions-=m
-set guioptions-=r
-set guioptions-=T
-set guicursor+=a:blinkon0
-
 
 "Remove all trailing whitespace by pressing F7
 func! DeleteTrailingWS()
@@ -380,6 +368,30 @@ func! DeleteTrailingWS()
     exe "normal `z"
 endfunc
 nnoremap <F7> :call DeleteTrailingWS()<CR>
+
+set guioptions-=m
+set guioptions-=r
+set guioptions-=T
+set guicursor+=a:blinkon0
+
+" Shortcut to rapidly toggle `set list`
+nmap <leader>l :set list!<CR>
+"
+" " Use the same symbols as TextMate for tabstops and EOLs
+set listchars=tab:▸\ ,eol:¬
+
+if has("autocmd")
+    " Syntax of these languages is fussy over tabs Vs spaces
+    autocmd FileType make setlocal ts=8 sts=8 sw=8 noexpandtab
+    autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
+
+    " Treat .rss files as XML
+    autocmd BufNewFile,BufRead *.rss setfiletype xml
+endif
+
+" nnoremap <silent> <Plug>TransposeCharacters xp
+"             \:call repeat#set("\<Plug>TransposeCharacters")<CR>
+" nmap cp <Plug>TransposeCharacters
 
 " -------- vim-smooth-scrolling remaps ---------------------
 noremap <silent> <c-u> :call smooth_scroll#up(&scroll, 0, 2)<CR>

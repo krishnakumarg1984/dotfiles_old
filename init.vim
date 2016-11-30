@@ -356,8 +356,23 @@ set guioptions-=T
 set guicursor+=a:blinkon0
 
 
-"Remove all trailing whitespace by pressing F2
-nnoremap <F2> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar><CR>
+"Remove all trailing whitespace by pressing F7
+nnoremap <F7> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar><CR>
+
+" Shortcut to rapidly toggle `set list`
+nmap <leader>l :set list!<CR>
+"
+" " Use the same symbols as TextMate for tabstops and EOLs
+set listchars=tab:▸\ ,eol:¬
+
+if has("autocmd")
+  " Syntax of these languages is fussy over tabs Vs spaces
+  autocmd FileType make setlocal ts=8 sts=8 sw=8 noexpandtab
+  autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
+
+  " Treat .rss files as XML
+  autocmd BufNewFile,BufRead *.rss setfiletype xml
+endif
 
 " -------- vim-smooth-scrolling remaps ---------------------
 noremap <silent> <c-u> :call smooth_scroll#up(&scroll, 0, 2)<CR>
