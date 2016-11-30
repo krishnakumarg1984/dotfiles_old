@@ -46,6 +46,7 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'junegunn/vim-lengthmatters'
     Plug 'kshenoy/vim-signature'
     Plug 'machakann/vim-highlightedyank'
+	"auto-pairs
     "vim-easy-align
     "limelight.vim
     "junegunn/vim-fnr
