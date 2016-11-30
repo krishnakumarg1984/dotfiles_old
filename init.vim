@@ -451,7 +451,6 @@ map g* <Plug>(incsearch-nohl-g*)
 map g# <Plug>(incsearch-nohl-g#)
 
 " gruvbox colorscheme options 
-
 let g:gruvbox_underline = 0
 let g:gruvbox_contrast='hard'
 let g:gruvbox_contrast_dark='hard'
