@@ -9,6 +9,13 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'vim-airline/vim-airline-themes'
 
     Plug 'daeyun/vim-matlab'
+    Plug 'vim-scripts/MatlabFilesEdition'
+    Plug 'haya14busa/incsearch.vim'
+    "Plug 'vim-pandoc/vim-pandoc'
+    "Plug 'vim-pandoc/vim-pandoc-syntax'
+    "latex plugin 
+    "Plug 'chrisbra/csv.vim'
+    "Plug 'justinmk/vim-sneak'
     Plug 'tpope/vim-surround'
     Plug 'tommcdo/vim-exchange'
     Plug 'numkil/ag.nvim'
@@ -39,7 +46,7 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'tpope/vim-repeat'
     Plug 'tpope/vim-speeddating'
     Plug 'junegunn/vim-peekaboo'
-    Plug 'junegunn/vim-slash'
+    "Plug 'junegunn/vim-slash'
     "Plug 'junegunn/vim-emoji'
     "Plug 'beloglazov/vim-online-thesaurus'
     Plug 'junegunn/vim-lengthmatters'
@@ -48,6 +55,10 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'jiangmiao/auto-pairs'
     Plug 'matze/vim-move'
     Plug 'tyru/open-browser.vim'
+    "vim-easy-align
+    "roman/golden-ratio
+    "fontzoom
+    "http://vimawesome.com/plugin/vim-devicons
     "limelight.vim
     "Plug 'szw/vim-g'
     "Plug 'Chiel92/vim-autoformat'
@@ -58,6 +69,9 @@ call plug#begin('~/.config/nvim/plugged')
     "Ultisnips
     "vim-sensible on a remote box
     "Awesome terminal fonts
+    "splitjoin
+    "Plug 'myusuf3/numbers.vim'
+    "neomake
 call plug#end()
 
 " camelCase attemptUnited manchesterUnited https://www.imperial.ac.uk
@@ -85,7 +99,7 @@ if has('persistent_undo')
 endif
 
 set history=1000               " store lots of :cmdline history
-set incsearch                  " search as characters are entered
+"set incsearch                  " search as characters are entered
 set backspace=indent,eol,start " Make backspace behave in a sane manner.
 
 set noshowmatch                  " when on a [{(, highlight the matching )}]
@@ -231,7 +245,7 @@ set ttyfast
 set pumheight=20                " Set popup menu max height
 
 set wildmode=list:longest,full
-" Ingore the following stuff when tab completing
+" Ignore the following stuff when tab completing
 set wildignore+=.hg,.git,.svn,*.o,*.obj,*.pyc,*.luac,*.jpg,*.jpeg,*.png,*.gif,*.bmp,*.pdf,*.class,*.dmg,*.DS_Store,*.lnk,*.ini,*.dats
 
 "Adjust window size of preview and help
@@ -334,21 +348,24 @@ nnoremap <C-k> <C-w>k
 nnoremap <C-h> <C-w>h
 nnoremap <C-l> <C-w>l
 
-nmap <leader><space> ;nohls<CR>
+"nmap <leader><space> ;nohls<CR>
 
 inoremap <C-c> <Esc>
 
 " listchar=trail is not as flexible, use the below to highlight trailing whitespace
-"highlight ExtraWhitespace ctermbg=yellow guibg=yellow
-"match ExtraWhitespace /\s\+$/
+func! ShowTrailingWS()
+    highlight ExtraWhitespace ctermbg=yellow guibg=yellow
+    match ExtraWhitespace /\s\+$/
+endfunc
+nnoremap <F6> :call ShowTrailingWS()<CR>
+
+"Remove all trailing whitespace by pressing F7
+nnoremap <F7> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar><CR
 
 set guioptions-=m
 set guioptions-=r
 set guioptions-=T
 set guicursor+=a:blinkon0
-
-"Remove all trailing whitespace by pressing F7
-nnoremap <F7> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar><CR>
 
 " Shortcut to rapidly toggle `set list`
 nmap <leader>l :set list!<CR>
@@ -415,3 +432,19 @@ let g:highlightedyank_highlight_duration = 400
 let g:netrw_nogx = 1 " disable netrw's gx mapping.
 nmap gx <Plug>(openbrowser-smart-search)
 vmap gx <Plug>(openbrowser-smart-search)
+
+
+"----- incsearch.vim plugin ----------------------------
+map /  <Plug>(incsearch-forward)
+map ?  <Plug>(incsearch-backward)
+map g/ <Plug>(incsearch-stay)
+
+" :h g:incsearch#auto_nohlsearch
+set hlsearch
+let g:incsearch#auto_nohlsearch = 1
+map n  <Plug>(incsearch-nohl-n)
+map N  <Plug>(incsearch-nohl-N)
+map *  <Plug>(incsearch-nohl-*)
+map #  <Plug>(incsearch-nohl-#)
+map g* <Plug>(incsearch-nohl-g*)
+map g# <Plug>(incsearch-nohl-g#)
