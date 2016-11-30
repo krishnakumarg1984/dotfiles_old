@@ -47,6 +47,7 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'machakann/vim-highlightedyank'
     Plug 'jiangmiao/auto-pairs'
     Plug 'matze/vim-move'
+    Plug 'tyru/open-browser.vim'
     "limelight.vim
     "Plug 'szw/vim-g'
     "Plug 'Chiel92/vim-autoformat'
@@ -59,7 +60,7 @@ call plug#begin('~/.config/nvim/plugged')
     "Awesome terminal fonts
 call plug#end()
 
-" camelCase attemptUnited manchesterUnited
+" camelCase attemptUnited manchesterUnited https://www.imperial.ac.uk
 filetype on
 filetype plugin indent on
 
@@ -395,7 +396,7 @@ let g:indentLine_char = '┆'
 let g:indentLine_enabled = 1
 
 " ------camelcase motion plugin ----------------------------------
-call camelcasemotion#CreateMotionMappings('<leader>')
+" call camelcasemotion#CreateMotionMappings('<leader>')
 
 " ----- gundotoggle hotkey ---------------------------------------
 nnoremap <F3> :GundoToggle<CR>
@@ -409,3 +410,8 @@ let g:rainbow_active = 1 "0 if you want to enable it later via :RainbowToggle
 "-------highlted  yank setting only for vim , not required in neovim"
 "map y <Plug>(highlightedyank)
 let g:highlightedyank_highlight_duration = 400
+
+"----open-browser plugin -----------------------------
+let g:netrw_nogx = 1 " disable netrw's gx mapping.
+nmap gx <Plug>(openbrowser-smart-search)
+vmap gx <Plug>(openbrowser-smart-search)
