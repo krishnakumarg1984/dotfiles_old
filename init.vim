@@ -267,6 +267,7 @@ cnoremap <C-V> <C-R>+
 
 set pastetoggle=<F12>           " pastetoggle (sane indentation on pastes)
 
+set background=dark
 function! ToggleBG()
     let s:tbg = &background
     " Inversion
@@ -448,3 +449,7 @@ map *  <Plug>(incsearch-nohl-*)
 map #  <Plug>(incsearch-nohl-#)
 map g* <Plug>(incsearch-nohl-g*)
 map g# <Plug>(incsearch-nohl-g#)
+
+" gruvbox colorscheme options 
+
+let g:gruvbox_underline = 0
