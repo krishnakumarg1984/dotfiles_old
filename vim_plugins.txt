@@ -95,6 +95,94 @@ todo.txt-vim
 vim-bookmarks
 
 vim-diff-enhanced
+vim-bracketed-paste
+
+semantic-highlight ?
+
+extradite.vim extends fugitive
+
+vim-cute-python
+
+vim-tags
+vim-codefmt
+
+quickscope
+
+reedes/vim-wordy
+
+vim-github-dashboard
+
+vim-gutentags
+
+vim-bufferline
+
+vim-rooter
+yankring
+
+neoterm
+
+NrrwRgn
+wildfire.vim
+vim-textobj-anyblock
+
+vimoutliner
+
+vim-virtualenv
+
+sindresorhus/focus (awesome for latex)
+github-issues.vim
+promptline.vim
+
+vim-over (sounds really awesome)
+
+vim-table-mode
+
+vim-seek ?
+
+ctrlsf.vim
+
+rkitover/vimpager
+
+vim-obsession
+
+vim-sleuth
+splitjoin.vim
+
+YUNOcommit
+
+limelight.vim
+dwm.vim
+
+neosnippet
+vim-session
+
+wellle/targets.vim
+tcomment.vim
+
+Shougo/vimproc.vim
+vim-easytags
+
+numbers.vim
+
+xolox/vim-notes
+vim-polyglot
+
+calendar.vim
+
+neomake
+
+vim-vinegar
+vimwiki
+
+vim-ctrlspace
+vim-devicons
+vimfiler
+minibufexpl
+commentary
+vim-easy-align
+
+multiple cursors
 
 colorschemes
-kalisi, vim-atom-dark, lucius, lucario , toothpaste, google/vim-colorschemes-primary
+kalisi, vim-atom-dark, lucius, lucario , toothpaste, google/vim-colorschemes-primary, onedark,
+apprentice, hemisu, Toychest, smyck, flatland
