@@ -1,0 +1,45 @@
+https://github.com/koron/minimap-vim - minimap
+https://github.com/mkitt/tabline.vim - Configure tabs within Terminal Vim*
+*
+https://github.com/nhooyr/neoman.vim - only for vim
+https://github.com/laurentgoudet/vim-howdoi
+howdoi in general is quite awesome
+https://github.com/yuratomo/gmail.vim
+henrik/vim-indexed-search
+https://github.com/sotte/presenting.vim
+https://github.com/gcmt/taboo.vim
+https://github.com/t9md/vim-transform
+https://github.com/wannesm/wmgraphviz.vim
+https://github.com/paradigm/SkyBison
+https://github.com/tyru/caw.vim - commenting solution ?
+https://github.com/vim-utils/vim-husk - cmdline mappings
+https://github.com/tpope/vim-rsi
+
+
+https://github.com/fmoralesc/vim-tutor-mode
+https://github.com/dahu/LearnVim
+
+https://github.com/kana/vim-textobj-function
+
+https://github.com/gorkunov/smartgf.vim
+ https://github.com/jeetsukumaran/vim-indentwise
+
+https://github.com/gelguy/Cmd2.vim
+https://github.com/vim-scripts/vim-auto-save
+
+ https://github.com/reedes/vim-lexical
+
+ https://github.com/Shougo/vinarise.vim
+
+https://github.com/blueyed/vim-diminactive
+https://github.com/mtth/cursorcross.vim
+
+zoomwin and other awesome stuff here - *http://drchip.org/astronaut/vim/index.html#ZOOMWIN
+ https://github.com/wellle/visual-split.vim
+ https://github.com/gcavallanti/vim-noscrollbar
+
+ https://github.com/wincent/terminus
+
+https://github.com/paradigm/TextObjectify
+
+ https://github.com/PeterRincker/vim-argumentative
