@@ -1,6 +1,7 @@
 set nocompatible
 set esckeys
 
+set guifont=Source\ Code\ Pro:h14:cANSI
 let g:python_host_prog='/opt/intel/intelpython27/bin/python'
 
 call plug#begin('~/.config/nvim/plugged')
@@ -145,7 +146,7 @@ set visualbell               " Use visual bell instead of beeping
 set nomodeline               " Don't parse modelines because of vim modeline vulnerability
 
 set encoding=utf-8           " Default encoding for saving and reading file
-scriptencoding utf-8
+scriptencoding utfs8
 
 if has('clipboard')
     if has('unnamedplus')  " When possible use + register for copy-paste
@@ -165,7 +166,10 @@ set autowrite                       " Automatically write a file when leaving a 
 set autoread                        " Autoread when a file is changed from outside
 
 set history=1000                    " Store a ton of history (default is 20)
-set spell                           " Spell checking on
+"set spell                           " Spell checking on
+" Enable spellchecking for Markdown files and git commit messages
+autocmd FileType markdown setlocal spell
+autocmd FileType gitcommit setlocal spell
 
 set viewoptions=folds,options,cursor,unix,slash " Better Unix / Windows compatibility
 

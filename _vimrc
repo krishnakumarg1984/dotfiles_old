@@ -8,6 +8,7 @@ endfunction
 if WINDOWS()
     set runtimepath=$HOME/.vim,$VIM/vimfiles,$VIMRUNTIME,$VIM/vimfiles/after,$HOME/.vim/after
     set guifont=Consolas:h14:cANSI
+    "set guifont=Source\ Code\ Pro:h14:cANSI
 endif
 
 call plug#begin()
@@ -19,7 +20,7 @@ call plug#begin()
     Plug 'haya14busa/incsearch.vim'
     "Plug 'vim-pandoc/vim-pandoc'
     "Plug 'vim-pandoc/vim-pandoc-syntax'
-    "latex plugin 
+    "latex plugin
     "Plug 'chrisbra/csv.vim'
     "Plug 'justinmk/vim-sneak'
      Plug 'tpope/vim-surround'
@@ -38,7 +39,7 @@ call plug#begin()
     "Plug 'Yggdroot/indentLine'
     "Plug 'bkad/CamelCaseMotion'
      Plug 'sjl/gundo.vim'
-     Plug 'Raimondi/delimitMate'
+    "Plug 'Raimondi/delimitMate'
     "Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
     "Plug 'luochen1990/rainbow'
      Plug 'tpope/vim-commentary'
@@ -46,22 +47,23 @@ call plug#begin()
      "Plug 'bling/vim-bufferline'
      Plug 'ervandew/supertab'
      Plug 'tpope/vim-fugitive'
-     Plug 'junegunn/gv.vim'
+    "Plug 'junegunn/gv.vim'
      Plug 'airblade/vim-gitgutter'
     "Plug 'jlanzarotta/bufexplorer.vim'
      Plug 'dhruvasagar/vim-table-mode'
      Plug 'tpope/vim-repeat'
-     Plug 'tpope/vim-speeddating'
+    "Plug 'tpope/vim-speeddating'
      Plug 'junegunn/vim-peekaboo'
      "Plug 'junegunn/vim-slash'
-     Plug 'junegunn/vim-emoji'
-     Plug 'beloglazov/vim-online-thesaurus'
+    "Plug 'junegunn/vim-emoji'
+    "Plug 'beloglazov/vim-online-thesaurus'
      Plug 'junegunn/vim-lengthmatters'
      Plug 'kshenoy/vim-signature'
      Plug 'machakann/vim-highlightedyank'
     Plug 'jiangmiao/auto-pairs'
     Plug 'matze/vim-move'
     Plug 'tyru/open-browser.vim'
+    "Plug 'majutsushi/tagbar'
     "vim-easy-align
     "roman/golden-ratio
     "fontzoom
@@ -79,14 +81,16 @@ call plug#begin()
     "splitjoin
     "Plug 'myusuf3/numbers.vim'
     "neomake
+    "jordwalke/VimAutoMakeDirectory
+    "visualstar
 call plug#end()
 
 " camelCase attemptUnited manchesterUnited https://www.imperial.ac.uk
 filetype on
 filetype plugin indent on
 
-"colorscheme gruvbox
-colorscheme Tomorrow-Night  "(mango, vim-kolor,base16, molokai, wombat, mustang, railscasts, lucario, vim-atom-dark )
+colorscheme gruvbox
+"colorscheme Tomorrow-Night  "(mango, vim-kolor,base16, molokai, wombat, mustang, railscasts, lucario, vim-atom-dark )
 let g:airline_theme='base16'
 " let g:airline_theme='papercolor'
 
@@ -142,8 +146,11 @@ syntax on
 set synmaxcol=300   "Boost performance in rendering long lines
 
 " Make ESC respond faster
-"set ttimeout
-"set ttimeoutlen=50
+set ttimeout
+set ttimeoutlen=50
+
+set spelllang=en_gb
+syntax spell toplevel
 
 " Lower the delay of escaping out of other modes
 " keycode times out fast, mapping times out in a bit more time
@@ -153,7 +160,7 @@ set visualbell               " Use visual bell instead of beeping
 set nomodeline               " Don't parse modelines because of vim modeline vulnerability
 
 set encoding=utf-8           " Default encoding for saving and reading file
-scriptencoding utf-8
+scriptencoding utfs8
 
 if has('clipboard')
     if has('unnamedplus')  " When possible use + register for copy-paste
@@ -173,7 +180,10 @@ set autowrite                       " Automatically write a file when leaving a 
 set autoread                        " Autoread when a file is changed from outside
 
 set history=1000                    " Store a ton of history (default is 20)
-set spell                           " Spell checking on
+"set spell                           " Spell checking on
+*" Enable spellchecking for Markdown files and git commit messages
+autocmd FileType markdown setlocal spell
+autocmd FileType gitcommit setlocal spell
 
 set viewoptions=folds,options,cursor,unix,slash " Better Unix / Windows compatibility
 
@@ -368,7 +378,7 @@ endfunc
 nnoremap <F6> :call ShowTrailingWS()<CR>
 
 "Remove all trailing whitespace by pressing F7
-nnoremap <F7> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar><CR
+nnoremap <F7> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar><CR>
 
 set guioptions-=m
 set guioptions-=r
@@ -389,6 +399,8 @@ if has("autocmd")
     " Treat .rss files as XML
     autocmd BufNewFile,BufRead *.rss setfiletype xml
 endif
+" automatically rebalance windows on vim resize
+autocmd VimResized * :wincmd =
 
 " -------- vim-smooth-scrolling remaps ---------------------
 noremap <silent> <c-u> :call smooth_scroll#up(&scroll, 0, 2)<CR>
@@ -456,3 +468,4 @@ map *  <Plug>(incsearch-nohl-*)
 map #  <Plug>(incsearch-nohl-#)
 map g* <Plug>(incsearch-nohl-g*)
 map g# <Plug>(incsearch-nohl-g#)
+
