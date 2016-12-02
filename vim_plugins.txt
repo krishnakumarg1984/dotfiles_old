@@ -18,28 +18,83 @@ https://github.com/tpope/vim-rsi
 
 https://github.com/fmoralesc/vim-tutor-mode
 https://github.com/dahu/LearnVim
+canadaduane/VimKata
 
 https://github.com/kana/vim-textobj-function
 
 https://github.com/gorkunov/smartgf.vim
- https://github.com/jeetsukumaran/vim-indentwise
+https://github.com/jeetsukumaran/vim-indentwise
 
 https://github.com/gelguy/Cmd2.vim
 https://github.com/vim-scripts/vim-auto-save
 
- https://github.com/reedes/vim-lexical
+https://github.com/reedes/vim-lexical
 
- https://github.com/Shougo/vinarise.vim
+https://github.com/Shougo/vinarise.vim
 
 https://github.com/blueyed/vim-diminactive
 https://github.com/mtth/cursorcross.vim
 
 zoomwin and other awesome stuff here - *http://drchip.org/astronaut/vim/index.html#ZOOMWIN
- https://github.com/wellle/visual-split.vim
- https://github.com/gcavallanti/vim-noscrollbar
+https://github.com/wellle/visual-split.vim
+https://github.com/gcavallanti/vim-noscrollbar
 
- https://github.com/wincent/terminus
+https://github.com/wincent/terminus
 
 https://github.com/paradigm/TextObjectify
 
- https://github.com/PeterRincker/vim-argumentative
+https://github.com/PeterRincker/vim-argumentative
+
+othree/eregex
+arecam/vim-crunch  (better calculator)
+
+vim devicons
+colorscheme oceanic-next
+xuhdev/singlecompile
+
+yuratomo w3m.vim
+linediff.vim
+
+clam (for shell commands)
+vim-ide
+
+tpope/vim-afterimage
+Bbye
+julia-vim
+
+tabman
+
+smartpairs
+
+vim-android
+
+vim-dotoo
+krisajenkins/vim-pipe
+
+vim-hardtime
+
+wincent/ferret (enhanced multi-file search for vim)
+rhysd/committia.vim
+
+textobj-word-column
+
+vim-buftabline
+scratch.vim
+
+lexima.vim
+
+ajh17/VimCompletesMe
+
+vim-windowswap
+
+Goldenview.vim
+vim-grepper
+lion
+todo.txt-vim
+
+vim-bookmarks
+
+vim-diff-enhanced
+
+colorschemes
+kalisi, vim-atom-dark, lucius, lucario , toothpaste, google/vim-colorschemes-primary
