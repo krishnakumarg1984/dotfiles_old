@@ -1,10 +1,10 @@
 https://github.com/koron/minimap-vim - minimap
-https://github.com/mkitt/tabline.vim - Configure tabs within Terminal Vim*
-*
+https://github.com/mkitt/tabline.vim - Configure tabs within Terminal Vim
 https://github.com/nhooyr/neoman.vim - only for vim
 https://github.com/laurentgoudet/vim-howdoi
 howdoi in general is quite awesome
 https://github.com/yuratomo/gmail.vim
+vmail
 henrik/vim-indexed-search
 https://github.com/sotte/presenting.vim
 https://github.com/gcmt/taboo.vim
@@ -149,38 +149,27 @@ vim-sleuth
 splitjoin.vim
 
 YUNOcommit
-
 limelight.vim
 dwm.vim
-
 neosnippet
 vim-session
-
 wellle/targets.vim
 tcomment.vim
-
 Shougo/vimproc.vim
 vim-easytags
-
 numbers.vim
-
-xolox/vim-notes
-vim-polyglot
-
+vim-polyglot (done)
 calendar.vim
-
 neomake
-
 vim-vinegar
 vimwiki
-
+xolox/vim-notes
 vim-ctrlspace
-vim-devicons
+vim-devicons (done)
 vimfiler
 minibufexpl
 commentary
 vim-easy-align
-
 multiple cursors
 
 colorschemes

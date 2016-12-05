@@ -1,0 +1,3 @@
+<?
+open file in php
+

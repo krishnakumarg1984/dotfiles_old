@@ -14,7 +14,7 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'haya14busa/incsearch.vim'
     "Plug 'vim-pandoc/vim-pandoc'
     "Plug 'vim-pandoc/vim-pandoc-syntax'
-    "latex plugin 
+    "latex plugin
     "Plug 'chrisbra/csv.vim'
     "Plug 'justinmk/vim-sneak'
     Plug 'tpope/vim-surround'
@@ -73,6 +73,12 @@ call plug#begin('~/.config/nvim/plugged')
     "splitjoin
     "Plug 'myusuf3/numbers.vim'
     "neomake
+    "Plug 'ryanoasis/vim-devicons'
+    Plug 'sheerun/vim-polyglot'
+    Plug 'laurentgoudet/vim-howdoi'
+    Plug 'henrik/vim-indexed-search'
+    Plug 'tpope/vim-rsi'
+    "Plug 'gcavallanti/vim-noscrollbar'
 call plug#end()
 
 " camelCase attemptUnited manchesterUnited https://www.imperial.ac.uk
@@ -303,6 +309,7 @@ if has('statusline')
     set statusline+=\ [%{&ff}/%Y]
     set statusline+=\ [%{getcwd()}]
     set statusline+=%=%-14.(%l,%c%V%)\ %p%%
+    set statusline+=%{noscrollbar#statusline()}
 endif
 
 set viminfo='1000,f1,<500
@@ -454,7 +461,7 @@ map #  <Plug>(incsearch-nohl-#)
 map g* <Plug>(incsearch-nohl-g*)
 map g# <Plug>(incsearch-nohl-g#)
 
-" gruvbox colorscheme options 
+" gruvbox colorscheme options
 let g:gruvbox_underline = 0
 let g:gruvbox_contrast='hard'
 let g:gruvbox_contrast_dark='hard'
