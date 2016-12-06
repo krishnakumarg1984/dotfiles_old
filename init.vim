@@ -394,7 +394,7 @@ set guicursor+=a:blinkon0
 
 "
 " " Use the same symbols as TextMate for tabstops and EOLs
-set listchars=tab:▸\ ,eol:¬
+set listchars=tab:▸\ ,eol:⏎  ",nbsp:⎵
 
 if has("autocmd")
     " Syntax of these languages is fussy over tabs Vs spaces
@@ -411,6 +411,7 @@ if has("autocmd")
     autocmd FileType c,cpp :set cindent
 
     autocmd BufWritePre *.py,*.m,*.js,*.tex :call Preserve("%s/\\s\\+$//e")<CR>
+    autocmd CursorHold * update
 endif
 
 " -------- vim-smooth-scrolling remaps ---------------------

@@ -1,3 +1,5 @@
+https://github.com/justinmk/vim-dirvish
+https://github.com/justinmk/vim-gtfo
 visincr - http://www.drchip.org/astronaut/vim/index.html#VISINCR
 https://github.com/koron/minimap-vim - minimap
 https://github.com/mkitt/tabline.vim - Configure tabs within Terminal Vim
@@ -176,3 +178,4 @@ multiple cursors
 colorschemes
 kalisi, vim-atom-dark, lucius, lucario , toothpaste, google/vim-colorschemes-primary, onedark,
 apprentice, hemisu, Toychest, smyck, flatland
+
