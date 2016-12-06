@@ -110,6 +110,7 @@ endif
 set termguicolors
 set t_Co=256
 
+:autocmd BufEnter * silent! normal! g`"
 set history=1000               " store lots of :cmdline history
 "set incsearch                  " search as characters are entered
 set backspace=indent,eol,start " Make backspace behave in a sane manner.

@@ -105,6 +105,8 @@ if has('persistent_undo')
     set undoreload=10000        " Maximum number lines to save for undo on a buffer reload
 endif
 
+:autocmd BufEnter * silent! normal! g`"
+
 set history=1000               " store lots of :cmdline history
 "set incsearch                  " search as characters are entered
 set backspace=indent,eol,start " Make backspace behave in a sane manner.

@@ -1,3 +1,4 @@
+visincr - http://www.drchip.org/astronaut/vim/index.html#VISINCR
 https://github.com/koron/minimap-vim - minimap
 https://github.com/mkitt/tabline.vim - Configure tabs within Terminal Vim
 https://github.com/nhooyr/neoman.vim - only for vim
