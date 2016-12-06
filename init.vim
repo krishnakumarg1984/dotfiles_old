@@ -90,7 +90,7 @@ let $NVIM_TUI_ENABLE_CURSOR_SHAPE = 1
 let $NVIM_TUI_ENABLE_TRUE_COLOR = 1
 set termguicolors
 
-:set t_Co=256
+":set t_Co=256
 
 colorscheme gruvbox
 let g:airline_theme='base16'
@@ -106,6 +106,7 @@ if has('persistent_undo')
 endif
 
 :autocmd BufEnter * silent! normal! g`"
+autocmd FileType make setlocal ts=8 sts=8 sw=8 noexpandtab
 
 set history=1000               " store lots of :cmdline history
 "set incsearch                  " search as characters are entered
@@ -226,6 +227,8 @@ if has('conceal')
     set listchars+=conceal:^
     set conceallevel=1 concealcursor=i
 endif
+" Shortcut to rapidly toggle `set list`
+nnoremap <leader>l :set list!<CR>
 
 hi link HelpBar Normal
 hi link HelpStar Normal
@@ -311,7 +314,7 @@ if has('statusline')
     set statusline+=\ [%{&ff}/%Y]
     set statusline+=\ [%{getcwd()}]
     set statusline+=%=%-14.(%l,%c%V%)\ %p%%
-    set statusline+=%{noscrollbar#statusline()}
+    "set statusline+=%{noscrollbar#statusline()}
 endif
 
 set viminfo='1000,f1,<500
@@ -373,16 +376,28 @@ func! ShowTrailingWS()
 endfunc
 nnoremap <F6> :call ShowTrailingWS()<CR>
 
+function! Preserve(command)
+    " Preparation: save last search, and cursor position.
+    let _s=@/
+    let l = line(".")
+    let c = col(".")
+    " Do the business:
+    execute a:command
+    " Clean up: restore previous search history, and cursor position
+    let @/=_s
+    call cursor(l, c)
+endfunction 
+nnoremap _$ :call Preserve("%s/\\s\\+$//e")<CR>
+nnoremap _= :call Preserve("normal gg=G")<CR>
+
 "Remove all trailing whitespace by pressing F7
-nnoremap <F7> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar><CR
+"nnoremap <F7> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar><CR
 
 set guioptions-=m
 set guioptions-=r
 set guioptions-=T
 set guicursor+=a:blinkon0
 
-" Shortcut to rapidly toggle `set list`
-nmap <leader>l :set list!<CR>
 "
 " " Use the same symbols as TextMate for tabstops and EOLs
 set listchars=tab:▸\ ,eol:¬

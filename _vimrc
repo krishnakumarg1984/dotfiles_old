@@ -111,6 +111,7 @@ set termguicolors
 set t_Co=256
 
 :autocmd BufEnter * silent! normal! g`"
+autocmd FileType make setlocal ts=8 sts=8 sw=8 noexpandtab
 set history=1000               " store lots of :cmdline history
 "set incsearch                  " search as characters are entered
 set backspace=indent,eol,start " Make backspace behave in a sane manner.
@@ -383,8 +384,23 @@ func! ShowTrailingWS()
 endfunc
 nnoremap <F6> :call ShowTrailingWS()<CR>
 
+function! Preserve(command)
+    " Preparation: save last search, and cursor position.
+    let _s=@/
+    let l = line(".")
+    let c = col(".")
+    " Do the business:
+    execute a:command
+    " Clean up: restore previous search history, and cursor position
+    let @/=_s
+    call cursor(l, c)
+endfunction 
+
+nmap _$ :call Preserve("%s/\\s\\+$//e")<CR>
+nmap _= :call Preserve("normal gg=G")<CR>
+
 "Remove all trailing whitespace by pressing F7
-nnoremap <F7> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar><CR>
+"nnoremap <F7> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar><CR>
 
 set guioptions-=m
 set guioptions-=r
