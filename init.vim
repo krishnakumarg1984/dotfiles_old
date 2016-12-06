@@ -105,8 +105,6 @@ if has('persistent_undo')
     set undoreload=10000        " Maximum number lines to save for undo on a buffer reload
 endif
 
-:autocmd BufEnter * silent! normal! g`"
-autocmd FileType make setlocal ts=8 sts=8 sw=8 noexpandtab
 
 set history=1000               " store lots of :cmdline history
 "set incsearch                  " search as characters are entered
@@ -176,9 +174,6 @@ set autoread                        " Autoread when a file is changed from outsi
 
 set history=1000                    " Store a ton of history (default is 20)
 "set spell                           " Spell checking on
-" Enable spellchecking for Markdown files and git commit messages
-autocmd FileType markdown setlocal spell
-autocmd FileType gitcommit setlocal spell
 
 set viewoptions=folds,options,cursor,unix,slash " Better Unix / Windows compatibility
 
@@ -354,7 +349,6 @@ call matchadd('ColorColumn', '\%81v', 100)
 
 set autoindent
 set smartindent
-autocmd FileType c,cpp :set cindent
 
 set nojoinspaces
 nnoremap : ;
@@ -386,7 +380,7 @@ function! Preserve(command)
     " Clean up: restore previous search history, and cursor position
     let @/=_s
     call cursor(l, c)
-endfunction 
+endfunction
 nnoremap _$ :call Preserve("%s/\\s\\+$//e")<CR>
 nnoremap _= :call Preserve("normal gg=G")<CR>
 
@@ -409,6 +403,14 @@ if has("autocmd")
 
     " Treat .rss files as XML
     autocmd BufNewFile,BufRead *.rss setfiletype xml
+
+    :autocmd BufEnter * silent! normal! g`"
+    " Enable spellchecking for Markdown files and git commit messages
+    autocmd FileType markdown setlocal spell
+    autocmd FileType gitcommit setlocal spell
+    autocmd FileType c,cpp :set cindent
+
+    autocmd BufWritePre *.py,*.m,*.js,*.tex :call Preserve("%s/\\s\\+$//e")<CR>
 endif
 
 " -------- vim-smooth-scrolling remaps ---------------------
