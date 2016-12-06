@@ -181,7 +181,7 @@ set autoread                        " Autoread when a file is changed from outsi
 
 set history=1000                    " Store a ton of history (default is 20)
 "set spell                           " Spell checking on
-*" Enable spellchecking for Markdown files and git commit messages
+" Enable spellchecking for Markdown files and git commit messages
 autocmd FileType markdown setlocal spell
 autocmd FileType gitcommit setlocal spell
 
@@ -223,6 +223,7 @@ set nofoldenable        " Disable fold by default
 set noswapfile
 set nobackup
 set nowritebackup
+set noundofile
 
 set scrolloff=3               " Minimal number of screen lines to keep above and below the cursor
 set sidescroll=3              " The minimal number of columns to scroll horizontally
@@ -232,6 +233,10 @@ if has('conceal')
     set listchars+=conceal:^
     set conceallevel=1 concealcursor=i
 endif
+" Use the same symbols as TextMate for tabstops and EOLs
+set listchars=tab:▸\ ,eol:¬
+" Shortcut to rapidly toggle `set list`
+nnoremap <leader>l :set list!<CR>
 
 hi link HelpBar Normal
 hi link HelpStar Normal
@@ -385,11 +390,6 @@ set guioptions-=r
 set guioptions-=T
 set guicursor+=a:blinkon0
 
-" Shortcut to rapidly toggle `set list`
-nmap <leader>l :set list!<CR>
-"
-" " Use the same symbols as TextMate for tabstops and EOLs
-set listchars=tab:▸\ ,eol:¬
 
 if has("autocmd")
     " Syntax of these languages is fussy over tabs Vs spaces
