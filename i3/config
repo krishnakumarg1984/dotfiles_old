@@ -92,22 +92,25 @@ bindsym $mod+a focus parent
 # focus the child container
 #bindsym $mod+d focus child
 
-set $workspace1 "1: Terminals &#xf034;"
+set $workspace1 "1: Terminals &#xf120;"
 set $workspace2 "2: Editor &#xf044;"
 set $workspace3 "3: Browser &#xf268;"
+set $workspace4 "4: Explorer &#xf115;"
+set $workspace5 "5: Videos &#xf03d;"
 
 assign [class="Mate-terminal"] $workspace1
 assign [class="Gvim"] $workspace2
-assign [class="Vim"] $workspace2
 assign [class="Google-chrome"] $workspace3
 assign [class="Firefox"] $workspace3
+assign [class="Pcmanfm"] $workspace4
+assign [class="vlc"] $workspace5
 
 # switch to workspace
 bindsym $mod+1 workspace $workspace1
 bindsym $mod+2 workspace $workspace2
 bindsym $mod+3 workspace $workspace3
-bindsym $mod+4 workspace 4
-bindsym $mod+5 workspace 5
+bindsym $mod+4 workspace $workspace4
+bindsym $mod+5 workspace $workspace5
 bindsym $mod+6 workspace 6
 bindsym $mod+7 workspace 7
 bindsym $mod+8 workspace 8
@@ -117,9 +120,9 @@ bindsym $mod+0 workspace 10
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace $workspace1
 bindsym $mod+Shift+2 move container to workspace $workspace2
-bindsym $mod+Shift+3 move container to workspace 3
-bindsym $mod+Shift+4 move container to workspace 4
-bindsym $mod+Shift+5 move container to workspace 5
+bindsym $mod+Shift+3 move container to workspace $workspace3
+bindsym $mod+Shift+4 move container to workspace $workspace4
+bindsym $mod+Shift+5 move container to workspace $workspace5
 bindsym $mod+Shift+6 move container to workspace 6
 bindsym $mod+Shift+7 move container to workspace 7
 bindsym $mod+Shift+8 move container to workspace 8
@@ -248,16 +251,16 @@ bindsym Mod1+0 exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
 bindsym Mod1++ exec xbacklight -inc 20 # increase screen brightness
 bindsym Mod1+- exec xbacklight -dec 20 # decrease screen brightness
 
-# Touchpad controls
-bindsym XF86TouchpadToggle exec /some/path/toggletouchpad.sh # toggle touchpad
+# # Touchpad controls
+# bindsym XF86TouchpadToggle exec /some/path/toggletouchpad.sh # toggle touchpad
 
-# Media player controls
-bindsym XF86AudioPlay exec playerctl play
-bindsym XF86AudioPause exec playerctl pause
-bindsym XF86AudioNext exec playerctl next
-bindsym XF86AudioPrev exec playerctl previous
+# # Media player controls
+# bindsym XF86AudioPlay exec playerctl play
+# bindsym XF86AudioPause exec playerctl pause
+# bindsym XF86AudioNext exec playerctl next
+# bindsym XF86AudioPrev exec playerctl previous
 
-#Keyboard mapping to handle india keyboard
+#Keyboard mapping to handle India keyboard
 bindsym Mod1+g exec setxkbmap gb
 bindsym Mod1+u exec setxkbmap us
 
@@ -265,9 +268,10 @@ bindsym Mod1+u exec setxkbmap us
 # 321E6D = Plum
 bindsym $mod+shift+x exec i3lock --color=002147
 
-exec google-chrome
+exec mate-terminal
 exec gvim
-#exec mate-terminal
+exec google-chrome
+exec pcmanfm
 
 # Wallpaper
 exec_always feh --bg-scale ~/Pictures/eiffel.jpg
