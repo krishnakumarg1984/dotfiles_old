@@ -1,0 +1,350 @@
+apropos (or man-k)
+
+/var/log/system.log
+
+mkdir -vp is a good option set (verbose, create parents)
+cp,mv -n , -f , -i, -v (options for overwriting)
+
+symbolic links keep track of the path to the file
+
+find stuff in unix 
+--------------------
+searching for files and directories
+
+find path expression
+find ~/Documents -name "somefilename" (for exact filename finding)
+else if u don't know the exact thing we are looking for , use *,? or [] wildcards
+but still keep the quotes around it
+
+-path, -last modified etc. are possible. (find can be pretty complex)
+find ~ -name *.jpg -and -not -path someotherpattern
+
+whoami
+echo $HOME
+
+chmod mode filename
+chmod ugo=rwx filename
+chmod u=rwx,g=rw,o=r filename
+
+chmod ug+w filename
+chmod o-w filename
+chmod a+w filename  (a = ugo)
+-R option is available
+
+sudo (my password), not root's passwd
+sudo -k will kill priveleges
+sudo -u username dosomething
+cat /etc/sudoers
+q, x, <C-q>, <C-x>, ESC
+; between commands
+
+PATH is colon separated
+who
+uname
+domainname
+hostname
+
+du path
+du -ah path (file sizes also)
+du -hd 1 (depth of one)
+reports size set aside (not the size the files are actually using)
+allocated size 
+
+ps (snapshot processes status)
+ps aux
+x = background processes also
+
+kill pid
+kill -9 pid
+
+wc
+sort filename (uppercase comes after lowercase)
+sort -f filename (ignores uppercase)
+sort -r filename (reverse sort)
+sort -u filename (unique)
+uniq (only to dedeupe - doesn't sort and dedup)
+uniq -d retuns the repeated lines
+uniq -u returns the unduplicated lines 
+
+(n)cal
+bc
+scale=10 (how many digits after decimal points)
+expr
+units
+
+!-2 (run a command executed two commands ago)
+!expr (most recent command using expr)
+!cat and other such uses 
+!!  (same as !-1)
+sudo !!
+command !$ (several commands to the same argument)
+history -d histno
+
+bc < input_filename.txt
+
+load order
+----------
+/etc/profile (default settings by Apple)
+~/.bash_profile, ~/.bash_login, ~/.profile, ~/.login (personal customisations)
+only one of these 4 will work
+
+stating a new subshell  (~/.bashrc)
+logout (~/.bash_logout)
+
+Add this to ~/.bash_profile
+------------------------------
+if [ -f ~/.bashrc ]; then
+    source ~/.bashrc
+fi
+
+export to child processes (export command)
+export HISTTIMEFORMAT='%b %d %I:%M %p ' #using strftime format
+export HISTIGNORE="history:pwd:exit:df:ls:ls -la:ll"
+colon separated list
+
+history -c
+
+PS1 (for customising command prompt)
+tons of formatting codes
+\u
+\s (shell)
+\h 
+\d (date)
+\D{%Y-%m-%d}
+ 
+ logout  file
+
+Unix power tools
+--------------------
+grep (output all LINES matching a regex)
+grep a file for a text string
+grep expression filename
+grep apple fruit.txt (returns lines containing a match, not just the single line)
+apple
+pineapple
+apple
+also casesensitive
+grep Apple fruit.txt does not return a match
+grep -i Apple fruit.txt
+grep -w apple fruit.txt (returns only lines wherein the pattern matches the full word)
+returns only
+apple
+apple
+
+grep -v apple fruit.txt (inversion, All lines that do not match)
+-n option returns line numbers from the file matching the results
+
+grep -c apple fruit.txt (counts the number of matching lines)
+grep -c lorem lorem_ipsum.txt (super fast)
+
+
+grep for multiple files or search inside directories
+
+grep -R apple .  (current path) always use -R when using directories
+
+grep -Rh apple . (h option will suppress the directory and file names from the results)
+
+if we want just the filename, use the -l option  (useful for piping the results into another
+    command, such as concatenation ).  use -L for the list of files that don't match  (similar, but not the
+    same as -v)
+
+grep -Rl apple .
+./sorted_fruit.txt
+./unique_sorted_fruit.txt
+./mango_fruit.txt
+./fruit.txt
+
+can speed up searches using narrower wildcard
+
+ls *fruit.txt 
+
+grep apple *fruit.txt
+don't  just use -R by default. Think about it for a second.
+
+can also use piped input
+cat fruit.txt | grep apple
+ps aux | grep Terminal
+
+grep also offers an option called color
+grep --color=auto/always/never pattern filename
+
+Look for GREP_COLOR codes
+Attributes; textcolor; background
+they are separated with ;
+only one text color, only 1 background color but several attributes can be picked
+
+export GREP_OPTIONS="-in" # case insensitive with line numbering
+
+better to put single quotes around the pattern
+grep 'apple' fruit.txt
+
+grep 'a..le' fruit.txt
+grep '.a.a.a' fruit.txt
+\W (not a word character)
+\S (not a word whitespace)
+
+grep '^p' fruit.txt 
+ echo 'AaBbCcDdEe' | grep [[:upper:]]
+ echo 'a;b:c.d^e$' | grep '[[:punct:]]'
+
+grep 'ap*le' *fruit.txt
+grept.txt 'ap\+le' *fruit.txt
+grep -E 'ap+le' *fruit.txt
+export GREP_OPTIONS="-inE" # case insensitive with line numbering, use exptended grep
+o 'a,b,c' | tr ',' '-'
+echo '123246665543' | tr '123456' 'EBGDAE'
+can do rot-13
+echo 'This is ROT-13 encrypted.' | tr 'A-Za-z' 'N-ZA-Mn-za-m'
+
+
+tr is not a find and replacement
+if the replacement set is smaller, the last character is repeated
+tr 'A-Z' 'a-z' < people.txt 
+tr '[:upper:]' '[:lower:]' < people.txt
+
+can use tr to strip out foreign characters
+
+can change a csv to tsv
+
+tr can delete and squeeze characters also (dedup repeating chacareters)
+d, s and c
+d (delerte )
+s (squeeze)
+c (use the complementary set) (tyically use with d and s optons)
+
+Only 1 argument in needed
+echo "abc1233deee567f" | tr -d [:digit:]
+echo "abc1233deee567f" | tr -dc [:digit:] (delete anythign not a digit)
+
+echo "abc1233deee567f" | tr -s [:digit:]
+echo "abc1233deee567f" | tr -sc [:digit:]
+
+echo "abc1233deee567f" | tr -ds [:digit:][:alpha:] #"abcdef"
+echo "abc1233deee567f" | tr -dsc [:digit:][:digit:] #"1234567"
+
+
+Remove non-printable characters from the file
+tr -dc [:print:] < file1 > file2
+Can remove tabs from a file, punctuations from a file., or all line-returns from a file
+
+Surplus character returns from windows file
+tr -d '\015\032' < windows_file > unix_file (extra carriage return + eof characters)
+
+tr -s '' < file1 >file2 get rid of double/triple spaces  (can also use in conjunction with
+non-printable chars removal)
+
+sed
+---
+sed 's/a/b'  a= search string, b = replacement string
+
+echo 'upstream' | sed 's/up/down/'
+echo 'upstream and upward' | sed 's/up/down/g'
+
+sed 's/pear/mango/' fruit.txt
+each line gets treated as a tream
+sed 's/colour/color/g' fruit.txt 
+echo 'During daytime we have sunlight.' | sed -e 's/day/night/' -e 's/sun/moon/'
+
+sed -e  is the key thing (e is the set of edits)
+can use all edit command s in a file, and use the -f option to apply all these filters
+to call the sed file
+echo "who needs vowels?" | sed 's/[aeiou]/_/g'
+use sed -E
+<C-v>Tab
+
+
+Remove html tags from a html doc
+sed -E 's/<[^<>]+>//g' homepage.html
+echo 'daytime' | sed -E 's/(...)time/\1light/g'
+sed -E 's/(apple|pear|lum|peach)/\1 tree/' fruit.txt
+
+cut 
+---
+chars, bytes or fields (bytes in english will be equivalent to chars) - bytes are for raw data
+cut -c 2-10 dir_content.txt
+cut -c 2-10,30-35 dir_content.txt
+cut -f 2,6 us_presidents.tsv | less
+cut -f 2,6 -d "," us_presidents.csv
+
+diff
+----------
+< (left file)
+> (right file)
+
+-i case_insensitive
+-b ignore changes to blank
+-w ifnore all whitsespace
+-B ignore blank lines
+-r recursively compare dirs
+-s show identical files
+
+-c copied context
+-u unified context
+-y side-by-side
+-q Only whether files differ
+
+diff -u original_file.txt revised_file.txt > original_revised.diff
+diff -u original_file.txt revised_file.txt | diffstat
+
+
+xargs
+echo 'lorem_ipsum.txt' | xargs wc
+
+echo 'lorem_ipsum.txt' | xargs -t wc
+
+echo 'lorem_ipsum.txt us_presidents.csv' | xargs -t wc
+
+echo 'lorem_ipsum.txt us_presidents.csv' | xargs -t -n1 wc
+
+echo 1 2 3 4 | xargs -t -n2
+ls | xargs -n3 echo
+
+head lorem_ipsum.txt | xargs -L 2 (limit to 2 arguments)
+-L (first x lines)
+-n (first 2 words)
+
+
+transposing returns to a single line
+cat fruit.txt | xargs
+
+cat fruit.txt | xargs -I {} echo "buy more: {}"
+-0 option will split up on null characters as separators (useful with filenames)
+
+xargs with file_manifest
+cat file_manifest.txt | xargs cat | less
+
+cat fruit.txt | sort | uniq | xargs -I {} mkdir -p ~/Desktop/fruits/{}
+will create a folder for each unique fruit
+mist of first names and last names, and then you can create a folder for each student
+
+ps aux | grep 'badprocesses' | cut -c 11-15 | xargs kill -9
+
+grep -l 'apple' *fruit.txt | xargs wc
+
+find test1/ -type f -print0 | xargs -0 chmod 755
+
+find . -name "*.fruit.txt" -print0 | xargs -0 -I {} cp {} ~/Desktop/{}.backup
+
+find in the current directory everyfile whose name matches fruit.txt and pipe it through xargs 
+Copy each of those to the desktop and create a  backup
+
+xargs interactive -p
+
+find /home/krishna/Desktop/ -name "*.backup" -print0 | xargs -p -0 -n1 rm
+can specify find depth of 1
+-n1 (one argument at a time)
+
+find . -name "*invoice*" -print0 | xargs -0 grep -li 'programming'
+find ~/my_website/ -name "*.html" -print0 | xargs -0 grep -l "<h3>"
+
+
+
+
+
+
+
+
+
+
+
+

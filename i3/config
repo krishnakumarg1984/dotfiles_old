@@ -204,7 +204,7 @@ bindsym Mod1+u exec setxkbmap us
 bindsym $mod+shift+x exec i3lock --color=002147
 
 exec mate-terminal
-exec gvim
+# exec gvim
 exec google-chrome
 exec pcmanfm
 
@@ -240,4 +240,9 @@ for_window [urgent="latest"] focus
 client.focused #586e75 #586e75 #fdf6e3 #268bd2
 client.focused_inactive #073642 #073642 #93a1a1 #002b36
 client.unfocused #002b36 #002b36 #586e75 #002b36
-client.urgent #dc322f #dc322f #fdf6e3 #dc322f
+client.urgent #2c001e #dc322f #dc322f #fdf6e3 #dc322f
+
+
+exec --no-startup-id xset dpms 300
+exec --no-startup-id xautolock -time 10 -locker "xlock -mousemotion -background black -foreground red -mode matrix"
+

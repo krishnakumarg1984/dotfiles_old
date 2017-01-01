@@ -1,0 +1,39 @@
+Exotic shells
+--------------------
+fish
+xiki
+
+
+tools
+----
+ag
+autojump
+howdoi
+borg
+tldr and it's bash version
+theword
+hstr (for a better history)
+hr (for a horizontal ruler)
+most
+pydf
+lsp
+whereami
+
+frameworks
+----------
+bash-it
+bpkg
+
+shell scripts
+------------
+up
+h highlighter
+fasd (like autojump)
+enhancd
+,cd
+bash full of colors
+git-open
+progress
+ansiweather/wego
+vl (verify links)
+qfc

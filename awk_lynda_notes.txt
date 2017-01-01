@@ -1,0 +1,224 @@
+lines and fields (structured files)
+can't do much with Word and Excel files
+good at generating html , but not good at parsing html
+
+awk '{print $2, $1}' filename (, indicates separation by a space)
+
+records and fields
+record = line
+field = separated by spaces
+$followedd by number to denote the field
+$0 = entire line
+print without args also prints every line
+, = instructs print to insert a FS
+awk '{print $2i "," $1}' names.txt
+
+awk pattern action
+awk '{print NF,$0}' dukeofyork.txt 
+awk '/up/{print NF, $0}' dukeofyork.txt (will print only those lines which include the word up)
+awk 'NF==6{print NF, $0}' dukeofyork.txt (only those lines that have exactly 6 fields)
+awk 'NF==6' dukeofyork.txt (same deal)
+
+awk '/up/{print "UP:", NF,$0} /down/{print "DOWN:", NF,$0}' dukeofyork.txt
+
+awk -f (read awk from file)
+don't need to enclose in single quotes
+awk -F (following arg as field sep)
+
+awk -F , '{print $2}'
+awk -F t '{print $2}'  (for tab separattion)
+awk -v hi=HELLO '{print $,hi}' (for value of the variable)
+can use < for input coming from the line
+
+uptime | awk '{print $NF,$0}'
+sort -n to sort numerically
+
+awk -F ABC '{print $2}'
+awk -F '[,!]' '{print $2}'
+
+or use FS
+awk '{FS=","; print $2}' will not work
+awk 'BEGIN{FS=","}; {print $2}' will not work
+OS will sort out the records 
+awk 'BEGIN{RS="!";FS=","} {print $2}' onebigline.txt (doesn't have to be the same line)
+record sep still works
+if RS="" (empty), then any sequence one or more empty lines will work
+awk 'BEGIN{RS="";FS="\n"} {print $2}' addresses.txt
+
+awk 'BEGIN{RS="";FS="\n"} {name=$1;address=$2;citystatezip=$3;print $1,$2,$3}' multiaddress.txt 
+OFS = space
+ORS = newline
+print $0 is not affected by OFS 
+
+NR is record number
+awk 'NR==6{print NR,$0}' dukeofyork.txt
+awk '{print NR,FILENAME, FNR,$0}' dukeofyork.txt names.txt 
+
+$0
+$1 is the 1st field etc.
+awk '{print $NF}' dukeofyork.txt 
+awk '{print $(NF-1)}' dukeofyork.txt 
+ awk '{print $($1)}' dukeofyork.txt 
+awk '{$2="TWO"; print}' dukeofyork.txt 
+awk '{$11="ELEVEN"; print}' dukeofyork.txt 
+
+
+awk '{hello=$1;goodbye=$2; print hello,goodbye}'
+variable names are case sensitive
+all variables are either numbers or strings depending on context
+awk '{a=1;b=3; print a+b}'
+awk '{a=1;b=3; print a b}'
+awk '{a=1;b="Bob"; print a+b}'
+b's value is treated as zero (numeric value of a string is zero)
+
+
+integer and floats are auto-converted to each other as per necessity
+awk '{a=1;b=3; print a/b}'
+force treatment as string by concatenating with empty string
+awk multiplies first , then concatenes. Parantheses can be used to modify the order
+
+all variables have global scope
+
+awk 'BEGIN{a=1} {print a,$0}' dukeofyork.txt
+
+math operators
+--------------------
++ , - , *, / , %, ^
+++ , -- 
+= , += , -=, *=, /= , %\, ^=
+
+comparison : ==, !=, <, <=,>,>=
+true(1), or false(0)
+
+regex comparison : ~,!~
+
+AWK has arrays []
+regex ARE CASE-SENSITIVE
+awk '$4 ~ /up/{print "UP:" $0}' dukeofyork.txt 
+^$ does not necessarily match whole line
+matches the beginnign and end of fields respectively
+
+if (condition ){
+    if-statement(s)
+} else[
+    else-statement(s)
+]
+
+for(initialisation; condition; increment) {
+    body
+}
+
+printf() for formatted printing
+printf(format, value ...)
+
+awk -F, '{printf("%s\t%s\t%d\n", $1, $2,$3)}' nameemailavg.csv 
+DOES not use OFS and ORS
+awk -F, '{printf("%20s%30s%3d\n", $1, $2,$3)}' nameemailavg.csv 
+awk -F, '{printf("%-20s %-35s %3d\n", $1, $2,$3)}' nameemailavg.csv 
+awk -F, '{printf("%-20s %-35s %06.2f\n", $1, $2,$3)}' nameemailavg.csv 
+
+String manipulation
+--------------------
+strings begin at 1 
+
+length([string])
+index(string,target)  - returns index of starting match 
+match(string,regex) (sets RSTART to location of match, and RLENGTH to lenght of the matched regex)
+substr(string,start[,length])
+
+delete or modify text in a string
+----------------------------------
+sub(regex, newval[,string])
+gsub(regex, newval[,string])
+split(string, array[,regex])
+awk '{sub(/the/,"");print}' dukeofyork.txt
+awk '{sub(/the[ym]/,"ALL OF THEM");print}' dukeofyork.txt
+
+split
+-----
+Sometimes, single field of the input is internally dselimited (eg. by a space, in nameemailavg.csv)
+break into subfields
+split the string into pieces, stores the pieces in array and returns theno. of pieces found
+if regex is omitted, uses the value of FS
+does not modify its string
+
+awk -F, 'BEGIN{OFS="\t"} {split($1, a, / /); print a[2] ", " a[1], $2, $3}' nameemailavg.csv 
+
+Associative arrays 
+-------------------
+An array can be any number or string
+awk '{a["first"]=$1; a["second"]=$2; a["third"]=$3; print a["third"], a["second"], a["first"]}'
+dukeofyork.txt 
+Associates to an arbtrary value
+can't iterate numerically
+
+for (index in array){
+    body
+}
+
+awk '{a["first"]=$1; a["second"]=$2; for(i in a) {print i, a[i]}}' dukeofyork.txt 
+order is not guaranteed
+awk -f wordusage.awk dukeofyork.txt | sort -rn -k 2
+
+int(x)
+rand(x)
+srand([x])
+sqrt(x)
+sin(x)
+cos(x)
+atan2(y,x) (pi = atan2(0,1))
+log(x)
+exp(x)
+
+ls -l  | awk '/\.txt$/{total +=$5; print} END{print total}'
+
+sed character by character manipulation
+sed 's/old/new/'
+(something like sub function within awk)
+
+sed as a pre-processor before awk sees it 
+eg to remove the trailing stars from ls -la indicating executable programs
+
+processing excel csv files
+
+BEGIN {RS="\r"}
+{
+    while ($NF ~ /^".*[^"]$/){
+        getline x;
+        $0 = $0 "\n" x;
+    }
+    for (i=1; i<=$NF; i++){
+        gsub("^\"|\"$","", $i);
+        gsub("\"\"","\"", $i);
+    }
+    print "!" $1 "!" $2 "!" $3 "!"
+}
+
+if the excel file contains comma, change to tsv
+    if it contains a new line, then we are in trouble
+
+http://lorance.freeshell.org/csv/
+is an awk csv parser
+
+pemet awk one-liners
+awk -f join.awk nameemailavg.csv addresses.txt
+ibm awk by example tutorial
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
