@@ -8,8 +8,6 @@ case $- in
       *) return;;
 esac
 
-export TERM='xterm-256color'
-
 # don't put duplicate lines or lines starting with space in the history.
 # See bash(1) for more options
 HISTCONTROL=ignoreboth
@@ -18,10 +16,8 @@ HISTCONTROL=ignoreboth
 shopt -s histappend
 
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
-HISTSIZE=10000
-HISTFILESIZE=20000
-export HISTTIMEFORMAT='%b %d %I:%M %p ' #using strftime format
-export HISTIGNORE="history:pwd:exit:df:ls:ls -la:ll"
+HISTSIZE=1000
+HISTFILESIZE=2000
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
@@ -39,10 +35,10 @@ if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
     debian_chroot=$(cat /etc/debian_chroot)
 fi
 
-# set a fancy prompt (non-color, unless we know we "want" color)
-case "$TERM" in
-    xterm-color|*-256color) color_prompt=yes;;
-esac
+# # set a fancy prompt (non-color, unless we know we "want" color)
+# case "$TERM" in
+#     xterm-color|*-256color) color_prompt=yes;;
+# esac
 
 # uncomment for a colored prompt, if the terminal has the capability; turned
 # off by default to not distract the user: the focus in a terminal window
@@ -92,18 +88,9 @@ fi
 #export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
 # some more ls aliases
-alias ll='ls -alFrtG'
+alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
-
-alias home='cd ~'
-alias up='cd ..'
-alias h='history'
-
-alias df='df -h'
-alias du='du -h'
-alias mkdir='mkdir -p'
-alias pdw='pwd'
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
@@ -129,59 +116,31 @@ if ! shopt -oq posix; then
   fi
 fi
 
-export INFOPATH=/usr/local/texlive/2016/texmf-dist/doc/info:$INFOPATH
-export MANPATH=/usr/local/texlive/2016/texmf-dist/doc/man:$MANPATH
-export PATH=/usr/local/texlive/2016/bin/x86_64-linux:$PATH
-export PATH=~/bin:$PATH   #for tldr
+PATH=/opt/intel/intelpython27/bin:$PATH
+PATH=/usr/local/texlive/2016/bin/x86_64-linux:$PATH
+PATH=/opt/gams/gams24.7_linux_x64_64_sfx:$PATH
+PATH=/usr/bin/matlab:$PATH
+PATH=~/mosek/8/tools/platform/linux64x86/bin:$PATH
+PATH=~/pycharm-2016.3.2/bin:$PATH
+export PATH=$PATH:/usr/local/go/bin
 
-export PAGER="/usr/bin/most -s"
+INFOPATH=/usr/local/texlive/2016/texmf-dist/doc/info:$INFOPATH
+MANPATH=/usr/local/texlive/2016/texmf-dist/doc/man:$MANPATH
 
-fish
+vman() {
+#nvim -c "SuperMan $*"
 
+if [ "$?" != "0" ]; then
+    echo "No manual entry for $*"
+fi
+}
+complete -o default -o nospace -F _man vman
 
-export BASH_IT="/home/krishna/.bash_it"
-
-# Lock and Load a custom theme file
-# location /.bash_it/themes/
-export BASH_IT_THEME='bobby'
-
-# (Advanced): Change this to the name of your remote repo if you
-# cloned bash-it with a remote other than origin such as `bash-it`.
-# export BASH_IT_REMOTE='bash-it'
-
-# Your place for hosting Git repos. I use this for private repos.
-export GIT_HOSTING='git@git.domain.com'
-
-# Don't check mail when opening terminal.
-unset MAILCHECK
-
-# Change this to your console based IRC client of choice.
-export IRC_CLIENT='irssi'
-
-# Set this to the command you use for todo.txt-cli
-export TODO="t"
-
-# Set this to false to turn off version control status checking within the prompt for all themes
-export SCM_CHECK=true
-
-# Set Xterm/screen/Tmux title with only a short hostname.
-# Uncomment this (or set SHORT_HOSTNAME to something else),
-# Will otherwise fall back on $HOSTNAME.
-#export SHORT_HOSTNAME=$(hostname -s)
-
-# Set vcprompt executable path for scm advance info in prompt (demula theme)
-# https://github.com/djl/vcprompt
-#export VCPROMPT_EXECUTABLE=~/.vcprompt/bin/vcprompt
-
-# (Advanced): Uncomment this to make Bash-it reload itself automatically
-# after enabling or disabling aliases, plugins, and completions.
-# export BASH_IT_AUTOMATIC_RELOAD_AFTER_CONFIG_CHANGE=1
-
-# Load Bash It
-source $BASH_IT/bash_it.sh
+#alias man=vman
+#alias vim=nvim
 
 # Path to the bash it configuration
-export BASH_IT="/home/krishna/.bash_it"
+export BASH_IT="/home/kg314/.bash_it"
 
 # Lock and Load a custom theme file
 # location /.bash_it/themes/
@@ -207,7 +166,7 @@ export TODO="t"
 export SCM_CHECK=true
 
 # Set Xterm/screen/Tmux title with only a short hostname.
-# Uncomment this (or set SHORT_HOSTNAME to something else),
+# Unomment this (or set SHORT_HOSTNAME to something else),
 # Will otherwise fall back on $HOSTNAME.
 #export SHORT_HOSTNAME=$(hostname -s)
 
@@ -222,10 +181,6 @@ export SCM_CHECK=true
 # Load Bash It
 source $BASH_IT/bash_it.sh
 
-export LESS='-MN' # maximum verbose prompt and line numbers
-
-export GREP_COLOR="34;47" #bright blue text on white background
-# export GREP_COLOR="31;47" #red text on white background
-# export GREP_OPTIONS="-inE" # case insensitive with line numbering, use exptended grep
-
-export PYTHONPATH=$PYTHONPATH:~/casadi/
+# export TERM=xterm-256color
+# Load the fish shell
+fish
