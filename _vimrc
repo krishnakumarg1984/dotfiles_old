@@ -64,6 +64,7 @@ call plug#begin()
     Plug 'matze/vim-move'
     Plug 'tyru/open-browser.vim'
     "Plug 'majutsushi/tagbar'
+    "vim-over - seems quite useful
     "vim-easy-align
     "roman/golden-ratio
     "fontzoom

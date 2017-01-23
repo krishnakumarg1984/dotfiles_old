@@ -1,4 +1,5 @@
 https://github.com/justinmk/vim-dirvish
+vim-over
 https://github.com/justinmk/vim-gtfo
 visincr - http://www.drchip.org/astronaut/vim/index.html#VISINCR
 https://github.com/koron/minimap-vim - minimap

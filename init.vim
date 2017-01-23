@@ -78,6 +78,7 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'laurentgoudet/vim-howdoi'
     Plug 'henrik/vim-indexed-search'
     Plug 'tpope/vim-rsi'
+    "vim-over - seems quite useful
     "Plug 'gcavallanti/vim-noscrollbar'
 call plug#end()
 

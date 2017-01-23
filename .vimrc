@@ -99,6 +99,8 @@ call plug#begin()
     "neomake
     "jordwalke/VimAutoMakeDirectory
     "visualstar
+	"vim-over - seems quite useful
+
 call plug#end()
 
 " camelCase attemptUnited manchesterUnited https://www.imperial.ac.uk
