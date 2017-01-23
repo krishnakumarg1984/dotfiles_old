@@ -1,3 +1,4 @@
+Bdelete
 https://github.com/justinmk/vim-dirvish
 vim-over
 https://github.com/justinmk/vim-gtfo
@@ -162,6 +163,7 @@ tcomment.vim
 Shougo/vimproc.vim
 vim-easytags
 numbers.vim
+project-root
 vim-polyglot (done)
 calendar.vim
 neomake
