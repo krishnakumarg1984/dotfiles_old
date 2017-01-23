@@ -166,9 +166,9 @@ scriptencoding utfs8
 
 if has('clipboard')
     if has('unnamedplus')  " When possible use + register for copy-paste
-        set clipboard=unnamed,unnamedplus
+        set clipboard=unnamed,unnamedplus,autoselect,exclude:cons\\\\|linux
     else         " On mac and Windows, use * register for copy-paste
-        set clipboard=unnamed
+        set clipboard=unnamed,autoselect,exclude:cons\\\\|linux
     endif
 endif
 
