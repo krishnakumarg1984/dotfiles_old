@@ -164,6 +164,8 @@ Shougo/vimproc.vim
 vim-easytags
 numbers.vim
 project-root
+vim-swoop
+gv
 vim-polyglot (done)
 calendar.vim
 neomake
