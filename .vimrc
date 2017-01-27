@@ -1,5 +1,5 @@
 set nocompatible
-set esckeys
+" set esckeys
 
 silent function! WINDOWS()
     return  (has('win32') || has('win64'))
@@ -41,7 +41,7 @@ call plug#begin()
      Plug 'tpope/vim-surround'
      Plug 'tommcdo/vim-exchange'
     "Plug 'numkil/ag.nvim' "works only in nvim
-    "Plug 'Chiel92/vim-autoformat'           "enable as and when required
+    Plug 'Chiel92/vim-autoformat'           "enable as and when required
      Plug 'terryma/vim-smooth-scroll'
     "Plug 'mhinz/vim-grepper'
     "Plug 'w0rp/ale'
@@ -154,6 +154,8 @@ endfunc
 nnoremap <C-n> :call NumberToggle()<cr>
 
 set cursorline                 " highlight current line
+set scrollbind
+set cursorbind
 
 syntax on
 
@@ -164,15 +166,16 @@ syntax on
 set synmaxcol=300   "Boost performance in rendering long lines
 
 " Make ESC respond faster
+" Lower the delay of escaping out of other modes
+" keycode times out fast, mapping times out in a bit more time
 set ttimeout
-set ttimeoutlen=50
+set ttimeoutlen=0
+set timeout
+set timeoutlen=1000
 
 set spelllang=en_gb
 syntax spell toplevel
 
-" Lower the delay of escaping out of other modes
-" keycode times out fast, mapping times out in a bit more time
-set timeout timeoutlen=1000 ttimeout ttimeoutlen=1
 
 set visualbell               " Use visual bell instead of beeping
 set nomodeline               " Don't parse modelines because of vim modeline vulnerability
@@ -323,6 +326,7 @@ set tabpagemax=15
 set showmode                    " Display the current mode
 
 highlight clear SignColumn      " SignColumn should match background
+highlight Comment cterm=italic  " make comments in code to be italic
 
 if has('cmdline_info')
     set ruler                   " Show the ruler
