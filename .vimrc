@@ -50,8 +50,8 @@ call plug#begin()
     "Plug 'jez/vim-superman'    "for unix-like systems only
      Plug 'mhinz/vim-startify'
      Plug 'godlygeek/tabular'
-     Plug 'nathanaelkane/vim-indent-guides'
-    "Plug 'Yggdroot/indentLine'
+     " Plug 'nathanaelkane/vim-indent-guides'
+    Plug 'Yggdroot/indentLine'
     "Plug 'bkad/CamelCaseMotion'
      Plug 'sjl/gundo.vim'
     "Plug 'Raimondi/delimitMate'
@@ -115,12 +115,30 @@ let g:airline_theme='base16'
 set path+=**                     "Find will start working (under the current directory)
 set suffixesadd=.py,.m,.mat      "Find will work harder
 
+" open tags in new tab
+
 if has('persistent_undo')
     set undofile
     set undolevels=1000
     set undoreload=10000        " Maximum number lines to save for undo on a buffer reload
 endif
 
+if has("cscope")
+    set csprg=/usr/bin/cscope
+    set csto=0
+    set cst
+    set nocsverb
+    " add any database in current directory
+    if filereadable("cscope.out")
+        cs add cscope.out
+        " else add database pointed to by environment
+    elseif $CSCOPE_DB != ""
+        cs add $CSCOPE_DB
+    endif
+endif
+
+map g<C-]> :cs find 3 <C-R>=expand("<cword>")<CR><CR>
+map g<C-\> :cs find 0 <C-R>=expand("<cword>")<CR><CR>
 
 "let $NVIM_TUI_ENABLE_CURSOR_SHAPE = 1 "only nvim
 " Use true color feature
@@ -382,6 +400,7 @@ set autoindent
 set smartindent
 
 set nojoinspaces
+
 nnoremap : ;
 nnoremap ; :
 nnoremap Y y$
@@ -389,8 +408,22 @@ nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-h> <C-w>h
 nnoremap <C-l> <C-w>l
+nnoremap <silent><Leader><C-]> <C-w><C-]><C-w>T     
 
-"nmap <leader><space> ;nohls<CR>
+" " --------------------
+" " Function: Open tag under cursor in new tab
+" " Source:   http://stackoverflow.com/questions/563616/vimctags-tips-and-tricks
+" "--------------------
+" map <C-\> :tab split<CR>:exec("tag ".expand("<cword>"))<CR>
+" "--------------------
+" " Function: Remap keys to make it more similar to firefox tab functionality
+" " Purpose:  Because I am familiar with firefox tab functionality
+" "--------------------
+" ;ap     <C-T>       :tabnew<CR>
+" map     <C-N>       :!vim &<CR><CR>
+" map     <C-W>       :confirm bdelete<CR>)"
+
+nmap <leader><space> ;nohls<CR>
 
 inoremap <C-c> <Esc>
 
@@ -448,6 +481,7 @@ if has("autocmd")
         \ set autoindent
         \ set fileformat=unix
     au BufRead,BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/ "We can have VIM flag that for us so that it’s easy to spot – and then remove.
+    au BufAdd,BufNewFile * nested tab sball "To open each buffer in its own tabpage
 endif
 
 let &t_SI = "\<Esc>[6 q"
