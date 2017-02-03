@@ -200,8 +200,12 @@ echo 'setxkbmap -option caps:none' >> /home/kg314/.profile
 
 #apt-fast install -y meld
 
-git config --global credential.helper cache
-git config --global credential.helper 'cache --timeout=3600000000'
+#git config --global credential.helper cache
+#git config --global credential.helper 'cache --timeout=3600000000'
+
+#curl -fLo /home/kg314/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+
+#apt-fast install -y python-jedi yapf
 
 #apt-get install -f
 #apt -y autoremove
