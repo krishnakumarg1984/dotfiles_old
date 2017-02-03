@@ -206,6 +206,8 @@ echo 'setxkbmap -option caps:none' >> /home/kg314/.profile
 #curl -fLo /home/kg314/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
 #apt-fast install -y python-jedi yapf
+# apt-fast install -y vim-gtk3
+# apt-fast install -y fonts-firacode
 
 #apt-get install -f
 #apt -y autoremove

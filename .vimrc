@@ -1,48 +1,21 @@
 set nocompatible
 " set esckeys
 
-silent function! WINDOWS()
-    return  (has('win32') || has('win64'))
-endfunction
-
-if WINDOWS()
-    set runtimepath=$HOME/.vim,$VIM/vimfiles,$VIMRUNTIME,$VIM/vimfiles/after,$HOME/.vim/after
-    set guifont=Consolas:h14:cANSI
-    "set guifont=Source\ Code\ Pro:h14:cANSI
-endif
-
-if has("gui_running")
-  if has("gui_gtk3")
-    set guifont=Inconsolata\ 16
-  elseif has("gui_macvim")
-    set guifont=Menlo\ Regular:h14
-  elseif has("gui_win32")
-    set guifont=Consolas:h11:cANSI
-  endif
-endif
+set guifont=Inconsolata\ 16   " firacode, deja vu, hack, source code pro, monaco, input 
 
 call plug#begin()
      Plug 'flazz/vim-colorschemes'
      Plug 'vim-airline/vim-airline'
      Plug 'vim-airline/vim-airline-themes'
+
      Plug 'davidhalter/jedi-vim'
      Plug 'nvie/vim-flake8'
-     "Plug 'daeyun/vim-matlab' "works only in neovim
-     Plug 'vim-scripts/MatlabFilesEdition'
+
     Plug 'haya14busa/incsearch.vim'
-    " comfortable-motion
-    "Far
-    "blockit
-    "Plug 'vim-pandoc/vim-pandoc'
-    "Plug 'vim-pandoc/vim-pandoc-syntax'
-    "latex plugin
-    "Plug 'chrisbra/csv.vim'
-    "Plug 'justinmk/vim-sneak'
      Plug 'tpope/vim-surround'
      Plug 'tommcdo/vim-exchange'
-    "Plug 'numkil/ag.nvim' "works only in nvim
-    Plug 'Chiel92/vim-autoformat'           "enable as and when required
-     Plug 'terryma/vim-smooth-scroll'
+     Plug 'yuttie/comfortable-motion.vim' "Physics-based scrolling
+     " Plug 'cskeeters/vim-smooth-scroll' "there are also accelerated smooth scrolling plugins available. 
     "Plug 'mhinz/vim-grepper'
     "Plug 'w0rp/ale'
      Plug 'rhysd/clever-f.vim'
@@ -154,7 +127,7 @@ set noshowmatch                  " when on a [{(, highlight the matching )}]
 set cpoptions-=m    " Highlight when CursorMoved
 set matchpairs+=<:> " Highlight <>
 set matchtime=1
-set hlsearch                   " highlight search matches
+" set hlsearch                   " highlight search matches, now controlled by the incsearch plugin
 
 set expandtab                  " Convert all TAB characters in the file to spaces
 if has('mouse') | set mouse=a | endif"+

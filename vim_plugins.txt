@@ -1,6 +1,19 @@
 Bdelete
+Plug 'vim-scripts/MatlabFilesEdition'
+Plug 'terryma/vim-smooth-scroll' 'there are also accelerated smooth scrolling plugins available. 
+Plug 'Chiel92/vim-autoformat'           "enable as and when required
+" comfortable-motion
+"Far
+"blockit
+"Plug 'vim-pandoc/vim-pandoc'
+"Plug 'vim-pandoc/vim-pandoc-syntax'
+"latex plugin
+"Plug 'chrisbra/csv.vim'
+"Plug 'justinmk/vim-sneak'
+"Plug 'daeyun/vim-matlab' "works only in neovim
 https://github.com/justinmk/vim-dirvish
 vim-over
+"Plug 'numkil/ag.nvim' "works only in nvim
 https://github.com/justinmk/vim-gtfo
 visincr - http://www.drchip.org/astronaut/vim/index.html#VISINCR
 https://github.com/koron/minimap-vim - minimap
