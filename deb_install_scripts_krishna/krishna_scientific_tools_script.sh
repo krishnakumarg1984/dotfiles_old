@@ -198,6 +198,11 @@ echo 'setxkbmap -option caps:none' >> /home/kg314/.profile
 #fisher done fat fin g2 get get_file_age getopts grc host_info humanize_duration menu omf/balias omf/ccache
 #fisher transfer termcolours spin omf/theme omf/tab omf/percol omf/peco omf/pbcopy omf/msg omf/extract omf/export 
 
+#apt-fast install -y meld
+
+git config --global credential.helper cache
+git config --global credential.helper 'cache --timeout=3600000000'
+
 #apt-get install -f
 #apt -y autoremove
 #clear
