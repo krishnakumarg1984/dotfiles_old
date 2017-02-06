@@ -209,6 +209,12 @@ echo 'setxkbmap -option caps:none' >> /home/kg314/.profile
 # apt-fast install -y vim-gtk3
 # apt-fast install -y fonts-firacode
 
+# apt-fast install -y gparted
+
+# pip install  -e git+https://github.com/hplgit/physical-quantities.git#egg=physical-quantities
+
+apt-get install -y i3
+
 #apt-get install -f
 #apt -y autoremove
 #clear
