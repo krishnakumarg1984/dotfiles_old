@@ -1,83 +1,35 @@
 set nocompatible
-" set esckeys
 
-set guifont=Inconsolata\ 16   " firacode, deja vu, hack, source code pro, monaco, input 
+set guifont=DejaVu_Sans_Mono:h16 " firacode, deja vu, hack, source code pro, monaco, input 
 
 call plug#begin()
+     " visual pizzazz
      Plug 'flazz/vim-colorschemes'
      Plug 'vim-airline/vim-airline'
      Plug 'vim-airline/vim-airline-themes'
 
+     " Python-specific
      Plug 'davidhalter/jedi-vim'
      Plug 'nvie/vim-flake8'
 
-    Plug 'haya14busa/incsearch.vim'
+     Plug 'Yggdroot/indentLine'
+
+     Plug 'haya14busa/incsearch.vim' " Better incsearch than vim's default. Further mappings present later in this file
      Plug 'tpope/vim-surround'
      Plug 'tommcdo/vim-exchange'
-     Plug 'yuttie/comfortable-motion.vim' "Physics-based scrolling
-     " Plug 'cskeeters/vim-smooth-scroll' "there are also accelerated smooth scrolling plugins available. 
-    "Plug 'mhinz/vim-grepper'
-    "Plug 'w0rp/ale'
-     Plug 'rhysd/clever-f.vim'
-     " Plug 'terryma/vim-expand-region'
-    "Plug 'jez/vim-superman'    "for unix-like systems only
+     Plug 'yuttie/comfortable-motion.vim' "Physics-based scrolling there are also accelerated smooth scrolling plugins available. 
      Plug 'mhinz/vim-startify'
      Plug 'godlygeek/tabular'
-     " Plug 'nathanaelkane/vim-indent-guides'
-    Plug 'Yggdroot/indentLine'
-    "Plug 'bkad/CamelCaseMotion'
      Plug 'sjl/gundo.vim'
-    "Plug 'Raimondi/delimitMate'
-    "Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-    "Plug 'luochen1990/rainbow'
      Plug 'tpope/vim-commentary'
-     " Plug 'sickill/vim-pasta'
-     "Plug 'bling/vim-bufferline'
-     " Plug 'ervandew/supertab'
-     " Plug 'tpope/vim-fugitive'
-    "Plug 'junegunn/gv.vim'
-     " Plug 'airblade/vim-gitgutter'
-    "Plug 'jlanzarotta/bufexplorer.vim'
-     " Plug 'dhruvasagar/vim-table-mode'
-     " Plug 'tpope/vim-repeat'
-    "Plug 'tpope/vim-speeddating'
-     " Plug 'junegunn/vim-peekaboo'
-     "Plug 'junegunn/vim-slash'
-    "Plug 'junegunn/vim-emoji'
-    "Plug 'beloglazov/vim-online-thesaurus'
-     " Plug 'junegunn/vim-lengthmatters'
      Plug 'kshenoy/vim-signature'
      Plug 'machakann/vim-highlightedyank'
-    Plug 'jiangmiao/auto-pairs'
-    Plug 'wellle/targets.vim'
-    " Plug 'matze/vim-move'
-    " Plug 'tyru/open-browser.vim'
-    "Plug 'majutsushi/tagbar'
-    "vim-easy-align
-    "roman/golden-ratio
-    "fontzoom
-    "http://vimawesome.com/plugin/vim-devicons
-    "limelight.vim
-    "Plug 'szw/vim-g'
-    "Plug 'Chiel92/vim-autoformat'
-    "junegunn/vim-fnr
-    "vim-easy-align
-    "Highlighted yank
-    "yank ring/stack
-    "Ultisnips
-    "vim-sensible on a remote box
-    "Awesome terminal fonts
-    "splitjoin
-    "Plug 'myusuf3/numbers.vim'
-    "neomake
-    "jordwalke/VimAutoMakeDirectory
-    "visualstar
-	"vim-over - seems quite useful
-
+     Plug 'jiangmiao/auto-pairs'
+     Plug 'wellle/targets.vim'
 call plug#end()
 
-" camelCase attemptUnited manchesterUnited https://www.imperial.ac.uk
-filetype on
+"set incsearch                  " Not reqd if incsearch plugin is installed
+
 filetype plugin indent on
 
 colorscheme gruvbox
@@ -86,9 +38,7 @@ let g:airline_theme='base16'
 " let g:airline_theme='papercolor'
 
 set path+=**                     "Find will start working (under the current directory)
-set suffixesadd=.py,.m,.mat      "Find will work harder
-
-" open tags in new tab
+set suffixesadd=.py,.m,.mat      "Find will work harder for these filetypes
 
 if has('persistent_undo')
     set undofile
@@ -96,31 +46,29 @@ if has('persistent_undo')
     set undoreload=10000        " Maximum number lines to save for undo on a buffer reload
 endif
 
-if has("cscope")
-    set csprg=/usr/bin/cscope
-    set csto=0
-    set cst
-    set nocsverb
-    " add any database in current directory
-    if filereadable("cscope.out")
-        cs add cscope.out
-        " else add database pointed to by environment
-    elseif $CSCOPE_DB != ""
-        cs add $CSCOPE_DB
-    endif
-endif
+"" open tags in new tab
+"if has("cscope")
+"    set csprg=/usr/bin/cscope
+"    set csto=0
+"    set cst
+"    set nocsverb
+"    " add any database in current directory
+"    if filereadable("cscope.out")
+"        cs add cscope.out
+"        " else add database pointed to by environment
+"    elseif $CSCOPE_DB != ""
+"        cs add $CSCOPE_DB
+"    endif
+"endif
 
-map g<C-]> :cs find 3 <C-R>=expand("<cword>")<CR><CR>
-map g<C-\> :cs find 0 <C-R>=expand("<cword>")<CR><CR>
+"map g<C-]> :cs find 3 <C-R>=expand("<cword>")<CR><CR>
+"map g<C-\> :cs find 0 <C-R>=expand("<cword>")<CR><CR>
 
-"let $NVIM_TUI_ENABLE_CURSOR_SHAPE = 1 "only nvim
-" Use true color feature
-"let $NVIM_TUI_ENABLE_TRUE_COLOR = 1
+"Use true color
 set termguicolors
 set t_Co=256
 
 set history=1000               " store lots of :cmdline history
-"set incsearch                  " search as characters are entered
 set backspace=indent,eol,start " Make backspace behave in a sane manner.
 
 set noshowmatch                  " when on a [{(, highlight the matching )}]
