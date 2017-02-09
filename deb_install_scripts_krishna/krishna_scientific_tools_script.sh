@@ -219,6 +219,7 @@ echo 'setxkbmap -option caps:none' >> /home/kg314/.profile
 # apt-get install -y ntp
 # apt-get install -y tree
 # apt-fast install -y wmctrl
+# apt-get install -y libncurses5-dev libreadline6-dev
 
 #apt-get install -f
 #apt -y autoremove

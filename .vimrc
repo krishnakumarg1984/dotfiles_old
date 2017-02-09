@@ -12,7 +12,7 @@ call plug#begin()
      Plug 'nvie/vim-flake8'
 
      Plug 'Yggdroot/indentLine'
-
+     Plug 'simnalamburt/vim-mundo'
      Plug 'haya14busa/incsearch.vim' " Better incsearch than vim's default. Further mappings present later in this file
      Plug 'tpope/vim-surround'
      Plug 'tommcdo/vim-exchange'
@@ -391,7 +391,7 @@ if has("autocmd")
         \ set expandtab
         \ set autoindent
         \ set fileformat=unix
-    au BufAdd,BufNewFile * nested tab sball "To open each buffer in its own tabpage
+    " au BufAdd,BufNewFile * nested tab sball "To open each buffer in its own tabpage
     autocmd FileType c,cpp,java,php,text,python autocmd BufWritePre <buffer> %s/\s\+$//e
     autocmd BufWritePre .*rc %s/\s\+$//e
 endif
@@ -453,3 +453,6 @@ map *  <Plug>(incsearch-nohl-*)
 map #  <Plug>(incsearch-nohl-#)
 map g* <Plug>(incsearch-nohl-g*)
 map g# <Plug>(incsearch-nohl-g#)
+
+"-------- mundo plugin -----------------------------------------------
+nnoremap <F2> :MundoToggle<CR>
