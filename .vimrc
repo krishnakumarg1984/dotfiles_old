@@ -115,17 +115,21 @@ set cursorbind
 set synmaxcol=300   "Boost performance in rendering long lines
 
 " Make ESC respond faster Lower the delay of escaping out of other modes " keycode times out fast, mapping times out in a bit more time
+set timeout " time out on mappings and keycodes (stronger of the two conditions)
 set ttimeout
-set ttimeoutlen=0
-set timeout
-set timeoutlen=1000
+set ttimeoutlen=0 "A non-negative number here will make the delay to be timeoutlen
+set timeoutlen=1000 " The time in milliseconds that is waited for a key code or mapped key sequence to complete.  
 
-set spelllang=en_gb
+set spelllang=en_gb,en_us
 syntax spell toplevel
-
+"set spell                           " Spell checking on
+" Enable spellchecking for Markdown files and git commit messages
 
 set visualbell               " Use visual bell instead of beeping
-set nomodeline               " Don't parse modelines because of vim modeline vulnerability
+set t_vb=                    " But don't want any beep or flash
+set noerrorbells
+
+" set nomodeline               " Don't parse modelines because of vim modeline vulnerability
 
 set encoding=utf-8           " Default encoding for saving and reading file
 scriptencoding utfs8
@@ -148,8 +152,6 @@ set autowrite                       " Automatically write a file when leaving a 
 set autoread                        " Autoread when a file is changed from outside
 
 set history=1000                    " Store a ton of history (default is 20)
-"set spell                           " Spell checking on
-" Enable spellchecking for Markdown files and git commit messages
 
 set viewoptions=folds,options,cursor,unix,slash " Better Unix / Windows compatibility
 
@@ -285,10 +287,6 @@ set linespace=0                 " No extra spaces between rows
 set numberwidth=5               " Width of the line-no. column
 
 set magic                       " Make regex a little easier to type
-
-set noerrorbells
-set vb
-set t_vb=
 
 set winminheight=0              " Windows can be 0 line high
 
