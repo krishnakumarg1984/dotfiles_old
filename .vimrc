@@ -410,6 +410,10 @@ let &t_SI = "\<Esc>[6 q"
 let &t_SR = "\<Esc>[4 q"
 let &t_EI = "\<Esc>[2 q"
 
+nnoremap g{ k{<Space>0
+vnoremap g{ k{<Space>0
+nnoremap g} j}<BS>0
+vnoremap g} j}<BS>0
 
 " -------- vim-smooth-scrolling remaps ---------------------
 noremap <silent> <c-u> :call smooth_scroll#up(&scroll, 0, 2)<CR>
