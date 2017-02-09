@@ -213,7 +213,12 @@ echo 'setxkbmap -option caps:none' >> /home/kg314/.profile
 
 # pip install  -e git+https://github.com/hplgit/physical-quantities.git#egg=physical-quantities
 
-apt-get install -y i3
+# apt-get install -y i3
+#echo "export COLORTERM=truecolor" >> /home/kg314/.bashrc
+
+# apt-get install -y ntp
+# apt-get install -y tree
+# apt-fast install -y wmctrl
 
 #apt-get install -f
 #apt -y autoremove

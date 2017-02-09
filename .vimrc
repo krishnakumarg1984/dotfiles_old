@@ -1,5 +1,4 @@
 set nocompatible
-
 set guifont=DejaVu_Sans_Mono:h16 " firacode, deja vu, hack, source code pro, monaco, input 
 
 call plug#begin()
@@ -28,14 +27,29 @@ call plug#begin()
      Plug 'wellle/targets.vim'
 call plug#end()
 
-"set incsearch                  " Not reqd if incsearch plugin is installed
-
+" set incsearch " Not reqd if incsearch plugin is installed
+" set hlsearch  " highlight search matches, now controlled by the incsearch plugin
+setlocal keywordprg=:help
+syntax on
 filetype plugin indent on
 
 colorscheme gruvbox
 "colorscheme Tomorrow-Night  "(mango, vim-kolor,base16, molokai, wombat, mustang, railscasts, lucario, vim-atom-dark )
 let g:airline_theme='base16'
 " let g:airline_theme='papercolor'
+
+function! ToggleBG()
+    let s:tbg = &background
+    " Inversion
+    if s:tbg == "dark"
+        set background=light
+    else
+        set background=dark
+    endif
+endfunction
+
+noremap <leader>bg :call ToggleBG()<CR>
+set background=dark
 
 set path+=**                     "Find will start working (under the current directory)
 set suffixesadd=.py,.m,.mat      "Find will work harder for these filetypes
@@ -65,23 +79,25 @@ endif
 "map g<C-\> :cs find 0 <C-R>=expand("<cword>")<CR><CR>
 
 "Use true color
+let &t_8f="\e[38;2;%ld;%ld;%ldm"
+let &t_8b="\e[48;2;%ld;%ld;%ldm"
 set termguicolors
-set t_Co=256
+" set t_Co=256
 
 set history=1000               " store lots of :cmdline history
 set backspace=indent,eol,start " Make backspace behave in a sane manner.
-
-set noshowmatch                  " when on a [{(, highlight the matching )}]
-set cpoptions-=m    " Highlight when CursorMoved
-set matchpairs+=<:> " Highlight <>
-set matchtime=1
-" set hlsearch                   " highlight search matches, now controlled by the incsearch plugin
-
+set noshowmatch                " when on a [{(, highlight the matching )}]
+" set showmatch                " when on a [{(, highlight the matching )}]
+set cpoptions-=m               " ? Highlight when CursorMoved
+set matchpairs+=<:>            " Highlight <>
+set matchtime=1                " In 10ths of a second
 set expandtab                  " Convert all TAB characters in the file to spaces
+
 if has('mouse') | set mouse=a | endif"+
 set mousehide
 
-set number                     " Visible line numbering
+set number
+set relativenumber                     
 function! NumberToggle()
     if(&relativenumber == 1)
         set norelativenumber
@@ -89,24 +105,16 @@ function! NumberToggle()
         set relativenumber
     endif
 endfunc
-
 nnoremap <C-n> :call NumberToggle()<cr>
 
-set cursorline                 " highlight current line
-set scrollbind
+set cursorline " highlight current line
+set scrollbind " When this option is set, the current window scrolls as other scrollbind windows (windows that also have this option set) scroll.
 set cursorbind
-
-syntax on
-
-" Exit terminal mode
-"tnoremap <Esc> <C-\><C-n>
 
 " Don't try to highlight lines longer than 1000 characters
 set synmaxcol=300   "Boost performance in rendering long lines
 
-" Make ESC respond faster
-" Lower the delay of escaping out of other modes
-" keycode times out fast, mapping times out in a bit more time
+" Make ESC respond faster Lower the delay of escaping out of other modes " keycode times out fast, mapping times out in a bit more time
 set ttimeout
 set ttimeoutlen=0
 set timeout
@@ -247,18 +255,6 @@ endif
 cnoremap <C-V> <C-R>+
 
 set pastetoggle=<F12>           " pastetoggle (sane indentation on pastes)
-
-function! ToggleBG()
-    let s:tbg = &background
-    " Inversion
-    if s:tbg == "dark"
-        set background=light
-    else
-        set background=dark
-    endif
-endfunction
-
-noremap <leader>bg :call ToggleBG()<CR>
 
 set tabpagemax=15
 
