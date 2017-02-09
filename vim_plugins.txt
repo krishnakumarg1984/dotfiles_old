@@ -1,6 +1,8 @@
+k-takata/matchit.vim
 Bdelete
+Plug 'sjl/gundo.vim'
 Plug 'vim-scripts/MatlabFilesEdition'
-Plug 'terryma/vim-smooth-scroll' 'there are also accelerated smooth scrolling plugins available. 
+Plug 'terryma/vim-smooth-scroll' 'there are also accelerated smooth scrolling plugins available.
 Plug 'Chiel92/vim-autoformat'           "enable as and when required
 "Plug 'mhinz/vim-grepper'
 "Plug 'w0rp/ale'
@@ -10,46 +12,46 @@ Plug 'rhysd/clever-f.vim'
 " Plug 'nathanaelkane/vim-indent-guides'
 "Plug 'bkad/CamelCaseMotion'
 "Plug 'Raimondi/delimitMate'
-    "Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-    "Plug 'luochen1990/rainbow'
-     " Plug 'sickill/vim-pasta'
-     "Plug 'bling/vim-bufferline'
-     " Plug 'ervandew/supertab'
-     " Plug 'tpope/vim-fugitive'
-    "Plug 'junegunn/gv.vim'
-     " Plug 'airblade/vim-gitgutter'
-    "Plug 'jlanzarotta/bufexplorer.vim'
-     " Plug 'dhruvasagar/vim-table-mode'
-     " Plug 'tpope/vim-repeat'
-    "Plug 'tpope/vim-speeddating'
-     " Plug 'junegunn/vim-peekaboo'
-     "Plug 'junegunn/vim-slash'
-    "Plug 'junegunn/vim-emoji'
-    "Plug 'beloglazov/vim-online-thesaurus'
-     " Plug 'junegunn/vim-lengthmatters'
-    " Plug 'matze/vim-move'
-    " Plug 'tyru/open-browser.vim'
-    "Plug 'majutsushi/tagbar'
-    "vim-easy-align
-    "roman/golden-ratio
-    "fontzoom
-    "http://vimawesome.com/plugin/vim-devicons
-    "limelight.vim
-    "Plug 'szw/vim-g'
-    "Plug 'Chiel92/vim-autoformat'
-    "junegunn/vim-fnr
-    "vim-easy-align
-    "Highlighted yank
-    "yank ring/stack
-    "Ultisnips
-    "vim-sensible on a remote box
-    "Awesome terminal fonts
-    "splitjoin
-    "Plug 'myusuf3/numbers.vim'
-    "neomake
-    "jordwalke/VimAutoMakeDirectory
-    "visualstar
-	"vim-over - seems quite useful
+"Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+"Plug 'luochen1990/rainbow'
+" Plug 'sickill/vim-pasta'
+"Plug 'bling/vim-bufferline'
+" Plug 'ervandew/supertab'
+" Plug 'tpope/vim-fugitive'
+"Plug 'junegunn/gv.vim'
+" Plug 'airblade/vim-gitgutter'
+"Plug 'jlanzarotta/bufexplorer.vim'
+" Plug 'dhruvasagar/vim-table-mode'
+" Plug 'tpope/vim-repeat'
+"Plug 'tpope/vim-speeddating'
+" Plug 'junegunn/vim-peekaboo'
+"Plug 'junegunn/vim-slash'
+"Plug 'junegunn/vim-emoji'
+"Plug 'beloglazov/vim-online-thesaurus'
+" Plug 'junegunn/vim-lengthmatters'
+" Plug 'matze/vim-move'
+" Plug 'tyru/open-browser.vim'
+"Plug 'majutsushi/tagbar'
+"vim-easy-align
+"roman/golden-ratio
+"fontzoom
+"http://vimawesome.com/plugin/vim-devicons
+"limelight.vim
+"Plug 'szw/vim-g'
+"Plug 'Chiel92/vim-autoformat'
+"junegunn/vim-fnr
+"vim-easy-align
+"Highlighted yank
+"yank ring/stack
+"Ultisnips
+"vim-sensible on a remote box
+"Awesome terminal fonts
+"splitjoin
+"Plug 'myusuf3/numbers.vim'
+"neomake
+"jordwalke/VimAutoMakeDirectory
+"visualstar
+"vim-over - seems quite useful
 "Far
 "blockit
 "Plug 'vim-pandoc/vim-pandoc'
