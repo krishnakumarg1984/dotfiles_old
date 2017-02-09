@@ -26,6 +26,8 @@ call plug#begin()
      Plug 'wellle/targets.vim'
      Plug 'scrooloose/nerdtree'
      Plug 'tpope/vim-fugitive'
+     Plug 'ctrlpvim/ctrlp.vim'
+     Plug 'majutsushi/tagbar'
 call plug#end()
 
 " set incsearch " Not reqd if incsearch plugin is installed
@@ -106,11 +108,11 @@ function! NumberToggle()
         set relativenumber
     endif
 endfunc
-nnoremap <C-n> :call NumberToggle()<cr>
+nnoremap <silent> <leader>n :call NumberToggle()<cr>
 
 set cursorline " highlight current line
-set scrollbind " When this option is set, the current window scrolls as other scrollbind windows (windows that also have this option set) scroll.
-set cursorbind
+" set scrollbind " When this option is set, the current window scrolls as other scrollbind windows (windows that also have this option set) scroll.
+" set cursorbind
 
 " Don't try to highlight lines longer than 1000 characters
 set synmaxcol=300   "Boost performance in rendering long lines
@@ -148,7 +150,7 @@ set iskeyword-=#                    " '#' is an end of word designator
 set iskeyword-=-                    " '-' is an end of word designator
 set iskeyword-=!                    " '!' is an end of word designator
 
-set autochdir
+" set autochdir
 set autowrite                       " Automatically write a file when leaving a modified buffer
 set autoread                        " Autoread when a file is changed from outside
 
@@ -470,3 +472,10 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif
+
+"-------------ctrl-p plugin settings -------------------------------
+let g:ctrlp_user_command = 'find %s -type f'        " MacOSX/Linux
+let g:ctrlp_user_command = 'dir %s /-n /b /s /a-d'  " Windows
+
+"-------------Tagbar plugin settings -------------------------------
+nmap <F8> :TagbarToggle<CR>
