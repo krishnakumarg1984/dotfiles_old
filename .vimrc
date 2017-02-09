@@ -28,6 +28,7 @@ call plug#begin()
      Plug 'tpope/vim-fugitive'
      Plug 'ctrlpvim/ctrlp.vim'
      Plug 'majutsushi/tagbar'
+     Plug 'airblade/vim-gitgutter'
 call plug#end()
 
 " set incsearch " Not reqd if incsearch plugin is installed
@@ -286,7 +287,7 @@ set winminheight=0              " Windows can be 0 line high
 
 set report=0                    " Threshold for reporting number of lines changed.
 set updatecount=0 "After typing this many characters the swap file will be written to disk.  When zero, no swap file will be created at all (see chapter on recovery |crash-recovery|).  "
-set updatetime=250             " milliseconds elapsed before which swap file will be written to disk
+set updatetime=250             " milliseconds elapsed before which swap file will be written to disk (250 ms is recommende by gitgutter plugin)
 
 "Custom function to enable to emphasize next search with a blinking cursor around the highlighted match
 function! HLNext (blinktime)
