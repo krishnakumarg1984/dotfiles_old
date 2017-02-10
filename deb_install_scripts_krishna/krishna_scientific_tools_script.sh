@@ -10,7 +10,17 @@ echo 'setxkbmap -option caps:none' >> /home/kg314/.profile
 #sudo apt-add-repository -y ppa:teejee2008/ppa
 #sudo apt-get update
 #sudo apt-get install ukuu
-sudo apt-get install compared
+#sudo apt-get install compared
+
+#add-apt-repository ppa:webupd8team/y-ppa-manager
+#add-apt-repository ppa:noobslab/macbuntu
+#apt-get update
+#apt-get install -y y-ppa-manager
+#apt-get install macbuntu-os-icons-lts-v8
+#apt-get install macbuntu-os-ithemes-lts-v8
+#apt-get install albert
+#apt-get install plank
+
 
 # curl, aria2, axel
 
@@ -129,6 +139,7 @@ sudo apt-get install compared
 
 #apt-fast install -y matlab-support --install-recommends
 #apt-fast install -y swig swig-doc swig-examples --install-recommends
+#matlab2tikz package
 
 #rm -r cas*
 #wget https://sourceforge.net/projects/casadi/files/CasADi/3.1.1/linux/casadi-matlabR2014b-v3.1.1.tar.gz
@@ -173,8 +184,10 @@ sudo apt-get install compared
 #apt-fast install -y tipa --install-recommends
 #apt-fast install -y texlive --install-recommends
 #apt-fast install -y texlive-metapost --install-recommends
+
 #apt-fast install -y rubber --install-recommends
 #apt-fast install -y pandoc --install-recommends
+
 #apt-fast install -y texlive-publishers-doc texlive-fonts-extra-doc --install-recommends
 #apt-fast install -y texlive-htmlxml texlive-htmlxml html2ps --install-recommends
 #apt-fast install -y texlive-xetex  texlive-luatex --install-recommends
