@@ -29,6 +29,11 @@ call plug#begin()
      Plug 'ctrlpvim/ctrlp.vim'
      Plug 'majutsushi/tagbar'
      Plug 'airblade/vim-gitgutter'
+     Plug 'ervandew/supertab'
+     Plug 'tpope/vim-repeat'
+
+     "Shougo's plugins
+     Plug 'Shougo/vimproc.vim', {'do' : 'make'}
 call plug#end()
 
 " set incsearch " Not reqd if incsearch plugin is installed
