@@ -4,6 +4,16 @@
 echo "Welcome to Krishna's post-install tools script !"
 echo 'setxkbmap -option caps:none' >> /home/kg314/.profile
 
+# enable password feedback
+#apt-get install -y synaptic
+# ukuu
+#sudo apt-add-repository -y ppa:teejee2008/ppa
+#sudo apt-get update
+#sudo apt-get install ukuu
+sudo apt-get install compared
+
+# curl, aria2, axel
+
 #apt-get install -y software-properties-common libxss1 libappindicator1 libindicator7 
 
 #wget http://blog.anantshri.info/content/uploads/2010/09/add-apt-repository.sh.txt
@@ -63,9 +73,10 @@ echo 'setxkbmap -option caps:none' >> /home/kg314/.profile
 #apt-fast install -y build-essential
 #apt-fast install -y cmake extra-cmake-modules cmake-doc cmake-curses-gui --install-recommends
 #apt-fast install -y cross-config make-doc --install-recommends
-#apt-fast install -y pkgconf python-pkgconfig --install-recommends
+#apt-fast install -y pkgconf python-pkgconfig fakeroot --install-recommends
 #apt-fast install -y libopenmpi-dev --install-recommends libhwloc-contrib-plugins openmpi-doc # should install a ton of dependencies , also should iunstall nvidia/other stuff !!
 #apt-fast install -y nvidia-driver nvidia-cuda-mps # will install lots of stuff !!
+#apt-fast install -y cups google-cloud-print-connector
 
 #echo "export OMP_NUM_THREADS=64" >> ~/.bashrc
 #source ~/.bashrc 
@@ -210,16 +221,20 @@ echo 'setxkbmap -option caps:none' >> /home/kg314/.profile
 # apt-fast install -y fonts-firacode
 
 # apt-fast install -y gparted
+#graphviz
 
 # pip install  -e git+https://github.com/hplgit/physical-quantities.git#egg=physical-quantities
 
 # apt-get install -y i3
 #echo "export COLORTERM=truecolor" >> /home/kg314/.bashrc
+# rust
 
 # apt-get install -y ntp
 # apt-get install -y tree
 # apt-fast install -y wmctrl
 # apt-get install -y libncurses5-dev libreadline6-dev
+# apt-get install -y  libgnome2-dev libgnomeui-dev libgtk2.0-dev libatk1.0-dev libbonoboui2-dev libcairo2-dev libx11-dev libxpm-dev libxt-dev python-dev python3-dev ruby-dev lua5.1 lua5.1-dev libperl-dev git
+# samba related 
 
 #apt-get install -f
 #apt -y autoremove
