@@ -31,9 +31,10 @@ call plug#begin()
      Plug 'airblade/vim-gitgutter'
      Plug 'ervandew/supertab'
      Plug 'tpope/vim-repeat'
+     Plug 'AmaiSaeta/capture.vim' "capture ex-command outputs
 
      "Shougo's plugins
-     Plug 'Shougo/vimproc.vim', {'do' : 'make'}
+     " Plug 'Shougo/vimproc.vim', {'do' : 'make'}
 call plug#end()
 
 " set incsearch " Not reqd if incsearch plugin is installed
