@@ -35,10 +35,10 @@ if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
     debian_chroot=$(cat /etc/debian_chroot)
 fi
 
-# # set a fancy prompt (non-color, unless we know we "want" color)
-# case "$TERM" in
-#     xterm-color|*-256color) color_prompt=yes;;
-# esac
+# set a fancy prompt (non-color, unless we know we "want" color)
+case "$TERM" in
+    xterm-color|*-256color) color_prompt=yes;;
+esac
 
 # uncomment for a colored prompt, if the terminal has the capability; turned
 # off by default to not distract the user: the focus in a terminal window
@@ -115,36 +115,14 @@ if ! shopt -oq posix; then
     . /etc/bash_completion
   fi
 fi
-
-PATH=/opt/intel/intelpython27/bin:$PATH
-PATH=/usr/local/texlive/2016/bin/x86_64-linux:$PATH
-PATH=/opt/gams/gams24.7_linux_x64_64_sfx:$PATH
-PATH=/usr/bin/matlab:$PATH
-PATH=~/mosek/8/tools/platform/linux64x86/bin:$PATH
-PATH=~/pycharm-2016.3.2/bin:$PATH
-export PATH=$PATH:/usr/local/go/bin
-
-INFOPATH=/usr/local/texlive/2016/texmf-dist/doc/info:$INFOPATH
-MANPATH=/usr/local/texlive/2016/texmf-dist/doc/man:$MANPATH
-
-vman() {
-#nvim -c "SuperMan $*"
-
-if [ "$?" != "0" ]; then
-    echo "No manual entry for $*"
-fi
-}
-complete -o default -o nospace -F _man vman
-
-#alias man=vman
-#alias vim=nvim
+export OMP_NUM_THREADS=64
 
 # Path to the bash it configuration
 export BASH_IT="/home/kg314/.bash_it"
 
 # Lock and Load a custom theme file
 # location /.bash_it/themes/
-export BASH_IT_THEME='bobby'
+export BASH_IT_THEME='sexy'
 
 # (Advanced): Change this to the name of your remote repo if you
 # cloned bash-it with a remote other than origin such as `bash-it`.
@@ -166,7 +144,7 @@ export TODO="t"
 export SCM_CHECK=true
 
 # Set Xterm/screen/Tmux title with only a short hostname.
-# Unomment this (or set SHORT_HOSTNAME to something else),
+# Uncomment this (or set SHORT_HOSTNAME to something else),
 # Will otherwise fall back on $HOSTNAME.
 #export SHORT_HOSTNAME=$(hostname -s)
 
@@ -181,6 +159,8 @@ export SCM_CHECK=true
 # Load Bash It
 source $BASH_IT/bash_it.sh
 
-# export TERM=xterm-256color
-# Load the fish shell
-fish
+# added by Anaconda2 4.3.0 installer
+export PATH="/home/kg314/anaconda2/bin:$PATH"
+export PATH="/home/kg314/pycharm-2016.3.2/bin:$PATH"
+
+xautolock -time 10 -locker kki3lock	# blur and lock after 5 minutes of inactivity
