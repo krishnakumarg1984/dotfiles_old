@@ -248,6 +248,8 @@ echo 'setxkbmap -option caps:none' >> /home/kg314/.profile
 # apt-get install -y libncurses5-dev libreadline6-dev
 # apt-get install -y  libgnome2-dev libgnomeui-dev libgtk2.0-dev libatk1.0-dev libbonoboui2-dev libcairo2-dev libx11-dev libxpm-dev libxt-dev python-dev python3-dev ruby-dev lua5.1 lua5.1-dev libperl-dev git
 # samba related 
+#fizsh
+# install pycharm
 
 #apt-get install -f
 #apt -y autoremove
