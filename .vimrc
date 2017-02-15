@@ -6,11 +6,15 @@ call plug#begin()
      Plug 'flazz/vim-colorschemes'
      Plug 'vim-airline/vim-airline'
      Plug 'vim-airline/vim-airline-themes'
+     " Plug 'itchyny/lightline.vim'
 
       " Python-specific
-     " Plug 'davidhalter/jedi-vim'
+     Plug 'davidhalter/jedi-vim'
      Plug 'nvie/vim-flake8'
+     " Plug 'python-mode/python-mode'
 
+     Plug 'tpope/vim-abolish'
+     " Plug 'kien/rainbow_parentheses.vim'
      Plug 'Yggdroot/indentLine'
      Plug 'simnalamburt/vim-mundo'
      Plug 'haya14busa/incsearch.vim' " Better incsearch than vim's default. Further mappings present later in this file
@@ -18,7 +22,8 @@ call plug#begin()
      Plug 'tommcdo/vim-exchange'
      Plug 'yuttie/comfortable-motion.vim' "Physics-based scrolling there are also accelerated smooth scrolling plugins available.
      Plug 'mhinz/vim-startify'
-     Plug 'godlygeek/tabular'
+     " Plug 'godlygeek/tabular'
+     Plug 'junegunn/vim-easy-align'
      Plug 'tomtom/tcomment_vim'
      " Plug 'tpope/vim-commentary'
      Plug 'kshenoy/vim-signature'
@@ -27,7 +32,9 @@ call plug#begin()
      Plug 'wellle/targets.vim'
      Plug 'scrooloose/nerdtree'
      Plug 'tpope/vim-fugitive'
-     Plug 'ctrlpvim/ctrlp.vim'
+     " Plug 'ctrlpvim/ctrlp.vim'
+     " Plug 'wincent/command-t'
+     Plug 'wincent/command-t', {'do': 'cd ruby/command-t && ruby extconf.rb && make'}
      Plug 'majutsushi/tagbar'
      Plug 'airblade/vim-gitgutter'
      Plug 'ervandew/supertab'
@@ -37,6 +44,7 @@ call plug#begin()
      Plug 'honza/vim-snippets'
      " Plug 'SirVer/ultisnips'
      Plug 'mileszs/ack.vim'
+     Plug 'tpope/vim-eunuch'
 
      " "Shougo's plugins
      " Plug 'Shougo/vimproc.vim', {'do' : 'make'}
@@ -53,6 +61,25 @@ filetype plugin indent on
 
 colorscheme gruvbox
 "colorscheme Tomorrow-Night  "(mango, vim-kolor,base16, molokai, wombat, mustang, railscasts, lucario, vim-atom-dark )
+
+" let g:lightline = {
+"       \ 'colorscheme': 'PaperColor',
+"       \ 'active': {
+"       \   'left': [ [ 'mode', 'paste' ],
+"       \             [ 'fugitive', 'readonly', 'filename', 'modified' ] ]
+"       \ },
+"       \ 'component': {
+"       \   'readonly': '%{&readonly?"":""}',
+"       \   'modified': '%{&filetype=="help"?"":&modified?"+":&modifiable?"":"-"}'
+"       \ },
+"       \ 'component_visible_condition': {
+"       \   'readonly': '(&filetype!="help"&& &readonly)',
+"       \   'modified': '(&filetype!="help"&&(&modified||!&modifiable))'
+"       \ },
+"       \ 'separator': { 'left': '', 'right': '' },
+"       \ 'subseparator': { 'left': '', 'right': '' }
+"       \ }
+
 let g:airline_theme='base16'
 " let g:airline_theme='papercolor'
 
@@ -432,11 +459,11 @@ vnoremap g{ k{<Space>0
 nnoremap g} j}<BS>0
 vnoremap g} j}<BS>0
 
-" -------- vim-smooth-scrolling remaps ---------------------
-noremap <silent> <c-u> :call smooth_scroll#up(&scroll, 0, 2)<CR>
-noremap <silent> <c-d> :call smooth_scroll#down(&scroll, 0, 2)<CR>
-noremap <silent> <c-b> :call smooth_scroll#up(&scroll*2, 0, 4)<CR>
-noremap <silent> <c-f> :call smooth_scroll#down(&scroll*2, 0, 4)<CR>
+" " -------- vim-smooth-scrolling remaps ---------------------
+" noremap <silent> <c-u> :call smooth_scroll#up(&scroll, 0, 2)<CR>
+" noremap <silent> <c-d> :call smooth_scroll#down(&scroll, 0, 2)<CR>
+" noremap <silent> <c-b> :call smooth_scroll#up(&scroll*2, 0, 4)<CR>
+" noremap <silent> <c-f> :call smooth_scroll#down(&scroll*2, 0, 4)<CR>
 
 " "---------- Ale linter config --------------------------------
 " let g:ale_linters = {
@@ -468,7 +495,8 @@ map ?  <Plug>(incsearch-backward)
 map g/ <Plug>(incsearch-stay)
 " :h g:incsearch#auto_nohlsearch
 set hlsearch
-nmap <silent><leader><space> ;nohls<CR>  "Clear highlighted search
+nmap <silent><leader><space> ;nohls<CR>
+"Clear highlighted search
 let g:incsearch#auto_nohlsearch = 1
 map n  <Plug>(incsearch-nohl-n)
 map N  <Plug>(incsearch-nohl-N)
