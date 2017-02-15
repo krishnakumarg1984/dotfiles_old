@@ -2,44 +2,46 @@ set nocompatible
 set guifont=DejaVu_Sans_Mono:h16 " firacode, deja vu, hack, source code pro, monaco, input
 
 call plug#begin()
-     " " visual pizzazz
-      Plug 'flazz/vim-colorschemes'
-      Plug 'vim-airline/vim-airline'
-      Plug 'vim-airline/vim-airline-themes'
+     " visual pizzazz
+     Plug 'flazz/vim-colorschemes'
+     Plug 'vim-airline/vim-airline'
+     Plug 'vim-airline/vim-airline-themes'
 
-     " " Python-specific
-      " Plug 'davidhalter/jedi-vim'
-      Plug 'nvie/vim-flake8'
+      " Python-specific
+     " Plug 'davidhalter/jedi-vim'
+     Plug 'nvie/vim-flake8'
 
-      Plug 'Yggdroot/indentLine'
-      Plug 'simnalamburt/vim-mundo'
-      Plug 'haya14busa/incsearch.vim' " Better incsearch than vim's default. Further mappings present later in this file
-      Plug 'tpope/vim-surround'
-      Plug 'tommcdo/vim-exchange'
-      Plug 'yuttie/comfortable-motion.vim' "Physics-based scrolling there are also accelerated smooth scrolling plugins available.
-      Plug 'mhinz/vim-startify'
-      Plug 'godlygeek/tabular'
-      Plug 'tpope/vim-commentary'
-      Plug 'kshenoy/vim-signature'
-      Plug 'machakann/vim-highlightedyank'
-      Plug 'jiangmiao/auto-pairs'
-      Plug 'wellle/targets.vim'
-      Plug 'scrooloose/nerdtree'
-      Plug 'tpope/vim-fugitive'
-      Plug 'ctrlpvim/ctrlp.vim'
-      Plug 'majutsushi/tagbar'
-      Plug 'airblade/vim-gitgutter'
-      Plug 'ervandew/supertab'
-      Plug 'tpope/vim-repeat'
-      Plug 'AmaiSaeta/capture.vim' "capture ex-command outputs
-     " Plug 'Valloric/YouCompleteMe' "capture ex-command outputs
+     Plug 'Yggdroot/indentLine'
+     Plug 'simnalamburt/vim-mundo'
+     Plug 'haya14busa/incsearch.vim' " Better incsearch than vim's default. Further mappings present later in this file
+     Plug 'tpope/vim-surround'
+     Plug 'tommcdo/vim-exchange'
+     Plug 'yuttie/comfortable-motion.vim' "Physics-based scrolling there are also accelerated smooth scrolling plugins available.
+     Plug 'mhinz/vim-startify'
+     Plug 'godlygeek/tabular'
+     Plug 'tpope/vim-commentary'
+     Plug 'kshenoy/vim-signature'
+     Plug 'machakann/vim-highlightedyank'
+     Plug 'jiangmiao/auto-pairs'
+     Plug 'wellle/targets.vim'
+     Plug 'scrooloose/nerdtree'
+     Plug 'tpope/vim-fugitive'
+     Plug 'ctrlpvim/ctrlp.vim'
+     Plug 'majutsushi/tagbar'
+     Plug 'airblade/vim-gitgutter'
+     Plug 'ervandew/supertab'
+     Plug 'tpope/vim-repeat'
+     Plug 'AmaiSaeta/capture.vim' "capture ex-command outputs
+     Plug 'Valloric/YouCompleteMe'
+     Plug 'honza/vim-snippets'
+     Plug 'SirVer/ultisnips'
 
      " "Shougo's plugins
      " Plug 'Shougo/vimproc.vim', {'do' : 'make'}
      " Plug 'Shougo/neosnippet.vim'
      " Plug 'Shougo/neocomplete.vim'
      " Plug 'Shougo/neoinclude'
-" call plug#end()
+call plug#end()
 
 " set incsearch " Not reqd if incsearch plugin is installed
 
@@ -490,3 +492,9 @@ let g:ctrlp_user_command = 'dir %s /-n /b /s /a-d'  " Windows
 
 "-------------Tagbar plugin settings -------------------------------
 nmap <F8> :TagbarToggle<CR>
+
+" ------------ Ultisnips settings -------------------------------
+" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
+let g:UltiSnipsExpandTrigger="<leader><tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
