@@ -19,7 +19,8 @@ call plug#begin()
      Plug 'yuttie/comfortable-motion.vim' "Physics-based scrolling there are also accelerated smooth scrolling plugins available.
      Plug 'mhinz/vim-startify'
      Plug 'godlygeek/tabular'
-     Plug 'tpope/vim-commentary'
+     Plug 'tomtom/tcomment_vim'
+     " Plug 'tpope/vim-commentary'
      Plug 'kshenoy/vim-signature'
      Plug 'machakann/vim-highlightedyank'
      Plug 'jiangmiao/auto-pairs'
@@ -34,7 +35,8 @@ call plug#begin()
      Plug 'AmaiSaeta/capture.vim' "capture ex-command outputs
      Plug 'Valloric/YouCompleteMe'
      Plug 'honza/vim-snippets'
-     Plug 'SirVer/ultisnips'
+     " Plug 'SirVer/ultisnips'
+     Plug 'mileszs/ack.vim'
 
      " "Shougo's plugins
      " Plug 'Shougo/vimproc.vim', {'do' : 'make'}
@@ -493,8 +495,13 @@ let g:ctrlp_user_command = 'dir %s /-n /b /s /a-d'  " Windows
 "-------------Tagbar plugin settings -------------------------------
 nmap <F8> :TagbarToggle<CR>
 
-" ------------ Ultisnips settings -------------------------------
-" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
-let g:UltiSnipsExpandTrigger="<leader><tab>"
-let g:UltiSnipsJumpForwardTrigger="<c-b>"
-let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+" " ------------ Ultisnips settings -------------------------------
+" " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
+" let g:UltiSnipsExpandTrigger="<tab>"
+" let g:UltiSnipsJumpForwardTrigger="<c-b>"
+" let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+
+" " ------------ Ack.vim settings -------------------------------
+if executable('ag')
+  let g:ackprg = 'ag --vimgrep'
+endif
