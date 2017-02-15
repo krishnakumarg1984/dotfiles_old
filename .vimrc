@@ -45,6 +45,9 @@ call plug#begin()
      " Plug 'SirVer/ultisnips'
      Plug 'mileszs/ack.vim'
      Plug 'tpope/vim-eunuch'
+     Plug 'ntpeters/vim-better-whitespace'
+     Plug 'sheerun/vim-polyglot'
+     Plug 'gregsexton/gitv'
 
      " "Shougo's plugins
      " Plug 'Shougo/vimproc.vim', {'do' : 'make'}
@@ -533,3 +536,5 @@ nmap <F8> :TagbarToggle<CR>
 if executable('ag')
   let g:ackprg = 'ag --vimgrep'
 endif
+
+" highlight ExtraWhitespace ctermbg=Blue
