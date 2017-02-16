@@ -49,6 +49,7 @@ call plug#begin()
      " Plug 'sheerun/vim-polyglot'
      Plug 'gregsexton/gitv'
      Plug 'luochen1990/rainbow'
+     Plug 'Ron89/thesaurus_query.vim'
 
      " "Shougo's plugins
      " Plug 'Shougo/vimproc.vim', {'do' : 'make'}
@@ -562,3 +563,6 @@ let g:rainbow_conf = {
     \       'css': 0,
     \   }
     \}
+
+let g:tq_online_backends_timeout = 0.6
+let g:tq_mthesaur_file="~\mthesaur.txt"
