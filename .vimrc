@@ -50,6 +50,7 @@ call plug#begin()
      Plug 'gregsexton/gitv'
      Plug 'luochen1990/rainbow'
      Plug 'Ron89/thesaurus_query.vim'
+     Plug 'reedes/vim-lexical'
 
      " "Shougo's plugins
      " Plug 'Shougo/vimproc.vim', {'do' : 'make'}
@@ -147,7 +148,7 @@ if has('mouse') | set mouse=a | endif"+
 set mousehide
 
 set number
-set relativenumber
+" set relativenumber
 function! NumberToggle()
     if(&relativenumber == 1)
         set norelativenumber
@@ -566,3 +567,10 @@ let g:rainbow_conf = {
 
 let g:tq_online_backends_timeout = 0.6
 let g:tq_mthesaur_file="~\mthesaur.txt"
+
+augroup lexical
+  autocmd!
+  autocmd FileType markdown,mkd call lexical#init()
+  autocmd FileType textile call lexical#init()
+  autocmd FileType text call lexical#init({ 'spell': 0 })
+augroup END
