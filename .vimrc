@@ -51,6 +51,16 @@ call plug#begin()
      Plug 'luochen1990/rainbow'
      Plug 'Ron89/thesaurus_query.vim'
      Plug 'reedes/vim-lexical'
+     Plug 'reedes/vim-litecorrect'
+     Plug 'reedes/vim-pencil'
+     Plug 'dbmrq/vim-ditto'
+     Plug 'junegunn/limelight.vim'
+     Plug 'junegunn/goyo.vim'
+     Plug 'kana/vim-textobj-user'
+     Plug 'reedes/vim-textobj-quote'
+     Plug 'reedes/vim-textobj-sentence'
+     Plug 'reedes/vim-wheel'
+     Plug 'reedes/vim-wordy'
 
      " "Shougo's plugins
      " Plug 'Shougo/vimproc.vim', {'do' : 'make'}
@@ -249,7 +259,8 @@ if has('conceal')
 endif
 " Use the same symbols as TextMate for tabstops and EOLs
 set listchars=tab:▸\ ,eol:¬
-nnoremap <leader>l :set list!<CR>  " Shortcut to rapidly toggle set list
+nnoremap <leader>a :set list!<CR>  " Shortcut to rapidly toggle set list
+" set list
 
 hi link HelpBar Normal
 hi link HelpStar Normal
@@ -374,10 +385,10 @@ nnoremap : ;
 nnoremap ; :
 nnoremap Y y$
 
-nnoremap <C-j> <C-w>j
-nnoremap <C-k> <C-w>k
-nnoremap <C-h> <C-w>h
-nnoremap <C-l> <C-w>l
+" nnoremap <C-j> <C-w>j
+" nnoremap <C-k> <C-w>k
+" nnoremap <C-h> <C-w>h
+" nnoremap <C-l> <C-w>l
 
 nnoremap <silent><Leader><C-]> <C-w><C-]><C-w>T  " open tags in new tab
 
@@ -575,4 +586,53 @@ augroup lexical
   autocmd FileType markdown,mkd call lexical#init()
   autocmd FileType textile call lexical#init()
   autocmd FileType text call lexical#init({ 'spell': 0 })
+augroup END
+
+augroup pencil
+  autocmd!
+  autocmd FileType markdown,mkd call pencil#init()
+  autocmd FileType text         call pencil#init()
+augroup END
+
+au FileType markdown,text,tex DittoOn  " Turn on Ditto's autocmds
+
+nmap <leader>di <Plug>ToggleDitto      " Turn it on and off
+
+nmap =d <Plug>DittoNext                " Jump to the next word
+nmap -d <Plug>DittoPrev                " Jump to the previous word
+nmap +d <Plug>DittoGood                " Ignore the word under the cursor
+nmap _d <Plug>DittoBad                 " Stop ignoring the word under the cursor
+nmap ]d <Plug>DittoMore                " Show the next matches
+nmap [d <Plug>DittoLess                " Show the previous matches
+
+nmap <Leader>l <Plug>(Limelight)
+xmap <Leader>l <Plug>(Limelight)
+
+autocmd! User GoyoEnter Limelight
+autocmd! User GoyoLeave Limelight!
+
+augroup textobj_quote
+  autocmd!
+  autocmd FileType markdown call textobj#quote#init()
+  autocmd FileType textile call textobj#quote#init()
+  autocmd FileType text call textobj#quote#init({'educate': 1})
+  " autocmd FileType text call textobj#quote#init({'educate': 0})
+augroup END
+
+let g:textobj#quote#educate = 1       " 0=disable, 1=enable (def)
+let g:textobj#quote#matchit = 1       " 0=disable, 1=enable (def)
+
+augroup textobj_sentence
+  autocmd!
+  autocmd FileType markdown call textobj#sentence#init()
+  autocmd FileType textile call textobj#sentence#init()
+  autocmd FileType text call textobj#sentence#init()
+augroup END
+
+
+augroup litecorrect
+	autocmd!
+	autocmd FileType markdown,mkd call litecorrect#init()
+	autocmd FileType textile call litecorrect#init()
+	autocmd FileType text call litecorrect#init()
 augroup END
