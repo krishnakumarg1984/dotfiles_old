@@ -111,6 +111,8 @@ if has('persistent_undo')
     set undoreload=10000        " Maximum number lines to save for undo on a buffer reload
 endif
 
+set thesaurus+=/home/kg314/mthesaur.txt
+
 "" open tags in new tab
 "if has("cscope")
 "    set csprg=/usr/bin/cscope
