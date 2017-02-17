@@ -1,17 +1,3 @@
-set nocompatible
-set guifont=DejaVu_Sans_Mono:h16 " firacode, deja vu, hack, source code pro, monaco, input
-
-call plug#begin()
-     " visual pizzazz
-     Plug 'flazz/vim-colorschemes'
-     Plug 'vim-airline/vim-airline'
-     Plug 'vim-airline/vim-airline-themes'
-     " Plug 'itchyny/lightline.vim'
-
-      " Python-specific
-     Plug 'davidhalter/jedi-vim'
-     Plug 'nvie/vim-flake8'
-     " Plug 'python-mode/python-mode'
 
      Plug 'tpope/vim-abolish'
      " Plug 'kien/rainbow_parentheses.vim'
@@ -65,7 +51,13 @@ call plug#begin()
      Plug 'unblevable/quick-scope'
      " Plug 'rhysd/clever-f.vim'
      Plug 'nhooyr/neoman.vim'
-
+     Plug 'coderifous/textobj-word-column.vim'
+     "osyo-manga/vim-watchdogs
+     Plug 'vim-utils/vim-troll-stopper'
+     Plug 'vim-utils/vim-husk'
+     Plug 'rhysd/vim-textobj-anyblock'
+     Plug 'fisadev/vim-isort'
+     Plug 'osyo-manga/vim-over'
      " "Shougo's plugins
      " Plug 'Shougo/vimproc.vim', {'do' : 'make'}
      " Plug 'Shougo/neosnippet.vim'
@@ -650,3 +642,5 @@ augroup END
 let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
 
 " nnoremap <silent> K :Vnman<CR>
+
+let g:vim_isort_map = ''

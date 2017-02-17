@@ -74,3 +74,5 @@ infinality fontpack
 timg
 mpv
 https://asciinema.org/
+zeal
+isort
