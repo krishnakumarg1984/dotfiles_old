@@ -1,0 +1,76 @@
+i3
+intel python
+pycharm
+sundials/sundialsTB
+hiri/nylas mail
+build-essential (or equivalent)
+nomachine
+matlab
+mathematica
+gparted
+sudo apt-get -y install rar unrar p7zip p7zip-full
+synaptic
+vlc
+Y PPA Manager
+bleachbit
+filezilla
+wine development
+codecs - sudo apt-get install gstreamer0.10-plugins-ugly gxine libdvdread4 icedax tagtool easytag id3tool lame nautilus-script-audio-convert libmad0 mpg321 gstreamer1.0-libav
+sudo apt-get install gimp gimp-data gimp-plugin-registry gimp-data-extras
+inkscape
+timeshift/systemback
+apt-fast
+chrome
+pdftk
+smem
+autokey
+git
+apt-get install -y bash-completion
+ukuu
+zathura
+latex distribution
+neovim
+rkhunter
+octave
+virtualbox
+ncdu
+htop
+tig
+meld
+dstat
+slurm
+ttyrec, ipbt
+ack-grep
+intel python
+cloc
+cowsay
+banner
+silversearcher-ag
+mtr
+netcat
+lftp
+optop - hard drive
+iftop - bandwidth usage
+parallel
+elinks
+nomachine
+lyx
+curl
+pip3 install neovim
+realpath
+fluxgui
+redshift
+wallch
+gcp
+pv
+progress
+shutter
+sikulix
+grc
+jq
+oh my fish plugins
+fish shell
+infinality fontpack
+timg
+mpv
+https://asciinema.org/
