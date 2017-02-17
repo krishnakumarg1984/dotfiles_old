@@ -61,6 +61,10 @@ call plug#begin()
      Plug 'reedes/vim-textobj-sentence'
      Plug 'reedes/vim-wheel'
      Plug 'reedes/vim-wordy'
+     Plug 'chrisbra/csv.vim'
+     Plug 'unblevable/quick-scope'
+     " Plug 'rhysd/clever-f.vim'
+     Plug 'nhooyr/neoman.vim'
 
      " "Shougo's plugins
      " Plug 'Shougo/vimproc.vim', {'do' : 'make'}
@@ -384,6 +388,11 @@ set nojoinspaces
 nnoremap : ;
 nnoremap ; :
 nnoremap Y y$
+" Move across wrapped lines like regular lines
+noremap 0 ^
+" Go to the first non-blank character of a line
+noremap ^ 0
+" Just in case you need to go to the very beginning of a line
 
 " nnoremap <C-j> <C-w>j
 " nnoremap <C-k> <C-w>k
@@ -636,3 +645,8 @@ augroup litecorrect
 	autocmd FileType textile call litecorrect#init()
 	autocmd FileType text call litecorrect#init()
 augroup END
+
+" Trigger a highlight in the appropriate direction when pressing these keys:
+let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
+
+" nnoremap <silent> K :Vnman<CR>
