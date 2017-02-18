@@ -1,5 +1,5 @@
 set nocompatible
-set guifont=DejaVu_Sans_Mono:h16 " firacode, deja vu, hack, source code pro, monaco, input		
+set guifont=DejaVu_Sans_Mono:h16 " firacode, deja vu, hack, source code pro, monaco, input
 call plug#begin()
    " visual pizzazz
      Plug 'flazz/vim-colorschemes'
@@ -17,8 +17,8 @@ call plug#begin()
      Plug 'tommcdo/vim-exchange'
      Plug 'yuttie/comfortable-motion.vim' "Physics-based scrolling there are also accelerated smooth scrolling plugins available.
      Plug 'mhinz/vim-startify'
-     " Plug 'godlygeek/tabular'
-     Plug 'junegunn/vim-easy-align'
+     Plug 'godlygeek/tabular'
+     " Plug 'junegunn/vim-easy-align'
      Plug 'tomtom/tcomment_vim'
      " Plug 'tpope/vim-commentary'
      Plug 'kshenoy/vim-signature'
@@ -120,7 +120,18 @@ set background=dark
 set path+=**                     "Find will start working (under the current directory)
 set suffixesadd=.py,.m,.mat      "Find will work harder for these filetypes
 
+if has('win32')
+    let vimDir = '$HOME\vimfiles'
+else
+    let vimDir = '$HOME/.vim'
+endif
+" Keep undo history across sessions by storing it in a file
 if has('persistent_undo')
+    let myUndoDir = expand(vimDir . '/undo')
+    " Create dirs
+    call system('mkdir ' . vimDir)
+    call system('mkdir ' . myUndoDir)
+    let &undodir = myUndoDir
     set undofile
     set undolevels=1000
     set undoreload=10000        " Maximum number lines to save for undo on a buffer reload
@@ -251,7 +262,6 @@ set nofoldenable        " Disable fold by default
 set noswapfile
 set nobackup
 set nowritebackup
-set noundofile
 
 set scrolloff=3               " Minimal number of screen lines to keep above and below the cursor
 set sidescroll=3              " The minimal number of columns to scroll horizontally
