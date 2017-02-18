@@ -164,6 +164,3 @@ export PATH="/home/kg314/anaconda2/bin:$PATH"
 export PATH="/home/kg314/pycharm-2016.3.2/bin:$PATH"
 export PATH="/home/kg314/.cargo/bin:$PATH"
 export MANPAGER="vim -c 'set ft=neoman' -"
-
-
-xautolock -time 10 -locker kki3lock	# blur and lock after 5 minutes of inactivity

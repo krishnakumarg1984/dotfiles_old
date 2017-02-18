@@ -1,4 +1,13 @@
-
+set nocompatible
+set guifont=DejaVu_Sans_Mono:h16 " firacode, deja vu, hack, source code pro, monaco, input		
+call plug#begin()
+   " visual pizzazz
+     Plug 'flazz/vim-colorschemes'
+     Plug 'vim-airline/vim-airline'
+     Plug 'vim-airline/vim-airline-themes'
+     Plug 'davidhalter/jedi-vim'
+     Plug 'nvie/vim-flake8'
+     " Plug 'python-mode/python-mode'
      Plug 'tpope/vim-abolish'
      " Plug 'kien/rainbow_parentheses.vim'
      Plug 'Yggdroot/indentLine'
