@@ -76,3 +76,4 @@ mpv
 https://asciinema.org/
 zeal
 isort
+tabbed
