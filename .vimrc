@@ -479,6 +479,7 @@ if has("autocmd")
     " au BufAddr highlighted search,BufNewFile * nested tab sball "To open each buffer in its own tabpage
     autocmd FileType c,cpp,java,php,text,python autocmd BufWritePre <buffer> %s/\s\+$//e
     autocmd BufWritePre .*rc %s/\s\+$//e
+    au BufNewFile,BufRead *.csv set nolist
 endif
 
 " -----cursor shape control
@@ -497,6 +498,10 @@ nnoremap g{ k{<Space>0
 vnoremap g{ k{<Space>0
 nnoremap g} j}<BS>0
 vnoremap g} j}<BS>0
+
+set iskeyword+=@-@
+" behave mswin
+
 
 " " -------- vim-smooth-scrolling remaps ---------------------
 " noremap <silent> <c-u> :call smooth_scroll#up(&scroll, 0, 2)<CR>
