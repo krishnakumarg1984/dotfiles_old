@@ -4,7 +4,7 @@
 echo "Welcome to Krishna's post-install tools script !"
 echo 'setxkbmap -option caps:none' >> /home/kg314/.profile
 
-# enable password feedback
+# enable password feedback, pwfeedback
 #apt-get install -y synaptic
 # ukuu
 #sudo apt-add-repository -y ppa:teejee2008/ppa
@@ -224,6 +224,8 @@ echo 'setxkbmap -option caps:none' >> /home/kg314/.profile
 
 #apt-fast install -y meld
 
+# git config --global user.name "Krishnakumar"
+#git config --global user.email "krishnakumar@imperial.ac.uk"
 #git config --global credential.helper cache
 #git config --global credential.helper 'cache --timeout=3600000000'
 
@@ -250,6 +252,7 @@ echo 'setxkbmap -option caps:none' >> /home/kg314/.profile
 # samba related 
 #fizsh
 # install pycharm
+#youtube-dl
 
 #apt-get install -f
 #apt -y autoremove
