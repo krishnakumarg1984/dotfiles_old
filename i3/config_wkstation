@@ -78,7 +78,7 @@ set $workspace5 "5: &#xf115;"
 set $workspace6 "6: &#xf03d;"
 
 assign [class="Gnome-terminal"] $workspace2
-assign [class="zathura"] $workspace3
+assign [class="Zathura"] $workspace3
 assign [class="Google-chrome"] $workspace4
 assign [class="Firefox"] $workspace4
 assign [class="Pcmanfm"] $workspace5
@@ -86,7 +86,7 @@ assign [class="Thunar"] $workspace5
 assign [class="vlc"] $workspace6
 
 for_window [class="Gnome-terminal"] focus
-for_window [class="zathura"] focus
+for_window [class="Zathura"] focus
 for_window [class="Google-chrome"] focus
 for_window [class="Firefox"] focus
 for_window [class="Caja"] focus
