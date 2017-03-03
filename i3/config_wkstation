@@ -73,7 +73,7 @@ bindsym $mod+a focus parent
 set $workspace1 "1: &#xf2b6;"
 set $workspace2 "2: &#xf120;"
 set $workspace3 "3: &#xf1c1;"
-set $workspace4 "4: &#xf282;"
+set $workspace4 "4: &#xf268;"
 set $workspace5 "5: &#xf115;"
 set $workspace6 "6: &#xf03d;"
 
