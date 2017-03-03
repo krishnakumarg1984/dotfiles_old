@@ -72,13 +72,13 @@ bindsym $mod+a focus parent
 
 set $workspace1 "1: &#xf2b6;"
 set $workspace2 "2: &#xf120;"
-set $workspace3 "3: &#xf044;"
+set $workspace3 "3: &#xf1c1;"
 set $workspace4 "4: &#xf282;"
 set $workspace5 "5: &#xf115;"
 set $workspace6 "6: &#xf03d;"
 
 assign [class="Gnome-terminal"] $workspace2
-assign [class="Gvim"] $workspace3
+assign [class="zathura"] $workspace3
 assign [class="Google-chrome"] $workspace4
 assign [class="Firefox"] $workspace4
 assign [class="Pcmanfm"] $workspace5
@@ -86,7 +86,7 @@ assign [class="Thunar"] $workspace5
 assign [class="vlc"] $workspace6
 
 for_window [class="Gnome-terminal"] focus
-for_window [class="Gvim"] focus
+for_window [class="zathura"] focus
 for_window [class="Google-chrome"] focus
 for_window [class="Firefox"] focus
 for_window [class="Caja"] focus
@@ -152,8 +152,9 @@ bindsym $mod+r mode "resize"
 
 bar {
     status_command i3blocks
+    # status_command ~/bumblebee-status/bumblebee-status -m disk:home cpu memory date time pasink pasource -p time.format="%H:%M CW %V" date.format="%a, %b %d %Y" home.path=/home/kg314 -t gruvbox-powerline
     position top
-    font pango: sans 12, Icons 14
+    font pango: Hack 12, Icons 14
   colors {
     separator #586e75
     background #002b36
@@ -184,7 +185,8 @@ bindsym Mod1+u exec setxkbmap us
 
 # 002147 = Navy Blue
 # 321E6D = Plum
-bindsym $mod+shift+x exec i3lock --color=002147
+# bindsym $mod+shift+x exec i3lock --color=002147
+bindsym $mod+shift+x exec kki3lock
 
 # exec gvim
 exec google-chrome
