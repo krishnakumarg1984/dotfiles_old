@@ -1,72 +1,73 @@
 set nocompatible
-set guifont=DejaVu_Sans_Mono:h16 " firacode, deja vu, hack, source code pro, monaco, input
+set guifont=DejaVu_Sans_Mono:h13 " firacode, deja vu, hack, source code pro, monaco, input
 call plug#begin()
    " visual pizzazz
      Plug 'flazz/vim-colorschemes'
      Plug 'vim-airline/vim-airline'
      Plug 'vim-airline/vim-airline-themes'
-     Plug 'davidhalter/jedi-vim'
-     Plug 'nvie/vim-flake8'
+     Plug 'davidhalter/jedi-vim', {'for': 'python'}
+     Plug 'nvie/vim-flake8', {'for': 'python'}
      " Plug 'python-mode/python-mode'
-     Plug 'tpope/vim-abolish'
+     Plug 'tpope/vim-abolish',{'for': ['text','tex']}
      " Plug 'kien/rainbow_parentheses.vim'
-     Plug 'Yggdroot/indentLine'
+     Plug 'Yggdroot/indentLine', {'for': 'python'}
      Plug 'simnalamburt/vim-mundo'
      Plug 'haya14busa/incsearch.vim' " Better incsearch than vim's default. Further mappings present later in this file
      Plug 'tpope/vim-surround'
      Plug 'tommcdo/vim-exchange'
-     Plug 'yuttie/comfortable-motion.vim' "Physics-based scrolling there are also accelerated smooth scrolling plugins available.
+     " Plug 'yuttie/comfortable-motion.vim' "Physics-based scrolling there are also accelerated smooth scrolling plugins available.
      Plug 'mhinz/vim-startify'
      Plug 'godlygeek/tabular'
      " Plug 'junegunn/vim-easy-align'
      Plug 'tomtom/tcomment_vim'
      " Plug 'tpope/vim-commentary'
      Plug 'kshenoy/vim-signature'
-     Plug 'machakann/vim-highlightedyank'
+     " Plug 'machakann/vim-highlightedyank'
      Plug 'jiangmiao/auto-pairs'
      Plug 'wellle/targets.vim'
-     Plug 'scrooloose/nerdtree'
+     " Plug 'scrooloose/nerdtree'
      Plug 'tpope/vim-fugitive'
      " Plug 'ctrlpvim/ctrlp.vim'
-     " Plug 'wincent/command-t'
-     Plug 'wincent/command-t', {'do': 'cd ruby/command-t && ruby extconf.rb && make'}
-     Plug 'majutsushi/tagbar'
+     " Plug 'wincent/command-t', {'do': 'cd ruby/command-t && ruby extconf.rb && make'}
+     Plug 'majutsushi/tagbar', {'for': ['cpp', 'c', 'go', 'sh', 'javascript']}
      Plug 'airblade/vim-gitgutter'
      Plug 'ervandew/supertab'
      Plug 'tpope/vim-repeat'
      Plug 'AmaiSaeta/capture.vim' "capture ex-command outputs
-     Plug 'Valloric/YouCompleteMe'
+     " Plug 'Valloric/YouCompleteMe'
      Plug 'honza/vim-snippets'
      " Plug 'SirVer/ultisnips'
      Plug 'mileszs/ack.vim'
      Plug 'tpope/vim-eunuch'
-     Plug 'ntpeters/vim-better-whitespace'
+     Plug 'ntpeters/vim-better-whitespace' " :ToggleWhitespace, :StripWhitespace
      " Plug 'sheerun/vim-polyglot'
      Plug 'gregsexton/gitv'
      Plug 'luochen1990/rainbow'
-     Plug 'Ron89/thesaurus_query.vim'
-     Plug 'reedes/vim-lexical'
-     Plug 'reedes/vim-litecorrect'
-     Plug 'reedes/vim-pencil'
-     Plug 'dbmrq/vim-ditto'
+     Plug 'Ron89/thesaurus_query.vim',{'for': ['tex','text']}
+     Plug 'reedes/vim-lexical',{'for': ['tex','text']}
+     Plug 'reedes/vim-litecorrect',{'for': ['tex','text']}
+     Plug 'reedes/vim-pencil',{'for': ['tex','text']}
+     Plug 'dbmrq/vim-ditto',{'for': ['tex','text']}
      Plug 'junegunn/limelight.vim'
-     Plug 'junegunn/goyo.vim'
+     Plug 'junegunn/goyo.vim' " :Goyo to toggle
      Plug 'kana/vim-textobj-user'
-     Plug 'reedes/vim-textobj-quote'
-     Plug 'reedes/vim-textobj-sentence'
-     Plug 'reedes/vim-wheel'
-     Plug 'reedes/vim-wordy'
-     Plug 'chrisbra/csv.vim'
-     Plug 'unblevable/quick-scope'
+     " Plug 'reedes/vim-textobj-quote'
+     Plug 'reedes/vim-textobj-sentence',{'for': ['tex','text']} " as, is, g), g(, ), (
+     " Plug 'reedes/vim-wheel' " a different scrolling experience
+     Plug 'reedes/vim-wordy',{'for': ['tex','text']}
+     " Plug 'chrisbra/csv.vim'
+     Plug 'unblevable/quick-scope' " for f, F, t and T
      " Plug 'rhysd/clever-f.vim'
      Plug 'nhooyr/neoman.vim'
-     Plug 'coderifous/textobj-word-column.vim'
+     Plug 'coderifous/textobj-word-column.vim'  " provides cic and vic mappings
      "osyo-manga/vim-watchdogs
-     Plug 'vim-utils/vim-troll-stopper'
-     Plug 'vim-utils/vim-husk'
-     Plug 'rhysd/vim-textobj-anyblock'
-     Plug 'fisadev/vim-isort'
+     Plug 'vim-utils/vim-troll-stopper' " highlights invalid unicode characters
+     Plug 'vim-utils/vim-husk' " for command line mode (readline bindings)
+     Plug 'rhysd/vim-textobj-anyblock' " provides ib and ab objects
+     Plug 'fisadev/vim-isort', {'for': 'python'}
      Plug 'osyo-manga/vim-over'
+     " Plug 'timakro/vim-searchant'
+
      " "Shougo's plugins
      " Plug 'Shougo/vimproc.vim', {'do' : 'make'}
      " Plug 'Shougo/neosnippet.vim'
@@ -364,16 +365,16 @@ set report=0                    " Threshold for reporting number of lines change
 set updatecount=0 "After typing this many characters the swap file will be written to disk.  When zero, no swap file will be created at all (see chapter on recovery |crash-recovery|).  "
 set updatetime=250             " milliseconds elapsed before which swap file will be written to disk (250 ms is recommende by gitgutter plugin)
 
-"Custom function to enable to emphasize next search with a blinking cursor around the highlighted match
-function! HLNext (blinktime)
-    set invcursorline
-    redraw
-    exec 'sleep ' . float2nr(a:blinktime * 1500) . 'm'
-    set invcursorline
-endfunction
-
-nnoremap <silent> n   n:call HLNext(0.3)<cr>
-nnoremap <silent> N   N:call HLNext(0.3)<cr>
+" "Custom function to enable to emphasize next search with a blinking cursor around the highlighted match
+" function! HLNext (blinktime)
+"     set invcursorline
+"     redraw
+"     exec 'sleep ' . float2nr(a:blinktime * 1500) . 'm'
+"     set invcursorline
+" endfunction
+"
+" nnoremap <silent> n   n:call HLNext(0.3)<cr>
+" nnoremap <silent> N   N:call HLNext(0.3)<cr>
 
 highlight ColorColumn ctermbg=magenta
 call matchadd('ColorColumn', '\%81v', 100)
@@ -630,8 +631,8 @@ nmap _d <Plug>DittoBad                 " Stop ignoring the word under the cursor
 nmap ]d <Plug>DittoMore                " Show the next matches
 nmap [d <Plug>DittoLess                " Show the previous matches
 
-nmap <Leader>l <Plug>(Limelight)
-xmap <Leader>l <Plug>(Limelight)
+" nmap <Leader>l <Plug>(Limelight)
+" xmap <Leader>l <Plug>(Limelight)
 
 autocmd! User GoyoEnter Limelight
 autocmd! User GoyoLeave Limelight!
@@ -668,3 +669,5 @@ let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
 " nnoremap <silent> K :Vnman<CR>
 
 let g:vim_isort_map = ''
+
+" highlight SearchCurrent ctermbg=cyan
