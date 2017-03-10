@@ -24,7 +24,7 @@ echo 'setxkbmap -option caps:none' >> /home/kg314/.profile
 
 # curl, aria2, axel
 
-#apt-get install -y software-properties-common libxss1 libappindicator1 libindicator7 
+#apt-get install -y software-properties-common libxss1 libappindicator1 libindicator7
 
 #wget http://blog.anantshri.info/content/uploads/2010/09/add-apt-repository.sh.txt
 #cp add-apt-repository.sh.txt /usr/sbin/add-apt-repository
@@ -63,7 +63,7 @@ echo 'setxkbmap -option caps:none' >> /home/kg314/.profile
 
 #npm install --global git-recall
 
-#apt-fast install -y gnome-terminal 
+#apt-fast install -y gnome-terminal
 #apt-fast install -y dconf-cli dconf-editor --install-recommends
 #update-alternatives --config x-terminal-emulator
 
@@ -89,7 +89,7 @@ echo 'setxkbmap -option caps:none' >> /home/kg314/.profile
 #apt-fast install -y cups google-cloud-print-connector
 
 #echo "export OMP_NUM_THREADS=64" >> ~/.bashrc
-#source ~/.bashrc 
+#source ~/.bashrc
 
 #wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
 #dpkg -i google-chrome*.deb
@@ -130,7 +130,7 @@ echo 'setxkbmap -option caps:none' >> /home/kg314/.profile
 #cd sundialsTB
 #matlab &
 
-#wget http://esd.mathworks.com/R2016b/Linux_x86_64/INST_091492/matlab_R2016b_glnxa64.zip 
+#wget http://esd.mathworks.com/R2016b/Linux_x86_64/INST_091492/matlab_R2016b_glnxa64.zip
 #unzip matlab_R2016b_glnxa64.zip -d matlab_srcdir
 #rm matlab_R2016b_glnxa64.zip
 #cd matlab_R2016b_glnxa64
@@ -194,7 +194,7 @@ echo 'setxkbmap -option caps:none' >> /home/kg314/.profile
 #apt-fast install -y lyx --install-recommends
 
 #curl -OL https://bashhub.com/setup && bash setup
-#curl -sLo- http://get.bpkg.io 
+#curl -sLo- http://get.bpkg.io
 #basher
 #apt-fast install -y xscreensaver-gl
 #apt-fast install -y ncdu
@@ -202,7 +202,7 @@ echo 'setxkbmap -option caps:none' >> /home/kg314/.profile
 #apt-fast install -y cloc --install-recommends
 
 #rm -rf fzf
-#git clone --depth=1 https://github.com/junegunn/fzf.git 
+#git clone --depth=1 https://github.com/junegunn/fzf.git
 #chown -R kg314:kg314 .
 #cd fzf
 #./install
@@ -220,7 +220,7 @@ echo 'setxkbmap -option caps:none' >> /home/kg314/.profile
 #fisher fzf edc/bass omf/thefuck omf/theme-bobthefish
 #apt-fast install -y grc
 #fisher done fat fin g2 get get_file_age getopts grc host_info humanize_duration menu omf/balias omf/ccache
-#fisher transfer termcolours spin omf/theme omf/tab omf/percol omf/peco omf/pbcopy omf/msg omf/extract omf/export 
+#fisher transfer termcolours spin omf/theme omf/tab omf/percol omf/peco omf/pbcopy omf/msg omf/extract omf/export
 
 #apt-fast install -y meld
 
@@ -249,7 +249,7 @@ echo 'setxkbmap -option caps:none' >> /home/kg314/.profile
 # apt-fast install -y wmctrl
 # apt-get install -y libncurses5-dev libreadline6-dev
 # apt-get install -y  libgnome2-dev libgnomeui-dev libgtk2.0-dev libatk1.0-dev libbonoboui2-dev libcairo2-dev libx11-dev libxpm-dev libxt-dev python-dev python3-dev ruby-dev lua5.1 lua5.1-dev libperl-dev git
-# samba related 
+# samba related
 #fizsh
 # install pycharm
 #youtube-dl
@@ -258,3 +258,5 @@ echo 'setxkbmap -option caps:none' >> /home/kg314/.profile
 #apt -y autoremove
 #clear
 #reboot
+
+# sudo apt-get install gscan2pdf
