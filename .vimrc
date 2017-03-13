@@ -399,7 +399,6 @@ augroup collumnLimit
         \ let w:m1=matchadd('CollumnLimit', pattern, -1)
 augroup END
 
-set autoindent
 set smartindent
 
 set nojoinspaces
@@ -500,21 +499,21 @@ if has("autocmd")
     au BufNewFile,BufRead *.csv set nolist
 endif
 
-" Only do this part when compiled with support for autocommands.
-"if has("autocmd")
-"  " Put these in an autocmd group, so that you can revert them with:
-"  " ":augroup vimStartup | au! | augroup END"
-"  augroup vimStartup
-"    au!
-"    " When editing a file, always jump to the last known cursor position.
-"    " Don't do it when the position is invalid or when inside an event handler
-"    " (happens when dropping a file on gvim).
-"    autocmd BufReadPost *
-"      \ if line("'\"") >= 1 && line("'\"") <= line("$") |
-"      \   exe "normal! g`\"" |
-"      \ endif
-"  augroup END
-"endif " has("autocmd")
+ Only do this part when compiled with support for autocommands.
+if has("autocmd")
+  " Put these in an autocmd group, so that you can revert them with:
+  " ":augroup vimStartup | au! | augroup END"
+  augroup vimStartup
+    au!
+    " When editing a file, always jump to the last known cursor position.
+    " Don't do it when the position is invalid or when inside an event handler
+    " (happens when dropping a file on gvim).
+    autocmd BufReadPost *
+      \ if line("'\"") >= 1 && line("'\"") <= line("$") |
+      \   exe "normal! g`\"" |
+      \ endif
+  augroup END
+endif " has("autocmd")
 
 " Convenient command to see the difference between the current buffer and the
 " file it was loaded from, thus the changes you made.
@@ -551,6 +550,23 @@ vnoremap g} j}<BS>0
 set iskeyword+=@-@
 " behave mswin
 
+" Only do this part when compiled with support for autocommands.
+if has("autocmd")
+
+  " Put these in an autocmd group, so that we can delete them easily.
+  augroup vimrcEx
+  au!
+
+  " For all text files set 'textwidth' to 78 characters.
+  autocmd FileType text setlocal textwidth=78
+
+  augroup END
+
+else
+
+  set autoindent		" always set autoindenting on
+
+endif " has("autocmd")
 
 " " -------- vim-smooth-scrolling remaps ---------------------
 " noremap <silent> <c-u> :call smooth_scroll#up(&scroll, 0, 2)<CR>
