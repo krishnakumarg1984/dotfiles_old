@@ -171,7 +171,6 @@ set noshowmatch                " when on a [{(, highlight the matching )}]
 set cpoptions-=m               " ? Highlight when CursorMoved
 set matchpairs+=<:>            " Highlight <>
 set matchtime=1                " In 10ths of a second
-set expandtab                  " Convert all TAB characters in the file to spaces
 
 if has('mouse') | set mouse=a | endif"+
 set mousehide
@@ -283,7 +282,7 @@ endif
 " Use the same symbols as TextMate for tabstops and EOLs
 set listchars=tab:▸\ ,eol:¬
 nnoremap <leader>a :set list!<CR>  " Shortcut to rapidly toggle set list
-" set list
+set list
 
 hi link HelpBar Normal
 hi link HelpStar Normal
@@ -302,7 +301,7 @@ if has('linebreak')
     endif
 endif
 
-set cmdheight=2                 " Height of command-line (easy-readable)
+set cmdheight=3                 " Height of command-line (easy-readable)
 
 " Completion settings in insert mode
 set completeopt=longest,menuone,noselect,preview
@@ -521,7 +520,7 @@ endif " has("autocmd")
 " Revert with: ":delcommand DiffOrig".
 if !exists(":DiffOrig")
   command DiffOrig vert new | set bt=nofile | r ++edit # | 0d_ | diffthis
-		  \ | wincmd p | diffthis
+          \ | wincmd p | diffthis
 endif
 
 if has('langmap') && exists('+langremap')
@@ -564,7 +563,7 @@ if has("autocmd")
 
 else
 
-  set autoindent		" always set autoindenting on
+  set autoindent        " always set autoindenting on
 
 endif " has("autocmd")
 
@@ -721,10 +720,10 @@ augroup END
 
 
 augroup litecorrect
-	autocmd!
-	autocmd FileType markdown,mkd call litecorrect#init()
-	autocmd FileType textile call litecorrect#init()
-	autocmd FileType text call litecorrect#init()
+    autocmd!
+    autocmd FileType markdown,mkd call litecorrect#init()
+    autocmd FileType textile call litecorrect#init()
+    autocmd FileType text call litecorrect#init()
 augroup END
 
 " Trigger a highlight in the appropriate direction when pressing these keys:
