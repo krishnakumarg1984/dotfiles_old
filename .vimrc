@@ -301,7 +301,8 @@ if has('linebreak')
     endif
 endif
 
-set cmdheight=3                 " Height of command-line (easy-readable)
+set cmdheight=2                 " Height of command-line (easy-readable)
+set backupext=.bak
 
 " Completion settings in insert mode
 set completeopt=longest,menuone,noselect,preview
@@ -671,20 +672,20 @@ let g:rainbow_conf = {
 let g:tq_online_backends_timeout = 0.6
 let g:tq_mthesaur_file="~\mthesaur.txt"
 
-augroup lexical
-  autocmd!
-  autocmd FileType markdown,mkd call lexical#init()
-  autocmd FileType textile call lexical#init()
-  autocmd FileType text call lexical#init({ 'spell': 0 })
-augroup END
+" augroup lexical
+"   autocmd!
+"   autocmd FileType markdown,mkd call lexical#init()
+"   autocmd FileType textile call lexical#init()
+"   autocmd FileType text call lexical#init({ 'spell': 0 })
+" augroup END
 
-augroup pencil
-  autocmd!
-  autocmd FileType markdown,mkd call pencil#init()
-  autocmd FileType text         call pencil#init()
-augroup END
+" augroup pencil
+"   autocmd!
+"   autocmd FileType markdown,mkd call pencil#init()
+"   autocmd FileType text         call pencil#init()
+" augroup END
 
-au FileType markdown,text,tex DittoOn  " Turn on Ditto's autocmds
+" au FileType markdown,text,tex DittoOn  " Turn on Ditto's autocmds
 
 nmap <leader>di <Plug>ToggleDitto      " Turn it on and off
 
