@@ -164,8 +164,8 @@ let &t_8b="\e[48;2;%ld;%ld;%ldm"
 set termguicolors
 " set t_Co=256
 
-set history=1000               " store lots of :cmdline history (default is 20)
 set backspace=indent,eol,start " Make backspace behave in a sane manner.
+set history=1000               " store lots of :cmdline history (default is 20)
 set noshowmatch                " when on a [{(, highlight the matching )}]
 " set showmatch                " when on a [{(, highlight the matching )}]
 set cpoptions-=m               " ? Highlight when CursorMoved
@@ -198,7 +198,14 @@ set synmaxcol=300   "Boost performance in rendering long lines
 set timeout " time out on mappings and keycodes (stronger of the two conditions)
 set ttimeout
 set ttimeoutlen=0 "A non-negative number here will make the delay to be timeoutlen
-set timeoutlen=1000 " The time in milliseconds that is waited for a key code or mapped key sequence to complete.
+set timeoutlen=100 " The time in milliseconds that is waited for a key code or mapped key sequence to complete.
+
+" Show @@@ in the last line if it is truncated.
+set display=truncate
+
+" Do not recognize octal numbers for Ctrl-A and Ctrl-X, most users find it
+" confusing.
+set nrformats-=octal
 
 set spelllang=en_gb,en_us
 syntax spell toplevel
@@ -457,6 +464,16 @@ set guioptions-=m
 set guioptions-=r
 set guioptions-=T
 set guicursor+=a:blinkon0
+" For Win32 GUI: remove 't' flag from 'guioptions': no tearoff menu entries.
+if has('win32')
+  set guioptions-=t
+endif
+
+" CTRL-U in insert mode deletes a lot.  Use CTRL-G u to first break undo,
+" so that you can undo CTRL-U after inserting a line break.
+" Revert with ":iunmap <C-U>".
+inoremap <C-U> <C-G>u<C-U>
+
 
 if has("autocmd")
     " Syntax of these languages is fussy over tabs Vs spaces
@@ -483,6 +500,41 @@ if has("autocmd")
     au BufNewFile,BufRead *.csv set nolist
 endif
 
+" Only do this part when compiled with support for autocommands.
+if has("autocmd")
+
+  " Put these in an autocmd group, so that you can revert them with:
+  " ":augroup vimStartup | au! | augroup END"
+  augroup vimStartup
+    au!
+
+    " When editing a file, always jump to the last known cursor position.
+    " Don't do it when the position is invalid or when inside an event handler
+    " (happens when dropping a file on gvim).
+    autocmd BufReadPost *
+      \ if line("'\"") >= 1 && line("'\"") <= line("$") |
+      \   exe "normal! g`\"" |
+      \ endif
+
+  augroup END
+
+endif " has("autocmd")
+
+" Convenient command to see the difference between the current buffer and the
+" file it was loaded from, thus the changes you made.
+" Only define it when not defined already.
+" Revert with: ":delcommand DiffOrig".
+if !exists(":DiffOrig")
+  command DiffOrig vert new | set bt=nofile | r ++edit # | 0d_ | diffthis
+		  \ | wincmd p | diffthis
+endif
+
+if has('langmap') && exists('+langremap')
+  " Prevent that the langmap option applies to characters that result from a
+  " mapping.  If set (default), this may break plugins (but it's backward
+  " compatible).
+  set nolangremap
+endif
 " -----cursor shape control
 " if has("autocmd")
 "   au InsertEnter * silent execute "!sed -i.bak -e 's/TERMINAL_CURSOR_SHAPE_BLOCK/TERMINAL_CURSOR_SHAPE_UNDERLINE/' ~/.config/xfce4/terminal/terminalrc"
