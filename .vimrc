@@ -637,16 +637,16 @@ nmap [d <Plug>DittoLess                " Show the previous matches
 autocmd! User GoyoEnter Limelight
 autocmd! User GoyoLeave Limelight!
 
-augroup textobj_quote
-  autocmd!
-  autocmd FileType markdown call textobj#quote#init()
-  autocmd FileType textile call textobj#quote#init()
-  autocmd FileType text call textobj#quote#init({'educate': 1})
-  " autocmd FileType text call textobj#quote#init({'educate': 0})
-augroup END
+" augroup textobj_quote
+"   autocmd!
+"   autocmd FileType markdown call textobj#quote#init()
+"   autocmd FileType textile call textobj#quote#init()
+"   autocmd FileType text call textobj#quote#init({'educate': 1})
+"   " autocmd FileType text call textobj#quote#init({'educate': 0})
+" augroup END
 
-let g:textobj#quote#educate = 1       " 0=disable, 1=enable (def)
-let g:textobj#quote#matchit = 1       " 0=disable, 1=enable (def)
+"" let g:textobj#quote#educate = 1       " 0=disable, 1=enable (def)
+"" let g:textobj#quote#matchit = 1       " 0=disable, 1=enable (def)
 
 augroup textobj_sentence
   autocmd!
