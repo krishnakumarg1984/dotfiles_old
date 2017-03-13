@@ -499,7 +499,7 @@ if has("autocmd")
     au BufNewFile,BufRead *.csv set nolist
 endif
 
- Only do this part when compiled with support for autocommands.
+"  Only do this part when compiled with support for autocommands.
 if has("autocmd")
   " Put these in an autocmd group, so that you can revert them with:
   " ":augroup vimStartup | au! | augroup END"
