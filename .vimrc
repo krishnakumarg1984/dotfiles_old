@@ -198,7 +198,7 @@ set synmaxcol=300   "Boost performance in rendering long lines
 set timeout " time out on mappings and keycodes (stronger of the two conditions)
 set ttimeout
 set ttimeoutlen=0 "A non-negative number here will make the delay to be timeoutlen
-set timeoutlen=100 " The time in milliseconds that is waited for a key code or mapped key sequence to complete.
+set timeoutlen=1000 " The time in milliseconds that is waited for a key code or mapped key sequence to complete.
 
 " Show @@@ in the last line if it is truncated.
 set display=truncate
