@@ -35,6 +35,7 @@ call plug#begin()
      Plug 'tpope/vim-repeat'
      Plug 'AmaiSaeta/capture.vim' "capture ex-command outputs
      " Plug 'Valloric/YouCompleteMe'
+     Plug 'ajh17/VimCompletesMe'
      Plug 'honza/vim-snippets'
      " Plug 'SirVer/ultisnips'
      Plug 'mileszs/ack.vim'
