@@ -66,6 +66,7 @@ call plug#begin()
      Plug 'rhysd/vim-textobj-anyblock' " provides ib and ab objects
      Plug 'fisadev/vim-isort', {'for': 'python'}
      Plug 'osyo-manga/vim-over'
+     Plug 'lifepillar/vim-cheat40'
      " Plug 'timakro/vim-searchant'
 
      " "Shougo's plugins
