@@ -69,6 +69,8 @@ call plug#begin()
      Plug 'osyo-manga/vim-over'
      Plug 'lifepillar/vim-cheat40'
      " Plug 'timakro/vim-searchant'
+     Plug 'tpope/vim-obsession'
+     Plug 'tmux-plugins/vim-tmux-focus-events'
 
      " "Shougo's plugins
      " Plug 'Shougo/vimproc.vim', {'do' : 'make'}
