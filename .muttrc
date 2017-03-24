@@ -1,6 +1,5 @@
 # IMAP config
 set imap_user="kg314@$ic.ac.uk"
-set imap_pass=Gop54321
 
 set folder="imaps://$USER%40ic.ac.uk@outlook.office365.com/"
 set spoolfile="+Inbox"
