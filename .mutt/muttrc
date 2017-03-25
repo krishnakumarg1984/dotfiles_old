@@ -1,13 +1,18 @@
+# mailboxes
 source ~/.mutt/kg314_office365
-source ~/.mutt/muttcol
-source ~/.mutt/aliases
+# source ~/.mutt/muttcol
+# source ~/.mutt/aliases.txt
 
-set sort = 'reverse-date'
-set editor = vim
+set sort=threads
+set sort_browser=reverse-date
+# set sort_aux=last-date-received
+set sort_aux=reverse-last-date-received
+
+set editor="vim -c start"   # start editor in insert mode
 set timeout = "5"
-set mail_check = "10"
+set mail_check = "120"  # How often to check in seconds
 set mailcap_path = ~/.mutt/mailcap
-set date_format="%m/%d %I:%M"
+set date_format="%d-%b-%Y %I:%M"
 set index_format="%2C %Z %d %-15.15F %s (%-4.4c)"
 
 auto_view text/html
@@ -26,17 +31,143 @@ color body brightred default [\-\.+_a-zA-Z0-9]+@[\-\.a-zA-Z0-9]+
 color body brightblue default (https?|ftp)://[\-\.,/%~_:?&=\#a-zA-Z0-9]+
 
 bind editor <space> noop
-bind index G last-entry
-bind index gg first-entry
 bind index d half-down
 bind index u half-up
 bind index D delete-message
 bind index U undelete-message
 bind index F search
 bind index R group-reply
+bind index <tab>    sync-mailbox
+bind index <space>  collapse-thread
+bind pager <up> previous-line #scroll inside the message rather than the index
+bind pager <down> next-line
+bind pager k previous-line #scroll inside the message rather than the index
+bind pager j next-line
+bind attach,index,pager \CD next-page
+bind attach,index,pager \CU previous-page
+bind pager gg top
+bind pager G bottom
+bind pager R group-reply
+bind attach,index gg first-entry
+bind attach,index G last-entry
 
-macro index X '<sync-mailbox><enter-command>source ~/.config/mutt/gmailrc<enter><change-folder>!<enter>'
-macro index K '<sync-mailbox><enter-command>source ~/.config/mutt/cocklirc<enter><change-folder>!<enter>'
+macro pager \cu |urlview\n
 
 set message_cachedir="~/.mutt/message_cache"
 set header_cache="~/.mutt/header_cache"
+
+unset arrow_cursor         # use arrow cursor
+unset askbcc               # don't prompt for bcc's
+unset askcc                # don't prompt for cc's
+unset beep                 # don't beep on error
+unset beep_new             # don't beep on new message
+set   bounce_delivered     # unset: remove Delivered-To: when bouncing?
+unset collapse_unread      # don't collapse threads with unread mails
+set uncollapse_jump      # jump to unread message when uncollapse
+unset confirmappend        # may want to change this later
+set copy                 # save copies of sent messages
+set delete               # don't ask me to delete messages - just do it!
+# set   edit_headers         # display the headers when I'm editing a message
+set fast_reply           # don't prompt for stuff when replying
+set followup_to          # add Mail-Followup-To header
+set help                 # show help on first line of display
+unset mark_old             # don't mark unread messages as Old
+unset menu_scroll          # scroll menu a page on last line
+set narrow_tree          # narrow threading trees
+set pager_stop           # don't go to next message at end of message
+set text_flowed=yes        # send format-flowed; vim must be set to fo+=w
+# set display_filter="~/.mutt/addalias.sh ~/.mutt/aliases" # filters new messages through a shell script that automatically generates a mutt alias for new senders
+set delete_untag    # untag messages when marking them for deletion
+# set forward_decode=yes
+set forward_edit=ask-yes    # automatically start editor when forwarding.
+set forward_format="Fwd: %s"    # subject to use when forwarding
+# set include=yes     # quote message, when replying
+unset markers       # put a '+' at the beginning of wrapped lines.
+# set mime_forward=no # forward all attachments as a single attachment?
+set pager_index_lines=6 # add small message index at top of pager (5)
+set pipe_decode
+set quit=yes        # don't ask before quitting.
+set shell=/bin/bash
+set sig_dashes=no   # no dashes between message text and signature
+set sig_on_top      # puts signature above quoted or forwarded text
+set smart_wrap      # wrap long lines at word boundary.
+set tilde           # Internal Pager: ~~~~ at end of message?
+unset wait_key      # don't wait for keystroke to return from shell
+set sleep_time = 0 # be fast
+set imap_check_subscribed  # check for all subscribed IMAP folders
+unset imap_passive  # Allow Mutt to open new imap connection automatically.
+set imap_keepalive = 300 #  Keep IMAP connection alive by polling intermittently (time in seconds).
+bind generic,alias,attach,browser,editor,index,compose,pager,pgp,postpone ':' noop
+set send_charset="us-ascii:utf-8"
+set thorough_search      # strip headers and eval mimes before searching
+
+
+my_hdr X-Operating-System: `uname -s`, kernel `uname -r`
+my_hdr User-Agent: Every email client sucks, this one just sucks less.
+
+macro attach 'V' "<pipe-entry>cat >~/.cache/mutt/mail.html && $BROWSER ~/.cache/mutt/mail.html && rm ~/.cache/mutt/mail.html<enter>"
+
+bind index,pager B sidebar-toggle-visible
+set pager_index_lines=10
+set pager_context=3
+
+alternates kg314@imperial.ac.uk|k.gopalakrishnan14@imperial.ac.uk
+
+## Abook
+set query_command= "abook --mutt-query '%s'"
+macro index,pager  a "<pipe-message>abook --add-email-quiet<return>" "Add this sender to Abook"
+bind editor        <Tab> complete-query
+
+# Sidebar Patch --------------------------------------
+# set sidebar_delim   = '  │'
+set sidebar_visible = yes
+set sidebar_width   = 24
+color sidebar_new color221 color233
+
+# Status Bar -----------------------------------------
+set status_chars  = " *%A"
+# set status_format = "───[ Folder: %f ]───[%r%m messages%?n? (%n new)?%?d? (%d to delete)?%?t? (%t tagged)? ]───%>─%?p?( %p postponed )?───"
+#
+# Header Options -------------------------------------
+ignore *                                # ignore all headers
+unignore from: to: cc: date: subject:   # show only these
+unhdr_order *                           # some distros order things by default
+hdr_order from: to: cc: date: subject:  # and in this order
+
+# macro index y "<change-folder>?<toggle-mailboxes>" "show incoming mailboxes list"       #I have seen on some Mutt configs that y sometimes does not toggle the list of mailboxes. In that case, you can add something like:
+
+# Sidebar Navigation ---------------------------------
+bind index,pager <down>   sidebar-next
+bind index,pager <up>     sidebar-prev
+bind index,pager <right>  sidebar-open
+
+set quote_regexp = "^( {0,4}[>|:#%]| {0,4}[a-z0-9]+[>|]+)+"
+
+bind attach <return> view-mailcap
+
+# Compose View Options -------------------------------
+set realname = "Krishna"          # who am i?
+set envelope_from                    # which from?
+set fcc_attach                       # save attachments with the body
+unset mime_forward                   # forward attachments as part of body
+set forward_format = "Fwd: %s"       # format of subject when forwarding
+set forward_decode                   # decode when forwarding
+set attribution = "On %d, %n wrote:" # format of quoting header
+set reply_to                         # reply to Reply to: field
+set reverse_name                     # reply as whomever it was to
+set include                          # include message in replies
+set forward_quote                    # include message in forwards
+
+bind compose p postpone-message
+bind index p recall-message
+
+# bind index N search-opposite
+# bind pager N search-opposite
+#
+set print_command="mutt-print %s"
+set recall=no
+#don't resume postponed messages
+#
+set postpone=ask-no
+unset reply_self
+

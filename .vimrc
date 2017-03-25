@@ -286,7 +286,7 @@ endif
 " Use the same symbols as TextMate for tabstops and EOLs
 set listchars=tab:▸\ ,eol:¬
 nnoremap <leader>a :set list!<CR>  " Shortcut to rapidly toggle set list
-set list
+" set list
 
 hi link HelpBar Normal
 hi link HelpStar Normal
@@ -480,6 +480,9 @@ inoremap <C-U> <C-G>u<C-U>
 
 if has("autocmd")
     " Syntax of these languages is fussy over tabs Vs spaces
+    autocmd BufRead,BufNewFile *mutt-*              setfiletype mail
+    autocmd BufRead,BufNewFile *mutt-*              setlocal fo+=aw
+    autocmd FileType mail setlocal fo+=aw
     autocmd FileType help setlocal number
     autocmd FileType make setlocal ts=8 sts=8 sw=8 noexpandtab
     autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab

@@ -1,5 +1,14 @@
-text/html; w3m -I %{charset} -T text/html; copiousoutput;
-
+# text/html; w3m -I %{charset} -T text/html; copiousoutput;
+text/html; elinks -dump %s -eval 'set document.codepage.assume = "%{charset}"' -eval 'set document.dump.width = 66'; nametemplate=%s.html; copiousoutput
 text/html; mv %s %s.html && qutebrowser %s.html > /dev/null; needsterminal;
+# image/*; ~/.config/mutt/muttimage.sh %s ; copiousoutput
 
-image/*; ~/.config/mutt/muttimage.sh %s ; copiousoutput
+application/pdf; zathura %s &>/dev/null
+image/JPG; feh -F -Z %s &>/dev/null
+image/jpeg; feh -F -Z %s &>/dev/null
+image/gif; feh -F -Z %s &>/dev/null
+image/png; feh -F -Z %s &>/dev/null
+application/vnd.oasis.opendocument.text; libreoffice %s &>/dev/null
+application/vnd.ms-excel; libreoffice %s &>/dev/null
+application/vnd.oasis.opendocument.spreadsheet; libreoffice %s &>/dev/null
+application/msword; libreoffice %s &>/dev/null
