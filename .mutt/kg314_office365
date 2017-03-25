@@ -1,0 +1,18 @@
+# IMAP config
+set imap_user="kg314@ic.ac.uk"
+set imap_pass=Rama4jayam
+
+set folder="imaps://outlook.office365.com/"
+set spoolfile= +INBOX
+set postponed= +Drafts
+set record = "+Sent Items"
+set trash = "+Deleted Items"
+
+# SMTP config
+set realname = Krishna
+set from = "kg314@ic.ac.uk"
+set smtp_pass = Rama4jayam
+set hostname = ic.ac.uk
+set smtp_url = "smtp://kg314@ic.ac.uk@outlook.office365.com:587/"
+set ssl_force_tls = yes
+set smtp_authenticators = "login"

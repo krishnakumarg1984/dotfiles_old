@@ -1,0 +1,128 @@
+set sidebar_visible
+set sidebar_format = "%B%?F? [%F]?%* %?N?%N/?%S"
+bind index,pager B sidebar-toggle-visible
+# Use 'B' to switch the Sidebar on and off
+set sidebar_width = 25
+# Plenty of space
+set sidebar_divider_char = '│'
+# Pretty line-drawing character
+
+set mail_check_stats
+set sidebar_short_path
+# Shorten mailbox names
+set sidebar_delim_chars="/"
+# Delete everything up to the last / character
+set sidebar_folder_indent
+# Indent folders whose names we've shortened
+set sidebar_indent_string="  "
+# Indent with two spaces
+
+# IMAP config
+set imap_user="kg314@ic.ac.uk"
+set imap_pass=Rama4jayam
+
+set folder="imaps://outlook.office365.com/"
+set spoolfile= +INBOX
+set postponed= +Drafts
+set record = "+Sent Items"
+set trash = "+Deleted Items"
+mailboxes
+
+set imap_check_subscribed="yes"
+set imap_list_subscribed="yes"
+set timeout=15
+set mail_check=90
+set imap_keepalive=180
+set imap_idle
+unset mark_old
+set ssl_use_sslv3=yes
+set read_inc = 100
+set mail_check = 90
+
+# SMTP config
+set realname = Krishna
+set from = "kg314@ic.ac.uk"
+set smtp_pass = Rama4jayam
+set hostname = ic.ac.uk
+set smtp_url = "smtp://kg314@ic.ac.uk@outlook.office365.com:587/"
+set ssl_force_tls = yes
+set smtp_authenticators = "login"
+
+# File storage settings
+
+set signature="~/.mutt/signature"
+set message_cachedir="~/.mutt/message_cache"
+set header_cache="~/.mutt/header_cache"
+set tmpdir="~/.mutt/tmp"
+
+# Text view first
+alternative_order text/plain
+auto_view text/html
+set reverse_name=yes
+set reverse_realname=yes
+
+# Text editor
+# set editor='vim + -c "set textwidth=72" -c "set wrap" -c "set nocp" -c "?^$"'
+#set editor="vim"
+
+# Adress book handling
+set sort_alias=alias
+set reverse_alias=yes
+set alias_file="~/.mutt/aliases"
+
+# Thread ordering
+set sort = 'threads'
+set sort_browser="date"
+set sort_aux="last-date-received"
+set index_format=" %?M?   ↳&%4C?   %Z      %D     %-15.15n    %s"
+
+set mailcap_path=~/.mutt/mailcap
+set abort_nosubject = ask-yes
+set abort_unmodified = yes
+# set editor = "$EDITOR"
+set content_type = 'text/plain'
+set mark_old = no
+# options
+unset record                                            # prevent dups in Sent
+unset move                                              # gmail does that
+unset mark_old                                          # read/new is good enough
+unset confirmappend                                     # don't ask, just do!
+set delete              = yes                           # don't ask, just do!
+set quit                = yes                           # don't ask, just do!
+# index options
+set sort_re                                             # thread based on reply_regexp
+unset collapse_unread                                   # don't collaps unread threads
+
+macro index b '<enter-command>toggle sidebar_visible<enter>'
+macro pager b '<enter-command>toggle sidebar_visible<enter>'
+bind index \CP sidebar-prev
+bind index \CN sidebar-next
+bind index \CO sidebar-open
+bind pager \CP sidebar-prev
+bind pager \CN sidebar-next
+bind pager \CO sidebar-open
+color sidebar_new yellow default
+
+# pager
+set pager_index_lines   = 8                             # show 8 messages when in pager
+set pager_context       = 5                             # show five lines when skipping in pager
+set pager_stop                                          # don't go to next message automatically
+set menu_scroll                                         # scroll in menus
+set smart_wrap                                          # don't split words
+set tilde                                               # show tildes like in vim
+unset markers                                           # no ugly plus signs
+
+# composing mail
+set fcc_attach                                          # save attachments with the body
+unset mime_forward                                      # forward attachments as part of body
+set forward_format      = "Fwd: %s"                     # format for subject when forwarding
+set include                                             # include message in replies
+set forward_quote                                       # include message in forwards
+
+# headers to show
+ignore *                                                # ignore all headers
+unignore from: to: cc: date: subject:                   # show only these
+hdr_order from: to: cc: date: subject:                  # and in this order
+
+
+source vombatidae.mutt
