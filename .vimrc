@@ -80,7 +80,7 @@ call plug#begin()
 call plug#end()
 
 " set incsearch " Not reqd if incsearch plugin is installed
-
+set diffopt=filler
 set keywordprg=:help
 syntax on
 filetype plugin indent on

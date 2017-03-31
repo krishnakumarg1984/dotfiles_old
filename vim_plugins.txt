@@ -1,3 +1,4 @@
+wincent/clipper
 k-takata/matchit.vim
 Bdelete
 Plug 'sjl/gundo.vim'
