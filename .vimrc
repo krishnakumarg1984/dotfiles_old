@@ -71,7 +71,11 @@ call plug#begin()
      " Plug 'timakro/vim-searchant'
      Plug 'tpope/vim-obsession'
      Plug 'tmux-plugins/vim-tmux-focus-events'
-
+     Plug 'google/vim-searchindex'
+     Plug 'google/vim-maktaba'
+     Plug 'google/vim-glaive'
+     Plug 'google/vim-codefmt'
+     Plug 'google/vim-syncopate'
      " "Shougo's plugins
      " Plug 'Shougo/vimproc.vim', {'do' : 'make'}
      " Plug 'Shougo/neosnippet.vim'
@@ -525,6 +529,18 @@ if has("autocmd")
       \ endif
   augroup END
 endif " has("autocmd")
+
+augroup autoformat_settings
+  autocmd FileType bzl AutoFormatBuffer buildifier
+  autocmd FileType c,cpp,proto,javascript AutoFormatBuffer clang-format
+  autocmd FileType dart AutoFormatBuffer dartfmt
+  autocmd FileType go AutoFormatBuffer gofmt
+  autocmd FileType gn AutoFormatBuffer gn
+  autocmd FileType html,css,json AutoFormatBuffer js-beautify
+  autocmd FileType java AutoFormatBuffer google-java-format
+  autocmd FileType python AutoFormatBuffer yapf
+  " Alternative: autocmd FileType python AutoFormatBuffer autopep8
+augroup END
 
 " Convenient command to see the difference between the current buffer and the
 " file it was loaded from, thus the changes you made.
