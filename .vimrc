@@ -223,6 +223,7 @@ set noerrorbells
 
 set encoding=utf-8           " Default encoding for saving and reading file
 scriptencoding utfs8
+set termencoding=utf-8
 
 if has('clipboard')
     if has('unnamedplus')  " When possible use + register for copy-paste
@@ -476,7 +477,9 @@ endif
 " so that you can undo CTRL-U after inserting a line break.
 " Revert with ":iunmap <C-U>".
 inoremap <C-U> <C-G>u<C-U>
+nnoremap <NL> o<ESC>
 
+"keeppatterns fora avoiding over-write of registers
 
 if has("autocmd")
     " Syntax of these languages is fussy over tabs Vs spaces

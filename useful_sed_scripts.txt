@@ -1,0 +1,2 @@
+sed $'s/[^[:print:]\t]//g' file.txt
+# remove everything except printable characters
