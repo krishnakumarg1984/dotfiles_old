@@ -169,8 +169,5 @@ export MANPAGER="vim -c 'set ft=neoman' -"
 export PATH="/home/kg314/anaconda2/bin:$PATH"
 export NAG_KUSARI_FILE=/home/kg314/nag_key.txt
 
-tmux attach &> /dev/null
-
-if [[ ! $TERM =~ screen ]]; then
-    exec tmux
-fi
+. ~/.luaver/luaver
+export PATH="$PATH:/home/kg314/.perl6/bin"

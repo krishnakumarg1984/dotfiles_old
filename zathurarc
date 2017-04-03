@@ -1,19 +1,19 @@
-set adjust-open best-fit
-set guioptions s
-set n-completion-items 10
-set statusbar-basename true
-set statusbar-v-padding 10
-set statusbar-h-padding 4
-set page-padding 10
-set pages-per-row 1
-set scroll-page-aware true
-set scroll-wrap true
-set scroll-full-overlap 0.1
-set scroll-step 80
-set zoom-min 5
-set zoom-max 1000
-set zoom-step 20
-set window-title-basename true
+#set adjust-open best-fit
+#set guioptions s
+#set n-completion-items 10
+#set statusbar-basename true
+#set statusbar-v-padding 10
+#set statusbar-h-padding 4
+#set page-padding 10
+#set pages-per-row 1
+#set scroll-page-aware true
+#set scroll-wrap true
+#set scroll-full-overlap 0.1
+#set scroll-step 80
+#set zoom-min 5
+#set zoom-max 1000
+#set zoom-step 20
+#set window-title-basename true
 
 
 # copy selection to system clipboard
@@ -29,48 +29,48 @@ map <C-o> zoom out
 unmap q
 map <C-q> quit
 
-map [normal]     <F11> toggle_fullscreen
-map [fullscreen] <F11> toggle_fullscreen
-map [normal]     <C-l> reload
-map [fullscreen] <C-l> reload
-
-map [normal]     e scroll down
-map [fullscreen] e scroll down
-map [normal]     <C-e> scroll down
-map [fullscreen] <C-e> scroll down
-map [normal]     y scroll up
-map [fullscreen] y scroll up
-map [normal]     <C-y> scroll up
-map [fullscreen] <C-y> scroll up
-map [normal]     R rotate rotate-ccw
-map [fullscreen] R rotate rotate-ccw
-
-map <BackSpace> navigate previous
-map [normal]     <PageUp>   navigate previous
-map [fullscreen] <PageUp>   navigate previous
-map [normal]     <PageDown> navigate next
-map [fullscreen] <PageDown> navigate next
-
-map [normal]     <A-1> set "first-page-column 1:1"
-map [fullscreen] <A-1> set "first-page-column 1:1"
-map [normal]     <A-2> set "first-page-column 1:2"
-map [fullscreen] <A-2> set "first-page-column 1:2"
+#map [normal]     <F11> toggle_fullscreen
+#map [fullscreen] <F11> toggle_fullscreen
+#map [normal]     <C-l> reload
+#map [fullscreen] <C-l> reload
+#
+#map [normal]     e scroll down
+#map [fullscreen] e scroll down
+#map [normal]     <C-e> scroll down
+#map [fullscreen] <C-e> scroll down
+#map [normal]     y scroll up
+#map [fullscreen] y scroll up
+#map [normal]     <C-y> scroll up
+#map [fullscreen] <C-y> scroll up
+#map [normal]     R rotate rotate-ccw
+#map [fullscreen] R rotate rotate-ccw
+#
+#map <BackSpace> navigate previous
+#map [normal]     <PageUp>   navigate previous
+#map [fullscreen] <PageUp>   navigate previous
+#map [normal]     <PageDown> navigate next
+#map [fullscreen] <PageDown> navigate next
+#
+#map [normal]     <A-1> set "first-page-column 1:1"
+#map [fullscreen] <A-1> set "first-page-column 1:1"
+#map [normal]     <A-2> set "first-page-column 1:2"
+#map [fullscreen] <A-2> set "first-page-column 1:2"
 
 # Why are these only defined for normal mode by default?
-map [fullscreen] a adjust_window best-fit
-map [fullscreen] s adjust_window width
-map w adjust_window width
-map [fullscreen] f follow
-map [fullscreen] d toggle_page_mode 2
-map [fullscreen] <Tab> toggle_index
-map [fullscreen] j scroll down
-map [fullscreen] k scroll up
-map [fullscreen] <C-d> scroll half-down
-map [fullscreen] <C-u> scroll half-up
-map [fullscreen] <C-o> jumplist backward
-map [fullscreen] <C-i> jumplist forward
-
-map [index] q quit
+#map [fullscreen] a adjust_window best-fit
+#map [fullscreen] s adjust_window width
+#map w adjust_window width
+#map [fullscreen] f follow
+#map [fullscreen] d toggle_page_mode 2
+#map [fullscreen] <Tab> toggle_index
+#map [fullscreen] j scroll down
+#map [fullscreen] k scroll up
+#map [fullscreen] <C-d> scroll half-down
+#map [fullscreen] <C-u> scroll half-up
+#map [fullscreen] <C-o> jumplist backward
+#map [fullscreen] <C-i> jumplist forward
+#
+#map [index] q quit
 
 # colors
 # set recolor-darkcolor  "#FFFFFF"
@@ -86,30 +86,30 @@ map [index] q quit
 # set notification-fg "#FFFFFF"
 # set notification-bg "#333333"
 #// colors:
-set default-bg \#191919
-set default-fg \#eeeeee
-set inputbar-bg \#000000
-set inputbar-fg \#a488d7
-set statusbar-bg \#191919
-set statusbar-fg \#9f8bab
-set tabbar-bg \#191919
-set tabbar-fg \#98a7b6
-set tabbar-focus-bg \#232323
-set tabbar-focus-fg \#a488d9
-set completion-bg \#232323
-set completion-fg \#bbbbbb
-set completion-group-bg \#101010
-set completion-group-fg \#eeeeee
-set completion-highlight-bg \#98a7b2
-set completion-highlight-fg \#232323
-set notification-error-bg \#937295
-set notification-error-fg \#352636
-set notification-warning-bg \#98a7b6
-set notification-warning-fg \#000000
-set highlight-active-color \#d473f9
-set highlight-color \#6b3baa
-set highlight-transparency 0.3
-set recolor true
-set recolor-keephue true
-set recolor-darkcolor \#cccccc
-set recolor-lightcolor \#121212
+# set default-bg \#191919
+# set default-fg \#eeeeee
+#set inputbar-bg \#000000
+#set inputbar-fg \#a488d7
+#set statusbar-bg \#191919
+#set statusbar-fg \#9f8bab
+#set tabbar-bg \#191919
+#set tabbar-fg \#98a7b6
+#set tabbar-focus-bg \#232323
+#set tabbar-focus-fg \#a488d9
+#set completion-bg \#232323
+#set completion-fg \#bbbbbb
+#set completion-group-bg \#101010
+#set completion-group-fg \#eeeeee
+#set completion-highlight-bg \#98a7b2
+#set completion-highlight-fg \#232323
+#set notification-error-bg \#937295
+#set notification-error-fg \#352636
+#set notification-warning-bg \#98a7b6
+#set notification-warning-fg \#000000
+#set highlight-active-color \#d473f9
+#set highlight-color \#6b3baa
+#set highlight-transparency 0.3
+#set recolor true
+#set recolor-keephue true
+#set recolor-darkcolor \#cccccc
+#set recolor-lightcolor \#121212

@@ -1,0 +1,5 @@
+[user]
+	name = Krishnakumar
+	email = krishnakumar@imperial.ac.uk
+[credential]
+	helper = cache --timeout=36000

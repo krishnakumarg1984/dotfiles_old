@@ -1,0 +1,20 @@
+# Sample minimal config file.  Copy this to ~/.offlineimaprc and edit to
+# get started fast.
+
+[general]
+accounts = ICaccount_Krishna
+
+[Account ICaccount_Krishna]
+localrepository = Local
+remoterepository = Remote
+
+[Repository Local]
+type = Maildir
+localfolders = ~/ICaccount_Krishna_Mailfldr
+
+[Repository Remote]
+type = IMAP
+remotehost = outlook.office365.com
+remoteuser = kg314@ic.ac.uk
+sslcacertfile = /etc/ssl/certs/ca-certificates.crt
+remotepass = 

@@ -1,0 +1,31 @@
+IMAPAccount ICAccount
+# Address to connect to
+Host outlook.office365.com
+User kg314@ic.ac.uk
+Pass 
+# Use SSL
+# SSLType IMAPS
+# The following line should work. If get certificate errors, uncomment the two following lines and read the "Troubleshooting" section.
+CertificateFile /etc/ssl/certs/ca-certificates.crt
+#CertificateFile ~/.cert/imap.ICAccount.com.pem
+#CertificateFile ~/.cert/Equifax_Secure_CA.pem
+
+IMAPStore ICAccount-remote
+Account ICAccount
+
+MaildirStore ICAccount-local
+# The trailing "/" is important
+Path ~/.mail/ICAccount/
+Inbox ~/.mail/ICAccount/INBOX
+
+Channel ICAccount
+Master :ICAccount-remote:
+Slave :ICAccount-local:
+# Exclude everything under the internal [ICAccount] folder, except the interesting folders
+# Patterns * ![ICAccount]* "[ICAccount]/Sent Mail" "[ICAccount]/Starred" "[ICAccount]/All Mail"
+# Or include everything
+Patterns *
+# Automatically create missing mailboxes, both locally and on the server
+Create Both
+# Save the synchronization state files in the relevant directory
+SyncState *

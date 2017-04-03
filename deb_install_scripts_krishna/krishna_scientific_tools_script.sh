@@ -68,6 +68,7 @@ echo 'setxkbmap -option caps:none' >> /home/kg314/.profile
 #update-alternatives --config x-terminal-emulator
 
 #git clone --depth=1 https://github.com/Bash-it/bash-it.git /home/kg314/.bash_it
+byobu
 
 #apt-fast install -y thefuck --install-recommends
 #apt-fast install -y silversearcher-ag --install-recommends
@@ -252,6 +253,7 @@ echo 'setxkbmap -option caps:none' >> /home/kg314/.profile
 # samba related
 #fizsh
 # install pycharm
+visual-studio code
 #youtube-dl
 
 #apt-get install -f
