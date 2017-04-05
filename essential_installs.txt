@@ -1,3 +1,12 @@
+trash-cli
+pkgfile
+howdoi
+cerebro and all cool plugins
+how2
+tldr or whichever is the fastest
+bash-completion
+terminal colours and then fonts
+imwheel
 i3
 intel python
 pycharm
