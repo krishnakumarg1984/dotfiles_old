@@ -106,7 +106,12 @@ call plug#begin('~/.local/share/nvim/plugged')
      " Plug 'tomtom/ttags_vim'
      Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
      Plug 'sickill/vim-pasta'
+     Plug 'blueyed/vim-diminactive'
+     Plug 'mtth/cursorcross.vim'
 call plug#end()
+
+let g:diminactive_use_syntax = 1
+let g:diminactive_enable_focus = 1
 
 " Use deoplete.
 let g:deoplete#enable_at_startup = 1
