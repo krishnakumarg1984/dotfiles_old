@@ -1,3 +1,4 @@
+jszakmeister/vim-togglecursor
 wincent/clipper
 k-takata/matchit.vim
 Bdelete

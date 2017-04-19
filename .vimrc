@@ -421,10 +421,10 @@ noremap 0 ^
 noremap ^ 0
 " Just in case you need to go to the very beginning of a line
 
-" nnoremap <C-j> <C-w>j
-" nnoremap <C-k> <C-w>k
-" nnoremap <C-h> <C-w>h
-" nnoremap <C-l> <C-w>l
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-h> <C-w>h
+nnoremap <C-l> <C-w>l
 
 nnoremap <silent><Leader><C-]> <C-w><C-]><C-w>T  " open tags in new tab
 
@@ -745,7 +745,6 @@ augroup textobj_sentence
   autocmd FileType textile call textobj#sentence#init()
   autocmd FileType text call textobj#sentence#init()
 augroup END
-
 
 augroup litecorrect
     autocmd!
