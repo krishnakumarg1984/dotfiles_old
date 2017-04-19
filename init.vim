@@ -105,7 +105,7 @@ call plug#begin('~/.local/share/nvim/plugged')
      " Plug 'justinmk/vim-sneak'
      " Plug 'tomtom/ttags_vim'
      Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-     Plug 'sickill/vim-pastaBBBBBBBBBBBB'
+     Plug 'sickill/vim-pasta'
 call plug#end()
 
 " Use deoplete.
