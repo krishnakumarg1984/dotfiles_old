@@ -1,4 +1,5 @@
 jszakmeister/vim-togglecursor
+vim-ctrlspace
 wincent/clipper
 k-takata/matchit.vim
 Bdelete
@@ -236,7 +237,6 @@ neomake
 vim-vinegar
 vimwiki
 xolox/vim-notes
-vim-ctrlspace
 vim-devicons (done)
 vimfiler
 minibufexpl

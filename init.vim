@@ -3,7 +3,8 @@ call plug#begin('~/.local/share/nvim/plugged')
      Plug 'vim-airline/vim-airline'
      Plug 'vim-airline/vim-airline-themes'
      Plug 'Yggdroot/indentLine', {'for': ['python','matlab','octave']}
-     " Plug 'davidhalter/jedi-vim', {'for': 'python'}
+     Plug 'davidhalter/jedi-vim', {'for': 'python'}
+     Plug 'zchee/deoplete-jedi',{'for':'python'}
      " Plug 'nvie/vim-flake8', {'for': 'python'}
      " Plug 'python-mode/python-mode'{'for':'python'}
      " Plug 'fisadev/vim-isort', {'for': 'python'}
@@ -66,7 +67,7 @@ call plug#begin('~/.local/share/nvim/plugged')
      Plug 'junegunn/goyo.vim' " :Goyo to toggle
      Plug 'kana/vim-textobj-user'
      " Plug 'reedes/vim-textobj-quote'
-     Plug 'reedes/vim-textobj-sentence',{'for': ['tex','text']} " as, is, g), g(, ), (
+     " Plug 'reedes/vim-textobj-sentence',{'for': ['tex','text']} " as, is, g), g(, ), (
      Plug 'reedes/vim-wheel' " a different scrolling experience
      Plug 'reedes/vim-wordy',{'for': ['tex','text']}
      Plug 'chrisbra/csv.vim',{'for': ['csv']}
@@ -103,7 +104,12 @@ call plug#begin('~/.local/share/nvim/plugged')
      Plug 'romainl/vim-cool' "Vim-cool disables search highlighting when you are done searching and re-enables it when you search again.
      " Plug 'justinmk/vim-sneak'
      " Plug 'tomtom/ttags_vim'
+     Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+     Plug 'sickill/vim-pastaBBBBBBBBBBBB'
 call plug#end()
+
+" Use deoplete.
+let g:deoplete#enable_at_startup = 1
 
 nnoremap <F2> :MundoToggle<CR>
 " Start interactive EasyAlign in visual mode (e.g. vipga)
@@ -219,6 +225,14 @@ set keywordprg=:help
 colorscheme gruvbox
 let g:airline_theme='base16'
 " let g:airline_theme='papercolor'
+let g:airline#extensions#tabline#enabled = 1
+let g:airline_powerline_fonts = 1
+if !exists('g:airline_symbols')
+  let g:airline_symbols = {}
+endif
+let g:airline_symbols.space = "\ua0"
+let g:airline_skip_empty_sections = 1
+let g:bufferline_echo = 0
 
 function! ToggleBG()
     let s:tbg = &background
@@ -282,9 +296,10 @@ set noerrorbells
 
 " set nomodeline               " Don't parse modelines because of vim modeline vulnerability
 
-set encoding=utf-8           " Default encoding for saving and reading file
+" set encoding=utf-8           " Default encoding for saving and reading file
 scriptencoding utfs8
 set termencoding=utf-8
+set fileencoding=utf-8  " The encoding written to file.
 
 if has('clipboard')
     if has('unnamedplus')  " When possible use + register for copy-paste
@@ -314,6 +329,7 @@ set hidden      " Allow changing buffer without saving it first
 set infercase   " Ignore case on insert completion
 set ignorecase  " Ignore case search for normal letters
 set smartcase   " Do case-sensitive search if pattern contains upper case letters
+set showcmd
 
 set smartindent
 
@@ -333,6 +349,7 @@ set nofoldenable        " Disable fold by default
 set noswapfile
 " set nobackup
 " set nowritebackup
+set backup
 set backupext=.bak
 
 set scrolloff=2               " Minimal number of screen lines to keep above and below the cursor
@@ -376,7 +393,7 @@ set completeopt=longest,menuone,noselect,preview
 
 set pumheight=15                " Set popup menu max height
 
-set wildmode=list:longest,full
+set wildmode=list:longest,list:full
 " Ignore the following stuff when tab completing
 set wildignore+=.hg,.git,.svn,*.o,*.obj,*.pyc,*.luac,*.jpg,*.jpeg,*.png,*.gif,*.bmp,*.pdf,*.class,*.dmg,*.DS_Store,*.lnk,*.ini,*.dats
 
@@ -390,7 +407,7 @@ set splitbelow                  " Splitting a window will put the new window bel
 set splitright                  " Splitting a window will put the new windowright the current one
 
 cnoremap <C-V> <C-R>+           " CTRL-V: Paste from clipboard
-set pastetoggle=<F12>           " pastetoggle (sane indentation on pastes)
+" set pastetoggle=<F12>           " pastetoggle (sane indentation on pastes)
 
 set showmode                    " Display the current mode
 
@@ -403,13 +420,32 @@ if has('cmdline_info')
     set rulerformat=%30(%=\:b%n%y%m%r%w\ %l,%c%V\ %P%)
 endif
 
-if has('statusline')
-    set statusline=%<%f\
-    set statusline+=%w%h%m%r
-    set statusline+=\ [%{&ff}/%Y]
-    set statusline+=\ [%{getcwd()}]
-    set statusline+=%=%-14.(%l,%c%V%)\ %p%%
-endif
+" if has('statusline')
+"     set statusline=%<%f\
+"     set statusline+=%w%h%m%r
+"     set statusline+=\ [%{&ff}/%Y]
+"     set statusline +=%5*%{&ff}%*            "file format
+"     set statusline+=\ [%{getcwd()}]
+"     set statusline+=%=%-14.(%l,%c%V%)\ %p%%
+"     set statusline +=%1*\ %n\ %*            "buffer number
+"     set statusline +=%3*%y%*                "file type
+"     set statusline +=%4*\ %<%F%*            "full path
+"     set statusline +=%2*%m%*                "modified flag
+"     set statusline +=%1*%=%5l%*             "current line
+"     set statusline +=%2*/%L%*               "total lines
+"     set statusline +=%1*%4v\ %*             "virtual column number
+"     set statusline +=%2*0x%04B\ %*          "character under cursor
+"     set statusline+=%7*\[%n]                                  "buffernr
+" 	set statusline+=%1*\ %<%F\                                "File+path
+" 	set statusline+=%2*\ %y\                                  "FileType
+" 	set statusline+=%3*\ %{''.(&fenc!=''?&fenc:&enc).''}      "Encoding
+" 	set statusline+=%3*\ %{(&bomb?\",BOM\":\"\")}\            "Encoding2
+" 	set statusline+=%4*\ %{&ff}\                              "FileFormat (dos/unix..)
+" 	set statusline+=%5*\ %{&spelllang}\%{HighlightSearch()}\  "Spellanguage & Highlight on?
+" 	set statusline+=%8*\ %=\ row:%l/%L\ (%03p%%)\             "Rownumber/total (%)
+" 	set statusline+=%9*\ col:%03c\                            "Colnr
+" 	set statusline+=%0*\ \ %m%r%w\ %P\ \                      "Modified? Readonly? Top/bot
+" endif
 
 set viminfo='1000,f1,<500
 
@@ -426,8 +462,8 @@ set updatecount=0 "After typing this many characters the swap file will be writt
 set updatetime=250             " milliseconds elapsed before which swap file will be written to disk (250 ms is recommende by gitgutter plugin)
 highlight ColorColumn ctermbg=magenta
 call matchadd('ColorColumn', '\%81v', 100)
-" highlight OverLength ctermbg=red ctermfg=white guibg=#592929
-" match OverLength /\%81v.\+/
+highlight OverLength ctermbg=red ctermfg=white guibg=#592929
+match OverLength /\%81v.\+/
 "
 augroup collumnLimit
   autocmd!
@@ -490,6 +526,7 @@ if has("autocmd")
     autocmd FileType python nnoremap <buffer> <F11> :exec '!clear;python' shellescape(@%, 1)<cr>  # execute python commands
     autocmd BufEnter * silent! normal! g`"
     autocmd BufNewFile,BufRead *.rss setfiletype xml     " Treat .rss files as XML
+    autocmd BufNewFile,BufRead *.json setfiletype json syntax=javascript
     autocmd VimResized * :wincmd =      " automatically rebalance windows on vim resize
     au BufNewFile,BufRead *.py "(PEP8 indentation)
         \ set tabstop=4
@@ -593,3 +630,15 @@ endif
 set termguicolors
 " Use true color feature
 let $NVIM_TUI_ENABLE_TRUE_COLOR = 1
+set title
+set titleold=
+
+set undofile
+vnoremap < <gv
+set secure
+
+au BufWritePre * :set binary | set noeol
+au BufWritePost * :set nobinary | set eol
+
+" set lazyredraw
+set shortmess=atI
