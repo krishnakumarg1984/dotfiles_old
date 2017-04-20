@@ -119,6 +119,7 @@ Plug 'tpope/vim-rhubarb'
 Plug 'poppyschmo/deoplete-latex',{'for':'tex'}
 Plug 'jalvesaq/vimcmdline'
 Plug 'w0rp/ale'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
@@ -542,7 +543,7 @@ set report=0                    " Threshold for reporting number of lines change
 set updatecount=0 "After typing this many characters the swap file will be written to disk.  When zero, no swap file will be created at all (see chapter on recovery |crash-recovery|).  "
 set updatetime=250             " milliseconds elapsed before which swap file will be written to disk (250 ms is recommende by gitgutter plugin)
 highlight ColorColumn ctermbg=magenta
-call matchadd('ColorColumn', '\%81v', 100)
+call matchadd('ColorColumn', '\%121v', 100)
 highlight OverLength ctermbg=red ctermfg=white guibg=#592929
 match OverLength /\%81v.\+/
 "
