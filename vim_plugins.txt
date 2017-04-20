@@ -1,4 +1,11 @@
 jszakmeister/vim-togglecursor
+https://github.com/lifepillar/vim-mucomplete
+https://github.com/tmux-plugins/tmux-resurrect
+https://github.com/roxma/vim-tmux-clipboard
+https://github.com/euclio/vim-markdown-composer
+https://github.com/vim-pandoc/vim-pandoc
+https://github.com/junegunn/fzf
+https://github.com/teto/nvim-palette
 vim-ctrlspace
 wincent/clipper
 k-takata/matchit.vim
@@ -247,4 +254,3 @@ multiple cursors
 colorschemes
 kalisi, vim-atom-dark, lucius, lucario , toothpaste, google/vim-colorschemes-primary, onedark,
 apprentice, hemisu, Toychest, smyck, flatland
-

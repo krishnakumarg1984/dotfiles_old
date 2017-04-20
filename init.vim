@@ -1,114 +1,189 @@
 call plug#begin('~/.local/share/nvim/plugged')
-     Plug 'flazz/vim-colorschemes'
-     Plug 'vim-airline/vim-airline'
-     Plug 'vim-airline/vim-airline-themes'
-     Plug 'Yggdroot/indentLine', {'for': ['python','matlab','octave']}
-     Plug 'davidhalter/jedi-vim', {'for': 'python'}
-     Plug 'zchee/deoplete-jedi',{'for':'python'}
-     " Plug 'nvie/vim-flake8', {'for': 'python'}
-     " Plug 'python-mode/python-mode'{'for':'python'}
-     " Plug 'fisadev/vim-isort', {'for': 'python'}
+Plug 'flazz/vim-colorschemes'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'Yggdroot/indentLine', {'for': ['python','matlab','octave']}
+Plug 'davidhalter/jedi-vim', {'for': 'python'}
+Plug 'zchee/deoplete-jedi',{'for':'python'}
+" Plug 'nvie/vim-flake8', {'for': 'python'}
+" Plug 'python-mode/python-mode'{'for':'python'}
+" Plug 'fisadev/vim-isort', {'for': 'python'}
 
-     " Plug 'tpope/vim-abolish',{'for': ['text','tex']}
-     Plug 'simnalamburt/vim-mundo'
-     " Plug 'haya14busa/incsearch.vim' " Better incsearch than vim's default. Further mappings present later in this file
-     " Plug 'haya14busa/incsearch-fuzzy.vim' "uses z/ , z?, zg/ for fuzzy search options
-     Plug 'tpope/vim-surround'
-     Plug 'tommcdo/vim-exchange'
-     Plug 'kurkale6ka/vim-swap' "\x,\X to swap with right/left, \cx swaps comparison arguments, integrates with tpope's repeat. Multi-line selection and visual modes also possible
-     " Plug 'machakann/vim-swap' "re-order delimited items
-     Plug 'mhinz/vim-startify' "easy session management
-     " Plug 'godlygeek/tabular'
-     Plug 'junegunn/vim-easy-align' " gaip=, gaip2=, gaip*=, gaip**=, gaip<CR>=,gaip<CR><CR>=
-     " Plug 'tomtom/tcomment_vim'
-     Plug 'tpope/vim-commentary' "gcc, gc3j, gc}, gcip, gcu
-     Plug 'kshenoy/vim-signature' "place, toggle and display marks. Navigate forward/backward by position/alphabetical order. Any arbitrary sign for marks is possible
-     Plug 'machakann/vim-highlightedyank'
-     Plug 'jiangmiao/auto-pairs' "quick jump to closed pair using }.  <M-p> : Toggle Autopairs,  <M-e> : Fast Wrap, <M-n> : Jump to next closed pair,<M-b> : BackInsert
-     Plug 'wellle/targets.vim' "To change the text in the next pair of parentheses, use the cin) command,To delete the item in a comma separated list under the cursor, use da, last pair seems very useful, i(,i),ib,i{,i},i[,i],i<,i>,it, with count, same with 'a'. n and l options, quotes, even back-ticks
-     Plug 'lambdalisue/gina.vim'
-     Plug 'lambdalisue/vim-diffa'
-     Plug 'chrisbra/vim-diff-enhanced'
-     Plug 'rickhowe/diffchar.vim'
-     Plug 'tpope/vim-fugitive'
-     " Plug 'jreybert/vimagit'
-     " Plug 'scrooloose/nerdtree'
-     " Plug 'ctrlpvim/ctrlp.vim'
-     " Plug 'wincent/command-t', {'do': 'cd ruby/command-t && ruby extconf.rb && make'}
-     Plug 'majutsushi/tagbar', {'for': ['cpp', 'c', 'go', 'sh', 'javascript']}
-     Plug 'airblade/vim-gitgutter'
-     Plug 'ervandew/supertab'
-     Plug 'tpope/vim-repeat'
-     " Plug 'tpope/speeddating.vim'
-     " Plug 'tyru/capture.vim' "capture ex-command outputs
+" Plug 'tpope/vim-abolish',{'for': ['text','tex']}
+Plug 'simnalamburt/vim-mundo'
+" Plug 'haya14busa/incsearch.vim' " Better incsearch than vim's default. Further mappings present later in this file
+" Plug 'haya14busa/incsearch-fuzzy.vim' "uses z/ , z?, zg/ for fuzzy search options
+Plug 'tpope/vim-surround'
+Plug 'tommcdo/vim-exchange'
+Plug 'kurkale6ka/vim-swap' "\x,\X to swap with right/left, \cx swaps comparison arguments, integrates with tpope's repeat. Multi-line selection and visual modes also possible
+" Plug 'machakann/vim-swap' "re-order delimited items
+Plug 'mhinz/vim-startify' "easy session management
+" Plug 'godlygeek/tabular'
+Plug 'junegunn/vim-easy-align' " gaip=, gaip2=, gaip*=, gaip**=, gaip<CR>=,gaip<CR><CR>=
+" Plug 'tomtom/tcomment_vim'
+Plug 'tpope/vim-commentary' "gcc, gc3j, gc}, gcip, gcu
+Plug 'kshenoy/vim-signature' "place, toggle and display marks. Navigate forward/backward by position/alphabetical order. Any arbitrary sign for marks is possible
+Plug 'machakann/vim-highlightedyank'
+Plug 'jiangmiao/auto-pairs' "quick jump to closed pair using }.  <M-p> : Toggle Autopairs,  <M-e> : Fast Wrap, <M-n> : Jump to next closed pair,<M-b> : BackInsert
+Plug 'wellle/targets.vim' "To change the text in the next pair of parentheses, use the cin) command,To delete the item in a comma separated list under the cursor, use da, last pair seems very useful, i(,i),ib,i{,i},i[,i],i<,i>,it, with count, same with 'a'. n and l options, quotes, even back-ticks
+Plug 'lambdalisue/gina.vim'
+Plug 'lambdalisue/vim-diffa'
+Plug 'chrisbra/vim-diff-enhanced'
+Plug 'rickhowe/diffchar.vim'
+Plug 'tpope/vim-fugitive'
+" Plug 'jreybert/vimagit'
+" Plug 'scrooloose/nerdtree'
+" Plug 'ctrlpvim/ctrlp.vim'
+" Plug 'wincent/command-t', {'do': 'cd ruby/command-t && ruby extconf.rb && make'}
+Plug 'majutsushi/tagbar', {'for': ['cpp', 'c', 'go', 'sh', 'javascript', 'tex','matlab']}
+Plug 'airblade/vim-gitgutter'
+Plug 'ervandew/supertab'
+Plug 'tpope/vim-repeat'
+" Plug 'tpope/speeddating.vim'
+" Plug 'tyru/capture.vim' "capture ex-command outputs
 
-     " Plug 'Valloric/YouCompleteMe'
-     " Plug 'ajh17/VimCompletesMe'
-     " Plug 'honza/vim-snippets'
-     " Plug 'Shougo/neosnippet.vim'
-     " Plug 'Shougo/neosnippet-snippets.vim'
-     " Plug 'SirVer/ultisnips'
-     " Plug 'mileszs/ack.vim'
-     Plug 'mhinz/vim-grepper'
-     Plug 'tpope/vim-eunuch'
-     Plug 'ntpeters/vim-better-whitespace' " :ToggleWhitespace, :StripWhitespace
-     " Plug 'sheerun/vim-polyglot'
-     " Plug 'gregsexton/gitv'
-     Plug 'junegunn/gv.vim'
-     Plug 'junegunn/vim-peekaboo'
-     Plug 'luochen1990/rainbow' "RainbowToggle command is provided
-     " Plug 'junegunn/rainbow_parentheses.vim'
-     Plug 'Ron89/thesaurus_query.vim',{'for': ['tex','text']} "\cs
-     Plug 'reedes/vim-lexical',{'for': ['tex','text']}
-     Plug 'reedes/vim-litecorrect',{'for': ['tex','text']}
-     Plug 'reedes/vim-pencil',{'for': ['tex','text']}
-     Plug 'dbmrq/vim-ditto',{'for': ['tex','text']}
-     Plug 'junegunn/limelight.vim'
-     Plug 'junegunn/goyo.vim' " :Goyo to toggle
-     Plug 'kana/vim-textobj-user'
-     " Plug 'reedes/vim-textobj-quote'
-     " Plug 'reedes/vim-textobj-sentence',{'for': ['tex','text']} " as, is, g), g(, ), (
-     Plug 'reedes/vim-wheel' " a different scrolling experience
-     Plug 'reedes/vim-wordy',{'for': ['tex','text']}
-     Plug 'chrisbra/csv.vim',{'for': ['csv']}
-     " Plug 'chrisbra/improvedft'
-     Plug 'unblevable/quick-scope' " for f, F, t and T
-     " Plug 'rhysd/clever-f.vim'
-     Plug 'nhooyr/neoman.vim'
-     Plug 'coderifous/textobj-word-column.vim'  " provides cic and vic mappings
-     "osyo-manga/vim-watchdogs
-     Plug 'vim-utils/vim-troll-stopper' " highlights invalid unicode characters
-     Plug 'critiqjo/husk-x.vim' " for command line mode (readline bindings)
-     " Plug 'vim-utils/vim-husk' " for command line mode (readline bindings)
-     " Plug 'rhysd/vim-textobj-anyblock' " provides ib and ab objects
-     Plug 'osyo-manga/vim-over' "substitute preview
-     Plug 'lifepillar/vim-cheat40' "<leader>?
-     " Plug 'timakro/vim-searchant'
-     Plug 'tpope/vim-obsession'
-     Plug 'dhruvasagar/vim-prosession'
-     Plug 'google/vim-searchindex'
-     Plug 'google/vim-maktaba'
-     Plug 'google/vim-glaive'
-     Plug 'google/vim-codefmt',{'for': ['c','cpp','python']}
-     Plug 'google/vim-syncopate'
-     " Plug 'lambdalisue/vim-foldround'
-     " Plug 'lambdalisue/lista.nvim'
-     Plug 'tmux-plugins/vim-tmux'
-     Plug 'tmux-plugins/vim-tmux-focus-events'
-     Plug 'tpope/vim-characterize' "In Vim, pressing ga on a character reveals its representation in decimal, octal, and hex. Characterize.vim modernizes this with a few additions
-     Plug 'ludovicchabant/vim-gutentags' "Gutentags is a plugin that takes care of the much needed management of tags files in Vim. It will (re)generate tag files as you work while staying completely out of your way. It will even do its best to keep those tag files out of your way too. It has no dependencies and just works.
-     Plug 'romainl/vim-qf' "short for vim-quickfix—is a growing collection of settings, commands and mappings put together to make working with the location list/window and the quickfix list/window smoother.
+" Plug 'Valloric/YouCompleteMe'
+" Plug 'ajh17/VimCompletesMe'
+" Plug 'honza/vim-snippets'
+" Plug 'Shougo/neosnippet.vim'
+" Plug 'Shougo/neosnippet-snippets.vim'
+" Plug 'SirVer/ultisnips'
+" Plug 'mileszs/ack.vim'
+Plug 'mhinz/vim-grepper'
+Plug 'tpope/vim-eunuch'
+Plug 'ntpeters/vim-better-whitespace' " :ToggleWhitespace, :StripWhitespace
+" Plug 'sheerun/vim-polyglot'
+" Plug 'gregsexton/gitv'
+Plug 'junegunn/gv.vim'
+Plug 'junegunn/vim-peekaboo'
+Plug 'luochen1990/rainbow' "RainbowToggle command is provided
+" Plug 'junegunn/rainbow_parentheses.vim'
+Plug 'Ron89/thesaurus_query.vim',{'for': ['tex','text']} "\cs
+Plug 'reedes/vim-lexical',{'for': ['tex','text']}
+Plug 'reedes/vim-litecorrect',{'for': ['tex','text']}
+Plug 'reedes/vim-pencil',{'for': ['tex','text']}
+Plug 'dbmrq/vim-ditto',{'for': ['tex','text']}
+Plug 'junegunn/limelight.vim'
+Plug 'junegunn/goyo.vim' " :Goyo to toggle
+Plug 'kana/vim-textobj-user'
+" Plug 'reedes/vim-textobj-quote'
+" Plug 'reedes/vim-textobj-sentence',{'for': ['tex','text']} " as, is, g), g(, ), (
+Plug 'reedes/vim-wheel' " a different scrolling experience
+Plug 'reedes/vim-wordy',{'for': ['tex','text']}
+Plug 'chrisbra/csv.vim',{'for': ['csv']}
+" Plug 'chrisbra/improvedft'
+Plug 'unblevable/quick-scope' " for f, F, t and T
+" Plug 'rhysd/clever-f.vim'
+Plug 'nhooyr/neoman.vim'
+Plug 'coderifous/textobj-word-column.vim'  " provides cic and vic mappings
+"osyo-manga/vim-watchdogs
+Plug 'vim-utils/vim-troll-stopper' " highlights invalid unicode characters
+Plug 'critiqjo/husk-x.vim' " for command line mode (readline bindings)
+" Plug 'vim-utils/vim-husk' " for command line mode (readline bindings)
+" Plug 'rhysd/vim-textobj-anyblock' " provides ib and ab objects
+Plug 'osyo-manga/vim-over' "substitute preview
+Plug 'lifepillar/vim-cheat40' "<leader>?
+" Plug 'timakro/vim-searchant'
+Plug 'tpope/vim-obsession'
+Plug 'dhruvasagar/vim-prosession'
+Plug 'google/vim-searchindex'
+Plug 'google/vim-maktaba'
+Plug 'google/vim-glaive'
+Plug 'google/vim-codefmt',{'for': ['c','cpp','python']}
+Plug 'google/vim-syncopate'
+" Plug 'lambdalisue/vim-foldround'
+" Plug 'lambdalisue/lista.nvim'
+Plug 'tmux-plugins/vim-tmux'
+Plug 'tmux-plugins/vim-tmux-focus-events'
+Plug 'tpope/vim-characterize' "In Vim, pressing ga on a character reveals its representation in decimal, octal, and hex. Characterize.vim modernizes this with a few additions
+Plug 'ludovicchabant/vim-gutentags' "Gutentags is a plugin that takes care of the much needed management of tags files in Vim. It will (re)generate tag files as you work while staying completely out of your way. It will even do its best to keep those tag files out of your way too. It has no dependencies and just works.
+Plug 'romainl/vim-qf' "short for vim-quickfix—is a growing collection of settings, commands and mappings put together to make working with the location list/window and the quickfix list/window smoother.
 
-     Plug 'romainl/vim-qlist' "make the results of include-search and definition-search easier to navigate and more persistent by using the quickfix list instead of the default list-like interface.
-     " Plug 'romainl/tinyMRU'
-     Plug 'romainl/vim-cool' "Vim-cool disables search highlighting when you are done searching and re-enables it when you search again.
-     " Plug 'justinmk/vim-sneak'
-     " Plug 'tomtom/ttags_vim'
-     Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-     Plug 'sickill/vim-pasta'
-     Plug 'blueyed/vim-diminactive'
-     Plug 'mtth/cursorcross.vim'
+Plug 'romainl/vim-qlist' "make the results of include-search and definition-search easier to navigate and more persistent by using the quickfix list instead of the default list-like interface.
+" Plug 'romainl/tinyMRU'
+Plug 'romainl/vim-cool' "Vim-cool disables search highlighting when you are done searching and re-enables it when you search again.
+" Plug 'justinmk/vim-sneak'
+" Plug 'tomtom/ttags_vim'
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'sickill/vim-pasta'
+Plug 'blueyed/vim-diminactive'
+Plug 'mtth/cursorcross.vim'
+Plug 'cazador481/fakeclip.neovim'
+Plug 'brooth/far.vim'
+Plug 'jsfaint/gen_tags.vim'
+Plug 'c0r73x/neotags.nvim'
+Plug 'donRaphaco/neotex',{'for':'tex'}
+Plug 'vifm/neovim-vifm'
+Plug 'fmoralesc/nlanguagetool.nvim',{'for':'tex'}
+Plug 'tpope/vim-rhubarb'
+Plug 'poppyschmo/deoplete-latex',{'for':'tex'}
+Plug 'jalvesaq/vimcmdline'
+Plug 'w0rp/ale'
+
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
+" Plug 'ternjs/tern_for_vim', { 'for': ['javascript', 'javascript.jsx'] }
+" Plug 'carlitux/deoplete-ternjs', { 'for': ['javascript', 'javascript.jsx'] }
+" Plug 'othree/jspc.vim', { 'for': ['javascript', 'javascript.jsx'] }
 call plug#end()
+
+" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+
+" If you want :UltiSnipsEdit to split your window.
+let g:UltiSnipsEditSplit="vertical"
+
+" let g:deoplete#omni#functions = {}
+" let g:deoplete#omni#functions.javascript = [
+"   \ 'tern#Complete',
+"   \ 'jspc#omni'
+" \]
+
+autocmd FileType javascript let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
+" close the preview window when you're not using it
+let g:SuperTabClosePreviewOnPopupClose = 1
+
+" let g:UltiSnipsExpandTrigger="<C-j>"
+inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+
+" vimcmdline mappings
+let cmdline_map_start          = "<LocalLeader>s"
+let cmdline_map_send           = "<Space>"
+let cmdline_map_source_fun     = "<LocalLeader>f"
+let cmdline_map_send_paragraph = "<LocalLeader>p"
+let cmdline_map_send_block     = "<LocalLeader>b"
+let cmdline_map_quit           = "<LocalLeader>q"
+
+" vimcmdline options
+let cmdline_vsplit             = 1      " Split the window vertically
+let cmdline_esc_term           = 1      " Remap <Esc> to :stopinsert in Neovim terminal
+let cmdline_in_buffer          = 1      " Start the interpreter in a Neovim buffer
+let cmdline_term_height        = 15     " Initial height of interpreter window or pane
+let cmdline_term_width         = 80     " Initial width of interpreter window or pane
+let cmdline_tmp_dir            = '/tmp' " Temporary directory to save files
+let cmdline_outhl              = 1      " Syntax highlight the output
+
+let cmdline_app           = {}
+let cmdline_app["python"] = "ptipython3"
+let cmdline_app["ruby"]   = "pry"
+let cmdline_app["sh"]     = "bash"
+
+let cmdline_follow_colorscheme = 1
+
+
+" Include macros like `\jhat` from MathJax and KaTeX.
+let g:deoplete#sources#latex#include_web_math = 1  " default 0
+"" Include a hodgepodge of miscellaneous commands and environments.
+let g:deoplete#sources#latex#include_misc = 1      " default 0
+" "
+let g:vifmUseCurrent=1
+let g:neotags_enabled=1
+let g:neotags#python#order = 'mfc'
+let g:neotags#sh#order = 'f'
+
+let g:vim_fakeclip_tmux_plus=1
 
 let g:diminactive_use_syntax = 1
 let g:diminactive_enable_focus = 1
@@ -158,27 +233,27 @@ let g:highlightedyank_highlight_duration = 400
 nmap <F3> :TagbarToggle<CR>
 let g:rainbow_active = 1 "0 if you want to enable it later via :RainbowToggle
 let g:rainbow_conf = {
-    \   'guifgs': ['royalblue3', 'darkorange3', 'seagreen3', 'firebrick'],
-    \   'ctermfgs': ['lightblue', 'lightyellow', 'lightcyan', 'lightmagenta'],
-    \   'operators': '_,_',
-    \   'parentheses': ['start=/(/ end=/)/ fold', 'start=/\[/ end=/\]/ fold', 'start=/{/ end=/}/ fold'],
-    \   'separately': {
-    \       '*': {},
-    \       'tex': {
-    \           'parentheses': ['start=/(/ end=/)/', 'start=/\[/ end=/\]/'],
-    \       },
-    \       'lisp': {
-    \           'guifgs': ['royalblue3', 'darkorange3', 'seagreen3', 'firebrick', 'darkorchid3'],
-    \       },
-    \       'vim': {
-    \           'parentheses': ['start=/(/ end=/)/', 'start=/\[/ end=/\]/', 'start=/{/ end=/}/ fold', 'start=/(/ end=/)/ containedin=vimFuncBody', 'start=/\[/ end=/\]/ containedin=vimFuncBody', 'start=/{/ end=/}/ fold containedin=vimFuncBody'],
-    \       },
-    \       'html': {
-    \           'parentheses': ['start=/\v\<((area|base|br|col|embed|hr|img|input|keygen|link|menuitem|meta|param|source|track|wbr)[ >])@!\z([-_:a-zA-Z0-9]+)(\s+[-_:a-zA-Z0-9]+(\=("[^"]*"|'."'".'[^'."'".']*'."'".'|[^ '."'".'"><=`]*))?)*\>/ end=#</\z1># fold'],
-    \       },
-    \       'css': 0,
-    \   }
-    \}
+            \   'guifgs': ['royalblue3', 'darkorange3', 'seagreen3', 'firebrick'],
+            \   'ctermfgs': ['lightblue', 'lightyellow', 'lightcyan', 'lightmagenta'],
+            \   'operators': '_,_',
+            \   'parentheses': ['start=/(/ end=/)/ fold', 'start=/\[/ end=/\]/ fold', 'start=/{/ end=/}/ fold'],
+            \   'separately': {
+            \       '*': {},
+            \       'tex': {
+            \           'parentheses': ['start=/(/ end=/)/', 'start=/\[/ end=/\]/'],
+            \       },
+            \       'lisp': {
+            \           'guifgs': ['royalblue3', 'darkorange3', 'seagreen3', 'firebrick', 'darkorchid3'],
+            \       },
+            \       'vim': {
+            \           'parentheses': ['start=/(/ end=/)/', 'start=/\[/ end=/\]/', 'start=/{/ end=/}/ fold', 'start=/(/ end=/)/ containedin=vimFuncBody', 'start=/\[/ end=/\]/ containedin=vimFuncBody', 'start=/{/ end=/}/ fold containedin=vimFuncBody'],
+            \       },
+            \       'html': {
+            \           'parentheses': ['start=/\v\<((area|base|br|col|embed|hr|img|input|keygen|link|menuitem|meta|param|source|track|wbr)[ >])@!\z([-_:a-zA-Z0-9]+)(\s+[-_:a-zA-Z0-9]+(\=("[^"]*"|'."'".'[^'."'".']*'."'".'|[^ '."'".'"><=`]*))?)*\>/ end=#</\z1># fold'],
+            \       },
+            \       'css': 0,
+            \   }
+            \}
 
 let g:AutoPairsFlyMode = 1 "enables fly mode for auto-pairs
 
@@ -209,10 +284,10 @@ nmap ]d <Plug>DittoMore                " Show the next matches
 nmap [d <Plug>DittoLess                " Show the previous matches
 
 augroup textobj_sentence
-  autocmd!
-  autocmd FileType markdown call textobj#sentence#init()
-  autocmd FileType textile call textobj#sentence#init()
-  autocmd FileType text call textobj#sentence#init()
+    autocmd!
+    autocmd FileType markdown call textobj#sentence#init()
+    autocmd FileType textile call textobj#sentence#init()
+    autocmd FileType text call textobj#sentence#init()
 augroup END
 
 augroup litecorrect
@@ -232,8 +307,9 @@ let g:airline_theme='base16'
 " let g:airline_theme='papercolor'
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
+let g:Powerline_symbols='unicode'
 if !exists('g:airline_symbols')
-  let g:airline_symbols = {}
+    let g:airline_symbols = {}
 endif
 let g:airline_symbols.space = "\ua0"
 let g:airline_skip_empty_sections = 1
@@ -301,7 +377,7 @@ set noerrorbells
 
 " set nomodeline               " Don't parse modelines because of vim modeline vulnerability
 
-" set encoding=utf-8           " Default encoding for saving and reading file
+set encoding=utf-8           " Default encoding for saving and reading file
 scriptencoding utfs8
 set termencoding=utf-8
 set fileencoding=utf-8  " The encoding written to file.
@@ -471,14 +547,14 @@ highlight OverLength ctermbg=red ctermfg=white guibg=#592929
 match OverLength /\%81v.\+/
 "
 augroup collumnLimit
-  autocmd!
-  autocmd BufEnter,WinEnter,FileType scala,java,markdown,javascript,php
-        \ highlight CollumnLimit ctermbg=DarkGrey guibg=DarkGrey guifg=VioletRed gui=bold
-  let collumnLimit = 120 " feel free to customize
-  let pattern =
-        \ '\%<' . (collumnLimit+1) . 'v.\%>' . collumnLimit . 'v'
-  autocmd BufEnter,WinEnter,FileType scala,java,markdown,javascript,php
-        \ let w:m1=matchadd('CollumnLimit', pattern, -1)
+    autocmd!
+    autocmd BufEnter,WinEnter,FileType scala,java,markdown,javascript,php
+                \ highlight CollumnLimit ctermbg=DarkGrey guibg=DarkGrey guifg=VioletRed gui=bold
+    let collumnLimit = 120 " feel free to customize
+    let pattern =
+                \ '\%<' . (collumnLimit+1) . 'v.\%>' . collumnLimit . 'v'
+    autocmd BufEnter,WinEnter,FileType scala,java,markdown,javascript,php
+                \ let w:m1=matchadd('CollumnLimit', pattern, -1)
 augroup END
 
 set nojoinspaces
@@ -506,7 +582,7 @@ set guioptions-=T
 set guicursor+=a:blinkon0
 " For Win32 GUI: remove 't' flag from 'guioptions': no tearoff menu entries.
 if has('win32')
-  set guioptions-=t
+    set guioptions-=t
 endif
 
 " CTRL-U in insert mode deletes a lot.  Use CTRL-G u to first break undo,
@@ -534,13 +610,13 @@ if has("autocmd")
     autocmd BufNewFile,BufRead *.json setfiletype json syntax=javascript
     autocmd VimResized * :wincmd =      " automatically rebalance windows on vim resize
     au BufNewFile,BufRead *.py "(PEP8 indentation)
-        \ set tabstop=4
-        \ set softtabstop=4
-        \ set shiftwidth=4
-        \ set textwidth=79
-        \ set expandtab
-        \ set autoindent
-        \ set fileformat=unix
+                \ set tabstop=4
+                \ set softtabstop=4
+                \ set shiftwidth=4
+                \ set textwidth=79
+                \ set expandtab
+                \ set autoindent
+                \ set fileformat=unix
     " au BufAddr highlighted search,BufNewFile * nested tab sball "To open each buffer in its own tabpage
     autocmd FileType c,cpp,java,php,text,python autocmd BufWritePre <buffer> %s/\s\+$//e
     autocmd BufWritePre .*rc %s/\s\+$//e
@@ -549,30 +625,30 @@ endif
 
 "  Only do this part when compiled with support for autocommands.
 if has("autocmd")
-  " Put these in an autocmd group, so that you can revert them with:
-  " ":augroup vimStartup | au! | augroup END"
-  augroup vimStartup
-    au!
-    " When editing a file, always jump to the last known cursor position.
-    " Don't do it when the position is invalid or when inside an event handler
-    " (happens when dropping a file on gvim).
-    autocmd BufReadPost *
-      \ if line("'\"") >= 1 && line("'\"") <= line("$") |
-      \   exe "normal! g`\"" |
-      \ endif
-  augroup END
+    " Put these in an autocmd group, so that you can revert them with:
+    " ":augroup vimStartup | au! | augroup END"
+    augroup vimStartup
+        au!
+        " When editing a file, always jump to the last known cursor position.
+        " Don't do it when the position is invalid or when inside an event handler
+        " (happens when dropping a file on gvim).
+        autocmd BufReadPost *
+                    \ if line("'\"") >= 1 && line("'\"") <= line("$") |
+                    \   exe "normal! g`\"" |
+                    \ endif
+    augroup END
 endif " has("autocmd")
 
 augroup autoformat_settings
-  autocmd FileType bzl AutoFormatBuffer buildifier
-  autocmd FileType c,cpp,proto,javascript AutoFormatBuffer clang-format
-  autocmd FileType dart AutoFormatBuffer dartfmt
-  autocmd FileType go AutoFormatBuffer gofmt
-  autocmd FileType gn AutoFormatBuffer gn
-  autocmd FileType html,css,json AutoFormatBuffer js-beautify
-  autocmd FileType java AutoFormatBuffer google-java-format
-  autocmd FileType python AutoFormatBuffer yapf
-  " Alternative: autocmd FileType python AutoFormatBuffer autopep8
+    autocmd FileType bzl AutoFormatBuffer buildifier
+    autocmd FileType c,cpp,proto,javascript AutoFormatBuffer clang-format
+    autocmd FileType dart AutoFormatBuffer dartfmt
+    autocmd FileType go AutoFormatBuffer gofmt
+    autocmd FileType gn AutoFormatBuffer gn
+    autocmd FileType html,css,json AutoFormatBuffer js-beautify
+    autocmd FileType java AutoFormatBuffer google-java-format
+    autocmd FileType python AutoFormatBuffer yapf
+    " Alternative: autocmd FileType python AutoFormatBuffer autopep8
 augroup END
 
 " Convenient command to see the difference between the current buffer and the
@@ -580,8 +656,8 @@ augroup END
 " Only define it when not defined already.
 " Revert with: ":delcommand DiffOrig".
 if !exists(":DiffOrig")
-  command DiffOrig vert new | set bt=nofile | r ++edit # | 0d_ | diffthis
-          \ | wincmd p | diffthis
+    command DiffOrig vert new | set bt=nofile | r ++edit # | 0d_ | diffthis
+                \ | wincmd p | diffthis
 endif
 
 " -----cursor shape control
@@ -608,18 +684,18 @@ set iskeyword+=@-@
 " Only do this part when compiled with support for autocommands.
 if has("autocmd")
 
-  " Put these in an autocmd group, so that we can delete them easily.
-  augroup vimrcEx
-  au!
+    " Put these in an autocmd group, so that we can delete them easily.
+    augroup vimrcEx
+        au!
 
-  " For all text files set 'textwidth' to 78 characters.
-  autocmd FileType text setlocal textwidth=78
+        " For all text files set 'textwidth' to 78 characters.
+        autocmd FileType text setlocal textwidth=78
 
-  augroup END
+    augroup END
 
 else
 
-  set autoindent        " always set autoindenting on
+    set autoindent        " always set autoindenting on
 
 endif " has("autocmd")
 
@@ -629,7 +705,7 @@ endif " has("autocmd")
 " endif
 
 if &shell =~# 'fish$' && (v:version < 704 || v:version == 704 && !has('patch276'))
-  set shell=/bin/bash
+    set shell=/bin/bash
 endif
 
 set termguicolors
@@ -647,3 +723,6 @@ au BufWritePost * :set nobinary | set eol
 
 " set lazyredraw
 set shortmess=atI
+au VimEnter,BufRead,BufNewFile *.jl set filetype=julia
+au VimEnter,BufRead,BufNewFile *.idr set filetype=idris
+au VimEnter,BufRead,BufNewFile *.lidr set filetype=lidris
