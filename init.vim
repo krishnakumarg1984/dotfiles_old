@@ -371,6 +371,7 @@ autocmd! User GoyoLeave Limelight!
 let g:tq_online_backends_timeout = 0.6
 
 " au FileType markdown,text,tex DittoOn  " Turn on Ditto's autocmds
+autocmd FileType matlab,python,bash,tex Limelight 0.7
 
 nmap <leader>di <Plug>ToggleDitto      " Turn it on and off
 
