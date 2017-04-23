@@ -67,7 +67,7 @@ Plug 'junegunn/limelight.vim'
 Plug 'junegunn/goyo.vim' " :Goyo to toggle
 Plug 'kana/vim-textobj-user'
 " Plug 'reedes/vim-textobj-quote'
-" Plug 'reedes/vim-textobj-sentence',{'for': ['tex','text']} " as, is, g), g(, ), (
+Plug 'reedes/vim-textobj-sentence',{'for': ['tex','text']} " as, is, g), g(, ), (
 Plug 'reedes/vim-wheel' " a different scrolling experience
 Plug 'reedes/vim-wordy',{'for': ['tex','text']}
 Plug 'chrisbra/csv.vim',{'for': ['csv']}
@@ -127,6 +127,7 @@ Plug 'justinmk/vim-gtfo'
 Plug 'beloglazov/vim-online-thesaurus'
 Plug 'rhysd/vim-grammarous',{'for':'tex'}
 Plug 'AndrewRadev/splitjoin.vim'
+Plug 'KabbAmine/yowish.vim'
 
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
