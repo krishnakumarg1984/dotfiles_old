@@ -1,3 +1,4 @@
+fuzzy finder(fzf, fzy etc.)
 pt, ag, ripgrep, ack, fzf
 trash-cli
 pkgfile

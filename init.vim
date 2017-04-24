@@ -1,7 +1,9 @@
 call plug#begin('~/.local/share/nvim/plugged')
 Plug 'flazz/vim-colorschemes'
+" Plug 'morhetz/gruvbox'
 Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
+ Plug 'vim-airline/vim-airline-themes'
+Plug 'enricobacis/vim-airline-clock'
 Plug 'Yggdroot/indentLine', {'for': ['python','matlab','octave']}
 Plug 'davidhalter/jedi-vim', {'for': 'python'}
 Plug 'zchee/deoplete-jedi',{'for':'python'}
@@ -25,9 +27,9 @@ Plug 'tpope/vim-commentary' "gcc, gc3j, gc}, gcip, gcu
 Plug 'kshenoy/vim-signature' "place, toggle and display marks. Navigate forward/backward by position/alphabetical order. Any arbitrary sign for marks is possible
 Plug 'machakann/vim-highlightedyank'
 Plug 'jiangmiao/auto-pairs' "quick jump to closed pair using }.  <M-p> : Toggle Autopairs,  <M-e> : Fast Wrap, <M-n> : Jump to next closed pair,<M-b> : BackInsert
-Plug 'wellle/targets.vim' "To change the text in the next pair of parentheses, use the cin) command,To delete the item in a comma separated list under the cursor, use da, last pair seems very useful, i(,i),ib,i{,i},i[,i],i<,i>,it, with count, same with 'a'. n and l options, quotes, even back-ticks
+" Plug 'wellle/targets.vim' "To change the text in the next pair of parentheses, use the cin) command,To delete the item in a comma separated list under the cursor, use da, last pair seems very useful, i(,i),ib,i{,i},i[,i],i<,i>,it, with count, same with 'a'. n and l options, quotes, even back-ticks
 Plug 'lambdalisue/gina.vim'
-Plug 'lambdalisue/vim-diffa'
+" Plug 'lambdalisue/vim-diffa'
 Plug 'chrisbra/vim-diff-enhanced'
 Plug 'rickhowe/diffchar.vim'
 Plug 'tpope/vim-fugitive'
@@ -55,7 +57,7 @@ Plug 'ntpeters/vim-better-whitespace' " :ToggleWhitespace, :StripWhitespace
 " Plug 'sheerun/vim-polyglot'
 " Plug 'gregsexton/gitv'
 Plug 'junegunn/gv.vim'
-Plug 'junegunn/vim-peekaboo'
+" Plug 'junegunn/vim-peekaboo'
 Plug 'luochen1990/rainbow' "RainbowToggle command is provided
 " Plug 'junegunn/rainbow_parentheses.vim'
 Plug 'Ron89/thesaurus_query.vim',{'for': ['tex','text']} "\cs
@@ -87,10 +89,10 @@ Plug 'lifepillar/vim-cheat40' "<leader>?
 Plug 'tpope/vim-obsession'
 Plug 'dhruvasagar/vim-prosession'
 Plug 'google/vim-searchindex'
-Plug 'google/vim-maktaba'
-Plug 'google/vim-glaive'
-Plug 'google/vim-codefmt',{'for': ['c','cpp','python']}
-Plug 'google/vim-syncopate'
+" Plug 'google/vim-maktaba'
+" Plug 'google/vim-glaive'
+" Plug 'google/vim-codefmt',{'for': ['c','cpp','python']}
+" Plug 'google/vim-syncopate'
 " Plug 'lambdalisue/vim-foldround'
 " Plug 'lambdalisue/lista.nvim'
 Plug 'tmux-plugins/vim-tmux'
@@ -113,6 +115,7 @@ Plug 'brooth/far.vim'
 Plug 'jsfaint/gen_tags.vim'
 Plug 'c0r73x/neotags.nvim'
 Plug 'donRaphaco/neotex',{'for':'tex'}
+" Plug 'brennier/quicktex',{'for':'tex'}
 Plug 'vifm/neovim-vifm'
 Plug 'fmoralesc/nlanguagetool.nvim',{'for':'tex'}
 Plug 'tpope/vim-rhubarb'
@@ -121,20 +124,33 @@ Plug 'jalvesaq/vimcmdline'
 Plug 'w0rp/ale',{ 'on': 'ALEEnable', 'for': ['ruby', 'sh','matlab','python','tex'] }
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
+Plug 'pbogut/fzf-mru.vim'
 " Plug 'metakirby5/codi.vim'
 Plug 'chrisbra/unicode.vim'
 Plug 'justinmk/vim-gtfo'
-Plug 'beloglazov/vim-online-thesaurus'
+" Plug 'beloglazov/vim-online-thesaurus'
 Plug 'rhysd/vim-grammarous',{'for':'tex'}
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'KabbAmine/yowish.vim'
-
+Plug 'ntpeters/vim-better-whitespace'
+Plug 'cloudhead/neovim-fuzzy'
+Plug 'tweekmonster/startuptime.vim'
+Plug 'dpelle/vim-LanguageTool',{'for':'tex'}
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
+Plug 'mattn/vim-maketable'
+Plug 'AndrewRadev/linediff.vim'
 " Plug 'ternjs/tern_for_vim', { 'for': ['javascript', 'javascript.jsx'] }
 " Plug 'carlitux/deoplete-ternjs', { 'for': ['javascript', 'javascript.jsx'] }
 " Plug 'othree/jspc.vim', { 'for': ['javascript', 'javascript.jsx'] }
 call plug#end()
+
+let g:airline#extensions#clock#updatetime = 4000
+
+hi LanguageToolGrammarError  guisp=blue gui=undercurl guifg=NONE guibg=NONE ctermfg=white ctermbg=blue term=underline cterm=none
+hi LanguageToolSpellingError guisp=red  gui=undercurl guifg=NONE guibg=NONE ctermfg=white ctermbg=red  term=underline cterm=none
+
+nnoremap <C-p> :FuzzyOpen<CR>
 
 fun! FzfOmniFiles()
     let is_git = system('git status')
@@ -825,3 +841,4 @@ set shortmess=atI
 au VimEnter,BufRead,BufNewFile *.jl set filetype=julia
 au VimEnter,BufRead,BufNewFile *.idr set filetype=idris
 au VimEnter,BufRead,BufNewFile *.lidr set filetype=lidris
+autocmd FileType tex,text,markdown,mail setlocal spell
