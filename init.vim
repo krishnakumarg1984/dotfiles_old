@@ -141,6 +141,10 @@ Plug 'honza/vim-snippets'
 Plug 'mattn/vim-maketable'
 Plug 'AndrewRadev/linediff.vim'
 Plug 'chrisbra/Colorizer'
+Plug 'vim-pandoc/vim-pandoc'
+Plug 'vim-pandoc/vim-pandoc-syntax'
+" Plug 'vim-pandoc/vim-pandoc-syntax'
+
 " Plug 'ternjs/tern_for_vim', { 'for': ['javascript', 'javascript.jsx'] }
 " Plug 'carlitux/deoplete-ternjs', { 'for': ['javascript', 'javascript.jsx'] }
 " Plug 'othree/jspc.vim', { 'for': ['javascript', 'javascript.jsx'] }

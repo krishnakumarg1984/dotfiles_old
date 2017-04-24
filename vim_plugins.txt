@@ -1,3 +1,9 @@
+https://github.com/lifepillar/vim-mucomplete
+devjoe/vim-codequery
+plasticboy/vim-markdown
+gtm
+unbundle
+zirrostig/vim-schlepp
 blueyed/vim-qf_resize
 t9md/vim-textmanip
 https://github.com/AndrewRadev/multichange.vim
