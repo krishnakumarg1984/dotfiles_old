@@ -122,12 +122,14 @@ bindsym $mod+Ctrl+Left workspace prev
 # to display names or symbols instead of plain workspace numbers you can use
 # something like: set $ws1 1:mail
 #                 set $ws2 2:
-set $workspace1 "1: &#xf0e0;"
-set $workspace2 "2: &#xf120;"
-set $workspace3 "3: &#xf1c1;"
-set $workspace4 "4: &#xf0ac;"
-set $workspace5 "5: &#xf115;"
-set $workspace6 "6: &#xf03d;"
+set $workspace1 "1 &#xf0e0;"
+# set $workspace2 "2 &#xf120;"
+set $workspace2 "2: "
+set $workspace3 "3 &#xf1c1;"
+set $workspace4 ""
+set $workspace5 ""
+set $workspace6 ""
+set $workspace7 ""
 
 # switch to workspace
 bindsym $mod+1 workspace $workspace1
@@ -136,6 +138,7 @@ bindsym $mod+3 workspace $workspace3
 bindsym $mod+4 workspace $workspace4
 bindsym $mod+5 workspace $workspace5
 bindsym $mod+6 workspace $workspace6
+bindsym $mod+7 workspace $workspace7
 
 # Move focused container to workspace
 bindsym $mod+Ctrl+1 move container to workspace $workspace1
@@ -144,6 +147,7 @@ bindsym $mod+Ctrl+3 move container to workspace $workspace3
 bindsym $mod+Ctrl+4 move container to workspace $workspace4
 bindsym $mod+Ctrl+5 move container to workspace $workspace5
 bindsym $mod+Ctrl+6 move container to workspace $workspace6
+bindsym $mod+Ctrl+7 move container to workspace $workspace7
 
 # Move to workspace with focused container
 bindsym $mod+Shift+1 move container to workspace $workspace1; workspace $workspace1
@@ -152,6 +156,7 @@ bindsym $mod+Shift+3 move container to workspace $workspace3; workspace $workspa
 bindsym $mod+Shift+4 move container to workspace $workspace4; workspace $workspace4
 bindsym $mod+Shift+5 move container to workspace $workspace5; workspace $workspace5
 bindsym $mod+Shift+6 move container to workspace $workspace6; workspace $workspace6
+bindsym $mod+Shift+7 move container to workspace $workspace7; workspace $workspace7
 
 # Open applications on specific workspaces
 # assign [class="Thunderbird"] $ws1
@@ -206,38 +211,38 @@ bindsym $mod+0 mode "$mode_system"
 set $mode_system (l)ock, (e)xit, switch_(u)ser, (s)uspend, (h)ibernate, (r)eboot, (Shift+s)hutdown
 mode "$mode_system" {
     bindsym l exec --no-startup-id i3exit lock, mode "default"
-    bindsym s exec --no-startup-id i3exit suspend, mode "default"
-    bindsym u exec --no-startup-id i3exit switch_user, mode "default"
-    bindsym e exec --no-startup-id i3exit logout, mode "default"
-    bindsym h exec --no-startup-id i3exit hibernate, mode "default"
-    bindsym r exec --no-startup-id i3exit reboot, mode "default"
-    bindsym Shift+s exec --no-startup-id i3exit shutdown, mode "default"
+        bindsym s exec --no-startup-id i3exit suspend, mode "default"
+        bindsym u exec --no-startup-id i3exit switch_user, mode "default"
+        bindsym e exec --no-startup-id i3exit logout, mode "default"
+        bindsym h exec --no-startup-id i3exit hibernate, mode "default"
+        bindsym r exec --no-startup-id i3exit reboot, mode "default"
+        bindsym Shift+s exec --no-startup-id i3exit shutdown, mode "default"
 
-    # exit system mode: "Enter" or "Escape"
-    bindsym Return mode "default"
-    bindsym Escape mode "default"
+# exit system mode: "Enter" or "Escape"
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
 }
 
 # Resize window (you can also use the mouse for that)
 bindsym $mod+r mode "resize"
 mode "resize" {
-        # These bindings trigger as soon as you enter the resize mode
-        # Pressing left will shrink the window’s width.
-        # Pressing right will grow the window’s width.
-        # Pressing up will shrink the window’s height.
-        # Pressing down will grow the window’s height.
-        bindsym j resize shrink width 5 px or 5 ppt
+# These bindings trigger as soon as you enter the resize mode
+# Pressing left will shrink the window’s width.
+# Pressing right will grow the window’s width.
+# Pressing up will shrink the window’s height.
+# Pressing down will grow the window’s height.
+    bindsym j resize shrink width 5 px or 5 ppt
         bindsym k resize grow height 5 px or 5 ppt
         bindsym l resize shrink height 5 px or 5 ppt
         bindsym semicolon resize grow width 5 px or 5 ppt
 
-        # same bindings, but for the arrow keys
+# same bindings, but for the arrow keys
         bindsym Left resize shrink width 10 px or 10 ppt
         bindsym Down resize grow height 10 px or 10 ppt
         bindsym Up resize shrink height 10 px or 10 ppt
         bindsym Right resize grow width 10 px or 10 ppt
 
-        # exit resize mode: Enter or Escape
+# exit resize mode: Enter or Escape
         bindsym Return mode "default"
         bindsym Escape mode "default"
 }
@@ -267,31 +272,32 @@ exec pcmanfm
 
 # Start i3bar to display a workspace bar (plus the system information i3status if available)
 bar {
-	status_command i3status
-	position top
+    status_command i3status
+# status_command i3blocks
+        position top
 
 ## please set your primary output first. Example: 'xrandr --output eDP1 --primary'
 #	tray_output primary
 #	tray_output eDP1
 
-	bindsym button4 nop
-	bindsym button5 nop
-	font xft:Noto Sans 17.5, Icons 23
-	strip_workspace_numbers yes
+        bindsym button4 nop
+        bindsym button5 nop
+        font xft:Noto Sans 17.5, Icons 23
+        strip_workspace_numbers yes
 
-	colors {
-       background $transparent
+        colors {
+            background $transparent
 #        background #2B2C2B
-        background #002b36
-        statusline #F9FAF9
-        separator  #454947
+                background #002b36
+                statusline #F9FAF9
+                separator  #454947
 
 #                                  border  backgr. text
-        focused_workspace  #F9FAF9 #16A085 #2B2C2B
-        active_workspace   #595B5B #353836 #FDF6E3
-        inactive_workspace #595B5B #353836 #EEE8D5
-        urgent_workspace   #16A085 #FDF6E3 #E5201D
-    }
+                focused_workspace  #F9FAF9 #16A085 #2B2C2B
+                active_workspace   #595B5B #353836 #FDF6E3
+                inactive_workspace #595B5B #353836 #EEE8D5
+                urgent_workspace   #16A085 #FDF6E3 #E5201D
+        }
 }
 
 # hide/unhide i3status bar
@@ -324,7 +330,7 @@ gaps outer -4
 # Smart gaps (gaps used if only more than one container on the workspace)
 smart_gaps on
 
-# Smart borders (draw borders around container only if it is not the only container on this workspace) 
+# Smart borders (draw borders around container only if it is not the only container on this workspace)
 # on|no_gaps (on=always activate and no_gaps=only activate if the gap size to the edge of the screen is 0)
 smart_borders on
 
@@ -335,13 +341,13 @@ set $mode_gaps_inner Inner Gaps: +|-|0 (local), Shift + +|-|0 (global)
 bindsym $mod+Shift+g mode "$mode_gaps"
 
 mode "$mode_gaps" {
-        bindsym o      mode "$mode_gaps_outer"
+    bindsym o      mode "$mode_gaps_outer"
         bindsym i      mode "$mode_gaps_inner"
         bindsym Return mode "default"
         bindsym Escape mode "default"
 }
 mode "$mode_gaps_inner" {
-        bindsym plus  gaps inner current plus 5
+    bindsym plus  gaps inner current plus 5
         bindsym minus gaps inner current minus 5
         bindsym 0     gaps inner current set 0
 
@@ -353,7 +359,7 @@ mode "$mode_gaps_inner" {
         bindsym Escape mode "default"
 }
 mode "$mode_gaps_outer" {
-        bindsym plus  gaps outer current plus 5
+    bindsym plus  gaps outer current plus 5
         bindsym minus gaps outer current minus 5
         bindsym 0     gaps outer current set 0
 
@@ -396,9 +402,9 @@ assign [class="Firefox"] $workspace4
 assign [class="Pcmanfm"] $workspace5
 assign [class="Thunar"] $workspace5
 assign [class="vlc"] $workspace6
+assign [class="MATLAB R2017a - academic use"] $workspace7
 
 # Pulse Audio controls
 bindsym Mod1+Up exec --no-startup-id pactl set-sink-volume 1 +5% #increase sound volume
 bindsym Mod1+Down exec --no-startup-id pactl set-sink-volume 1 -5% #decrease sound volume
 bindsym Mod1+0 exec --no-startup-id pactl set-sink-mute 1 toggle # mute sound
-
