@@ -2,7 +2,7 @@ call plug#begin('~/.local/share/nvim/plugged')
 Plug 'flazz/vim-colorschemes'
 " Plug 'morhetz/gruvbox'
 Plug 'vim-airline/vim-airline'
- Plug 'vim-airline/vim-airline-themes'
+Plug 'vim-airline/vim-airline-themes'
 Plug 'enricobacis/vim-airline-clock'
 Plug 'Yggdroot/indentLine', {'for': ['python','matlab','octave']}
 " Plug 'davidhalter/jedi-vim', {'for': 'python'}
@@ -19,7 +19,7 @@ Plug 'tpope/vim-surround'
 Plug 'tommcdo/vim-exchange'
 Plug 'kurkale6ka/vim-swap' "\x,\X to swap with right/left, \cx swaps comparison arguments, integrates with tpope's repeat. Multi-line selection and visual modes also possible
 " Plug 'machakann/vim-swap' "re-order delimited items
-" Plug 'mhinz/vim-startify' "easy session management
+Plug 'mhinz/vim-startify' "easy session management
 " Plug 'godlygeek/tabular'
 Plug 'junegunn/vim-easy-align' " gaip=, gaip2=, gaip*=, gaip**=, gaip<CR>=,gaip<CR><CR>=
 " Plug 'tomtom/tcomment_vim'
@@ -172,18 +172,18 @@ endfun
 
 " Customize fzf colors to match your color scheme
 let g:fzf_colors =
-\ { 'fg':      ['fg', 'Normal'],
-  \ 'bg':      ['bg', 'Normal'],
-  \ 'hl':      ['fg', 'Comment'],
-  \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
-  \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
-  \ 'hl+':     ['fg', 'Statement'],
-  \ 'info':    ['fg', 'PreProc'],
-  \ 'prompt':  ['fg', 'Conditional'],
-  \ 'pointer': ['fg', 'Exception'],
-  \ 'marker':  ['fg', 'Keyword'],
-  \ 'spinner': ['fg', 'Label'],
-  \ 'header':  ['fg', 'Comment'] }
+            \ { 'fg':      ['fg', 'Normal'],
+            \ 'bg':      ['bg', 'Normal'],
+            \ 'hl':      ['fg', 'Comment'],
+            \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
+            \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
+            \ 'hl+':     ['fg', 'Statement'],
+            \ 'info':    ['fg', 'PreProc'],
+            \ 'prompt':  ['fg', 'Conditional'],
+            \ 'pointer': ['fg', 'Exception'],
+            \ 'marker':  ['fg', 'Keyword'],
+            \ 'spinner': ['fg', 'Label'],
+            \ 'header':  ['fg', 'Comment'] }
 
 " Enable per-command history.
 " CTRL-N and CTRL-P will be automatically bound to next-history and
@@ -398,14 +398,21 @@ let g:tq_online_backends_timeout = 0.6
 " au FileType markdown,text,tex DittoOn  " Turn on Ditto's autocmds
 autocmd FileType matlab,python,bash,tex Limelight 0.7
 
-nmap <leader>di <Plug>ToggleDitto      " Turn it on and off
+" Turn it on and off
+nmap <leader>di <Plug>ToggleDitto
 
-nmap =d <Plug>DittoNext                " Jump to the next word
-nmap -d <Plug>DittoPrev                " Jump to the previous word
-nmap +d <Plug>DittoGood                " Ignore the word under the cursor
-nmap _d <Plug>DittoBad                 " Stop ignoring the word under the cursor
-nmap ]d <Plug>DittoMore                " Show the next matches
-nmap [d <Plug>DittoLess                " Show the previous matches
+" Jump to the next word
+nmap =d <Plug>DittoNext
+" Jump to the previous word
+nmap -d <Plug>DittoPrev
+" Ignore the word under the cursor
+nmap +d <Plug>DittoGood
+" Stop ignoring the word under the cursor
+nmap _d <Plug>DittoBad
+" Show the next matches
+nmap ]d <Plug>DittoMore
+" Show the previous matches
+nmap [d <Plug>DittoLess
 
 augroup textobj_sentence
     autocmd!
@@ -421,7 +428,7 @@ augroup litecorrect
     autocmd FileType text call litecorrect#init()
 augroup END
 
-nmap <silent><leader><space> ;nohls<CR>
+" nmap <silent><leader><space> ;nohls<CR>
 
 set diffopt=filler
 set keywordprg=:help
@@ -568,7 +575,8 @@ if has('conceal')
 endif
 " Use the same symbols as TextMate for tabstops and EOLs
 set listchars=tab:▸\ ,eol:¬
-nnoremap <leader>a :set list!<CR>  " Shortcut to rapidly toggle set list
+" Shortcut to rapidly toggle set list
+nnoremap <leader>a :set list!<CR>
 " set list
 
 hi link HelpBar Normal
@@ -611,7 +619,8 @@ set nostartofline               " The cursor is kept in the same column (if poss
 set splitbelow                  " Splitting a window will put the new window below the current one
 set splitright                  " Splitting a window will put the new windowright the current one
 
-cnoremap <C-V> <C-R>+           " CTRL-V: Paste from clipboard
+" CTRL-V: Paste from clipboard
+cnoremap <C-V> <C-R>+
 " set pastetoggle=<F12>           " pastetoggle (sane indentation on pastes)
 
 set showmode                    " Display the current mode
@@ -697,7 +706,8 @@ nnoremap <C-k> <C-w>k
 nnoremap <C-h> <C-w>h
 nnoremap <C-l> <C-w>l
 
-" nnoremap <silent><Leader><C-]> <C-w><C-]><C-w>T  " open tags in new tab
+" " open tags in new tab
+" nnoremap <silent><Leader><C-]> <C-w><C-]><C-w>T
 
 inoremap <C-c> <Esc>
 set guioptions-=m
@@ -728,7 +738,8 @@ if has("autocmd")
     autocmd FileType c,cpp :set cindent
     autocmd FileType markdown setlocal spell
     autocmd FileType gitcommit setlocal spell
-    autocmd FileType python nnoremap <buffer> <F11> :exec '!clear;python' shellescape(@%, 1)<cr>  # execute python commands
+     " execute python commands
+    autocmd FileType python nnoremap <buffer> <F11> :exec '!clear;python' shellescape(@%, 1)<cr>
     autocmd BufEnter * silent! normal! g`"
     autocmd BufNewFile,BufRead *.rss setfiletype xml     " Treat .rss files as XML
     autocmd BufNewFile,BufRead *.json setfiletype json syntax=javascript
@@ -861,3 +872,10 @@ vnoremap Y myY`y
 highlight TermCursor ctermfg=red guifg=red
 
 tnoremap <Leader><ESC> <C-\><C-n>
+
+if has('autocmd') " ignore this section if your vim does not support autocommands
+    augroup reload_vimrc
+        autocmd!
+        autocmd! BufWritePost $MYVIMRC,$MYGVIMRC nested source %
+    augroup END
+endif

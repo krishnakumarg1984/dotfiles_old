@@ -1,0 +1,4 @@
+!! No clear Lock
+clear lock
+!! make caps lock an escape key
+keycode 0x42 = Escape<Paste>
