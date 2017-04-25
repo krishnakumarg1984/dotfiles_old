@@ -112,8 +112,8 @@ Plug 'blueyed/vim-diminactive'
 Plug 'mtth/cursorcross.vim'
 Plug 'cazador481/fakeclip.neovim'
 Plug 'brooth/far.vim'
-Plug 'jsfaint/gen_tags.vim'
-Plug 'c0r73x/neotags.nvim'
+" Plug 'jsfaint/gen_tags.vim'
+" Plug 'c0r73x/neotags.nvim'
 Plug 'donRaphaco/neotex',{'for':'tex'}
 " Plug 'brennier/quicktex',{'for':'tex'}
 Plug 'vifm/neovim-vifm'
@@ -139,6 +139,7 @@ Plug 'dpelle/vim-LanguageTool',{'for':'tex'}
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'mattn/vim-maketable'
+" Plug 'will133/vim-dirdiff'
 " Plug 'AndrewRadev/linediff.vim'
 " Plug 'chrisbra/Colorizer'
 " Plug 'vim-pandoc/vim-pandoc'
@@ -152,6 +153,15 @@ Plug 'mattn/vim-maketable'
 " Plug 'carlitux/deoplete-ternjs', { 'for': ['javascript', 'javascript.jsx'] }
 " Plug 'othree/jspc.vim', { 'for': ['javascript', 'javascript.jsx'] }
 call plug#end()
+
+"# DirDiff settings
+"# Don't compare directories or filenames that match conditions like CVS,*.swp
+let g:DirDiffExcludes = "system,CVS,*.class,*.exe,.*.swp,GIT,.git"
+"# Ignore lines that Id:,Revision: etc.
+let g:DirDiffIgnore = "Id:,Revision:,Date:"
+"# Don't flag files as different based on whitespace
+let g:DirDiffAddArgs = "-w"
+let g:DirDiffWindowSize = 14
 
 let g:colorizer_auto_color = 1
 let g:airline#extensions#clock#updatetime = 4000
@@ -267,6 +277,8 @@ let g:UltiSnipsEditSplit="vertical"
 autocmd FileType javascript let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
 " close the preview window when you're not using it
 let g:SuperTabClosePreviewOnPopupClose = 1
+let g:SuperTabContextDefaultCompletionType = "<c-n>"
+
 
 " let g:UltiSnipsExpandTrigger="<C-j>"
 inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
@@ -310,6 +322,7 @@ let g:vim_fakeclip_tmux_plus=1
 
 let g:diminactive_use_syntax = 1
 let g:diminactive_enable_focus = 1
+
 
 " Use deoplete.
 let g:deoplete#enable_at_startup = 1
@@ -380,10 +393,10 @@ let g:rainbow_conf = {
 
 let g:AutoPairsFlyMode = 1 "enables fly mode for auto-pairs
 
-"Started In Diff-Mode set diffexpr (plugin not loaded yet)
-if &diff
-    let &diffexpr='EnhancedDiff#Diff("git diff", "--diff-algorithm=patience")'
-endif
+" "Started In Diff-Mode set diffexpr (plugin not loaded yet)
+" if &diff
+"     let &diffexpr='EnhancedDiff#Diff("git diff", "--diff-algorithm=patience")'
+" endif
 
 let g:vim_isort_map = ''
 
@@ -437,6 +450,7 @@ colorscheme gruvbox
 let g:airline_theme='base16'
 " let g:airline_theme='papercolor'
 let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#buffer_nr_show = 1
 let g:airline_powerline_fonts = 1
 let g:Powerline_symbols='unicode'
 if !exists('g:airline_symbols')
@@ -738,7 +752,9 @@ if has("autocmd")
     autocmd FileType c,cpp :set cindent
     autocmd FileType markdown setlocal spell
     autocmd FileType gitcommit setlocal spell
-     " execute python commands
+    autocmd FileType tex setlocal spell
+    autocmd FileType text setlocal spell
+    " execute python commands
     autocmd FileType python nnoremap <buffer> <F11> :exec '!clear;python' shellescape(@%, 1)<cr>
     autocmd BufEnter * silent! normal! g`"
     autocmd BufNewFile,BufRead *.rss setfiletype xml     " Treat .rss files as XML
@@ -879,3 +895,37 @@ if has('autocmd') " ignore this section if your vim does not support autocommand
         autocmd! BufWritePost $MYVIMRC,$MYGVIMRC nested source %
     augroup END
 endif
+
+:autocmd BufWritePost * if &diff | diffupdate | endif
+au BufEnter,BufNew * if &diff | syntax off | else | syntax on | endif
+
+" " Fix the difficult-to-read default setting for diff text highlighting.  The
+" " bang (!) is required since we are overwriting the DiffText setting. The highlighting
+" " for "Todo" also looks nice (yellow) if you don't like the "MatchParen" colors.
+" highlight! link DiffText MatchParen
+" highlight! link DiffText Todo
+
+" if &diff
+"     colorscheme evening
+" endif
+"
+au FilterWritePre * if &diff | let g:diminactive_use_colorcolumn = 0| let g:diminactive_use_syntax = 0| colorscheme apprentice | let g:diminactive_enable_focus=0 | Limelight | endif
+
+hi DiffAdd      gui=none    guifg=NONE          guibg=#bada9f
+hi DiffChange   gui=none    guifg=NONE          guibg=#e5d5ac
+hi DiffDelete   gui=bold    guifg=#ff8080       guibg=#ffb0b0
+hi DiffText     gui=none    guifg=NONE          guibg=#8cbee2
+
+set diffopt+=iwhite
+set diffexpr=DiffW()
+function DiffW()
+  let opt = ""
+   if &diffopt =~ "icase"
+     let opt = opt . "-i "
+   endif
+   if &diffopt =~ "iwhite"
+     let opt = opt . "-w " " swapped vim's -b with -w
+   endif
+   silent execute "!diff -a --binary " . opt .
+     \ v:fname_in . " " . v:fname_new .  " > " . v:fname_out
+endfunction
