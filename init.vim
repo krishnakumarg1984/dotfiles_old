@@ -5,8 +5,8 @@ Plug 'vim-airline/vim-airline'
  Plug 'vim-airline/vim-airline-themes'
 Plug 'enricobacis/vim-airline-clock'
 Plug 'Yggdroot/indentLine', {'for': ['python','matlab','octave']}
-Plug 'davidhalter/jedi-vim', {'for': 'python'}
-Plug 'zchee/deoplete-jedi',{'for':'python'}
+" Plug 'davidhalter/jedi-vim', {'for': 'python'}
+" Plug 'zchee/deoplete-jedi',{'for':'python'}
 " Plug 'nvie/vim-flake8', {'for': 'python'}
 " Plug 'python-mode/python-mode'{'for':'python'}
 " Plug 'fisadev/vim-isort', {'for': 'python'}
@@ -19,7 +19,7 @@ Plug 'tpope/vim-surround'
 Plug 'tommcdo/vim-exchange'
 Plug 'kurkale6ka/vim-swap' "\x,\X to swap with right/left, \cx swaps comparison arguments, integrates with tpope's repeat. Multi-line selection and visual modes also possible
 " Plug 'machakann/vim-swap' "re-order delimited items
-Plug 'mhinz/vim-startify' "easy session management
+" Plug 'mhinz/vim-startify' "easy session management
 " Plug 'godlygeek/tabular'
 Plug 'junegunn/vim-easy-align' " gaip=, gaip2=, gaip*=, gaip**=, gaip<CR>=,gaip<CR><CR>=
 " Plug 'tomtom/tcomment_vim'
@@ -28,7 +28,7 @@ Plug 'kshenoy/vim-signature' "place, toggle and display marks. Navigate forward/
 Plug 'machakann/vim-highlightedyank'
 Plug 'jiangmiao/auto-pairs' "quick jump to closed pair using }.  <M-p> : Toggle Autopairs,  <M-e> : Fast Wrap, <M-n> : Jump to next closed pair,<M-b> : BackInsert
 Plug 'wellle/targets.vim' "To change the text in the next pair of parentheses, use the cin) command,To delete the item in a comma separated list under the cursor, use da, last pair seems very useful, i(,i),ib,i{,i},i[,i],i<,i>,it, with count, same with 'a'. n and l options, quotes, even back-ticks
-Plug 'lambdalisue/gina.vim'
+" Plug 'lambdalisue/gina.vim'
 " Plug 'lambdalisue/vim-diffa'
 Plug 'chrisbra/vim-diff-enhanced'
 Plug 'rickhowe/diffchar.vim'
@@ -70,24 +70,24 @@ Plug 'junegunn/goyo.vim' " :Goyo to toggle
 Plug 'kana/vim-textobj-user'
 " Plug 'reedes/vim-textobj-quote'
 Plug 'reedes/vim-textobj-sentence',{'for': ['tex','text']} " as, is, g), g(, ), (
-Plug 'reedes/vim-wheel' " a different scrolling experience
+" Plug 'reedes/vim-wheel' " a different scrolling experience
 Plug 'reedes/vim-wordy',{'for': ['tex','text']}
-Plug 'chrisbra/csv.vim',{'for': ['csv']}
+" Plug 'chrisbra/csv.vim',{'for': ['csv']}
 " Plug 'chrisbra/improvedft'
 Plug 'unblevable/quick-scope' " for f, F, t and T
 " Plug 'rhysd/clever-f.vim'
 Plug 'nhooyr/neoman.vim'
 Plug 'coderifous/textobj-word-column.vim'  " provides cic and vic mappings
 "osyo-manga/vim-watchdogs
-Plug 'vim-utils/vim-troll-stopper' " highlights invalid unicode characters
+" Plug 'vim-utils/vim-troll-stopper' " highlights invalid unicode characters
 Plug 'critiqjo/husk-x.vim' " for command line mode (readline bindings)
 " Plug 'vim-utils/vim-husk' " for command line mode (readline bindings)
 " Plug 'rhysd/vim-textobj-anyblock' " provides ib and ab objects
 Plug 'osyo-manga/vim-over' "substitute preview
 Plug 'lifepillar/vim-cheat40' "<leader>?
 " Plug 'timakro/vim-searchant'
-Plug 'tpope/vim-obsession'
-Plug 'dhruvasagar/vim-prosession'
+" Plug 'tpope/vim-obsession'
+" Plug 'dhruvasagar/vim-prosession'
 Plug 'google/vim-searchindex'
 " Plug 'google/vim-maktaba'
 " Plug 'google/vim-glaive'
@@ -98,17 +98,16 @@ Plug 'google/vim-searchindex'
 Plug 'tmux-plugins/vim-tmux'
 Plug 'tmux-plugins/vim-tmux-focus-events'
 Plug 'christoomey/vim-tmux-navigator'
-Plug 'tpope/vim-characterize' "In Vim, pressing ga on a character reveals its representation in decimal, octal, and hex. Characterize.vim modernizes this with a few additions
+" Plug 'tpope/vim-characterize' "In Vim, pressing ga on a character reveals its representation in decimal, octal, and hex. Characterize.vim modernizes this with a few additions
 Plug 'ludovicchabant/vim-gutentags' "Gutentags is a plugin that takes care of the much needed management of tags files in Vim. It will (re)generate tag files as you work while staying completely out of your way. It will even do its best to keep those tag files out of your way too. It has no dependencies and just works.
 Plug 'romainl/vim-qf' "short for vim-quickfix—is a growing collection of settings, commands and mappings put together to make working with the location list/window and the quickfix list/window smoother.
-
 Plug 'romainl/vim-qlist' "make the results of include-search and definition-search easier to navigate and more persistent by using the quickfix list instead of the default list-like interface.
 " Plug 'romainl/tinyMRU'
 Plug 'romainl/vim-cool' "Vim-cool disables search highlighting when you are done searching and re-enables it when you search again.
 " Plug 'justinmk/vim-sneak'
 " Plug 'tomtom/ttags_vim'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'sickill/vim-pasta'
+" Plug 'sickill/vim-pasta'
 Plug 'blueyed/vim-diminactive'
 Plug 'mtth/cursorcross.vim'
 Plug 'cazador481/fakeclip.neovim'
@@ -140,14 +139,14 @@ Plug 'dpelle/vim-LanguageTool',{'for':'tex'}
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'mattn/vim-maketable'
-Plug 'AndrewRadev/linediff.vim'
-Plug 'chrisbra/Colorizer'
-Plug 'vim-pandoc/vim-pandoc'
-Plug 'vim-pandoc/vim-pandoc-syntax'
-Plug 'zanglg/nova.vim'
+" Plug 'AndrewRadev/linediff.vim'
+" Plug 'chrisbra/Colorizer'
+" Plug 'vim-pandoc/vim-pandoc'
+" Plug 'vim-pandoc/vim-pandoc-syntax'
+" Plug 'zanglg/nova.vim'
 " Plug 'NBUT-Developers/extra-instant-markdown'
 " Plug 'suan/vim-instant-markdown
-Plug 'ktonga/vim-follow-my-lead'
+" Plug 'ktonga/vim-follow-my-lead'
 
 " Plug 'ternjs/tern_for_vim', { 'for': ['javascript', 'javascript.jsx'] }
 " Plug 'carlitux/deoplete-ternjs', { 'for': ['javascript', 'javascript.jsx'] }
@@ -862,4 +861,3 @@ vnoremap Y myY`y
 highlight TermCursor ctermfg=red guifg=red
 
 tnoremap <Leader><ESC> <C-\><C-n>
-
