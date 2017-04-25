@@ -1,3 +1,4 @@
+mermaid
 skylighting
 bramp/js-sequence-diagrams
 hub (with autocompletions etc. etc.)

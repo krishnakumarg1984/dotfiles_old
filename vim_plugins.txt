@@ -1,3 +1,5 @@
+vimdeck
+maxboisvert/vim-simple-complete
 https://github.com/lifepillar/vim-mucomplete
 devjoe/vim-codequery
 plasticboy/vim-markdown

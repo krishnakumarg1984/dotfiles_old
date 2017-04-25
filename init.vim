@@ -97,6 +97,7 @@ Plug 'google/vim-searchindex'
 " Plug 'lambdalisue/lista.nvim'
 Plug 'tmux-plugins/vim-tmux'
 Plug 'tmux-plugins/vim-tmux-focus-events'
+Plug 'christoomey/vim-tmux-navigator'
 Plug 'tpope/vim-characterize' "In Vim, pressing ga on a character reveals its representation in decimal, octal, and hex. Characterize.vim modernizes this with a few additions
 Plug 'ludovicchabant/vim-gutentags' "Gutentags is a plugin that takes care of the much needed management of tags files in Vim. It will (re)generate tag files as you work while staying completely out of your way. It will even do its best to keep those tag files out of your way too. It has no dependencies and just works.
 Plug 'romainl/vim-qf' "short for vim-quickfix—is a growing collection of settings, commands and mappings put together to make working with the location list/window and the quickfix list/window smoother.
@@ -143,7 +144,10 @@ Plug 'AndrewRadev/linediff.vim'
 Plug 'chrisbra/Colorizer'
 Plug 'vim-pandoc/vim-pandoc'
 Plug 'vim-pandoc/vim-pandoc-syntax'
-" Plug 'vim-pandoc/vim-pandoc-syntax'
+Plug 'zanglg/nova.vim'
+" Plug 'NBUT-Developers/extra-instant-markdown'
+" Plug 'suan/vim-instant-markdown
+Plug 'ktonga/vim-follow-my-lead'
 
 " Plug 'ternjs/tern_for_vim', { 'for': ['javascript', 'javascript.jsx'] }
 " Plug 'carlitux/deoplete-ternjs', { 'for': ['javascript', 'javascript.jsx'] }
@@ -848,3 +852,14 @@ au VimEnter,BufRead,BufNewFile *.jl set filetype=julia
 au VimEnter,BufRead,BufNewFile *.idr set filetype=idris
 au VimEnter,BufRead,BufNewFile *.lidr set filetype=lidris
 autocmd FileType tex,text,markdown,mail setlocal spell
+autocmd FileType gitcommit set colorcolumn=73
+autocmd FileType gitcommit set textwidth=72
+
+vnoremap y myy`y
+vnoremap Y myY`y
+
+:au BufEnter * if &buftype == 'terminal' | :startinsert | endif
+highlight TermCursor ctermfg=red guifg=red
+
+tnoremap <Leader><ESC> <C-\><C-n>
+
