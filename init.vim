@@ -154,6 +154,9 @@ Plug 'mattn/vim-maketable'
 " Plug 'othree/jspc.vim', { 'for': ['javascript', 'javascript.jsx'] }
 call plug#end()
 
+let g:DiffUnit="Word1"
+let g:DiffColors=4
+
 "# DirDiff settings
 "# Don't compare directories or filenames that match conditions like CVS,*.swp
 let g:DirDiffExcludes = "system,CVS,*.class,*.exe,.*.swp,GIT,.git"
@@ -394,9 +397,9 @@ let g:rainbow_conf = {
 let g:AutoPairsFlyMode = 1 "enables fly mode for auto-pairs
 
 " "Started In Diff-Mode set diffexpr (plugin not loaded yet)
-" if &diff
-"     let &diffexpr='EnhancedDiff#Diff("git diff", "--diff-algorithm=patience")'
-" endif
+if &diff
+    let &diffexpr='EnhancedDiff#Diff("git diff", "--diff-algorithm=patience")'
+endif
 
 let g:vim_isort_map = ''
 
@@ -905,16 +908,12 @@ au BufEnter,BufNew * if &diff | syntax off | else | syntax on | endif
 " highlight! link DiffText MatchParen
 " highlight! link DiffText Todo
 
-" if &diff
-"     colorscheme evening
-" endif
-"
-au FilterWritePre * if &diff | let g:diminactive_use_colorcolumn = 0| let g:diminactive_use_syntax = 0| colorscheme apprentice | let g:diminactive_enable_focus=0 | Limelight | endif
+au FilterWritePre * if &diff | let g:diminactive_use_colorcolumn = 0| let g:diminactive_use_syntax = 0| colorscheme apprentice | let g:diminactive_enable_focus=0 | set background=light | colorscheme PaperColor | set nocursorline | set foldenable |endif
 
-hi DiffAdd      gui=none    guifg=NONE          guibg=#bada9f
-hi DiffChange   gui=none    guifg=NONE          guibg=#e5d5ac
-hi DiffDelete   gui=bold    guifg=#ff8080       guibg=#ffb0b0
-hi DiffText     gui=none    guifg=NONE          guibg=#8cbee2
+" hi DiffAdd      gui=none    guifg=NONE          guibg=#bada9f
+" hi DiffChange   gui=none    guifg=NONE          guibg=#e5d5ac
+" hi DiffDelete   gui=bold    guifg=#ff8080       guibg=#ffb0b0
+" hi DiffText     gui=none    guifg=NONE          guibg=#8cbee2
 
 set diffopt+=iwhite
 set diffexpr=DiffW()
