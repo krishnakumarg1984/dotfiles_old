@@ -1,3 +1,5 @@
+zeavim
+investigate.vim
 vimdeck
 maxboisvert/vim-simple-complete
 https://github.com/lifepillar/vim-mucomplete

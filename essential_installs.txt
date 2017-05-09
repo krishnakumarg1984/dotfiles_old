@@ -1,3 +1,6 @@
+font packages (tamzen etc.)
+md2man
+dasht
 mermaid
 skylighting
 bramp/js-sequence-diagrams

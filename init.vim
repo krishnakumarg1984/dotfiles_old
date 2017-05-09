@@ -141,7 +141,10 @@ Plug 'honza/vim-snippets'
 Plug 'mattn/vim-maketable'
 Plug 'vim-scripts/MatlabFilesEdition'
 Plug 'jlanzarotta/bufexplorer'
-Plug ''djoshea/vim-autoread''
+Plug 'djoshea/vim-autoread'
+Plug 'poppyschmo/vim-latexrefman',{'for':'tex'}
+Plug 'sunaku/vim-shortcut'
+Plug 'sunaku/vim-dasht'
 " Plug 'will133/vim-dirdiff'
 " Plug 'AndrewRadev/linediff.vim'
 " Plug 'chrisbra/Colorizer'
@@ -156,6 +159,15 @@ Plug ''djoshea/vim-autoread''
 " Plug 'carlitux/deoplete-ternjs', { 'for': ['javascript', 'javascript.jsx'] }
 " Plug 'othree/jspc.vim', { 'for': ['javascript', 'javascript.jsx'] }
 call plug#end()
+
+" search related docsets
+nnoremap <silent> <Leader>K :call Dasht([expand('<cword>'), expand('<cWORD>')])<Return>
+
+" search ALL the docsets
+nnoremap <silent> <Leader><Leader>K :call Dasht([expand('<cword>'), expand('<cWORD>')], '!')<Return>
+
+noremap <silent> <Leader><Leader> :Shortcuts<Return>
+noremap <silent> <Leader> :Shortcuts<Return>
 
 let g:DiffUnit="Word1"
 let g:DiffColors=4
