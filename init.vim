@@ -22,8 +22,8 @@ Plug 'kurkale6ka/vim-swap' "\x,\X to swap with right/left, \cx swaps comparison 
 Plug 'mhinz/vim-startify' "easy session management
 " Plug 'godlygeek/tabular'
 Plug 'junegunn/vim-easy-align' " gaip=, gaip2=, gaip*=, gaip**=, gaip<CR>=,gaip<CR><CR>=
-" Plug 'tomtom/tcomment_vim'
-Plug 'tpope/vim-commentary' "gcc, gc3j, gc}, gcip, gcu
+Plug 'tomtom/tcomment_vim' " supports matlab
+" Plug 'tpope/vim-commentary' "gcc, gc3j, gc}, gcip, gcu
 Plug 'kshenoy/vim-signature' "place, toggle and display marks. Navigate forward/backward by position/alphabetical order. Any arbitrary sign for marks is possible
 Plug 'machakann/vim-highlightedyank'
 Plug 'jiangmiao/auto-pairs' "quick jump to closed pair using }.  <M-p> : Toggle Autopairs,  <M-e> : Fast Wrap, <M-n> : Jump to next closed pair,<M-b> : BackInsert
@@ -139,6 +139,9 @@ Plug 'dpelle/vim-LanguageTool',{'for':'tex'}
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'mattn/vim-maketable'
+Plug 'vim-scripts/MatlabFilesEdition'
+Plug 'jlanzarotta/bufexplorer'
+Plug ''djoshea/vim-autoread''
 " Plug 'will133/vim-dirdiff'
 " Plug 'AndrewRadev/linediff.vim'
 " Plug 'chrisbra/Colorizer'
@@ -281,6 +284,7 @@ autocmd FileType javascript let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
 " close the preview window when you're not using it
 let g:SuperTabClosePreviewOnPopupClose = 1
 let g:SuperTabContextDefaultCompletionType = "<c-n>"
+let g:SuperTabDefaultCompletionType = "<c-n>"
 
 
 " let g:UltiSnipsExpandTrigger="<C-j>"
@@ -928,3 +932,6 @@ function DiffW()
    silent execute "!diff -a --binary " . opt .
      \ v:fname_in . " " . v:fname_new .  " > " . v:fname_out
 endfunction
+
+nmap du :wincmd w<cr>:normal u<cr>:wincmd w<cr>
+nnoremap Q <nop>
