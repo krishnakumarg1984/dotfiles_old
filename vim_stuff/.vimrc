@@ -76,6 +76,7 @@ call plug#begin()
      Plug 'google/vim-glaive'
      Plug 'google/vim-codefmt'
      Plug 'google/vim-syncopate'
+     Plug 'lervag/vimtex',{'for':'tex'}
      " "Shougo's plugins
      " Plug 'Shougo/vimproc.vim', {'do' : 'make'}
      " Plug 'Shougo/neosnippet.vim'
