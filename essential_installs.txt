@@ -1,3 +1,13 @@
+font packages (tamzen etc.)
+md2man
+dasht
+mermaid
+skylighting
+bramp/js-sequence-diagrams
+hub (with autocompletions etc. etc.)
+gtm
+i3-style
+fuzzy finder(fzf, fzy etc.)
 pt, ag, ripgrep, ack, fzf
 trash-cli
 pkgfile

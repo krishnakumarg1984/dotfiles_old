@@ -1,10 +1,12 @@
 call plug#begin('~/.local/share/nvim/plugged')
 Plug 'flazz/vim-colorschemes'
+" Plug 'morhetz/gruvbox'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+Plug 'enricobacis/vim-airline-clock'
 Plug 'Yggdroot/indentLine', {'for': ['python','matlab','octave']}
-Plug 'davidhalter/jedi-vim', {'for': 'python'}
-Plug 'zchee/deoplete-jedi',{'for':'python'}
+" Plug 'davidhalter/jedi-vim', {'for': 'python'}
+" Plug 'zchee/deoplete-jedi',{'for':'python'}
 " Plug 'nvie/vim-flake8', {'for': 'python'}
 " Plug 'python-mode/python-mode'{'for':'python'}
 " Plug 'fisadev/vim-isort', {'for': 'python'}
@@ -20,14 +22,14 @@ Plug 'kurkale6ka/vim-swap' "\x,\X to swap with right/left, \cx swaps comparison 
 Plug 'mhinz/vim-startify' "easy session management
 " Plug 'godlygeek/tabular'
 Plug 'junegunn/vim-easy-align' " gaip=, gaip2=, gaip*=, gaip**=, gaip<CR>=,gaip<CR><CR>=
-" Plug 'tomtom/tcomment_vim'
-Plug 'tpope/vim-commentary' "gcc, gc3j, gc}, gcip, gcu
+Plug 'tomtom/tcomment_vim' " supports matlab
+" Plug 'tpope/vim-commentary' "gcc, gc3j, gc}, gcip, gcu
 Plug 'kshenoy/vim-signature' "place, toggle and display marks. Navigate forward/backward by position/alphabetical order. Any arbitrary sign for marks is possible
 Plug 'machakann/vim-highlightedyank'
 Plug 'jiangmiao/auto-pairs' "quick jump to closed pair using }.  <M-p> : Toggle Autopairs,  <M-e> : Fast Wrap, <M-n> : Jump to next closed pair,<M-b> : BackInsert
 Plug 'wellle/targets.vim' "To change the text in the next pair of parentheses, use the cin) command,To delete the item in a comma separated list under the cursor, use da, last pair seems very useful, i(,i),ib,i{,i},i[,i],i<,i>,it, with count, same with 'a'. n and l options, quotes, even back-ticks
-Plug 'lambdalisue/gina.vim'
-Plug 'lambdalisue/vim-diffa'
+" Plug 'lambdalisue/gina.vim'
+" Plug 'lambdalisue/vim-diffa'
 Plug 'chrisbra/vim-diff-enhanced'
 Plug 'rickhowe/diffchar.vim'
 Plug 'tpope/vim-fugitive'
@@ -55,7 +57,7 @@ Plug 'ntpeters/vim-better-whitespace' " :ToggleWhitespace, :StripWhitespace
 " Plug 'sheerun/vim-polyglot'
 " Plug 'gregsexton/gitv'
 Plug 'junegunn/gv.vim'
-Plug 'junegunn/vim-peekaboo'
+" Plug 'junegunn/vim-peekaboo'
 Plug 'luochen1990/rainbow' "RainbowToggle command is provided
 " Plug 'junegunn/rainbow_parentheses.vim'
 Plug 'Ron89/thesaurus_query.vim',{'for': ['tex','text']} "\cs
@@ -67,52 +69,53 @@ Plug 'junegunn/limelight.vim'
 Plug 'junegunn/goyo.vim' " :Goyo to toggle
 Plug 'kana/vim-textobj-user'
 " Plug 'reedes/vim-textobj-quote'
-" Plug 'reedes/vim-textobj-sentence',{'for': ['tex','text']} " as, is, g), g(, ), (
-Plug 'reedes/vim-wheel' " a different scrolling experience
+Plug 'reedes/vim-textobj-sentence',{'for': ['tex','text']} " as, is, g), g(, ), (
+" Plug 'reedes/vim-wheel' " a different scrolling experience
 Plug 'reedes/vim-wordy',{'for': ['tex','text']}
-Plug 'chrisbra/csv.vim',{'for': ['csv']}
+" Plug 'chrisbra/csv.vim',{'for': ['csv']}
 " Plug 'chrisbra/improvedft'
 Plug 'unblevable/quick-scope' " for f, F, t and T
 " Plug 'rhysd/clever-f.vim'
 Plug 'nhooyr/neoman.vim'
 Plug 'coderifous/textobj-word-column.vim'  " provides cic and vic mappings
 "osyo-manga/vim-watchdogs
-Plug 'vim-utils/vim-troll-stopper' " highlights invalid unicode characters
+" Plug 'vim-utils/vim-troll-stopper' " highlights invalid unicode characters
 Plug 'critiqjo/husk-x.vim' " for command line mode (readline bindings)
 " Plug 'vim-utils/vim-husk' " for command line mode (readline bindings)
 " Plug 'rhysd/vim-textobj-anyblock' " provides ib and ab objects
 Plug 'osyo-manga/vim-over' "substitute preview
 Plug 'lifepillar/vim-cheat40' "<leader>?
 " Plug 'timakro/vim-searchant'
-Plug 'tpope/vim-obsession'
-Plug 'dhruvasagar/vim-prosession'
+" Plug 'tpope/vim-obsession'
+" Plug 'dhruvasagar/vim-prosession'
 Plug 'google/vim-searchindex'
-Plug 'google/vim-maktaba'
-Plug 'google/vim-glaive'
-Plug 'google/vim-codefmt',{'for': ['c','cpp','python']}
-Plug 'google/vim-syncopate'
+" Plug 'google/vim-maktaba'
+" Plug 'google/vim-glaive'
+" Plug 'google/vim-codefmt',{'for': ['c','cpp','python']}
+" Plug 'google/vim-syncopate'
 " Plug 'lambdalisue/vim-foldround'
 " Plug 'lambdalisue/lista.nvim'
 Plug 'tmux-plugins/vim-tmux'
 Plug 'tmux-plugins/vim-tmux-focus-events'
-Plug 'tpope/vim-characterize' "In Vim, pressing ga on a character reveals its representation in decimal, octal, and hex. Characterize.vim modernizes this with a few additions
+Plug 'christoomey/vim-tmux-navigator'
+" Plug 'tpope/vim-characterize' "In Vim, pressing ga on a character reveals its representation in decimal, octal, and hex. Characterize.vim modernizes this with a few additions
 Plug 'ludovicchabant/vim-gutentags' "Gutentags is a plugin that takes care of the much needed management of tags files in Vim. It will (re)generate tag files as you work while staying completely out of your way. It will even do its best to keep those tag files out of your way too. It has no dependencies and just works.
 Plug 'romainl/vim-qf' "short for vim-quickfix—is a growing collection of settings, commands and mappings put together to make working with the location list/window and the quickfix list/window smoother.
-
 Plug 'romainl/vim-qlist' "make the results of include-search and definition-search easier to navigate and more persistent by using the quickfix list instead of the default list-like interface.
 " Plug 'romainl/tinyMRU'
 Plug 'romainl/vim-cool' "Vim-cool disables search highlighting when you are done searching and re-enables it when you search again.
 " Plug 'justinmk/vim-sneak'
 " Plug 'tomtom/ttags_vim'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'sickill/vim-pasta'
+" Plug 'sickill/vim-pasta'
 Plug 'blueyed/vim-diminactive'
 Plug 'mtth/cursorcross.vim'
 Plug 'cazador481/fakeclip.neovim'
 Plug 'brooth/far.vim'
-Plug 'jsfaint/gen_tags.vim'
-Plug 'c0r73x/neotags.nvim'
+" Plug 'jsfaint/gen_tags.vim'
+" Plug 'c0r73x/neotags.nvim'
 Plug 'donRaphaco/neotex',{'for':'tex'}
+" Plug 'brennier/quicktex',{'for':'tex'}
 Plug 'vifm/neovim-vifm'
 Plug 'fmoralesc/nlanguagetool.nvim',{'for':'tex'}
 Plug 'tpope/vim-rhubarb'
@@ -121,19 +124,70 @@ Plug 'jalvesaq/vimcmdline'
 Plug 'w0rp/ale',{ 'on': 'ALEEnable', 'for': ['ruby', 'sh','matlab','python','tex'] }
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
+Plug 'pbogut/fzf-mru.vim'
 " Plug 'metakirby5/codi.vim'
 Plug 'chrisbra/unicode.vim'
 Plug 'justinmk/vim-gtfo'
-Plug 'beloglazov/vim-online-thesaurus'
+" Plug 'beloglazov/vim-online-thesaurus'
 Plug 'rhysd/vim-grammarous',{'for':'tex'}
 Plug 'AndrewRadev/splitjoin.vim'
-
+Plug 'KabbAmine/yowish.vim'
+Plug 'ntpeters/vim-better-whitespace'
+Plug 'cloudhead/neovim-fuzzy'
+Plug 'tweekmonster/startuptime.vim'
+Plug 'dpelle/vim-LanguageTool',{'for':'tex'}
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
+Plug 'mattn/vim-maketable'
+Plug 'vim-scripts/MatlabFilesEdition'
+Plug 'jlanzarotta/bufexplorer'
+Plug 'djoshea/vim-autoread'
+Plug 'poppyschmo/vim-latexrefman',{'for':'tex'}
+Plug 'sunaku/vim-shortcut'
+Plug 'sunaku/vim-dasht'
+" Plug 'will133/vim-dirdiff'
+" Plug 'AndrewRadev/linediff.vim'
+" Plug 'chrisbra/Colorizer'
+" Plug 'vim-pandoc/vim-pandoc'
+" Plug 'vim-pandoc/vim-pandoc-syntax'
+" Plug 'zanglg/nova.vim'
+" Plug 'NBUT-Developers/extra-instant-markdown'
+" Plug 'suan/vim-instant-markdown
+" Plug 'ktonga/vim-follow-my-lead'
+
 " Plug 'ternjs/tern_for_vim', { 'for': ['javascript', 'javascript.jsx'] }
 " Plug 'carlitux/deoplete-ternjs', { 'for': ['javascript', 'javascript.jsx'] }
 " Plug 'othree/jspc.vim', { 'for': ['javascript', 'javascript.jsx'] }
 call plug#end()
+
+" search related docsets
+nnoremap <silent> <Leader>K :call Dasht([expand('<cword>'), expand('<cWORD>')])<Return>
+
+" search ALL the docsets
+nnoremap <silent> <Leader><Leader>K :call Dasht([expand('<cword>'), expand('<cWORD>')], '!')<Return>
+
+noremap <silent> <Leader><Leader> :Shortcuts<Return>
+noremap <silent> <Leader> :Shortcuts<Return>
+
+let g:DiffUnit="Word1"
+let g:DiffColors=4
+
+"# DirDiff settings
+"# Don't compare directories or filenames that match conditions like CVS,*.swp
+let g:DirDiffExcludes = "system,CVS,*.class,*.exe,.*.swp,GIT,.git"
+"# Ignore lines that Id:,Revision: etc.
+let g:DirDiffIgnore = "Id:,Revision:,Date:"
+"# Don't flag files as different based on whitespace
+let g:DirDiffAddArgs = "-w"
+let g:DirDiffWindowSize = 14
+
+let g:colorizer_auto_color = 1
+let g:airline#extensions#clock#updatetime = 4000
+
+hi LanguageToolGrammarError  guisp=blue gui=undercurl guifg=NONE guibg=NONE ctermfg=white ctermbg=blue term=underline cterm=none
+hi LanguageToolSpellingError guisp=red  gui=undercurl guifg=NONE guibg=NONE ctermfg=white ctermbg=red  term=underline cterm=none
+
+nnoremap <C-p> :FuzzyOpen<CR>
 
 fun! FzfOmniFiles()
     let is_git = system('git status')
@@ -146,18 +200,18 @@ endfun
 
 " Customize fzf colors to match your color scheme
 let g:fzf_colors =
-\ { 'fg':      ['fg', 'Normal'],
-  \ 'bg':      ['bg', 'Normal'],
-  \ 'hl':      ['fg', 'Comment'],
-  \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
-  \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
-  \ 'hl+':     ['fg', 'Statement'],
-  \ 'info':    ['fg', 'PreProc'],
-  \ 'prompt':  ['fg', 'Conditional'],
-  \ 'pointer': ['fg', 'Exception'],
-  \ 'marker':  ['fg', 'Keyword'],
-  \ 'spinner': ['fg', 'Label'],
-  \ 'header':  ['fg', 'Comment'] }
+            \ { 'fg':      ['fg', 'Normal'],
+            \ 'bg':      ['bg', 'Normal'],
+            \ 'hl':      ['fg', 'Comment'],
+            \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
+            \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
+            \ 'hl+':     ['fg', 'Statement'],
+            \ 'info':    ['fg', 'PreProc'],
+            \ 'prompt':  ['fg', 'Conditional'],
+            \ 'pointer': ['fg', 'Exception'],
+            \ 'marker':  ['fg', 'Keyword'],
+            \ 'spinner': ['fg', 'Label'],
+            \ 'header':  ['fg', 'Comment'] }
 
 " Enable per-command history.
 " CTRL-N and CTRL-P will be automatically bound to next-history and
@@ -241,6 +295,9 @@ let g:UltiSnipsEditSplit="vertical"
 autocmd FileType javascript let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
 " close the preview window when you're not using it
 let g:SuperTabClosePreviewOnPopupClose = 1
+let g:SuperTabContextDefaultCompletionType = "<c-n>"
+let g:SuperTabDefaultCompletionType = "<c-n>"
+
 
 " let g:UltiSnipsExpandTrigger="<C-j>"
 inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
@@ -284,6 +341,7 @@ let g:vim_fakeclip_tmux_plus=1
 
 let g:diminactive_use_syntax = 1
 let g:diminactive_enable_focus = 1
+
 
 " Use deoplete.
 let g:deoplete#enable_at_startup = 1
@@ -354,7 +412,7 @@ let g:rainbow_conf = {
 
 let g:AutoPairsFlyMode = 1 "enables fly mode for auto-pairs
 
-"Started In Diff-Mode set diffexpr (plugin not loaded yet)
+" "Started In Diff-Mode set diffexpr (plugin not loaded yet)
 if &diff
     let &diffexpr='EnhancedDiff#Diff("git diff", "--diff-algorithm=patience")'
 endif
@@ -370,15 +428,23 @@ autocmd! User GoyoLeave Limelight!
 let g:tq_online_backends_timeout = 0.6
 
 " au FileType markdown,text,tex DittoOn  " Turn on Ditto's autocmds
+autocmd FileType matlab,python,bash,tex Limelight 0.7
 
-nmap <leader>di <Plug>ToggleDitto      " Turn it on and off
+" Turn it on and off
+nmap <leader>di <Plug>ToggleDitto
 
-nmap =d <Plug>DittoNext                " Jump to the next word
-nmap -d <Plug>DittoPrev                " Jump to the previous word
-nmap +d <Plug>DittoGood                " Ignore the word under the cursor
-nmap _d <Plug>DittoBad                 " Stop ignoring the word under the cursor
-nmap ]d <Plug>DittoMore                " Show the next matches
-nmap [d <Plug>DittoLess                " Show the previous matches
+" Jump to the next word
+nmap =d <Plug>DittoNext
+" Jump to the previous word
+nmap -d <Plug>DittoPrev
+" Ignore the word under the cursor
+nmap +d <Plug>DittoGood
+" Stop ignoring the word under the cursor
+nmap _d <Plug>DittoBad
+" Show the next matches
+nmap ]d <Plug>DittoMore
+" Show the previous matches
+nmap [d <Plug>DittoLess
 
 augroup textobj_sentence
     autocmd!
@@ -394,7 +460,7 @@ augroup litecorrect
     autocmd FileType text call litecorrect#init()
 augroup END
 
-nmap <silent><leader><space> ;nohls<CR>
+" nmap <silent><leader><space> ;nohls<CR>
 
 set diffopt=filler
 set keywordprg=:help
@@ -403,6 +469,7 @@ colorscheme gruvbox
 let g:airline_theme='base16'
 " let g:airline_theme='papercolor'
 let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#buffer_nr_show = 1
 let g:airline_powerline_fonts = 1
 let g:Powerline_symbols='unicode'
 if !exists('g:airline_symbols')
@@ -541,7 +608,8 @@ if has('conceal')
 endif
 " Use the same symbols as TextMate for tabstops and EOLs
 set listchars=tab:▸\ ,eol:¬
-nnoremap <leader>a :set list!<CR>  " Shortcut to rapidly toggle set list
+" Shortcut to rapidly toggle set list
+nnoremap <leader>a :set list!<CR>
 " set list
 
 hi link HelpBar Normal
@@ -584,7 +652,8 @@ set nostartofline               " The cursor is kept in the same column (if poss
 set splitbelow                  " Splitting a window will put the new window below the current one
 set splitright                  " Splitting a window will put the new windowright the current one
 
-cnoremap <C-V> <C-R>+           " CTRL-V: Paste from clipboard
+" CTRL-V: Paste from clipboard
+cnoremap <C-V> <C-R>+
 " set pastetoggle=<F12>           " pastetoggle (sane indentation on pastes)
 
 set showmode                    " Display the current mode
@@ -670,7 +739,8 @@ nnoremap <C-k> <C-w>k
 nnoremap <C-h> <C-w>h
 nnoremap <C-l> <C-w>l
 
-" nnoremap <silent><Leader><C-]> <C-w><C-]><C-w>T  " open tags in new tab
+" " open tags in new tab
+" nnoremap <silent><Leader><C-]> <C-w><C-]><C-w>T
 
 inoremap <C-c> <Esc>
 set guioptions-=m
@@ -701,7 +771,10 @@ if has("autocmd")
     autocmd FileType c,cpp :set cindent
     autocmd FileType markdown setlocal spell
     autocmd FileType gitcommit setlocal spell
-    autocmd FileType python nnoremap <buffer> <F11> :exec '!clear;python' shellescape(@%, 1)<cr>  # execute python commands
+    autocmd FileType tex setlocal spell
+    autocmd FileType text setlocal spell
+    " execute python commands
+    autocmd FileType python nnoremap <buffer> <F11> :exec '!clear;python' shellescape(@%, 1)<cr>
     autocmd BufEnter * silent! normal! g`"
     autocmd BufNewFile,BufRead *.rss setfiletype xml     " Treat .rss files as XML
     autocmd BufNewFile,BufRead *.json setfiletype json syntax=javascript
@@ -823,3 +896,54 @@ set shortmess=atI
 au VimEnter,BufRead,BufNewFile *.jl set filetype=julia
 au VimEnter,BufRead,BufNewFile *.idr set filetype=idris
 au VimEnter,BufRead,BufNewFile *.lidr set filetype=lidris
+autocmd FileType tex,text,markdown,mail setlocal spell
+autocmd FileType gitcommit set colorcolumn=73
+autocmd FileType gitcommit set textwidth=72
+
+vnoremap y myy`y
+vnoremap Y myY`y
+
+:au BufEnter * if &buftype == 'terminal' | :startinsert | endif
+highlight TermCursor ctermfg=red guifg=red
+
+tnoremap <Leader><ESC> <C-\><C-n>
+
+if has('autocmd') " ignore this section if your vim does not support autocommands
+    augroup reload_vimrc
+        autocmd!
+        autocmd! BufWritePost $MYVIMRC,$MYGVIMRC nested source %
+    augroup END
+endif
+
+:autocmd BufWritePost * if &diff | diffupdate | endif
+au BufEnter,BufNew * if &diff | syntax off | else | syntax on | endif
+
+" " Fix the difficult-to-read default setting for diff text highlighting.  The
+" " bang (!) is required since we are overwriting the DiffText setting. The highlighting
+" " for "Todo" also looks nice (yellow) if you don't like the "MatchParen" colors.
+" highlight! link DiffText MatchParen
+" highlight! link DiffText Todo
+
+au FilterWritePre * if &diff | let g:diminactive_use_colorcolumn = 0| let g:diminactive_use_syntax = 0| colorscheme apprentice | let g:diminactive_enable_focus=0 | set background=light | colorscheme PaperColor | set nocursorline | set foldenable |endif
+
+" hi DiffAdd      gui=none    guifg=NONE          guibg=#bada9f
+" hi DiffChange   gui=none    guifg=NONE          guibg=#e5d5ac
+" hi DiffDelete   gui=bold    guifg=#ff8080       guibg=#ffb0b0
+" hi DiffText     gui=none    guifg=NONE          guibg=#8cbee2
+
+set diffopt+=iwhite
+set diffexpr=DiffW()
+function DiffW()
+  let opt = ""
+   if &diffopt =~ "icase"
+     let opt = opt . "-i "
+   endif
+   if &diffopt =~ "iwhite"
+     let opt = opt . "-w " " swapped vim's -b with -w
+   endif
+   silent execute "!diff -a --binary " . opt .
+     \ v:fname_in . " " . v:fname_new .  " > " . v:fname_out
+endfunction
+
+nmap du :wincmd w<cr>:normal u<cr>:wincmd w<cr>
+nnoremap Q <nop>
