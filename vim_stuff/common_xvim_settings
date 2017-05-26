@@ -1,0 +1,382 @@
+set keywordprg=:help
+set thesaurus+=~/dotfiles/mthesaur.txt
+colorscheme gruvbox
+
+function! ToggleBG()
+    let s:tbg = &background
+    " Inversion
+    if s:tbg == "dark"
+        set background=light
+    else
+        set background=dark
+    endif
+endfunction
+
+noremap <leader>bg :call ToggleBG()<CR>
+set background=dark
+
+set path+=**                     "Find will start working (under the current directory)
+set suffixesadd=.py,.m,.mat      "Find will work harder for these filetypes
+
+set noshowmatch                " when on a [{(, highlight the matching )}]
+set cpoptions-=m               " ? Highlight when CursorMoved
+set matchpairs+=<:>            " Highlight <>
+set matchtime=1                " In 10ths of a second
+
+if has('mouse') | set mouse=a | endif"+
+set mousehide
+
+set number
+" set relativenumber
+function! NumberToggle()
+    if(&relativenumber == 1)
+        set norelativenumber
+    else
+        set relativenumber
+    endif
+endfunc
+nnoremap <silent> <leader>n :call NumberToggle()<cr>
+
+set cursorline " highlight current line
+
+" Don't try to highlight lines longer than 1000 characters
+set synmaxcol=300   "Boost performance in rendering long lines
+
+" Make ESC respond faster Lower the delay of escaping out of other modes " keycode times out fast, mapping times out in a bit more time
+set timeout 	  " time out on mappings and keycodes (stronger of the two conditions)
+set ttimeoutlen=0 " A non-negative number here will make the delay to be timeoutlen
+
+" Show @@@ in the last line if it is truncated.
+set spelllang=en_gb,en_us
+syntax spell toplevel
+
+set visualbell               " Use visual bell instead of beeping
+set t_vb=                    " But don't want any beep or flash
+set noerrorbells
+
+set encoding=utf-8           " Default encoding for saving and reading file
+scriptencoding utfs8
+set termencoding=utf-8
+
+set iskeyword-=.                    " '.' is an end of word designator
+set iskeyword-=#                    " '#' is an end of word designator
+set iskeyword-=-                    " '-' is an end of word designator
+set iskeyword-=!                    " '!' is an end of word designator
+set iskeyword+=@-@
+
+" set autochdir
+set autowrite                       " Automatically write a file when leaving a modified buffer
+set autoread                        " Autoread when a file is changed from outside
+
+set viewoptions=cursor,folds,options,cursor,unix,slash " Better Unix / Windows compatibility
+
+set fileformat=unix          " Default fileformat
+set fileformats=unix,dos,mac
+
+set virtualedit=block,insert        " Enable virtualedit in visual block and insert modes
+
+set hidden      " Allow switching buffers without saving current buffer with changes
+
+set infercase   " Ignore case on insert completion
+set ignorecase  " Ignore case search for normal letters
+set smartcase   " Do case-sensitive search if pattern contains upper case letters
+
+set smartindent
+
+set tabstop=4 shiftwidth=4
+set softtabstop=4
+set expandtab   " Expand tab to space
+
+set shiftround  " Round indent by shiftwidth
+
+set foldmethod=indent   " Fold by indent
+set foldlevel=1         " Starting fold level
+set foldnestmax=20      " Deepest fold is 20 levels
+set foldlevelstart=99   " Open all folds by default
+set nofoldenable        " Disable fold by default
+
+" Turn off swapfile and backup
+set noswapfile
+set backupext=.bak
+
+if has('conceal')
+    set listchars+=conceal:^
+    set conceallevel=1 concealcursor=i
+endif
+
+" Use the same symbols as TextMate for tabstops and EOLs
+set listchars=tab:▸\ ,eol:¬
+
+" Shortcut to rapidly toggle set list
+nnoremap <leader>a :set list!<CR>
+
+hi link HelpBar Normal
+hi link HelpStar Normal
+
+" Wrap conditions
+set whichwrap+=h,l,<,>,[,],b,s,~
+set nowrap
+
+if has('linebreak')
+    set linebreak               " Wrap lines at convenient point (only affects the on-screen display, not actual content in file)
+    let &showbreak='↪ '
+    set breakat=\ \ ;:,!?
+    if exists('+breakindent')
+        set breakindent
+    endif
+endif
+
+set cmdheight=2                 " Height of command-line (easy-readable)
+
+" Completion settings in insert mode
+set completeopt=longest,menuone,noselect,preview
+set complete=.,w,b,u,t,i,kspell ". till i is the default. . = current buffer. w  = any other windows, b = any other buffers opened, u = unopened buffers, t = tags, i = current and included files
+"kspell = k means also look in the dictionary, kspell is the same, but only look up when spell-check is enabled
+
+set pumheight=15                " Set popup menu max height
+
+set wildmenu
+set wildmode=list:longest,full
+" Ignore the following stuff when tab completing
+set wildignore+=.hg,.git,.svn,*.o,*.obj,*.pyc,*.luac,*.jpg,*.jpeg,*.png,*.gif,*.bmp,*.pdf,*.class,*.dmg,*.DS_Store,*.lnk,*.ini,*.dats
+
+"Adjust window size of preview and help
+set previewheight=8
+set helpheight=12
+
+set nostartofline               " The cursor is kept in the same column (if possible)
+
+set splitbelow                  " Splitting a window will put the new window below the current one
+set splitright                  " Splitting a window will put the new windowright the current one
+
+set showmode                    " Display the current mode
+
+highlight clear SignColumn      " SignColumn should match background,SignColumn column where |signs| are displayed
+highlight Comment cterm=italic  " make comments in code to be italic
+
+if has('cmdline_info')
+	set ruler                   " Show the ruler
+    set rulerformat=%30(%=\:b%n%y%m%r%w\ %l,%c%V\ %P%)
+	set showcmd
+endif
+
+if has('statusline')
+    set laststatus=2 "Always show a status line
+    set statusline=%<%f\
+    set statusline+=%w%h%m%r
+    set statusline+=\ [%{&ff}/%Y]
+    set statusline+=\ [%{getcwd()}]
+    set statusline+=%=%-14.(%l,%c%V%)\ %p%%
+endif
+
+
+set viminfo='1000,f1,<500
+set linespace=0                 " No extra spaces between rows
+set numberwidth=5               " Width of the line-no. column
+set magic                       " Make regex a little easier to type
+set winminheight=0              " Windows can be 0 line high
+
+set report=0                    " Threshold for reporting number of lines changed.
+set updatecount=0 			    " After typing this many characters the swap file will be written to disk.  When zero, no swap file will be created at all (see chapter on recovery |crash-recovery|).  "
+set updatetime=250              " milliseconds elapsed before which swap file will be written to disk (250 ms is recommende by gitgutter plugin)
+
+highlight ColorColumn ctermbg=magenta
+call matchadd('ColorColumn', '\%81v', 100)
+" highlight OverLength ctermbg=red ctermfg=white guibg=#592929
+" match OverLength /\%81v.\+/
+
+set nojoinspaces
+
+nnoremap : ;
+nnoremap ; :
+nnoremap Y y$
+" Move across wrapped lines like regular lines
+noremap 0 ^
+" Go to the first non-blank character of a line
+noremap ^ 0
+" Just in case you need to go to the very beginning of a line
+
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-h> <C-w>h
+nnoremap <C-l> <C-w>l
+
+nnoremap <silent><Leader><C-]> <C-w><C-]><C-w>T  " open tags in new tab
+
+inoremap <C-c> <Esc>
+
+set guioptions-=m
+set guioptions-=r
+set guioptions-=T
+set guicursor+=a:blinkon0
+
+" CTRL-U in insert mode deletes a lot.  Use CTRL-G u to first break undo,
+" so that you can undo CTRL-U after inserting a line break.
+" Revert with ":iunmap <C-U>".
+inoremap <C-U> <C-G>u<C-U>
+
+
+if has("autocmd")
+    autocmd BufRead,BufNewFile *mutt-* setfiletype mail
+    autocmd BufRead,BufNewFile *mutt-* setlocal fo+=aw
+    autocmd FileType mail setlocal fo+=aw
+	autocmd FileType text setlocal textwidth=78
+	autocmd FileType tex setlocal textwidth=78
+    autocmd FileType help setlocal number
+	" Syntax of the following languages is fussy over tabs Vs spaces
+    autocmd FileType make setlocal ts=8 sts=8 sw=8 noexpandtab
+    autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
+    autocmd FileType c,cpp :set cindent
+    autocmd FileType markdown setlocal spell
+    autocmd FileType gitcommit setlocal spell
+	autocmd FileType python nnoremap <buffer> <F11> :exec '!clear;python' shellescape(@%, 1)<cr>  # execute python commands
+    autocmd BufEnter * silent! normal! g`"
+    autocmd BufNewFile,BufRead *.rss setfiletype xml     " Treat .rss files as XML
+	autocmd BufNewFile,BufRead *.json setfiletype json syntax=javascript
+    autocmd VimResized * :wincmd =      " automatically rebalance windows on vim resize
+    au BufNewFile,BufRead *.py "(PEP8 indentation)
+    " au BufAddr highlighted search,BufNewFile * nested tab sball "To open each buffer in its own tabpage
+    autocmd FileType c,cpp,java,php,text,python,matlab,tex autocmd BufWritePre <buffer> %s/\s\+$//e
+    autocmd BufWritePre .*rc %s/\s\+$//e
+    au BufNewFile,BufRead *.csv set nolist
+	au BufNewFile,BufRead *.py "(PEP8 indentation)
+        \ set tabstop=4
+        \ set softtabstop=4
+        \ set shiftwidth=4
+        \ set textwidth=79
+        \ set expandtab
+        \ set autoindent
+        \ set fileformat=unix
+		
+	" Put these in an autocmd group, so that you can revert them with:   " ":augroup vimStartup | au! | augroup END"
+	augroup vimStartup
+    au!
+    " When editing a file, always jump to the last known cursor position.
+    " Don't do it when the position is invalid or when inside an event handler
+    " (happens when dropping a file on gvim).
+    autocmd BufReadPost *
+      \ if line("'\"") >= 1 && line("'\"") <= line("$") |
+      \   exe "normal! g`\"" |
+      \ endif
+	augroup END
+	
+	augroup autoformat_settings
+		autocmd FileType bzl AutoFormatBuffer buildifier
+		autocmd FileType c,cpp,proto,javascript AutoFormatBuffer clang-format
+		autocmd FileType dart AutoFormatBuffer dartfmt
+		autocmd FileType go AutoFormatBuffer gofmt
+		autocmd FileType gn AutoFormatBuffer gn
+		autocmd FileType html,css,json AutoFormatBuffer js-beautify
+		autocmd FileType java AutoFormatBuffer google-java-format
+		autocmd FileType python AutoFormatBuffer yapf
+		" Alternative: autocmd FileType python AutoFormatBuffer autopep8
+	augroup END
+	
+	augroup reload_vimrc
+        autocmd!
+        autocmd! BufWritePost $MYVIMRC,$MYGVIMRC nested source %
+    augroup END
+	
+	au VimEnter,BufRead,BufNewFile *.jl set filetype=julia
+	au VimEnter,BufRead,BufNewFile *.idr set filetype=idris
+	au VimEnter,BufRead,BufNewFile *.lidr set filetype=lidris
+	autocmd FileType tex,text,markdown,mail setlocal spell
+	autocmd FileType gitcommit set colorcolumn=73
+	autocmd FileType gitcommit set textwidth=72
+	
+	au BufWritePre * :set binary | set noeol
+	au BufWritePost * :set nobinary | set eol
+	
+	augroup collumnLimit
+		autocmd!
+		autocmd BufEnter,WinEnter,FileType scala,java
+			\ highlight CollumnLimit ctermbg=DarkGrey guibg=DarkGrey
+		let collumnLimit = 79 " feel free to customize
+		let pattern =
+			\ '\%<' . (collumnLimit+1) . 'v.\%>' . collumnLimit . 'v'
+		autocmd BufEnter,WinEnter,FileType scala,java
+			\ let w:m1=matchadd('CollumnLimit', pattern, -1)
+	augroup END
+	
+endif
+
+nnoremap g{ k{<Space>0
+vnoremap g{ k{<Space>0
+nnoremap g} j}<BS>0
+vnoremap g} j}<BS>0
+
+set termguicolors
+
+if has('clipboard')
+    if has('unnamedplus')  " When possible use + register for copy-paste
+        set clipboard=unnamed,unnamedplus,autoselect,exclude:cons\\\\|linux
+    else         " On mac and Windows, use * register for copy-paste
+        set clipboard=unnamed,autoselect,exclude:cons\\\\|linux
+    endif
+endif
+
+set scrolloff=3               " Minimal number of screen lines to keep above and below the cursor
+set sidescroll=3              " The minimal number of columns to scroll horizontally
+set sidescrolloff=5           " The minimal number of screen columns to keep to the left and to the right of the cursor
+set scrolljump=5              " How many lines to scroll at a time, make scrolling appears faster (i.e. when you move the cursor close to the vertical limits of display, how many more lines to reveal ?)
+
+set tabpagemax=15   " Maximum number of tab pages to be opened by the |-p| command line argument or the ":tab all" command. |tabpage|
+
+" Convenient command to see the difference between the current buffer and the
+" file it was loaded from, thus the changes you made.
+" Only define it when not defined already.
+" Revert with: ":delcommand DiffOrig".
+if !exists(":DiffOrig")
+  command DiffOrig vert new | set bt=nofile | r ++edit # | 0d_ | diffthis
+          \ | wincmd p | diffthis
+endif
+
+
+if has('langmap') && exists('+langremap')
+  " Prevent that the langmap option applies to characters that result from a
+  " mapping.  If set (default), this may break plugins (but it's backward
+  " compatible).
+  set nolangremap
+endif
+
+:autocmd BufWritePost * if &diff | diffupdate | endif
+au BufEnter,BufNew * if &diff | syntax off | else | syntax on | endif
+
+" " Fix the difficult-to-read default setting for diff text highlighting.  The
+" " bang (!) is required since we are overwriting the DiffText setting. The highlighting
+" " for "Todo" also looks nice (yellow) if you don't like the "MatchParen" colors.
+" highlight! link DiffText MatchParen
+" highlight! link DiffText Todo
+
+
+set diffopt=filler
+set diffopt+=iwhite
+set diffexpr=DiffW()
+function DiffW()
+  let opt = ""
+   if &diffopt =~ "icase"
+     let opt = opt . "-i "
+   endif
+   if &diffopt =~ "iwhite"
+     let opt = opt . "-w " " swapped vim's -b with -w
+   endif
+   silent execute "!diff -a --binary " . opt .
+     \ v:fname_in . " " . v:fname_new .  " > " . v:fname_out
+endfunction
+
+nmap du :wincmd w<cr>:normal u<cr>:wincmd w<cr>
+nnoremap Q <nop>
+
+vnoremap y myy`y
+vnoremap Y myY`y
+
+" set lazyredraw
+set shortmess=atI
+
+vnoremap < <gv
+set secure
+
+set title
+set titleold=
+
+set formatoptions+=j " Delete comment character when joining commented lines

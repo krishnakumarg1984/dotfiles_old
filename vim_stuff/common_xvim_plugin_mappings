@@ -1,0 +1,342 @@
+let g:airline_theme='base16'
+" let g:airline_theme='papercolor'
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#buffer_nr_show = 1
+let g:airline#extensions#clock#updatetime = 4000
+let g:airline_powerline_fonts = 1
+let g:Powerline_symbols='unicode'
+if !exists('g:airline_symbols')
+    let g:airline_symbols = {}
+endif
+let g:airline_symbols.space = "\ua0"
+let g:airline_skip_empty_sections = 1
+let g:bufferline_echo = 0
+
+
+" noremap <silent> <c-u> :call smooth_scroll#up(&scroll, 0, 2)<CR>
+" noremap <silent> <c-d> :call smooth_scroll#down(&scroll, 0, 2)<CR>
+" noremap <silent> <c-b> :call smooth_scroll#up(&scroll*2, 0, 4)<CR>
+" noremap <silent> <c-f> :call smooth_scroll#down(&scroll*2, 0, 4)<CR>
+
+"g:clever_f_ignore_case = 1
+
+let g:indent_guides_enable_on_vim_startup = 1
+let g:indent_guides_start_level=2
+let g:indent_guides_guide_size=1
+
+let g:indentLine_setColors = 0  "highlight conceal colour with colorscheme
+let g:indentLine_char = '┆'
+let g:indentLine_enabled = 1
+
+"----- incsearch.vim plugin ----------------------------
+" map /  <Plug>(incsearch-forward)
+" map ?  <Plug>(incsearch-backward)
+" map g/ <Plug>(incsearch-stay)
+" :h g:incsearch#auto_nohlsearch
+"Clear highlighted search
+" let g:incsearch#auto_nohlsearch = 1
+" map n  <Plug>(incsearch-nohl-n)
+" map N  <Plug>(incsearch-nohl-N)
+" map *  <Plug>(incsearch-nohl-*)
+" map #  <Plug>(incsearch-nohl-#)
+" map g* <Plug>(incsearch-nohl-g*)
+" map g# <Plug>(incsearch-nohl-g#)
+
+" function! s:config_fuzzyall(...) abort
+"   return extend(copy({
+"   \   'converters': [
+"   \     incsearch#config#fuzzy#converter(),
+"   \     incsearch#config#fuzzyspell#converter()
+"   \   ],
+"   \ }), get(a:, 1, {}))
+" endfunction
+
+" noremap <silent><expr> z/ incsearch#go(<SID>config_fuzzyall())
+" noremap <silent><expr> z? incsearch#go(<SID>config_fuzzyall({'command': '?'}))
+" noremap <silent><expr> zg? incsearch#go(<SID>config_fuzzyall({'is_stay': 1}))
+
+nnoremap <F2> :MundoToggle<CR>
+
+nnoremap <F3> :NERDTreeToggle<CR>
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif
+
+let g:ctrlp_user_command = 'find %s -type f'        " MacOSX/Linux
+let g:ctrlp_user_command = 'dir %s /-n /b /s /a-d'  " Windows
+
+nmap <F3> :TagbarToggle<CR>
+
+" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+" If you want :UltiSnipsEdit to split your window.
+let g:UltiSnipsEditSplit="vertical"
+" let g:UltiSnipsExpandTrigger="<C-j>"
+inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+
+if executable('ag')
+  let g:ackprg = 'ag --vimgrep'
+endif
+
+" highlight ExtraWhitespace ctermbg=Blue
+
+let g:rainbow_active = 1
+let g:rainbow_conf = {
+    \   'guifgs': ['royalblue3', 'darkorange3', 'seagreen3', 'firebrick'],
+    \   'ctermfgs': ['lightblue', 'lightyellow', 'lightcyan', 'lightmagenta'],
+    \   'operators': '_,_',
+    \   'parentheses': ['start=/(/ end=/)/ fold', 'start=/\[/ end=/\]/ fold', 'start=/{/ end=/}/ fold'],
+    \   'separately': {
+    \       '*': {},
+    \       'tex': {
+    \           'parentheses': ['start=/(/ end=/)/', 'start=/\[/ end=/\]/'],
+    \       },
+    \       'lisp': {
+    \           'guifgs': ['royalblue3', 'darkorange3', 'seagreen3', 'firebrick', 'darkorchid3'],
+    \       },
+    \       'vim': {
+    \           'parentheses': ['start=/(/ end=/)/', 'start=/\[/ end=/\]/', 'start=/{/ end=/}/ fold', 'start=/(/ end=/)/ containedin=vimFuncBody', 'start=/\[/ end=/\]/ containedin=vimFuncBody', 'start=/{/ end=/}/ fold containedin=vimFuncBody'],
+    \       },
+    \       'html': {
+    \           'parentheses': ['start=/\v\<((area|base|br|col|embed|hr|img|input|keygen|link|menuitem|meta|param|source|track|wbr)[ >])@!\z([-_:a-zA-Z0-9]+)(\s+[-_:a-zA-Z0-9]+(\=("[^"]*"|'."'".'[^'."'".']*'."'".'|[^ '."'".'"><=`]*))?)*\>/ end=#</\z1># fold'],
+    \       },
+    \       'css': 0,
+    \   }
+    \}
+
+let g:tq_online_backends_timeout = 0.6
+let g:tq_mthesaur_file="~/dotfiles/mthesaur.txt"	
+
+" augroup lexical
+"   autocmd!
+"   autocmd FileType markdown,mkd call lexical#init()
+"   autocmd FileType textile call lexical#init()
+"   autocmd FileType text call lexical#init({ 'spell': 0 })
+" augroup END
+
+" augroup pencil
+"   autocmd!
+"   autocmd FileType markdown,mkd call pencil#init()
+"   autocmd FileType text         call pencil#init()
+" augroup END
+
+" au FileType markdown,text,tex DittoOn  " Turn on Ditto's autocmds
+autocmd FileType matlab,python,bash,tex Limelight 0.8
+
+nmap <leader>di <Plug>ToggleDitto      " Turn it on and off
+
+nmap =d <Plug>DittoNext                " Jump to the next word
+nmap -d <Plug>DittoPrev                " Jump to the previous word
+nmap +d <Plug>DittoGood                " Ignore the word under the cursor
+nmap _d <Plug>DittoBad                 " Stop ignoring the word under the cursor
+nmap ]d <Plug>DittoMore                " Show the next matches
+nmap [d <Plug>DittoLess                " Show the previous matches
+
+
+
+nmap <Leader>l <Plug>(Limelight)
+xmap <Leader>l <Plug>(Limelight)
+
+autocmd! User GoyoEnter Limelight
+autocmd! User GoyoLeave Limelight!
+
+" augroup textobj_quote
+"   autocmd!
+"   autocmd FileType markdown call textobj#quote#init()
+"   autocmd FileType textile call textobj#quote#init()
+"   autocmd FileType text call textobj#quote#init({'educate': 1})
+"   " autocmd FileType text call textobj#quote#init({'educate': 0})
+" augroup END
+
+"" let g:textobj#quote#educate = 1       " 0=disable, 1=enable (def)
+"" let g:textobj#quote#matchit = 1       " 0=disable, 1=enable (def)
+
+augroup textobj_sentence
+  autocmd!
+  autocmd FileType markdown call textobj#sentence#init()
+  autocmd FileType textile call textobj#sentence#init()
+  autocmd FileType text call textobj#sentence#init()
+augroup END
+
+augroup litecorrect
+    autocmd!
+    autocmd FileType markdown,mkd call litecorrect#init()
+    autocmd FileType textile call litecorrect#init()
+    autocmd FileType text call litecorrect#init()
+augroup END
+
+" Trigger a highlight in the appropriate direction when pressing these keys:
+let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
+
+" nnoremap <silent> K :Vnman<CR>
+
+let g:vim_isort_map = ''
+
+au FilterWritePre * if &diff | let g:diminactive_use_colorcolumn = 0| let g:diminactive_use_syntax = 0| colorscheme apprentice | let g:diminactive_enable_focus=0 | set background=light | colorscheme PaperColor | set nocursorline | set foldenable |endif
+
+" search related docsets
+nnoremap <silent> <Leader>K :call Dasht([expand('<cword>'), expand('<cWORD>')])<Return>
+
+" search ALL the docsets
+nnoremap <silent> <Leader><Leader>K :call Dasht([expand('<cword>'), expand('<cWORD>')], '!')<Return>
+
+noremap <silent> <Leader><Leader> :Shortcuts<Return>
+noremap <silent> <Leader> :Shortcuts<Return>
+
+let g:DiffUnit="Word1"
+let g:DiffColors=4
+
+"# DirDiff settings
+"# Don't compare directories or filenames that match conditions like CVS,*.swp
+let g:DirDiffExcludes = "system,CVS,*.class,*.exe,.*.swp,GIT,.git"
+"# Ignore lines that Id:,Revision: etc.
+let g:DirDiffIgnore = "Id:,Revision:,Date:"
+"# Don't flag files as different based on whitespace
+let g:DirDiffAddArgs = "-w"
+let g:DirDiffWindowSize = 14
+
+let g:colorizer_auto_color = 1
+
+hi LanguageToolGrammarError  guisp=blue gui=undercurl guifg=NONE guibg=NONE ctermfg=white ctermbg=blue term=underline cterm=none
+hi LanguageToolSpellingError guisp=red  gui=undercurl guifg=NONE guibg=NONE ctermfg=white ctermbg=red  term=underline cterm=none
+
+nnoremap <C-p> :FuzzyOpen<CR>
+
+fun! FzfOmniFiles()
+    let is_git = system('git status')
+    if v:shell_error
+        :Files
+    else
+        :GitFiles
+    endif
+endfun
+
+let g:fzf_colors =
+            \ { 'fg':      ['fg', 'Normal'],
+            \ 'bg':      ['bg', 'Normal'],
+            \ 'hl':      ['fg', 'Comment'],
+            \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
+            \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
+            \ 'hl+':     ['fg', 'Statement'],
+            \ 'info':    ['fg', 'PreProc'],
+            \ 'prompt':  ['fg', 'Conditional'],
+            \ 'pointer': ['fg', 'Exception'],
+            \ 'marker':  ['fg', 'Keyword'],
+            \ 'spinner': ['fg', 'Label'],
+            \ 'header':  ['fg', 'Comment'] }
+
+let g:fzf_history_dir = '~/.local/share/fzf-history'
+
+let g:fzf_buffers_jump = 1
+
+let g:fzf_commits_log_options = '--graph --color=always --format="%C(auto)%h%d %s %C(black)%C(bold)%cr"'
+
+let g:fzf_tags_command = 'ctags -R'
+
+let g:fzf_commands_expect = 'alt-enter,ctrl-x'
+
+function! s:fzf_statusline()
+    " Override statusline as you like
+    highlight fzf1 ctermfg=161 ctermbg=251
+    highlight fzf2 ctermfg=23 ctermbg=251
+    highlight fzf3 ctermfg=237 ctermbg=251
+    setlocal statusline=%#fzf1#\ >\ %#fzf2#fz%#fzf3#f
+endfunction
+
+autocmd! User FzfStatusLine call <SID>fzf_statusline()
+
+" Command for git grep
+" - fzf#vim#grep(command, with_column, [options], [fullscreen])
+command! -bang -nargs=* GGrep
+            \ call fzf#vim#grep('git grep --line-number '.shellescape(<q-args>), 0, <bang>0)
+
+" Override Colors command. You can safely do this in your .vimrc as fzf.vim
+" will not override existing commands.
+command! -bang Colors
+            \ call fzf#vim#colors({'left': '15%', 'options': '--reverse --margin 30%,0'}, <bang>0)
+
+" Augmenting Ag command using fzf#vim#with_preview function
+"   * fzf#vim#with_preview([[options], preview window, [toggle keys...]])
+"     * For syntax-highlighting, Ruby and any of the following tools are required:
+"       - Highlight: http://www.andre-simon.de/doku/highlight/en/highlight.php
+"       - CodeRay: http://coderay.rubychan.de/
+"       - Rouge: https://github.com/jneen/rouge
+"
+"   :Ag  - Start fzf with hidden preview window that can be enabled with "?" key
+"   :Ag! - Start fzf in fullscreen and display the preview window above
+command! -bang -nargs=* Ag
+            \ call fzf#vim#ag(<q-args>,
+            \                 <bang>0 ? fzf#vim#with_preview('up:60%')
+            \                         : fzf#vim#with_preview('right:50%:hidden', '?'),
+            \                 <bang>0)
+
+" Similarly, we can apply it to fzf#vim#grep. To use ripgrep instead of ag:
+command! -bang -nargs=* Rg
+            \ call fzf#vim#grep(
+            \   'rg --column --line-number --no-heading --color=always '.shellescape(<q-args>), 1,
+            \   <bang>0 ? fzf#vim#with_preview('up:60%')
+            \           : fzf#vim#with_preview('right:50%:hidden', '?'),
+            \   <bang>0)
+
+" Likewise, Files command with preview window
+command! -bang -nargs=? -complete=dir Files
+            \ call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)
+			
+autocmd FileType javascript let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
+" close the preview window when you're not using it
+let g:SuperTabClosePreviewOnPopupClose = 1
+let g:SuperTabContextDefaultCompletionType = "<c-n>"
+let g:SuperTabDefaultCompletionType = "<c-n>"
+
+" vimcmdline mappings
+let cmdline_map_start          = "<LocalLeader>s"
+let cmdline_map_send           = "<Space>"
+let cmdline_map_source_fun     = "<LocalLeader>f"
+let cmdline_map_send_paragraph = "<LocalLeader>p"
+let cmdline_map_send_block     = "<LocalLeader>b"
+let cmdline_map_quit           = "<LocalLeader>q"
+
+" vimcmdline options
+let cmdline_vsplit             = 1      " Split the window vertically
+let cmdline_esc_term           = 1      " Remap <Esc> to :stopinsert in Neovim terminal
+let cmdline_in_buffer          = 1      " Start the interpreter in a Neovim buffer
+let cmdline_term_height        = 15     " Initial height of interpreter window or pane
+let cmdline_term_width         = 80     " Initial width of interpreter window or pane
+let cmdline_tmp_dir            = '/tmp' " Temporary directory to save files
+let cmdline_outhl              = 1      " Syntax highlight the output
+
+let cmdline_app           = {}
+let cmdline_app["python"] = "ptipython3"
+let cmdline_app["ruby"]   = "pry"
+let cmdline_app["sh"]     = "bash"
+
+let cmdline_follow_colorscheme = 1
+
+let g:vim_fakeclip_tmux_plus=1
+
+let g:diminactive_use_syntax = 1
+let g:diminactive_enable_focus = 1
+
+" Start interactive EasyAlign in visual mode (e.g. vipga)
+xmap ga <Plug>(EasyAlign)
+
+" Start interactive EasyAlign for a motion/text object (e.g. gaip)
+nmap ga <Plug>(EasyAlign)
+
+let g:highlightedyank_highlight_duration = 400
+
+" nmap <Leader>ff <Plug>(foldround-forward)
+" nmap <Leader>fb <Plug>(foldround-backward)
+
+let g:AutoPairsFlyMode = 1 "enables fly mode for auto-pairs
+
+" "Started In Diff-Mode set diffexpr (plugin not loaded yet)
+if &diff
+    let &diffexpr='EnhancedDiff#Diff("git diff", "--diff-algorithm=patience")'
+endif
+
+" assuming you want to use snipmate snippet engine
+let g:UltiSnipsSnippetDirectories=['C:\Users\krish\vimfiles\plugged\vim-snippets\UltiSnips']
+let g:UltiSnipsExpandTrigger = '<c-j>'

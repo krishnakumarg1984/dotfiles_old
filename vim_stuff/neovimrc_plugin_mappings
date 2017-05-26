@@ -1,0 +1,18 @@
+" let g:deoplete#omni#functions = {}
+" let g:deoplete#omni#functions.javascript = [
+"   \ 'tern#Complete',
+"   \ 'jspc#omni'
+" \]
+
+" Include macros like `\jhat` from MathJax and KaTeX.
+let g:deoplete#sources#latex#include_web_math = 1  " default 0
+"" Include a hodgepodge of miscellaneous commands and environments.
+let g:deoplete#sources#latex#include_misc = 1      " default 0
+" "
+let g:vifmUseCurrent=1
+let g:neotags_enabled=1
+let g:neotags#python#order = 'mfc'
+let g:neotags#sh#order = 'f'
+
+" Use deoplete.
+let g:deoplete#enable_at_startup = 1
