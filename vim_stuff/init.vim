@@ -51,6 +51,10 @@ call deoplete#custom#set('ultisnips', 'matchers', ['matcher_fuzzy'])
 let g:deoplete#sources = ['ultisnips', 'file', 'buffer']
 let g:deoplete#file#enable_buffer_path = 1
 let g:deoplete#enable_smart_case = 1
+
+" Set minimum syntax keyword length.
+let g:deoplete#sources#syntax#min_keyword_length = 2
+
 set completeopt=longest,menuone,preview
 inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 

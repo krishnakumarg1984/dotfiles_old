@@ -77,6 +77,9 @@ Plug 'dpelle/vim-LanguageTool',{'for':'tex'}
 Plug 'flazz/vim-colorschemes'
 Plug 'google/vim-searchindex'
 Plug 'honza/vim-snippets'
+Plug 'Shougo/neosnippet'
+Plug 'Shougo/neosnippet-snippets'
+" Plug 'SirVer/ultisnips'
 " Plug 'jalvesaq/vimcmdline' "Send lines to interpreter
 Plug 'jiangmiao/auto-pairs' "quick jump to closed pair using }.  <M-p> : Toggle Autopairs,  <M-e> : Fast Wrap, <M-n> : Jump to next closed pair,<M-b> : BackInsert
 Plug 'jlanzarotta/bufexplorer'
@@ -122,7 +125,6 @@ Plug 'romainl/vim-qf' "short for vim-quickfix—is a growing collection of setti
 " Plug 'romainl/vim-qlist' "make the results of include-search and definition-search easier to navigate and more persistent by using the quickfix list instead of the default list-like interface.
 " Plug 'Ron89/thesaurus_query.vim',{'for': ['tex','text']} "\cs
 Plug 'simnalamburt/vim-mundo'
-Plug 'SirVer/ultisnips'
 Plug 'sunaku/vim-dasht',{'for':['tex']}
 " Plug 'sunaku/vim-shortcut'
 Plug 'christoomey/vim-tmux-navigator'

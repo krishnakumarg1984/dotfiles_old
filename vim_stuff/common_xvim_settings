@@ -382,3 +382,7 @@ set titleold=
 
 set formatoptions+=j " Delete comment character when joining commented lines
 set fillchars=vert:\|,fold:+
+
+set relativenumber
+autocmd InsertEnter * :set norelativenumber
+autocmd InsertLeave * :set relativenumber 
