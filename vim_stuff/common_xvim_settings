@@ -222,6 +222,7 @@ if has("autocmd")
     autocmd FileType mail setlocal fo+=aw
 	autocmd FileType text setlocal textwidth=78
 	autocmd FileType tex setlocal textwidth=78
+    autocmd FileType tex setlocal keywordprg=texdoc
     autocmd FileType help setlocal number
 	" Syntax of the following languages is fussy over tabs Vs spaces
     autocmd FileType make setlocal ts=8 sts=8 sw=8 noexpandtab
@@ -247,7 +248,7 @@ if has("autocmd")
         \ set expandtab
         \ set autoindent
         \ set fileformat=unix
-		
+
 	" Put these in an autocmd group, so that you can revert them with:   " ":augroup vimStartup | au! | augroup END"
 	augroup vimStartup
     au!
@@ -259,7 +260,7 @@ if has("autocmd")
       \   exe "normal! g`\"" |
       \ endif
 	augroup END
-	
+
 	augroup autoformat_settings
 		autocmd FileType bzl AutoFormatBuffer buildifier
 		autocmd FileType c,cpp,proto,javascript AutoFormatBuffer clang-format
@@ -271,22 +272,22 @@ if has("autocmd")
 		autocmd FileType python AutoFormatBuffer yapf
 		" Alternative: autocmd FileType python AutoFormatBuffer autopep8
 	augroup END
-	
+
 	augroup reload_vimrc
         autocmd!
         autocmd! BufWritePost $MYVIMRC,$MYGVIMRC nested source %
     augroup END
-	
+
 	au VimEnter,BufRead,BufNewFile *.jl set filetype=julia
 	au VimEnter,BufRead,BufNewFile *.idr set filetype=idris
 	au VimEnter,BufRead,BufNewFile *.lidr set filetype=lidris
 	autocmd FileType tex,text,markdown,mail setlocal spell
 	autocmd FileType gitcommit set colorcolumn=73
 	autocmd FileType gitcommit set textwidth=72
-	
+
 	au BufWritePre * :set binary | set noeol
 	au BufWritePost * :set nobinary | set eol
-	
+
 	augroup collumnLimit
 		autocmd!
 		autocmd BufEnter,WinEnter,FileType scala,java
@@ -297,7 +298,7 @@ if has("autocmd")
 		autocmd BufEnter,WinEnter,FileType scala,java
 			\ let w:m1=matchadd('CollumnLimit', pattern, -1)
 	augroup END
-	
+
 endif
 
 nnoremap g{ k{<Space>0
@@ -380,3 +381,4 @@ set title
 set titleold=
 
 set formatoptions+=j " Delete comment character when joining commented lines
+set fillchars=vert:\|,fold:+

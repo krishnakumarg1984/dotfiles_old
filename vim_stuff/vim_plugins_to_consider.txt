@@ -1,4 +1,5 @@
 zeavim
+https://github.com/Konfekt/FastFold.
 investigate.vim
 vimdeck
 maxboisvert/vim-simple-complete

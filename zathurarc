@@ -15,6 +15,7 @@
 #set zoom-step 20
 #set window-title-basename true
 
+set synctex-editor-command 'nvim %{input}:%{line}'
 
 # copy selection to system clipboard
 set selection-clipboard clipboard
@@ -23,11 +24,11 @@ set selection-clipboard clipboard
 set incremental-search true
 
 # zoom
-map <C-i> zoom in
-map <C-o> zoom out
+# map <C-i> zoom in
+# map <C-o> zoom out
 
-unmap q
-map <C-q> quit
+# unmap q
+# map <C-q> quit
 
 #map [normal]     <F11> toggle_fullscreen
 #map [fullscreen] <F11> toggle_fullscreen

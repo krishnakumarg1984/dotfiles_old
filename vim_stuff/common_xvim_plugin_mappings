@@ -68,13 +68,20 @@ let g:ctrlp_user_command = 'dir %s /-n /b /s /a-d'  " Windows
 nmap <F3> :TagbarToggle<CR>
 
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<c-b>"
-let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+" let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsExpandTrigger="<C-j>"
+let g:UltiSnipsListSnippets = "<C-space>"
+let g:UltiSnipsJumpForwardTrigger="<C-b>"
+let g:UltiSnipsJumpBackwardTrigger="<C-z>"
 " If you want :UltiSnipsEdit to split your window.
 let g:UltiSnipsEditSplit="vertical"
 " let g:UltiSnipsExpandTrigger="<C-j>"
-inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+
+if has('win32')
+    let g:UltiSnipsSnippetDirectories=['C:\Users\krish\vimfiles\plugged\vim-snippets\UltiSnips']
+else
+    let g:UltiSnipsSnippetDirectories="~/.local/share/nvim/plugged/vim-snippets/UltiSnips/"
+endif
 
 if executable('ag')
   let g:ackprg = 'ag --vimgrep'
@@ -107,7 +114,7 @@ let g:rainbow_conf = {
     \}
 
 let g:tq_online_backends_timeout = 0.6
-let g:tq_mthesaur_file="~/dotfiles/mthesaur.txt"	
+let g:tq_mthesaur_file="~/dotfiles/mthesaur.txt"
 
 " augroup lexical
 "   autocmd!
@@ -177,10 +184,10 @@ let g:vim_isort_map = ''
 au FilterWritePre * if &diff | let g:diminactive_use_colorcolumn = 0| let g:diminactive_use_syntax = 0| colorscheme apprentice | let g:diminactive_enable_focus=0 | set background=light | colorscheme PaperColor | set nocursorline | set foldenable |endif
 
 " search related docsets
-nnoremap <silent> <Leader>K :call Dasht([expand('<cword>'), expand('<cWORD>')])<Return>
+nnoremap <silent> <Leader>k :call Dasht([expand('<cword>'), expand('<cWORD>')])<Return>
 
 " search ALL the docsets
-nnoremap <silent> <Leader><Leader>K :call Dasht([expand('<cword>'), expand('<cWORD>')], '!')<Return>
+nnoremap <silent> <Leader><Leader>k :call Dasht([expand('<cword>'), expand('<cWORD>')], '!')<Return>
 
 noremap <silent> <Leader><Leader> :Shortcuts<Return>
 noremap <silent> <Leader> :Shortcuts<Return>
@@ -213,6 +220,22 @@ fun! FzfOmniFiles()
     endif
 endfun
 
+" This is the default extra key bindings
+let g:fzf_action = {
+	\ 'ctrl-t': 'tab split',
+	\ 'ctrl-x': 'split',
+	\ 'ctrl-v': 'vsplit' }
+
+" Default fzf layout
+" - down / up / left / right
+let g:fzf_layout = { 'down': '~60%' }
+
+" In Neovim, you can set up fzf window using a Vim command
+let g:fzf_layout = { 'window': 'enew' }
+let g:fzf_layout = { 'window': '-tabnew' }
+let g:fzf_layout = { 'window': '10split enew' }
+
+
 let g:fzf_colors =
             \ { 'fg':      ['fg', 'Normal'],
             \ 'bg':      ['bg', 'Normal'],
@@ -236,6 +259,10 @@ let g:fzf_commits_log_options = '--graph --color=always --format="%C(auto)%h%d %
 let g:fzf_tags_command = 'ctags -R'
 
 let g:fzf_commands_expect = 'alt-enter,ctrl-x'
+
+let g:fzf_files_options =
+            \ '--preview "(~/dev/termpix/bin/termpix --width 50 --true-color {} || cat {}) 2> /dev/null "'
+
 
 function! s:fzf_statusline()
     " Override statusline as you like
@@ -268,7 +295,7 @@ command! -bang Colors
 "   :Ag! - Start fzf in fullscreen and display the preview window above
 command! -bang -nargs=* Ag
             \ call fzf#vim#ag(<q-args>,
-            \                 <bang>0 ? fzf#vim#with_preview('up:60%')
+            \                 <bang>0 ? fzf#vim#with_preview('down:60%')
             \                         : fzf#vim#with_preview('right:50%:hidden', '?'),
             \                 <bang>0)
 
@@ -276,14 +303,14 @@ command! -bang -nargs=* Ag
 command! -bang -nargs=* Rg
             \ call fzf#vim#grep(
             \   'rg --column --line-number --no-heading --color=always '.shellescape(<q-args>), 1,
-            \   <bang>0 ? fzf#vim#with_preview('up:60%')
+            \   <bang>0 ? fzf#vim#with_preview('down:60%')
             \           : fzf#vim#with_preview('right:50%:hidden', '?'),
             \   <bang>0)
 
 " Likewise, Files command with preview window
 command! -bang -nargs=? -complete=dir Files
             \ call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)
-			
+
 autocmd FileType javascript let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
 " close the preview window when you're not using it
 let g:SuperTabClosePreviewOnPopupClose = 1
@@ -337,6 +364,33 @@ if &diff
     let &diffexpr='EnhancedDiff#Diff("git diff", "--diff-algorithm=patience")'
 endif
 
-" assuming you want to use snipmate snippet engine
-let g:UltiSnipsSnippetDirectories=['C:\Users\krish\vimfiles\plugged\vim-snippets\UltiSnips']
-let g:UltiSnipsExpandTrigger = '<c-j>'
+let g:tex_flavor = 'latex'
+
+augroup latexSurround
+    autocmd!
+    autocmd FileType tex call s:latexSurround()
+augroup END
+
+function! s:latexSurround()
+    let b:surround_{char2nr("e")}
+    \ = "\\begin{\1environment: \1}\n\t\r\n\\end{\1\1}"
+    let b:surround_{char2nr("c")} = "\\\1command: \1{\r}"
+endfunction
+
+" let g:latex_view_general_viewer = 'zathura'
+let g:vimtex_view_method = "zathura"
+let g:vimtex_labels_enabled=1
+let g:vimtex_fold_enabled=1
+let g:vimtex_complete_close_braces=1
+" let g:vimtex_view_automatic=1
+" let g:vimtex_view_enabled=1
+let g:vimtex_quickfix_open_on_warning=1
+" let g:vimtex_quickfix_mode=1
+let g:vimtex_quickfix_method='pplatex'
+let g:vimtex_quickfix_fix_paths = 1
+
+augroup vimtex_config
+au!
+au User VimtexEventQuit     VimtexClean
+au User VimtexEventInitPost VimtexCompile
+augroup END
