@@ -120,7 +120,7 @@ Plug 'coderifous/textobj-word-column.vim'  " provides cic and vic mappings
 Plug 'reedes/vim-textobj-sentence',{'for': ['text']} " as, is, g), g(, ), (
 Plug 'reedes/vim-wordy',{'for': ['tex','text']}
 Plug 'rhysd/vim-grammarous',{'for':'tex'}
-"Plug 'romainl/vim-cool' "Vim-cool disables search highlighting when you are done searching and re-enables it when you search again.
+Plug 'romainl/vim-cool' "Vim-cool disables search highlighting when you are done searching and re-enables it when you search again.
 Plug 'romainl/vim-qf' "short for vim-quickfix—is a growing collection of settings, commands and mappings put together to make working with the location list/window and the quickfix list/window smoother.
 " Plug 'romainl/vim-qlist' "make the results of include-search and definition-search easier to navigate and more persistent by using the quickfix list instead of the default list-like interface.
 " Plug 'Ron89/thesaurus_query.vim',{'for': ['tex','text']} "\cs
@@ -132,7 +132,8 @@ Plug 'tmux-plugins/vim-tmux'
 Plug 'tmux-plugins/vim-tmux-focus-events'
 Plug 'tommcdo/vim-exchange'
 Plug 'tomtom/tcomment_vim',{'for':'matlab'} " supports matlab
-Plug 'tpope/vim-commentary',{'for':'tex'} "gcc, gc3j, gc}, gcip, gcu
+"Plug 'tpope/vim-commentary',{'for':['tex','dot']} "gcc, gc3j, gc}, gcip, gcu
+Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-repeat'
@@ -141,6 +142,7 @@ Plug 'tpope/vim-surround'
 " Plug 'tweekmonster/startuptime.vim'
 " Plug 'unblevable/quick-scope' " for f, F, t and T
 Plug 'vim-scripts/MatlabFilesEdition',{'for':'matlab'}
-Plug 'w0rp/ale',{ 'on': 'ALEEnable', 'for': ['ruby', 'sh','matlab','python','tex'] }
+Plug 'w0rp/ale',{ 'on': 'ALEEnable', 'for': ['dot', 'sh','matlab','python','tex'] }
 Plug 'wellle/targets.vim' "To change the text in the next pair of parentheses, use the cin) command,To delete the item in a comma separated list under the cursor, use da, last pair seems very useful, i(,i),ib,i{,i},i[,i],i<,i>,it, with count, same with 'a'. n and l options, quotes, even back-ticks
-Plug 'Yggdroot/indentLine', {'for': ['tex','python','matlab','octave']}
+Plug 'Yggdroot/indentLine', {'for': ['python','matlab','octave']}
+Plug 'wannesm/wmgraphviz.vim'

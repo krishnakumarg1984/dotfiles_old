@@ -423,3 +423,5 @@ if has('win32')
 else
     let g:neosnippet#snippets_directory='~/.local/share/nvim/plugged/vim-snippets/snippets'
 endif
+
+autocmd FileType dot setlocal commentstring=//\ %s

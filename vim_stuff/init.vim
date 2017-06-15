@@ -6,7 +6,7 @@ Plug 'nhooyr/neoman.vim'
 " Plug 'Shougo/neosnippet.vim'
 " Plug 'Shougo/neosnippet-snippets.vim'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'poppyschmo/deoplete-latex',{'for':'tex'}
+" Plug 'poppyschmo/deoplete-latex',{'for':'tex'}
 " Plug 'carlitux/deoplete-ternjs', { 'for': ['javascript', 'javascript.jsx'] }
 " Plug 'donRaphaco/neotex',{'for':'tex'}
 " Plug 'cloudhead/neovim-fuzzy'
@@ -47,11 +47,11 @@ let g:deoplete#omni#input_patterns.tex = '\\(?:'
 	\ . '|\w*'
 	\ .')'
 
+let g:UltiSnipsSnippetDirectories = ["~/.local/share/nvim/plugged/vim-snippets/UltiSnips/", "~/.local/share/nvim/plugged/wmgraphviz.vim/snippets/"]
 call deoplete#custom#set('ultisnips', 'matchers', ['matcher_fuzzy'])
 let g:deoplete#sources = ['ultisnips', 'file', 'buffer']
 let g:deoplete#file#enable_buffer_path = 1
 let g:deoplete#enable_smart_case = 1
-
 " Set minimum syntax keyword length.
 let g:deoplete#sources#syntax#min_keyword_length = 2
 
@@ -63,3 +63,7 @@ inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 set guicursor=v:block-nCursor/lCursor-blinkon0,i-ci:ver25-Cursor/lCursor,r-cr:hor20-Cursor/lCursor,n-c:block-Cursor/nCursor-blinkwait300-blinkon200
 
 let g:plug_threads = 1
+
+" let g:WMGraphviz_dot2texoptions = '-tmath --preproc'
+let g:WMGraphviz_dot2texoptions = '-tmath --autosize --graphstyle=">=stealth"'
+" let g:WMGraphviz_dot2texoptions = '-tmath'
