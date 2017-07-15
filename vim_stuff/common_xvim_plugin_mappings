@@ -2,7 +2,7 @@ let g:airline_theme='base16'
 " let g:airline_theme='papercolor'
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#buffer_nr_show = 1
-let g:airline#extensions#clock#updatetime = 4000
+" let g:airline#extensions#clock#updatetime = 4000
 let g:airline_powerline_fonts = 1
 let g:Powerline_symbols='unicode'
 if !exists('g:airline_symbols')
@@ -20,13 +20,13 @@ let g:bufferline_echo = 0
 
 "g:clever_f_ignore_case = 1
 
-let g:indent_guides_enable_on_vim_startup = 1
-let g:indent_guides_start_level=2
-let g:indent_guides_guide_size=1
+" let g:indent_guides_enable_on_vim_startup = 1
+" let g:indent_guides_start_level=2
+" let g:indent_guides_guide_size=1
 
-let g:indentLine_setColors = 0  "highlight conceal colour with colorscheme
-let g:indentLine_char = '┆'
-let g:indentLine_enabled = 1
+" let g:indentLine_setColors = 0  "highlight conceal colour with colorscheme
+" let g:indentLine_char = '┆'
+" let g:indentLine_enabled = 1
 
 "----- incsearch.vim plugin ----------------------------
 " map /  <Plug>(incsearch-forward)
@@ -55,16 +55,16 @@ let g:indentLine_enabled = 1
 " noremap <silent><expr> z? incsearch#go(<SID>config_fuzzyall({'command': '?'}))
 " noremap <silent><expr> zg? incsearch#go(<SID>config_fuzzyall({'is_stay': 1}))
 
-nnoremap <F2> :MundoToggle<CR>
+" nnoremap <F2> :MundoToggle<CR>
+"
+" nnoremap <F3> :NERDTreeToggle<CR>
+" autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+" autocmd StdinReadPre * let s:std_in=1
+" autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif
 
-nnoremap <F3> :NERDTreeToggle<CR>
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif
-
-let g:ctrlp_user_command = 'find %s -type f'        " MacOSX/Linux
-let g:ctrlp_user_command = 'dir %s /-n /b /s /a-d'  " Windows
-
+" let g:ctrlp_user_command = 'find %s -type f'        " MacOSX/Linux
+" let g:ctrlp_user_command = 'dir %s /-n /b /s /a-d'  " Windows
+"
 nmap <F3> :TagbarToggle<CR>
 
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
@@ -84,37 +84,37 @@ else
 endif
 
 if executable('ag')
-  let g:ackprg = 'ag --vimgrep'
+    let g:ackprg = 'rg --vimgrep'
 endif
 
 " highlight ExtraWhitespace ctermbg=Blue
 
-let g:rainbow_active = 1
-let g:rainbow_conf = {
-    \   'guifgs': ['royalblue3', 'darkorange3', 'seagreen3', 'firebrick'],
-    \   'ctermfgs': ['lightblue', 'lightyellow', 'lightcyan', 'lightmagenta'],
-    \   'operators': '_,_',
-    \   'parentheses': ['start=/(/ end=/)/ fold', 'start=/\[/ end=/\]/ fold', 'start=/{/ end=/}/ fold'],
-    \   'separately': {
-    \       '*': {},
-    \       'tex': {
-    \           'parentheses': ['start=/(/ end=/)/', 'start=/\[/ end=/\]/'],
-    \       },
-    \       'lisp': {
-    \           'guifgs': ['royalblue3', 'darkorange3', 'seagreen3', 'firebrick', 'darkorchid3'],
-    \       },
-    \       'vim': {
-    \           'parentheses': ['start=/(/ end=/)/', 'start=/\[/ end=/\]/', 'start=/{/ end=/}/ fold', 'start=/(/ end=/)/ containedin=vimFuncBody', 'start=/\[/ end=/\]/ containedin=vimFuncBody', 'start=/{/ end=/}/ fold containedin=vimFuncBody'],
-    \       },
-    \       'html': {
-    \           'parentheses': ['start=/\v\<((area|base|br|col|embed|hr|img|input|keygen|link|menuitem|meta|param|source|track|wbr)[ >])@!\z([-_:a-zA-Z0-9]+)(\s+[-_:a-zA-Z0-9]+(\=("[^"]*"|'."'".'[^'."'".']*'."'".'|[^ '."'".'"><=`]*))?)*\>/ end=#</\z1># fold'],
-    \       },
-    \       'css': 0,
-    \   }
-    \}
+" let g:rainbow_active = 1
+" let g:rainbow_conf = {
+"     \   'guifgs': ['royalblue3', 'darkorange3', 'seagreen3', 'firebrick'],
+"     \   'ctermfgs': ['lightblue', 'lightyellow', 'lightcyan', 'lightmagenta'],
+"     \   'operators': '_,_',
+"     \   'parentheses': ['start=/(/ end=/)/ fold', 'start=/\[/ end=/\]/ fold', 'start=/{/ end=/}/ fold'],
+"     \   'separately': {
+"     \       '*': {},
+"     \       'tex': {
+"     \           'parentheses': ['start=/(/ end=/)/', 'start=/\[/ end=/\]/'],
+"     \       },
+"     \       'lisp': {
+"     \           'guifgs': ['royalblue3', 'darkorange3', 'seagreen3', 'firebrick', 'darkorchid3'],
+"     \       },
+"     \       'vim': {
+"     \           'parentheses': ['start=/(/ end=/)/', 'start=/\[/ end=/\]/', 'start=/{/ end=/}/ fold', 'start=/(/ end=/)/ containedin=vimFuncBody', 'start=/\[/ end=/\]/ containedin=vimFuncBody', 'start=/{/ end=/}/ fold containedin=vimFuncBody'],
+"     \       },
+"     \       'html': {
+"     \           'parentheses': ['start=/\v\<((area|base|br|col|embed|hr|img|input|keygen|link|menuitem|meta|param|source|track|wbr)[ >])@!\z([-_:a-zA-Z0-9]+)(\s+[-_:a-zA-Z0-9]+(\=("[^"]*"|'."'".'[^'."'".']*'."'".'|[^ '."'".'"><=`]*))?)*\>/ end=#</\z1># fold'],
+"     \       },
+"     \       'css': 0,
+"     \   }
+"     \}
 
-let g:tq_online_backends_timeout = 0.6
-let g:tq_mthesaur_file="~/dotfiles/mthesaur.txt"
+" "let g:tq_online_backends_timeout = 0.6
+" "let g:tq_mthesaur_file="~/dotfiles/mthesaur.txt"
 
 " augroup lexical
 "   autocmd!
@@ -130,24 +130,22 @@ let g:tq_mthesaur_file="~/dotfiles/mthesaur.txt"
 " augroup END
 
 " au FileType markdown,text,tex DittoOn  " Turn on Ditto's autocmds
-autocmd FileType matlab,python,bash,tex Limelight 0.8
+" autocmd FileType matlab,python,bash,tex Limelight 0.8
 
-nmap <leader>di <Plug>ToggleDitto      " Turn it on and off
+" nmap <leader>di <Plug>ToggleDitto      " Turn it on and off
 
-nmap =d <Plug>DittoNext                " Jump to the next word
-nmap -d <Plug>DittoPrev                " Jump to the previous word
-nmap +d <Plug>DittoGood                " Ignore the word under the cursor
-nmap _d <Plug>DittoBad                 " Stop ignoring the word under the cursor
-nmap ]d <Plug>DittoMore                " Show the next matches
-nmap [d <Plug>DittoLess                " Show the previous matches
+" nmap =d <Plug>DittoNext                " Jump to the next word
+" nmap -d <Plug>DittoPrev                " Jump to the previous word
+" nmap +d <Plug>DittoGood                " Ignore the word under the cursor
+" nmap _d <Plug>DittoBad                 " Stop ignoring the word under the cursor
+" nmap ]d <Plug>DittoMore                " Show the next matches
+" nmap [d <Plug>DittoLess                " Show the previous matches
 
+" nmap <Leader>l <Plug>(Limelight)
+" xmap <Leader>l <Plug>(Limelight)
 
-
-nmap <Leader>l <Plug>(Limelight)
-xmap <Leader>l <Plug>(Limelight)
-
-autocmd! User GoyoEnter Limelight
-autocmd! User GoyoLeave Limelight!
+" autocmd! User GoyoEnter Limelight
+" autocmd! User GoyoLeave Limelight!
 
 " augroup textobj_quote
 "   autocmd!
@@ -160,19 +158,19 @@ autocmd! User GoyoLeave Limelight!
 "" let g:textobj#quote#educate = 1       " 0=disable, 1=enable (def)
 "" let g:textobj#quote#matchit = 1       " 0=disable, 1=enable (def)
 
-augroup textobj_sentence
-  autocmd!
-  autocmd FileType markdown call textobj#sentence#init()
-  autocmd FileType textile call textobj#sentence#init()
-  autocmd FileType text call textobj#sentence#init()
-augroup END
+" augroup textobj_sentence
+"   autocmd!
+"   autocmd FileType markdown call textobj#sentence#init()
+"   autocmd FileType textile call textobj#sentence#init()
+"   autocmd FileType text call textobj#sentence#init()
+" augroup END
 
-augroup litecorrect
-    autocmd!
-    autocmd FileType markdown,mkd call litecorrect#init()
-    autocmd FileType textile call litecorrect#init()
-    autocmd FileType text call litecorrect#init()
-augroup END
+" augroup litecorrect
+"     autocmd!
+"     autocmd FileType markdown,mkd call litecorrect#init()
+"     autocmd FileType textile call litecorrect#init()
+"     autocmd FileType text call litecorrect#init()
+" augroup END
 
 " Trigger a highlight in the appropriate direction when pressing these keys:
 let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
@@ -181,7 +179,7 @@ let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
 
 let g:vim_isort_map = ''
 
-au FilterWritePre * if &diff | let g:diminactive_use_colorcolumn = 0| let g:diminactive_use_syntax = 0| colorscheme apprentice | let g:diminactive_enable_focus=0 | set background=light | colorscheme PaperColor | set nocursorline | set foldenable |endif
+" au FilterWritePre * if &diff | let g:diminactive_use_colorcolumn = 0| let g:diminactive_use_syntax = 0| colorscheme apprentice | let g:diminactive_enable_focus=0 | set background=light | colorscheme PaperColor | set nocursorline | set foldenable |endif
 
 " search related docsets
 nnoremap <silent> <Leader>k :call Dasht([expand('<cword>'), expand('<cWORD>')])<Return>
@@ -209,7 +207,7 @@ let g:colorizer_auto_color = 1
 hi LanguageToolGrammarError  guisp=blue gui=undercurl guifg=NONE guibg=NONE ctermfg=white ctermbg=blue term=underline cterm=none
 hi LanguageToolSpellingError guisp=red  gui=undercurl guifg=NONE guibg=NONE ctermfg=white ctermbg=red  term=underline cterm=none
 
-nnoremap <C-p> :FuzzyOpen<CR>
+" nnoremap <C-p> :FuzzyOpen<CR>
 
 fun! FzfOmniFiles()
     let is_git = system('git status')
@@ -222,9 +220,9 @@ endfun
 
 " This is the default extra key bindings
 let g:fzf_action = {
-	\ 'ctrl-t': 'tab split',
-	\ 'ctrl-x': 'split',
-	\ 'ctrl-v': 'vsplit' }
+            \ 'ctrl-t': 'tab split',
+            \ 'ctrl-x': 'split',
+            \ 'ctrl-v': 'vsplit' }
 
 " Default fzf layout
 " - down / up / left / right
@@ -313,92 +311,104 @@ command! -bang -nargs=? -complete=dir Files
 
 autocmd FileType javascript let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
 " close the preview window when you're not using it
-let g:SuperTabClosePreviewOnPopupClose = 1
-let g:SuperTabContextDefaultCompletionType = "<c-n>"
-let g:SuperTabDefaultCompletionType = "<c-n>"
+" let g:SuperTabClosePreviewOnPopupClose = 1
+" let g:SuperTabContextDefaultCompletionType = "<c-n>"
+" let g:SuperTabDefaultCompletionType = "<c-n>"
 
 " vimcmdline mappings
-let cmdline_map_start          = "<LocalLeader>s"
-let cmdline_map_send           = "<Space>"
-let cmdline_map_source_fun     = "<LocalLeader>f"
-let cmdline_map_send_paragraph = "<LocalLeader>p"
-let cmdline_map_send_block     = "<LocalLeader>b"
-let cmdline_map_quit           = "<LocalLeader>q"
+" let cmdline_map_start          = "<LocalLeader>s"
+" let cmdline_map_send           = "<Space>"
+" let cmdline_map_source_fun     = "<LocalLeader>f"
+" let cmdline_map_send_paragraph = "<LocalLeader>p"
+" let cmdline_map_send_block     = "<LocalLeader>b"
+" let cmdline_map_quit           = "<LocalLeader>q"
 
 " vimcmdline options
-let cmdline_vsplit             = 1      " Split the window vertically
-let cmdline_esc_term           = 1      " Remap <Esc> to :stopinsert in Neovim terminal
-let cmdline_in_buffer          = 1      " Start the interpreter in a Neovim buffer
-let cmdline_term_height        = 15     " Initial height of interpreter window or pane
-let cmdline_term_width         = 80     " Initial width of interpreter window or pane
-let cmdline_tmp_dir            = '/tmp' " Temporary directory to save files
-let cmdline_outhl              = 1      " Syntax highlight the output
+" let cmdline_vsplit             = 1      " Split the window vertically
+" let cmdline_esc_term           = 1      " Remap <Esc> to :stopinsert in Neovim terminal
+" let cmdline_in_buffer          = 1      " Start the interpreter in a Neovim buffer
+" let cmdline_term_height        = 15     " Initial height of interpreter window or pane
+" let cmdline_term_width         = 80     " Initial width of interpreter window or pane
+" let cmdline_tmp_dir            = '/tmp' " Temporary directory to save files
+" let cmdline_outhl              = 1      " Syntax highlight the output
+" 
+" let cmdline_app           = {}
+" let cmdline_app["python"] = "ptipython3"
+" let cmdline_app["ruby"]   = "pry"
+" let cmdline_app["sh"]     = "bash"
+" 
+" let cmdline_follow_colorscheme = 1
 
-let cmdline_app           = {}
-let cmdline_app["python"] = "ptipython3"
-let cmdline_app["ruby"]   = "pry"
-let cmdline_app["sh"]     = "bash"
+" let g:vim_fakeclip_tmux_plus=1
 
-let cmdline_follow_colorscheme = 1
-
-let g:vim_fakeclip_tmux_plus=1
-
-let g:diminactive_use_syntax = 1
+" let g:diminactive_use_syntax = 1
 let g:diminactive_enable_focus = 1
 
 " Start interactive EasyAlign in visual mode (e.g. vipga)
-xmap ga <Plug>(EasyAlign)
+" xmap ga <Plug>(EasyAlign)
 
 " Start interactive EasyAlign for a motion/text object (e.g. gaip)
-nmap ga <Plug>(EasyAlign)
+" nmap ga <Plug>(EasyAlign)
 
 let g:highlightedyank_highlight_duration = 400
 
 " nmap <Leader>ff <Plug>(foldround-forward)
 " nmap <Leader>fb <Plug>(foldround-backward)
 
-let g:AutoPairsFlyMode = 1 "enables fly mode for auto-pairs
+" let g:AutoPairsFlyMode = 1 "enables fly mode for auto-pairs
 
 " "Started In Diff-Mode set diffexpr (plugin not loaded yet)
 if &diff
     let &diffexpr='EnhancedDiff#Diff("git diff", "--diff-algorithm=patience")'
 endif
 
+" augroup latexSurround
+"     autocmd!
+"     autocmd FileType tex call s:latexSurround()
+" augroup END
+
+" function! s:latexSurround()
+"     let b:surround_{char2nr("e")}
+"     \ = "\\begin{\1environment: \1}\n\t\r\n\\end{\1\1}"
+"     let b:surround_{char2nr("c")} = "\\\1command: \1{\r}"
+" endfunction
+
+"   let g:latex_view_general_viewer = 'zathura'
+"let g:vimtex_view_method = "zathura"
+"let g:vimtex_labels_enabled=1
+"let g:vimtex_complete_close_braces=1
+"let g:vimtex_view_enabled=1
+""" let g:vimtex_quickfix_open_on_warning=1
+""" let g:vimtex_quickfix_fix_paths = 1
+"" let g:vimtex_latexmk_options = '-pdf -shell-escape -verbose -file-line-error -synctex=1 -interaction=nonstopmode'
+""let g:vimtex_latexmk_options = '-pdf -shell-escape -verbose -bibtex -file-line-error -synctex=1 --interaction=nonstopmode'
+
 let g:tex_flavor = 'latex'
-
-augroup latexSurround
-    autocmd!
-    autocmd FileType tex call s:latexSurround()
-augroup END
-
-function! s:latexSurround()
-    let b:surround_{char2nr("e")}
-    \ = "\\begin{\1environment: \1}\n\t\r\n\\end{\1\1}"
-    let b:surround_{char2nr("c")} = "\\\1command: \1{\r}"
-endfunction
-
-" let g:latex_view_general_viewer = 'zathura'
-let g:vimtex_view_method = "zathura"
-let g:vimtex_labels_enabled=1
-let g:vimtex_fold_enabled=1
-let g:vimtex_complete_close_braces=1
-" let g:vimtex_view_automatic=1
-" let g:vimtex_view_enabled=1
-let g:vimtex_quickfix_open_on_warning=1
-" let g:vimtex_quickfix_mode=1
 let g:vimtex_quickfix_method='pplatex'
-let g:vimtex_quickfix_fix_paths = 1
+let g:vimtex_fold_enabled=1
+let g:vimtex_quickfix_mode=2
+let g:vimtex_view_automatic=0
+
+if has('win32')
+    let g:vimtex_view_general_viewer = 'SumatraPDF'
+    let g:vimtex_view_general_options
+                \ = '-reuse-instance -forward-search @tex @line @pdf'
+    let g:vimtex_view_general_options_latexmk = '-reuse-instance'
+else
+    let g:vimtex_view_method = 'zathura'
+    let g:vimtex_view_use_temp_files = 1
+endif
 
 augroup vimtex_config
-au!
-au User VimtexEventQuit     VimtexClean
-au User VimtexEventInitPost VimtexCompile
+    au!
+    au User VimtexEventQuit     VimtexClean
+    au User VimtexEventInitPost VimtexCompile
 augroup END
 
 
 let g:ale_linters = {
-    \   'latex': ['chktex','proselint','lacheck'],
-    \}
+            \   'latex': ['chktex','proselint'],
+            \}
 
 " Plugin key-mappings.
 " Note: It must be "imap" and "smap".  It uses <Plug> mappings.
@@ -407,11 +417,11 @@ smap <C-space>     <Plug>(neosnippet_expand_or_jump)
 xmap <C-space>     <Plug>(neosnippet_expand_target)
 
 smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-\ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+            \ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
 
 " For conceal markers.
 if has('conceal')
-      set conceallevel=2 concealcursor=niv
+    set conceallevel=2 concealcursor=niv
 endif
 
 " Enable snipMate compatibility feature.
@@ -423,5 +433,3 @@ if has('win32')
 else
     let g:neosnippet#snippets_directory='~/.local/share/nvim/plugged/vim-snippets/snippets'
 endif
-
-autocmd FileType dot setlocal commentstring=//\ %s
