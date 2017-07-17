@@ -331,12 +331,12 @@ autocmd FileType javascript let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
 " let cmdline_term_width         = 80     " Initial width of interpreter window or pane
 " let cmdline_tmp_dir            = '/tmp' " Temporary directory to save files
 " let cmdline_outhl              = 1      " Syntax highlight the output
-" 
+"
 " let cmdline_app           = {}
 " let cmdline_app["python"] = "ptipython3"
 " let cmdline_app["ruby"]   = "pry"
 " let cmdline_app["sh"]     = "bash"
-" 
+"
 " let cmdline_follow_colorscheme = 1
 
 " let g:vim_fakeclip_tmux_plus=1
@@ -379,7 +379,6 @@ endif
 "let g:vimtex_complete_close_braces=1
 "let g:vimtex_view_enabled=1
 """ let g:vimtex_quickfix_open_on_warning=1
-""" let g:vimtex_quickfix_fix_paths = 1
 "" let g:vimtex_latexmk_options = '-pdf -shell-escape -verbose -file-line-error -synctex=1 -interaction=nonstopmode'
 ""let g:vimtex_latexmk_options = '-pdf -shell-escape -verbose -bibtex -file-line-error -synctex=1 --interaction=nonstopmode'
 
@@ -387,7 +386,10 @@ let g:tex_flavor = 'latex'
 let g:vimtex_quickfix_method='pplatex'
 let g:vimtex_fold_enabled=1
 let g:vimtex_quickfix_mode=2
+let g:vimtex_quickfix_open_on_warning=0
 let g:vimtex_view_automatic=0
+let g:vimtex_quickfix_fix_paths = 1
+let g:vimtex_index_split_width = 50
 
 if has('win32')
     let g:vimtex_view_general_viewer = 'SumatraPDF'
@@ -396,7 +398,7 @@ if has('win32')
     let g:vimtex_view_general_options_latexmk = '-reuse-instance'
 else
     let g:vimtex_view_method = 'zathura'
-    let g:vimtex_view_use_temp_files = 1
+    " let g:vimtex_view_use_temp_files = 1
 endif
 
 augroup vimtex_config
@@ -433,3 +435,9 @@ if has('win32')
 else
     let g:neosnippet#snippets_directory='~/.local/share/nvim/plugged/vim-snippets/snippets'
 endif
+
+let g:tex_fold_enabled=1
+let g:vimsyn_folding='af'
+let g:xml_syntax_folding = 1
+let g:php_folding = 1
+let g:perl_fold = 1

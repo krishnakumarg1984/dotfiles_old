@@ -92,11 +92,11 @@ set expandtab   " Expand tab to space
 
 set shiftround  " Round indent by shiftwidth
 
-set foldmethod=indent   " Fold by indent
+" set foldmethod=indent   " Fold by indent
 set foldlevel=1         " Starting fold level
 set foldnestmax=20      " Deepest fold is 20 levels
-set foldlevelstart=99   " Open all folds by default
-set nofoldenable        " Disable fold by default
+" set foldlevelstart=99   " Open all folds by default
+" set nofoldenable        " Disable fold by default
 
 " Turn off swapfile and backup
 set noswapfile
@@ -382,8 +382,8 @@ set title
 set titleold=
 
 set formatoptions+=j " Delete comment character when joining commented lines
-" set fillchars=vert:\|,fold:+
-set fillchars=vert:\|,fold:\
+" set fillchars=vert:\|,fold:+ */
+" set fillchars=fold:+
 
 " if has("autocmd")
 "     " Treat '=' as a keyword char in latex files

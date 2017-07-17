@@ -75,7 +75,7 @@ Plug 'airblade/vim-gitgutter'
 " Plug 'critiqjo/husk-x.vim' " for command line mode (readline bindings)
 " Plug 'jonhiggs/vim-readline'
 
-" Plug 'jlanzarotta/bufexplorer'
+Plug 'jlanzarotta/bufexplorer'
 Plug 'junegunn/fzf' ", { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'jiangmiao/auto-pairs' "quick jump to closed pair using }.  <M-p> : Toggle Autopairs,  <M-e> : Fast Wrap, <M-n> : Jump to next closed pair,<M-b> : BackInsert
@@ -92,6 +92,7 @@ Plug 'flazz/vim-colorschemes'
 " Plug 'SirVer/ultisnips'
 " Plug 'jalvesaq/vimcmdline' "Send lines to interpreter
 
+Plug 'wellle/targets.vim' "To change the text in the next pair of parentheses, use the cin) command,To delete the item in a comma separated list under the cursor, use da, last pair seems very useful, i(,i),ib,i{,i},i[,i],i<,i>,it, with count, same with 'a'. n and l options, quotes, even back-ticks
 Plug 'ntpeters/vim-better-whitespace' " :ToggleWhitespace, :StripWhitespace
 Plug 'machakann/vim-highlightedyank'
 Plug 'ludovicchabant/vim-gutentags' "Gutentags is a plugin that takes care of the much needed management of tags files in Vim. It will (re)generate tag files as you work while staying completely out of your way. It will even do its best to keep those tag files out of your way too. It has no dependencies and just works.
@@ -138,7 +139,8 @@ Plug 'sunaku/vim-dasht',{'for':['tex']}
 " Plug 'tmux-plugins/vim-tmux-focus-events'
 Plug 'tommcdo/vim-exchange'
 " Plug 'tomtom/tcomment_vim',{'for':'matlab'} " supports matlab
-Plug 'tpope/vim-commentary',{'for':['tex','dot']} "gcc, gc3j, gc}, gcip, gcu
+" Plug 'tpope/vim-commentary',{'for':['tex','dot']} "gcc, gc3j, gc}, gcip, gcu
+Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-repeat'
@@ -148,7 +150,6 @@ Plug 'tpope/vim-surround'
 Plug 'unblevable/quick-scope' " for f, F, t and T
 " Plug 'vim-scripts/MatlabFilesEdition',{'for':'matlab'}
 Plug 'w0rp/ale',{ 'on': 'ALEEnable', 'for': ['dot', 'sh','matlab','python','tex'] }
-" Plug 'wellle/targets.vim' "To change the text in the next pair of parentheses, use the cin) command,To delete the item in a comma separated list under the cursor, use da, last pair seems very useful, i(,i),ib,i{,i},i[,i],i<,i>,it, with count, same with 'a'. n and l options, quotes, even back-ticks
 " Plug 'Yggdroot/indentLine', {'for': ['python','matlab','octave']}
 " Plug 'wannesm/wmgraphviz.vim',{'for':['gv','dot']}
 " Plug 'dahu/bisectly'
@@ -160,3 +161,4 @@ Plug 'poppyschmo/vim-latexrefman',{'for':'tex'}
 " Plug 'jacoborus/tender.vim'
 " Plug 'jacoborus/tender.vim'
 Plug 'sonph/onehalf',{'rtp': 'vim/'}
+Plug 'Konfekt/FastFold'
