@@ -15,7 +15,6 @@ push @generated_exts, "nlg";
 push @generated_exts, "nlo";
 push @generated_exts, "nls";
 push @generated_exts, "nmo";
-push @generated_exts, "pdf";
 push @generated_exts, "run.xml";
 push @generated_exts, "snm";
 push @generated_exts, "spl";
