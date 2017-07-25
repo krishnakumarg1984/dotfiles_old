@@ -342,7 +342,7 @@ autocmd FileType javascript let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
 " let g:vim_fakeclip_tmux_plus=1
 
 " let g:diminactive_use_syntax = 1
-let g:diminactive_enable_focus = 1
+" let g:diminactive_enable_focus = 1
 
 " Start interactive EasyAlign in visual mode (e.g. vipga)
 " xmap ga <Plug>(EasyAlign)
@@ -373,23 +373,47 @@ endif
 "     let b:surround_{char2nr("c")} = "\\\1command: \1{\r}"
 " endfunction
 
-"   let g:latex_view_general_viewer = 'zathura'
-"let g:vimtex_view_method = "zathura"
-"let g:vimtex_labels_enabled=1
-"let g:vimtex_complete_close_braces=1
-"let g:vimtex_view_enabled=1
-""" let g:vimtex_quickfix_open_on_warning=1
-"" let g:vimtex_latexmk_options = '-pdf -shell-escape -verbose -file-line-error -synctex=1 -interaction=nonstopmode'
-""let g:vimtex_latexmk_options = '-pdf -shell-escape -verbose -bibtex -file-line-error -synctex=1 --interaction=nonstopmode'
-
 let g:tex_flavor = 'latex'
 let g:vimtex_quickfix_method='pplatex'
 let g:vimtex_fold_enabled=1
-let g:vimtex_quickfix_mode=2
+let g:vimtex_fold_levelmarker='+'
+let g:vimtex_fold_preamble=0
+" let g:vimtex_quickfix_mode=2
 let g:vimtex_quickfix_open_on_warning=0
+" let g:vimtex_quickfix_autojump=1
 let g:vimtex_view_automatic=0
 let g:vimtex_quickfix_fix_paths = 1
-let g:vimtex_index_split_width = 50
+let g:vimtex_index_split_width = 60
+let g:vimtex_labels_enabled=1
+" let g:vimtex_complete_close_braces=1
+let g:vimtex_toc_depth=2
+
+if has('nvim')
+    let g:vimtex_compiler_latexmk = {
+                \ 'backend' : 'nvim'
+                \}
+else
+    let g:vimtex_compiler_latexmk = {
+                \ 'backend' : 'jobs'
+                \}
+endif
+let g:vimtex_fold_sections = [
+            \ 'part',
+            \ 'chapter',
+            \ 'section',
+            \ ]
+
+if has('texdoc')
+    let g:vimtex_doc_handlers = ['MyHandler']
+    function! MyHandler(context)
+        call vimtex#doc#make_selection(a:context)
+        if !empty(a:context.selected)
+            execute '!texdoc' a:context.selected '&'
+        endif
+        return 1
+    endfunction
+endif
+
 
 if has('win32')
     let g:vimtex_view_general_viewer = 'SumatraPDF'
@@ -398,8 +422,11 @@ if has('win32')
     let g:vimtex_view_general_options_latexmk = '-reuse-instance'
 else
     let g:vimtex_view_method = 'zathura'
-    " let g:vimtex_view_use_temp_files = 1
+    let g:latex_view_general_viewer = 'zathura'
+    let g:vimtex_view_use_temp_files = 1
 endif
+
+let g:vimtex_view_forward_search_on_start=0
 
 augroup vimtex_config
     au!
@@ -407,6 +434,11 @@ augroup vimtex_config
     au User VimtexEventInitPost VimtexCompile
 augroup END
 
+augroup vimtex
+    autocmd!
+    autocmd BufWritePost *.tex call vimtex#labels#refresh()
+    " autocmd BufWritePost *.tex call vimtex#toc#refresh()
+augroup END
 
 let g:ale_linters = {
             \   'latex': ['chktex','proselint'],
@@ -441,3 +473,6 @@ let g:vimsyn_folding='af'
 let g:xml_syntax_folding = 1
 let g:php_folding = 1
 let g:perl_fold = 1
+
+let g:fastfold_savehook = 0
+let g:fastfold_fold_command_suffixes = ['x','X','a','A','o','O','c','C','r','R','m','M','i','n','N']

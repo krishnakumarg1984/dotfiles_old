@@ -97,3 +97,31 @@ https://asciinema.org/
 zeal
 isort
 tabbed
+
+**pdf**
+pdftotext with the -layout (or potentially -table on Windows) option can go a long way,
+gs to extract images.
+gs -dNOPAUSE -sDEVICE=bmp16m -sOutputFile=%d.bmp -r600 -q "file.pdf" -c quit
+inkscape
+scribus
+qoppa pdfstudio
+Libreoffice draw
+pdfsam
+youshen
+Foxit
+gscan2pdf
+flpsed - postscript and pdf annotator
+llpp
+pdfjam - links will be lost
+xournal - for pdf annotation
+pdfshuffler
+cups-pdf
+pdfunite
+multivalent document tools
+master pdf
+llpp
+xpdf
+gv
+epdfview
+mrwriter
+kataract

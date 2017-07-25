@@ -56,8 +56,8 @@ Plug 'vim-airline/vim-airline-themes'
 " Plug 'tyru/capture.vim' "capture ex-command outputs
 " Plug 'Valloric/YouCompleteMe'
 
-Plug 'blueyed/vim-diminactive'
 Plug 'airblade/vim-gitgutter'
+" Plug 'blueyed/vim-diminactive'
 " Plug 'AndrewRadev/splitjoin.vim'
 " Plug 'vim-pandoc/vim-pandoc'
 " Plug 'vim-pandoc/vim-pandoc-syntax'
@@ -132,7 +132,7 @@ Plug 'romainl/vim-qf' "short for vim-quickfix—is a growing collection of setti
 " Plug 'romainl/vim-qlist' "make the results of include-search and definition-search easier to navigate and more persistent by using the quickfix list instead of the default list-like interface.
 " Plug 'Ron89/thesaurus_query.vim',{'for': ['tex','text']} "\cs
 " Plug 'simnalamburt/vim-mundo'
-Plug 'sunaku/vim-dasht',{'for':['tex']}
+" Plug 'sunaku/vim-dasht',{'for':['tex']}
 " Plug 'sunaku/vim-shortcut'
 " Plug 'christoomey/vim-tmux-navigator'
 " Plug 'tmux-plugins/vim-tmux'
@@ -162,3 +162,11 @@ Plug 'poppyschmo/vim-latexrefman',{'for':'tex'}
 " Plug 'jacoborus/tender.vim'
 Plug 'sonph/onehalf',{'rtp': 'vim/'}
 Plug 'Konfekt/FastFold'
+
+Plug 'KabbAmine/zeavim.vim', {'on': [
+            \   'Zeavim', 'Docset',
+            \   '<Plug>Zeavim',
+            \   '<Plug>ZVVisSelection',
+            \   '<Plug>ZVKeyDocset',
+            \   '<Plug>ZVMotion'
+            \ ]}

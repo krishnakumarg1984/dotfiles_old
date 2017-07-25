@@ -37,8 +37,6 @@ colors() {
 
 source ~/.local/share/nvim/plugged/neoman.vim/scripts/nman.zsh
 
-export PATH="/home/kg314/.gem/ruby/2.4.0/bin:$PATH"
-
 # added by Anaconda2 4.3.1 installer
 export PATH="/home/kg314/anaconda2/bin:$PATH"
 
@@ -65,9 +63,8 @@ export MANPAGER="nvim -c 'set ft=neoman' -"
 export PATH="/usr/local/texlive/2012/bin/x86_64-linux:$PATH"
 export INFOPATH="/usr/local/texlive/2012/texmf-dist/doc/info:$INFOPATH"
 export MANPATH="/usr/local/texlive/2012/texmf-dist/doc/man:$MANPATH"
-export PATH="/opt/latexmk_install:$PATH"
+export PATH="/opt/latexmk_krishna:$PATH"
 
-vim='vim --servername vim'
 
 export TERM=xterm-color
 
@@ -86,4 +83,10 @@ fi
 #                eval $(dircolors -b $HOME/.dircolors)
 #        fi
 #fi
-export TEXINPUTS=":/run/media/kg314/RscrchDrive_NTFS/Krishna_Research_Folder/Krishna\ Imperial\ Research/P2D_models/LIONSIMBA_Variants/paper_draft_layer_opt/do_NOT_edit_rsc_template_downloaded_original/packages/:"
+# export TEXINPUTS=":/run/media/kg314/RscrchDrive_NTFS/Krishna_Research_Folder/Krishna\ Imperial\ Research/P2D_models/LIONSIMBA_Variants/paper_draft_layer_opt/do_NOT_edit_rsc_template_downloaded_original/packages/:"
+export TEXINPUTS=":/home/kg314/paper_draft_layer_opt/do_NOT_edit_rsc_template_downloaded_original/"
+
+alias vim=nvim
+export EDITOR=nvim
+vim='vim --servername vim'
+alias ll='ls -lahrtg'

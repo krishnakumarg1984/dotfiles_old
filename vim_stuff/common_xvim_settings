@@ -461,8 +461,13 @@ set formatoptions+=j " Delete comment character when joining commented lines
 "" Restore previous external compatibility options
 "let &cpo = s:save_cpo
 autocmd FileType dot setlocal commentstring=//\ %s
+" autocmd FileType tex setlocal textwidth=150
+autocmd BufReadPre *.tex setlocal textwidth=120
+
 set isfname-={,}
 
 if has('win32')
     set selection=inclusive
 endif
+
+map <C-S-O> :tabnew<CR>bwipeout<CR>:vs<CR>
