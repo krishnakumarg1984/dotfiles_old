@@ -3,20 +3,21 @@
 colorscheme gruvbox
 " colorscheme onehalfdark
 
-function! ToggleBG()
-    let s:tbg = &background
-    " Inversion
-    if s:tbg == "dark"
-        set background=light
-    else
-        set background=dark
-    endif
-endfunction
+" function! ToggleBG()
+"     let s:tbg = &background
+"     " Inversion
+"     if s:tbg == "dark"
+"         set background=light
+"     else
+"         set background=dark
+"     endif
+" endfunction
 
-noremap <leader>bg :call ToggleBG()<CR>
+" noremap <leader>bg :call ToggleBG()<CR>
 set background=dark
 
-set path+=**                     "Find will start working (under the current directory)
+" set path+=**                     "Find will start working (under the current directory)
+set path+=$PWD/**/*
 set suffixesadd=.py,.m,.mat,.gv,.tex      "Find will work harder for these filetypes
 
 " set noshowmatch                " when on a [{(, highlight the matching )}]
@@ -71,7 +72,8 @@ set termencoding=utf-8
 " set autowrite                       " Automatically write a file when leaving a modified buffer
 set autoread                        " Autoread when a file is changed from outside
 
-set viewoptions=cursor,folds,options,cursor,unix,slash " Better Unix / Windows compatibility
+" set viewoptions=cursor,folds,options,cursor,unix,slash " Better Unix / Windows compatibility
+set viewoptions=cursor,folds,slash,unix
 
 set fileformat=unix          " Default fileformat
 set fileformats=unix,dos,mac
@@ -93,10 +95,47 @@ set expandtab   " Expand tab to space
 set shiftround  " Round indent by shiftwidth
 
 " set foldmethod=indent   " Fold by indent
-set foldlevel=1         " Starting fold level
-set foldnestmax=20      " Deepest fold is 20 levels
+" set foldlevel=1         " Starting fold level
+" set foldnestmax=20      " Deepest fold is 20 levels
 " set foldlevelstart=99   " Open all folds by default
 " set nofoldenable        " Disable fold by default
+
+set foldmethod=syntax
+set foldenable
+set foldcolumn=4
+set foldnestmax=3
+set foldlevel=0
+set foldlevelstart=0
+" specifies for which commands a fold will be opened
+set foldopen=block,hor,insert,jump,mark,percent,quickfix,search,tag,undo
+
+" nnoremap <silent> zr zr:<c-u>setlocal foldlevel?<CR>
+" nnoremap <silent> zm zm:<c-u>setlocal foldlevel?<CR>
+
+" nnoremap <silent> zR zR:<c-u>setlocal foldlevel?<CR>
+" nnoremap <silent> zM zM:<c-u>setlocal foldlevel?<CR>
+
+" " Change Option Folds
+" nnoremap zi  :<c-u>call <SID>ToggleFoldcolumn(1)<CR>
+" nnoremap coz :<c-u>call <SID>ToggleFoldcolumn(0)<CR>
+" nmap     cof coz
+
+" function! s:ToggleFoldcolumn(fold)
+"   if &foldcolumn
+"     let w:foldcolumn = &foldcolumn
+"     silent setlocal foldcolumn=0
+"     if a:fold | silent setlocal nofoldenable | endif
+"   else
+"       if exists('w:foldcolumn') && (w:foldcolumn!=0)
+"         silent let &l:foldcolumn=w:foldcolumn
+"       else
+"         silent setlocal foldcolumn=4
+"       endif
+"       if a:fold | silent setlocal foldenable | endif
+"   endif
+"   setlocal foldcolumn?
+" endfunction
+
 
 " Turn off swapfile and backup
 set noswapfile
@@ -111,7 +150,7 @@ endif
 set listchars=tab:▸\ ,eol:¬
 
 " Shortcut to rapidly toggle set list
-nnoremap <leader>a :set list!<CR>
+" nnoremap <leader>a :set list!<CR>
 
 hi link HelpBar Normal
 hi link HelpStar Normal
@@ -225,7 +264,8 @@ if has("autocmd")
     " autocmd BufRead,BufNewFile *mutt-* setlocal fo+=aw
     " autocmd FileType mail setlocal fo+=aw
     autocmd FileType text setlocal textwidth=78
-    autocmd FileType tex setlocal textwidth=78
+    " autocmd FileType tex setlocal textwidth=78
+    au BufNewFile,BufRead *.tex set list
     " autocmd FileType tex setlocal keywordprg=texdoc
     autocmd FileType help setlocal number
     " Syntax of the following languages is fussy over tabs Vs spaces
@@ -367,7 +407,7 @@ set diffopt+=iwhite
 " endfunction
 
 nmap du :wincmd w<cr>:normal u<cr>:wincmd w<cr>
-nnoremap Q <nop>
+nnoremap Q :normal n.<CR>
 
 vnoremap y myy`y
 vnoremap Y myY`y
@@ -382,6 +422,7 @@ set title
 set titleold=
 
 set formatoptions+=j " Delete comment character when joining commented lines
+set formatoptions+=t " Delete comment character when joining commented lines
 " set fillchars=vert:\|,fold:+ */
 " set fillchars=fold:+
 
@@ -461,8 +502,15 @@ set formatoptions+=j " Delete comment character when joining commented lines
 "" Restore previous external compatibility options
 "let &cpo = s:save_cpo
 autocmd FileType dot setlocal commentstring=//\ %s
-" autocmd FileType tex setlocal textwidth=150
-autocmd BufReadPre *.tex setlocal textwidth=120
+autocmd FileType tex setlocal textwidth=130
+if executable("par")
+    autocmd FileType tex setlocal formatprg=par\ -w130rjeq
+    autocmd FileType text setlocal formatprg=par\ -w130req
+elseif executable("fmt")
+    autocmd FileType tex setlocal formatprg=fmt -w130
+    autocmd FileType text setlocal formatprg=fmt -w130
+endif
+" autocmd BufReadPre *.tex setlocal textwidth=130
 
 set isfname-={,}
 
@@ -471,3 +519,19 @@ if has('win32')
 endif
 
 map <C-S-O> :tabnew<CR>bwipeout<CR>:vs<CR>
+
+function! FormatprgLocal(filter)
+  if !empty(v:char)
+    return 1
+  else
+    let l:command = v:lnum.','.(v:lnum+v:count-1).'!'.a:filter
+    echo l:command
+    execute l:command
+  endif
+endfunction
+
+if has("autocmd")
+  let pandoc_pipeline  = "pandoc --from=html --to=markdown"
+  let pandoc_pipeline .= " | pandoc --from=markdown --to=html"
+  autocmd FileType html setlocal formatexpr=FormatprgLocal(pandoc_pipeline)
+endif

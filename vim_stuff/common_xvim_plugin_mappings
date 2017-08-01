@@ -165,12 +165,13 @@ endif
 "   autocmd FileType text call textobj#sentence#init()
 " augroup END
 
-" augroup litecorrect
-"     autocmd!
-"     autocmd FileType markdown,mkd call litecorrect#init()
-"     autocmd FileType textile call litecorrect#init()
-"     autocmd FileType text call litecorrect#init()
-" augroup END
+augroup litecorrect
+    autocmd!
+    autocmd FileType markdown,mkd call litecorrect#init()
+    autocmd FileType textile call litecorrect#init()
+    autocmd FileType text call litecorrect#init()
+    autocmd FileType tex call litecorrect#init()
+augroup END
 
 " Trigger a highlight in the appropriate direction when pressing these keys:
 let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
@@ -208,6 +209,14 @@ hi LanguageToolGrammarError  guisp=blue gui=undercurl guifg=NONE guibg=NONE cter
 hi LanguageToolSpellingError guisp=red  gui=undercurl guifg=NONE guibg=NONE ctermfg=white ctermbg=red  term=underline cterm=none
 
 " nnoremap <C-p> :FuzzyOpen<CR>
+
+
+" FZF:
+nnoremap <C-b> :Buffers<CR>
+" nnoremap <C-g>g :Ag<CR>
+nnoremap <C-g>c :Commands<CR>
+nnoremap <C-f>l :BLines<CR>
+nnoremap <C-p> :Files<CR>
 
 fun! FzfOmniFiles()
     let is_git = system('git status')
@@ -473,6 +482,12 @@ let g:vimsyn_folding='af'
 let g:xml_syntax_folding = 1
 let g:php_folding = 1
 let g:perl_fold = 1
+let g:clojure_fold = 1
+let ruby_fold = 1
+let perl_fold_blocks = 1
 
 let g:fastfold_savehook = 0
 let g:fastfold_fold_command_suffixes = ['x','X','a','A','o','O','c','C','r','R','m','M','i','n','N']
+
+" call EightHeader( 78, "left", 1, ".", "\\='|'.matchstr(s:str, ';\\@<=.*').'|'", "\\=matchstr(s:str, '.*;\\@=')" )
+let &foldtext = "EightHeaderFolds( '\\=s:fullwidth-2', 'left', [ repeat( '  ', v:foldlevel - 1 ), '.', '' ], '\\= s:foldlines . \" lines\"', '' )"

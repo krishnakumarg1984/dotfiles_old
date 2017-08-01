@@ -48,7 +48,7 @@ Plug 'vim-airline/vim-airline-themes'
 " Plug 'ternjs/tern_for_vim', { 'for': ['javascript', 'javascript.jsx'] }
 " Plug 'tomtom/ttags_vim'
 " Plug 'tpope/speeddating.vim'
-" Plug 'tpope/vim-abolish',{'for': ['text','tex']}
+Plug 'tpope/vim-abolish'  "crc, crm, crs (cr_), cru, cr-
 " Plug 'tpope/vim-characterize' "In Vim, pressing ga on a character reveals its representation in decimal, octal, and hex. Characterize.vim modernizes this with a few additions
 
 " Plug 'tpope/vim-obsession'
@@ -75,7 +75,7 @@ Plug 'airblade/vim-gitgutter'
 " Plug 'critiqjo/husk-x.vim' " for command line mode (readline bindings)
 " Plug 'jonhiggs/vim-readline'
 
-Plug 'jlanzarotta/bufexplorer'
+" Plug 'jlanzarotta/bufexplorer'
 Plug 'junegunn/fzf' ", { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'jiangmiao/auto-pairs' "quick jump to closed pair using }.  <M-p> : Toggle Autopairs,  <M-e> : Fast Wrap, <M-n> : Jump to next closed pair,<M-b> : BackInsert
@@ -118,7 +118,7 @@ Plug 'kshenoy/vim-signature' "place, toggle and display marks. Navigate forward/
 " Plug 'mtth/cursorcross.vim'
 " Plug 'osyo-manga/vim-over' "substitute preview
 " Plug 'reedes/vim-lexical',{'for': ['tex','text']}
-" Plug 'reedes/vim-litecorrect',{'for': ['tex','text']}
+Plug 'reedes/vim-litecorrect',{'for': ['tex','text']}
 " Plug 'reedes/vim-pencil',{'for': ['tex','text']}
 " Plug 'kana/vim-textobj-user'
 " Plug 'coderifous/textobj-word-column.vim'  " provides cic and vic mappings
@@ -170,3 +170,11 @@ Plug 'KabbAmine/zeavim.vim', {'on': [
             \   '<Plug>ZVKeyDocset',
             \   '<Plug>ZVMotion'
             \ ]}
+
+Plug 'kopischke/vim-stay'
+" Plug 'Konfekt/FoldText'
+Plug 'bimlas/vim-eightheader'
+Plug 'tpope/vim-unimpaired'
+Plug 'vim-scripts/loremipsum'
+" Plug 'tkhren/vim-fake'
+Plug 'nelstrom/vim-visual-star-search'
