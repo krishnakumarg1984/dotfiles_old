@@ -40,21 +40,6 @@ if !exists('g:deoplete#omni#input_patterns')
     let g:deoplete#omni#input_patterns = {}
 endif
 
-<<<<<<< HEAD
-" let g:deoplete#omni#input_patterns.tex = '\\(?:'
-" 	\ .  '\w*cite\w*(?:\s*\[[^]]*\]){0,2}\s*{[^}]*'
-" 	\ . '|\w*ref(?:\s*\{[^}]*|range\s*\{[^,}]*(?:}{)?)'
-" 	\ . '|hyperref\s*\[[^]]*'
-" 	\ . '|includegraphics\*?(?:\s*\[[^]]*\]){0,2}\s*\{[^}]*'
-" 	\ . '|(?:include(?:only)?|input)\s*\{[^}]*'
-" 	\ . '|\w*(gls|Gls|GLS)(pl)?\w*(\s*\[[^]]*\]){0,2}\s*\{[^}]*'
-" 	\ . '|includepdf(\s*\[[^]]*\])?\s*\{[^}]*'
-" 	\ . '|includestandalone(\s*\[[^]]*\])?\s*\{[^}]*'
-" 	\ . '|usepackage(\s*\[[^]]*\])?\s*\{[^}]*'
-" 	\ . '|documentclass(\s*\[[^]]*\])?\s*\{[^}]*'
-" 	\ . '|\w*'
-" 	\ .')'
-=======
 let g:deoplete#omni#input_patterns.tex = '\\(?:'
             \ .  '\w*cite\w*(?:\s*\[[^]]*\]){0,2}\s*{[^}]*'
             \ . '|\w*ref(?:\s*\{[^}]*|range\s*\{[^,}]*(?:}{)?)'
@@ -68,7 +53,6 @@ let g:deoplete#omni#input_patterns.tex = '\\(?:'
             \ . '|documentclass(\s*\[[^]]*\])?\s*\{[^}]*'
             \ . '|\w*'
             \ .')'
->>>>>>> aa4a7a008f5b6ec2a06fb8bdaebf994f2a3dcefb
 
 let g:UltiSnipsSnippetDirectories = ["~/.local/share/nvim/plugged/vim-snippets/UltiSnips/", "~/.local/share/nvim/plugged/wmgraphviz.vim/snippets/"]
 call deoplete#custom#set('ultisnips', 'matchers', ['matcher_fuzzy'])
@@ -86,17 +70,9 @@ inoremap <expr><S-TAB>  pumvisible() ? "\<C-p>" : "\<S-TAB>"
 " hi Cursor guifg=black guibg=green gui=reverse
 set guicursor=v:block-nCursor/lCursor-blinkon0,i-ci:ver25-Cursor/lCursor,r-cr:hor20-Cursor/lCursor,n-c:block-Cursor/nCursor-blinkwait300-blinkon200
 
-<<<<<<< HEAD
-let g:plug_threads = 2
-=======
-" let g:plug_threads = 1
->>>>>>> aa4a7a008f5b6ec2a06fb8bdaebf994f2a3dcefb
-
 " let g:WMGraphviz_dot2texoptions = '-tmath --preproc'
 " let g:WMGraphviz_dot2texoptions = '-tmath --autosize --graphstyle=">=stealth"'
 let g:WMGraphviz_dot2texoptions = '-ftikz -tmath --tikzedgelabels --preproc --autosize --graphstyle=">=stealth"'
 " let g:WMGraphviz_dot2texoptions = '-tmath'
 "
-if has('nvim')
-    let g:vimtex_compiler_progname='nvr'
-endif
+let g:vimtex_compiler_progname='nvr'
