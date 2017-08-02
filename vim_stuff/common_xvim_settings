@@ -51,7 +51,7 @@ set timeout       " time out on mappings and keycodes (stronger of the two condi
 set ttimeoutlen=0 " A non-negative number here will make the delay to be timeoutlen
 
 " Show @@@ in the last line if it is truncated.
-set spelllang=en_gb,en_us
+set spelllang=en_gb
 syntax spell toplevel
 
 set visualbell               " Use visual bell instead of beeping
@@ -422,7 +422,9 @@ set title
 set titleold=
 
 set formatoptions+=j " Delete comment character when joining commented lines
-set formatoptions+=t " Delete comment character when joining commented lines
+set formatoptions+=t "
+set formatoptions+=a "
+set formatoptions+=n "
 " set fillchars=vert:\|,fold:+ */
 " set fillchars=fold:+
 
@@ -537,6 +539,8 @@ if has("autocmd")
 endif
 
 nnoremap <Space> za
-au FileType gitcommit 1 | startinsert
+" au FileType gitcommit 1 | startinsert
 
 nnoremap / /\v
+
+nmap <silent> <leader>s :set spell!<CR>
