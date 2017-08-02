@@ -1,25 +1,27 @@
-set keywordprg=:help
-set thesaurus+=~/dotfiles/mthesaur.txt
+" set keywordprg=:help
+" set thesaurus+=~/dotfiles/mthesaur.txt
 colorscheme gruvbox
+" colorscheme onehalfdark
 
-function! ToggleBG()
-    let s:tbg = &background
-    " Inversion
-    if s:tbg == "dark"
-        set background=light
-    else
-        set background=dark
-    endif
-endfunction
+" function! ToggleBG()
+"     let s:tbg = &background
+"     " Inversion
+"     if s:tbg == "dark"
+"         set background=light
+"     else
+"         set background=dark
+"     endif
+" endfunction
 
-noremap <leader>bg :call ToggleBG()<CR>
+" noremap <leader>bg :call ToggleBG()<CR>
 set background=dark
 
-set path+=**                     "Find will start working (under the current directory)
-set suffixesadd=.py,.m,.mat      "Find will work harder for these filetypes
+" set path+=**                     "Find will start working (under the current directory)
+set path+=$PWD/**/*
+set suffixesadd=.py,.m,.mat,.gv,.tex      "Find will work harder for these filetypes
 
-set noshowmatch                " when on a [{(, highlight the matching )}]
-set cpoptions-=m               " ? Highlight when CursorMoved
+" set noshowmatch                " when on a [{(, highlight the matching )}]
+" set cpoptions-=m               " ? Highlight when CursorMoved
 set matchpairs+=<:>            " Highlight <>
 set matchtime=1                " In 10ths of a second
 
@@ -27,7 +29,7 @@ if has('mouse') | set mouse=a | endif"+
 set mousehide
 
 set number
-" set relativenumber
+set relativenumber
 function! NumberToggle()
     if(&relativenumber == 1)
         set norelativenumber
@@ -36,6 +38,8 @@ function! NumberToggle()
     endif
 endfunc
 nnoremap <silent> <leader>n :call NumberToggle()<cr>
+autocmd InsertEnter * :set norelativenumber
+autocmd InsertLeave * :set relativenumber
 
 set cursorline " highlight current line
 
@@ -43,7 +47,7 @@ set cursorline " highlight current line
 set synmaxcol=300   "Boost performance in rendering long lines
 
 " Make ESC respond faster Lower the delay of escaping out of other modes " keycode times out fast, mapping times out in a bit more time
-set timeout 	  " time out on mappings and keycodes (stronger of the two conditions)
+set timeout       " time out on mappings and keycodes (stronger of the two conditions)
 set ttimeoutlen=0 " A non-negative number here will make the delay to be timeoutlen
 
 " Show @@@ in the last line if it is truncated.
@@ -58,17 +62,18 @@ set encoding=utf-8           " Default encoding for saving and reading file
 scriptencoding utfs8
 set termencoding=utf-8
 
-set iskeyword-=.                    " '.' is an end of word designator
-set iskeyword-=#                    " '#' is an end of word designator
-set iskeyword-=-                    " '-' is an end of word designator
-set iskeyword-=!                    " '!' is an end of word designator
-set iskeyword+=@-@
+" set iskeyword-=.                    " '.' is an end of word designator
+" set iskeyword-=#                    " '#' is an end of word designator
+" set iskeyword-=-                    " '-' is an end of word designator
+" set iskeyword-=!                    " '!' is an end of word designator
+" set iskeyword+=@-@
 
 " set autochdir
-set autowrite                       " Automatically write a file when leaving a modified buffer
+" set autowrite                       " Automatically write a file when leaving a modified buffer
 set autoread                        " Autoread when a file is changed from outside
 
-set viewoptions=cursor,folds,options,cursor,unix,slash " Better Unix / Windows compatibility
+" set viewoptions=cursor,folds,options,cursor,unix,slash " Better Unix / Windows compatibility
+set viewoptions=cursor,folds,slash,unix
 
 set fileformat=unix          " Default fileformat
 set fileformats=unix,dos,mac
@@ -89,11 +94,48 @@ set expandtab   " Expand tab to space
 
 set shiftround  " Round indent by shiftwidth
 
-set foldmethod=indent   " Fold by indent
-set foldlevel=1         " Starting fold level
-set foldnestmax=20      " Deepest fold is 20 levels
-set foldlevelstart=99   " Open all folds by default
-set nofoldenable        " Disable fold by default
+" set foldmethod=indent   " Fold by indent
+" set foldlevel=1         " Starting fold level
+" set foldnestmax=20      " Deepest fold is 20 levels
+" set foldlevelstart=99   " Open all folds by default
+" set nofoldenable        " Disable fold by default
+
+set foldmethod=syntax
+set foldenable
+set foldcolumn=4
+set foldnestmax=3
+set foldlevel=0
+set foldlevelstart=0
+" specifies for which commands a fold will be opened
+set foldopen=block,hor,insert,jump,mark,percent,quickfix,search,tag,undo
+
+" nnoremap <silent> zr zr:<c-u>setlocal foldlevel?<CR>
+" nnoremap <silent> zm zm:<c-u>setlocal foldlevel?<CR>
+
+" nnoremap <silent> zR zR:<c-u>setlocal foldlevel?<CR>
+" nnoremap <silent> zM zM:<c-u>setlocal foldlevel?<CR>
+
+" " Change Option Folds
+" nnoremap zi  :<c-u>call <SID>ToggleFoldcolumn(1)<CR>
+" nnoremap coz :<c-u>call <SID>ToggleFoldcolumn(0)<CR>
+" nmap     cof coz
+
+" function! s:ToggleFoldcolumn(fold)
+"   if &foldcolumn
+"     let w:foldcolumn = &foldcolumn
+"     silent setlocal foldcolumn=0
+"     if a:fold | silent setlocal nofoldenable | endif
+"   else
+"       if exists('w:foldcolumn') && (w:foldcolumn!=0)
+"         silent let &l:foldcolumn=w:foldcolumn
+"       else
+"         silent setlocal foldcolumn=4
+"       endif
+"       if a:fold | silent setlocal foldenable | endif
+"   endif
+"   setlocal foldcolumn?
+" endfunction
+
 
 " Turn off swapfile and backup
 set noswapfile
@@ -108,7 +150,7 @@ endif
 set listchars=tab:▸\ ,eol:¬
 
 " Shortcut to rapidly toggle set list
-nnoremap <leader>a :set list!<CR>
+" nnoremap <leader>a :set list!<CR>
 
 hi link HelpBar Normal
 hi link HelpStar Normal
@@ -155,9 +197,9 @@ highlight clear SignColumn      " SignColumn should match background,SignColumn 
 highlight Comment cterm=italic  " make comments in code to be italic
 
 if has('cmdline_info')
-	set ruler                   " Show the ruler
+    set ruler                   " Show the ruler
     set rulerformat=%30(%=\:b%n%y%m%r%w\ %l,%c%V\ %P%)
-	set showcmd
+    set showcmd
 endif
 
 if has('statusline')
@@ -177,7 +219,7 @@ set magic                       " Make regex a little easier to type
 set winminheight=0              " Windows can be 0 line high
 
 set report=0                    " Threshold for reporting number of lines changed.
-set updatecount=0 			    " After typing this many characters the swap file will be written to disk.  When zero, no swap file will be created at all (see chapter on recovery |crash-recovery|).  "
+set updatecount=0               " After typing this many characters the swap file will be written to disk.  When zero, no swap file will be created at all (see chapter on recovery |crash-recovery|).  "
 set updatetime=250              " milliseconds elapsed before which swap file will be written to disk (250 ms is recommende by gitgutter plugin)
 
 highlight ColorColumn ctermbg=magenta
@@ -190,6 +232,7 @@ set nojoinspaces
 nnoremap : ;
 nnoremap ; :
 nnoremap Y y$
+
 " Move across wrapped lines like regular lines
 noremap 0 ^
 " Go to the first non-blank character of a line
@@ -201,104 +244,102 @@ nnoremap <C-k> <C-w>k
 nnoremap <C-h> <C-w>h
 nnoremap <C-l> <C-w>l
 
-nnoremap <silent><Leader><C-]> <C-w><C-]><C-w>T  " open tags in new tab
+" nnoremap <silent><Leader><C-]> <C-w><C-]><C-w>T  " open tags in new tab
 
 inoremap <C-c> <Esc>
 
 set guioptions-=m
 set guioptions-=r
 set guioptions-=T
-set guicursor+=a:blinkon0
+"set guicursor+=a:blinkon0
 
 " CTRL-U in insert mode deletes a lot.  Use CTRL-G u to first break undo,
 " so that you can undo CTRL-U after inserting a line break.
 " Revert with ":iunmap <C-U>".
-inoremap <C-U> <C-G>u<C-U>
+" inoremap <C-U> <C-G>u<C-U>
 
 
 if has("autocmd")
-    autocmd BufRead,BufNewFile *mutt-* setfiletype mail
-    autocmd BufRead,BufNewFile *mutt-* setlocal fo+=aw
-    autocmd FileType mail setlocal fo+=aw
-	autocmd FileType text setlocal textwidth=78
-	autocmd FileType tex setlocal textwidth=78
-    autocmd FileType tex setlocal keywordprg=texdoc
+    " autocmd BufRead,BufNewFile *mutt-* setfiletype mail
+    " autocmd BufRead,BufNewFile *mutt-* setlocal fo+=aw
+    " autocmd FileType mail setlocal fo+=aw
+    autocmd FileType text setlocal textwidth=78
+    " autocmd FileType tex setlocal textwidth=78
+    au BufNewFile,BufRead *.tex set list
+    " autocmd FileType tex setlocal keywordprg=texdoc
     autocmd FileType help setlocal number
-	" Syntax of the following languages is fussy over tabs Vs spaces
-    autocmd FileType make setlocal ts=8 sts=8 sw=8 noexpandtab
-    autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
-    autocmd FileType c,cpp :set cindent
-    autocmd FileType markdown setlocal spell
+    " Syntax of the following languages is fussy over tabs Vs spaces
+    " autocmd FileType make setlocal ts=8 sts=8 sw=8 noexpandtab
+    " autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
+    " autocmd FileType c,cpp :set cindent
+    " autocmd FileType markdown setlocal spell
     autocmd FileType gitcommit setlocal spell
-	autocmd FileType python nnoremap <buffer> <F11> :exec '!clear;python' shellescape(@%, 1)<cr>  # execute python commands
+    " autocmd FileType python nnoremap <buffer> <F11> :exec '!clear;python' shellescape(@%, 1)<cr>  # execute python commands
     autocmd BufEnter * silent! normal! g`"
-    autocmd BufNewFile,BufRead *.rss setfiletype xml     " Treat .rss files as XML
-	autocmd BufNewFile,BufRead *.json setfiletype json syntax=javascript
+    " autocmd BufNewFile,BufRead *.rss setfiletype xml     " Treat .rss files as XML
+    " autocmd BufNewFile,BufRead *.json setfiletype json syntax=javascript
     autocmd VimResized * :wincmd =      " automatically rebalance windows on vim resize
     au BufNewFile,BufRead *.py "(PEP8 indentation)
     " au BufAddr highlighted search,BufNewFile * nested tab sball "To open each buffer in its own tabpage
     autocmd FileType c,cpp,java,php,text,python,matlab,tex autocmd BufWritePre <buffer> %s/\s\+$//e
     autocmd BufWritePre .*rc %s/\s\+$//e
     au BufNewFile,BufRead *.csv set nolist
-	au BufNewFile,BufRead *.py "(PEP8 indentation)
-        \ set tabstop=4
-        \ set softtabstop=4
-        \ set shiftwidth=4
-        \ set textwidth=79
-        \ set expandtab
-        \ set autoindent
-        \ set fileformat=unix
+    au BufNewFile,BufRead *.py "(PEP8 indentation)
+                \ set tabstop=4
+                \ set softtabstop=4
+                \ set shiftwidth=4
+                \ set textwidth=79
+                \ set expandtab
+                \ set autoindent
+                \ set fileformat=unix
 
-	" Put these in an autocmd group, so that you can revert them with:   " ":augroup vimStartup | au! | augroup END"
-	augroup vimStartup
-    au!
-    " When editing a file, always jump to the last known cursor position.
-    " Don't do it when the position is invalid or when inside an event handler
-    " (happens when dropping a file on gvim).
-    autocmd BufReadPost *
-      \ if line("'\"") >= 1 && line("'\"") <= line("$") |
-      \   exe "normal! g`\"" |
-      \ endif
-	augroup END
+    " Put these in an autocmd group, so that you can revert them with:   " ":augroup vimStartup | au! | augroup END"
+    augroup vimStartup
+        au!
+        " When editing a file, always jump to the last known cursor position.
+        " Don't do it when the position is invalid or when inside an event handler
+        " (happens when dropping a file on gvim).
+        autocmd BufReadPost *
+                    \ if line("'\"") >= 1 && line("'\"") <= line("$") |
+                    \   exe "normal! g`\"" |
+                    \ endif
+    augroup END
 
-	augroup autoformat_settings
-		autocmd FileType bzl AutoFormatBuffer buildifier
-		autocmd FileType c,cpp,proto,javascript AutoFormatBuffer clang-format
-		autocmd FileType dart AutoFormatBuffer dartfmt
-		autocmd FileType go AutoFormatBuffer gofmt
-		autocmd FileType gn AutoFormatBuffer gn
-		autocmd FileType html,css,json AutoFormatBuffer js-beautify
-		autocmd FileType java AutoFormatBuffer google-java-format
-		autocmd FileType python AutoFormatBuffer yapf
-		" Alternative: autocmd FileType python AutoFormatBuffer autopep8
-	augroup END
+    augroup autoformat_settings
+        " autocmd FileType bzl AutoFormatBuffer buildifier
+        " autocmd FileType c,cpp,proto,javascript AutoFormatBuffer clang-format
+        " autocmd FileType dart AutoFormatBuffer dartfmt
+        " autocmd FileType go AutoFormatBuffer gofmt
+        " autocmd FileType gn AutoFormatBuffer gn
+        " autocmd FileType html,css,json AutoFormatBuffer js-beautify
+        " autocmd FileType java AutoFormatBuffer google-java-format
+        " autocmd FileType python AutoFormatBuffer yapf
+        " Alternative: autocmd FileType python AutoFormatBuffer autopep8
+    augroup END
 
-	augroup reload_vimrc
+    augroup reload_vimrc
         autocmd!
         autocmd! BufWritePost $MYVIMRC,$MYGVIMRC nested source %
     augroup END
 
-	au VimEnter,BufRead,BufNewFile *.jl set filetype=julia
-	au VimEnter,BufRead,BufNewFile *.idr set filetype=idris
-	au VimEnter,BufRead,BufNewFile *.lidr set filetype=lidris
-	autocmd FileType tex,text,markdown,mail setlocal spell
-	autocmd FileType gitcommit set colorcolumn=73
-	autocmd FileType gitcommit set textwidth=72
+    " au VimEnter,BufRead,BufNewFile *.jl set filetype=julia
+    " au VimEnter,BufRead,BufNewFile *.idr set filetype=idris
+    " au VimEnter,BufRead,BufNewFile *.lidr set filetype=lidris
+    autocmd FileType tex,text,markdown,mail setlocal spell
 
-	au BufWritePre * :set binary | set noeol
-	au BufWritePost * :set nobinary | set eol
+    au BufWritePre * :set binary | set noeol
+    au BufWritePost * :set nobinary | set eol
 
-	augroup collumnLimit
-		autocmd!
-		autocmd BufEnter,WinEnter,FileType scala,java
-			\ highlight CollumnLimit ctermbg=DarkGrey guibg=DarkGrey
-		let collumnLimit = 79 " feel free to customize
-		let pattern =
-			\ '\%<' . (collumnLimit+1) . 'v.\%>' . collumnLimit . 'v'
-		autocmd BufEnter,WinEnter,FileType scala,java
-			\ let w:m1=matchadd('CollumnLimit', pattern, -1)
-	augroup END
-
+    augroup collumnLimit
+        autocmd!
+        autocmd BufEnter,WinEnter,FileType scala,java
+                    \ highlight CollumnLimit ctermbg=DarkGrey guibg=DarkGrey
+        let collumnLimit = 79 " feel free to customize
+        let pattern =
+                    \ '\%<' . (collumnLimit+1) . 'v.\%>' . collumnLimit . 'v'
+        autocmd BufEnter,WinEnter,FileType scala,java
+                    \ let w:m1=matchadd('CollumnLimit', pattern, -1)
+    augroup END
 endif
 
 nnoremap g{ k{<Space>0
@@ -316,28 +357,28 @@ if has('clipboard')
     endif
 endif
 
-set scrolloff=3               " Minimal number of screen lines to keep above and below the cursor
-set sidescroll=3              " The minimal number of columns to scroll horizontally
-set sidescrolloff=5           " The minimal number of screen columns to keep to the left and to the right of the cursor
-set scrolljump=5              " How many lines to scroll at a time, make scrolling appears faster (i.e. when you move the cursor close to the vertical limits of display, how many more lines to reveal ?)
+set scrolloff=3        " Minimal number of screen lines to keep above and below the cursor
+set sidescroll=3       " The minimal number of columns to scroll horizontally
+set sidescrolloff=5    " The minimal number of screen columns to keep to the left and to the right of the cursor
+set scrolljump=5       " How many lines to scroll at a time, make scrolling appears faster (i.e. when you move the cursor close to the vertical limits of display, how many more lines to reveal ?)
 
-set tabpagemax=15   " Maximum number of tab pages to be opened by the |-p| command line argument or the ":tab all" command. |tabpage|
+set tabpagemax=15      " Maximum number of tab pages to be opened by the |-p| command line argument or the ":tab all" command. |tabpage|
 
 " Convenient command to see the difference between the current buffer and the
 " file it was loaded from, thus the changes you made.
 " Only define it when not defined already.
 " Revert with: ":delcommand DiffOrig".
 if !exists(":DiffOrig")
-  command DiffOrig vert new | set bt=nofile | r ++edit # | 0d_ | diffthis
-          \ | wincmd p | diffthis
+    command DiffOrig vert new | set bt=nofile | r ++edit # | 0d_ | diffthis
+                \ | wincmd p | diffthis
 endif
 
 
 if has('langmap') && exists('+langremap')
-  " Prevent that the langmap option applies to characters that result from a
-  " mapping.  If set (default), this may break plugins (but it's backward
-  " compatible).
-  set nolangremap
+    " Prevent that the langmap option applies to characters that result from a
+    " mapping.  If set (default), this may break plugins (but it's backward
+    " compatible).
+    set nolangremap
 endif
 
 :autocmd BufWritePost * if &diff | diffupdate | endif
@@ -352,21 +393,21 @@ au BufEnter,BufNew * if &diff | syntax off | else | syntax on | endif
 
 set diffopt=filler
 set diffopt+=iwhite
-set diffexpr=DiffW()
-function DiffW()
-  let opt = ""
-   if &diffopt =~ "icase"
-     let opt = opt . "-i "
-   endif
-   if &diffopt =~ "iwhite"
-     let opt = opt . "-w " " swapped vim's -b with -w
-   endif
-   silent execute "!diff -a --binary " . opt .
-     \ v:fname_in . " " . v:fname_new .  " > " . v:fname_out
-endfunction
+" set diffexpr=DiffW()
+" function DiffW()
+"   let opt = ""
+"    if &diffopt =~ "icase"
+"      let opt = opt . "-i "
+"    endif
+"    if &diffopt =~ "iwhite"
+"      let opt = opt . "-w " " swapped vim's -b with -w
+"    endif
+"    silent execute "!diff -a --binary " . opt .
+"      \ v:fname_in . " " . v:fname_new .  " > " . v:fname_out
+" endfunction
 
 nmap du :wincmd w<cr>:normal u<cr>:wincmd w<cr>
-nnoremap Q <nop>
+nnoremap Q :normal n.<CR>
 
 vnoremap y myy`y
 vnoremap Y myY`y
@@ -381,8 +422,116 @@ set title
 set titleold=
 
 set formatoptions+=j " Delete comment character when joining commented lines
-set fillchars=vert:\|,fold:+
+set formatoptions+=t " Delete comment character when joining commented lines
+" set fillchars=vert:\|,fold:+ */
+" set fillchars=fold:+
 
-set relativenumber
-autocmd InsertEnter * :set norelativenumber
-autocmd InsertLeave * :set relativenumber 
+" if has("autocmd")
+"     " Treat '=' as a keyword char in latex files
+"     autocmd InsertEnter *.{tex} setlocal iskeyword+==
+"     autocmd InsertLeave *.{tex} setlocal iskeyword-==
+" endif
+
+
+"  If already loaded, we're done...
+"if exists("loaded_HLNext")
+"    finish
+"endif
+"let loaded_HLNext = 1
+"
+"" Preserve external compatibility options, then enable full vim compatibility...
+"let s:save_cpo = &cpo
+"set cpo&vim
+"
+""====[ INTERFACE ]=============================================
+"
+"if maparg('/','n') == ""
+"    nnoremap  <unique>         /   :call HLNextSetTrigger()<CR>/
+"endif
+"if maparg('?','n') == ""
+"    nnoremap  <unique>         ?   :call HLNextSetTrigger()<CR>?
+"endif
+"if maparg('n','n') == ""
+"    nnoremap  <unique><silent> n  n:call HLNext()<CR>
+"endif
+"if maparg('N','n') == ""
+"    nnoremap  <unique><silent> N  N:call HLNext()<CR>
+"endif
+"
+"" Default highlighting for next match...
+"highlight default HLNext ctermfg=white ctermbg=red
+"
+"
+""====[ IMPLEMENTATION ]=======================================
+"
+"" Clear previous highlighting and set up new highlighting...
+"function! HLNext ()
+"    " Remove the previous highlighting, if any...
+"    call HLNextOff()
+"
+"    " Add the new highlighting...
+"    let target_pat = '\c\%#\%('.@/.'\)'
+"    let w:HLNext_matchnum = matchadd('HLNext', target_pat)
+"endfunction
+"
+"" Clear previous highlighting (if any)...
+"function! HLNextOff ()
+"    if (exists('w:HLNext_matchnum') && w:HLNext_matchnum > 0)
+"        call matchdelete(w:HLNext_matchnum)
+"        unlet! w:HLNext_matchnum
+"    endif
+"endfunction
+"
+"" Prepare to active next-match highlighting after cursor moves...
+"function! HLNextSetTrigger ()
+"    augroup HLNext
+"        autocmd!
+"        autocmd  CursorMoved  *  :call HLNextMovedTrigger()
+"    augroup END
+"endfunction
+"
+"" Highlight and then remove activation of next-match highlighting...
+"function! HLNextMovedTrigger ()
+"    augroup HLNext
+"        autocmd!
+"    augroup END
+"    call HLNext()
+"endfunction
+"
+"
+"" Restore previous external compatibility options
+"let &cpo = s:save_cpo
+autocmd FileType dot setlocal commentstring=//\ %s
+autocmd FileType tex setlocal textwidth=130
+if executable("par")
+    autocmd FileType tex setlocal formatprg=par\ -w130rjeq
+    autocmd FileType text setlocal formatprg=par\ -w130req
+elseif executable("fmt")
+    autocmd FileType tex setlocal formatprg=fmt -w130
+    autocmd FileType text setlocal formatprg=fmt -w130
+endif
+" autocmd BufReadPre *.tex setlocal textwidth=130
+
+set isfname-={,}
+
+if has('win32')
+    set selection=inclusive
+endif
+
+map <C-S-O> :tabnew<CR>bwipeout<CR>:vs<CR>
+
+function! FormatprgLocal(filter)
+  if !empty(v:char)
+    return 1
+  else
+    let l:command = v:lnum.','.(v:lnum+v:count-1).'!'.a:filter
+    echo l:command
+    execute l:command
+  endif
+endfunction
+
+if has("autocmd")
+  let pandoc_pipeline  = "pandoc --from=html --to=markdown"
+  let pandoc_pipeline .= " | pandoc --from=markdown --to=html"
+  autocmd FileType html setlocal formatexpr=FormatprgLocal(pandoc_pipeline)
+endif

@@ -1,4 +1,4 @@
-#set adjust-open best-fit
+set adjust-open best-fit
 #set guioptions s
 #set n-completion-items 10
 #set statusbar-basename true
@@ -13,7 +13,7 @@
 #set zoom-min 5
 #set zoom-max 1000
 #set zoom-step 20
-#set window-title-basename true
+set window-title-basename true
 
 set synctex-editor-command 'nvim %{input}:%{line}'
 
