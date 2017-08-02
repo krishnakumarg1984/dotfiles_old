@@ -17,6 +17,7 @@
 " Plug 'brennier/quicktex',{'for':'tex'}
 " Plug 'brooth/far.vim'
 " Plug 'chrisbra/Colorizer'
+" Plug 'chrisbra/NrrwRgn'
 " Plug 'chrisbra/csv.vim',{'for': ['csv']}
 " Plug 'chrisbra/improvedft'
 " Plug 'chrisbra/unicode.vim'
@@ -90,6 +91,7 @@
 " Plug 'scrooloose/nerdtree'
 " Plug 'sheerun/vim-polyglot'
 " Plug 'sickill/vim-pasta'
+" Plug 'simnalamburt/vim-mundo'
 " Plug 'suan/vim-instant-markdown
 " Plug 'sunaku/vim-dasht',{'for':['tex']}
 " Plug 'sunaku/vim-shortcut'
@@ -146,7 +148,6 @@ Plug 'reedes/vim-litecorrect',{'for': ['tex','text']}
 Plug 'rhysd/vim-grammarous',{'for':['tex','text']}
 Plug 'romainl/vim-cool' "Vim-cool disables search highlighting when you are done searching and re-enables it when you search again.
 Plug 'romainl/vim-qf' "short for vim-quickfix—is a growing collection of settings, commands and mappings put together to make working with the location list/window and the quickfix list/window smoother.
-" Plug 'simnalamburt/vim-mundo'
 Plug 'sjl/gundo.vim'
 Plug 'sonph/onehalf',{'rtp': 'vim/'}
 Plug 'takac/vim-hardtime'

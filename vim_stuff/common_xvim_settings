@@ -544,3 +544,5 @@ nnoremap <Space> za
 nnoremap / /\v
 
 nmap <silent> <leader>s :set spell!<CR>
+
+command! -nargs=* Wrap set wrap linebreak nolist
