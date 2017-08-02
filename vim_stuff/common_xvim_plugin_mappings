@@ -84,16 +84,13 @@ else
 endif
 
 if executable('ag')
-<<<<<<< HEAD
     let g:ackprg = 'ag --vimgrep'
-=======
+elseif executable('rg')
     let g:ackprg = 'rg --vimgrep'
->>>>>>> aa4a7a008f5b6ec2a06fb8bdaebf994f2a3dcefb
 endif
 
 " highlight ExtraWhitespace ctermbg=Blue
 
-<<<<<<< HEAD
 let g:rainbow_active = 1
 let g:rainbow_conf = {
             \   'guifgs': ['royalblue3', 'darkorange3', 'seagreen3', 'firebrick'],
@@ -120,7 +117,6 @@ let g:rainbow_conf = {
 
 let g:tq_online_backends_timeout = 0.6
 let g:tq_mthesaur_file="~/dotfiles/mthesaur.txt"
-=======
 " let g:rainbow_active = 1
 " let g:rainbow_conf = {
 "     \   'guifgs': ['royalblue3', 'darkorange3', 'seagreen3', 'firebrick'],
@@ -147,7 +143,6 @@ let g:tq_mthesaur_file="~/dotfiles/mthesaur.txt"
 
 " "let g:tq_online_backends_timeout = 0.6
 " "let g:tq_mthesaur_file="~/dotfiles/mthesaur.txt"
->>>>>>> aa4a7a008f5b6ec2a06fb8bdaebf994f2a3dcefb
 
 " augroup lexical
 "   autocmd!
@@ -191,21 +186,12 @@ let g:tq_mthesaur_file="~/dotfiles/mthesaur.txt"
 "" let g:textobj#quote#educate = 1       " 0=disable, 1=enable (def)
 "" let g:textobj#quote#matchit = 1       " 0=disable, 1=enable (def)
 
-<<<<<<< HEAD
 augroup textobj_sentence
     autocmd!
     autocmd FileType markdown call textobj#sentence#init()
     autocmd FileType textile call textobj#sentence#init()
     autocmd FileType text call textobj#sentence#init()
 augroup END
-=======
-" augroup textobj_sentence
-"   autocmd!
-"   autocmd FileType markdown call textobj#sentence#init()
-"   autocmd FileType textile call textobj#sentence#init()
-"   autocmd FileType text call textobj#sentence#init()
-" augroup END
->>>>>>> aa4a7a008f5b6ec2a06fb8bdaebf994f2a3dcefb
 
 augroup litecorrect
     autocmd!
@@ -418,20 +404,12 @@ endif
 "     autocmd FileType tex call s:latexSurround()
 " augroup END
 
-<<<<<<< HEAD
 function! s:latexSurround()
     let b:surround_{char2nr("e")}
                 \ = "\\begin{\1environment: \1}\n\t\r\n\\end{\1\1}"
     let b:surround_{char2nr("c")} = "\\\1command: \1{\r}"
 endfunction
 
-" let g:latex_view_general_viewer = 'zathura'
-=======
-" function! s:latexSurround()
-"     let b:surround_{char2nr("e")}
-"     \ = "\\begin{\1environment: \1}\n\t\r\n\\end{\1\1}"
-"     let b:surround_{char2nr("c")} = "\\\1command: \1{\r}"
-" endfunction
 
 let g:tex_flavor = 'latex'
 let g:vimtex_quickfix_method='pplatex'
@@ -474,15 +452,12 @@ if has('texdoc')
     endfunction
 endif
 
->>>>>>> aa4a7a008f5b6ec2a06fb8bdaebf994f2a3dcefb
-
 if has('win32')
     let g:vimtex_view_general_viewer = 'SumatraPDF'
     let g:vimtex_view_general_options
                 \ = '-reuse-instance -forward-search @tex @line @pdf'
     let g:vimtex_view_general_options_latexmk = '-reuse-instance'
 else
-<<<<<<< HEAD
     let g:vimtex_view_method = "zathura"
 endif
 
@@ -495,14 +470,7 @@ let g:vimtex_quickfix_open_on_warning=0
 let g:vimtex_quickfix_mode=1
 " "let g:vimtex_quickfix_method='pplatex'
 " "let g:vimtex_quickfix_fix_paths = 1
-=======
-    let g:vimtex_view_method = 'zathura'
-    let g:latex_view_general_viewer = 'zathura'
-    " let g:vimtex_view_use_temp_files = 1
-endif
-
 let g:vimtex_view_forward_search_on_start=0
->>>>>>> aa4a7a008f5b6ec2a06fb8bdaebf994f2a3dcefb
 
 augroup vimtex_config
     au!
@@ -517,11 +485,7 @@ augroup vimtex
 augroup END
 
 let g:ale_linters = {
-<<<<<<< HEAD
-            \   'latex': ['chktex','proselint','lacheck'],
-=======
             \   'latex': ['chktex','proselint'],
->>>>>>> aa4a7a008f5b6ec2a06fb8bdaebf994f2a3dcefb
             \}
 
 " Plugin key-mappings.
