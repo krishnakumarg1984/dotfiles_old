@@ -240,11 +240,11 @@ hi LanguageToolSpellingError guisp=red  gui=undercurl guifg=NONE guibg=NONE cter
 
 
 " FZF:
-nnoremap <C-b> :Buffers<CR>
-" nnoremap <C-g>g :Ag<CR>
-nnoremap <C-g>c :Commands<CR>
-nnoremap <C-f>l :BLines<CR>
+nnoremap <leader><C-b> :Buffers<CR>
+nnoremap <leader><C-c> :Commands<CR>
+nnoremap <leader><C-l> :BLines<CR>
 nnoremap <C-p> :Files<CR>
+" nnoremap <C-g>g :Ag<CR>
 
 fun! FzfOmniFiles()
     let is_git = system('git status')
@@ -526,3 +526,16 @@ let g:fastfold_fold_command_suffixes = ['x','X','a','A','o','O','c','C','r','R',
 
 " call EightHeader( 78, "left", 1, ".", "\\='|'.matchstr(s:str, ';\\@<=.*').'|'", "\\=matchstr(s:str, '.*;\\@=')" )
 let &foldtext = "EightHeaderFolds( '\\=s:fullwidth-2', 'left', [ repeat( '  ', v:foldlevel - 1 ), '.', '' ], '\\= s:foldlines . \" lines\"', '' )"
+
+inoremap <silent> <Bar>   <Bar><Esc>:call <SID>align()<CR>a
+
+function! s:align()
+    let p = '^\s*|\s.*\s|\s*$'
+    if exists(':Tabularize') && getline('.') =~# '^\s*|' && (getline(line('.')-1) =~# p || getline(line('.')+1) =~# p)
+        let column = strlen(substitute(getline('.')[0:col('.')],'[^|]','','g'))
+        let position = strlen(matchstr(getline('.')[0:col('.')],'.*|\s*\zs.*'))
+        Tabularize/|/l1
+        normal! 0
+        call search(repeat('[^|]*|',column).'\s\{-\}'.repeat('.',position),'ce',line('.'))
+    endif
+endfunction
