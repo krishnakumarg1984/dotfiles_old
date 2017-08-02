@@ -55,7 +55,7 @@ let g:bufferline_echo = 0
 " noremap <silent><expr> z? incsearch#go(<SID>config_fuzzyall({'command': '?'}))
 " noremap <silent><expr> zg? incsearch#go(<SID>config_fuzzyall({'is_stay': 1}))
 
-nnoremap <leader>m :MundoToggle<CR>
+nnoremap <leader>m :GundoToggle<CR>
 "
 " nnoremap <F3> :NERDTreeToggle<CR>
 " autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif

@@ -146,7 +146,8 @@ Plug 'reedes/vim-litecorrect',{'for': ['tex','text']}
 Plug 'rhysd/vim-grammarous',{'for':['tex','text']}
 Plug 'romainl/vim-cool' "Vim-cool disables search highlighting when you are done searching and re-enables it when you search again.
 Plug 'romainl/vim-qf' "short for vim-quickfix—is a growing collection of settings, commands and mappings put together to make working with the location list/window and the quickfix list/window smoother.
-Plug 'simnalamburt/vim-mundo'
+" Plug 'simnalamburt/vim-mundo'
+Plug 'sjl/gundo.vim'
 Plug 'sonph/onehalf',{'rtp': 'vim/'}
 Plug 'takac/vim-hardtime'
 Plug 'tommcdo/vim-exchange'
