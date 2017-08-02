@@ -77,9 +77,9 @@ Plug 'dpelle/vim-LanguageTool',{'for':'tex'}
 Plug 'flazz/vim-colorschemes'
 Plug 'google/vim-searchindex'
 Plug 'honza/vim-snippets'
-Plug 'Shougo/neosnippet'
-Plug 'Shougo/neosnippet-snippets'
-" Plug 'SirVer/ultisnips'
+" Plug 'Shougo/neosnippet'
+" Plug 'Shougo/neosnippet-snippets'
+Plug 'SirVer/ultisnips'
 " Plug 'jalvesaq/vimcmdline' "Send lines to interpreter
 Plug 'jiangmiao/auto-pairs' "quick jump to closed pair using }.  <M-p> : Toggle Autopairs,  <M-e> : Fast Wrap, <M-n> : Jump to next closed pair,<M-b> : BackInsert
 Plug 'jlanzarotta/bufexplorer'
@@ -142,7 +142,9 @@ Plug 'tpope/vim-surround'
 " Plug 'tweekmonster/startuptime.vim'
 " Plug 'unblevable/quick-scope' " for f, F, t and T
 Plug 'vim-scripts/MatlabFilesEdition',{'for':'matlab'}
-Plug 'w0rp/ale',{ 'on': 'ALEEnable', 'for': ['dot', 'sh','matlab','python','tex'] }
+if has('nvim')
+    Plug 'w0rp/ale',{ 'on': 'ALEEnable', 'for': ['dot', 'sh','matlab','python','tex'] }
+endif
 Plug 'wellle/targets.vim' "To change the text in the next pair of parentheses, use the cin) command,To delete the item in a comma separated list under the cursor, use da, last pair seems very useful, i(,i),ib,i{,i},i[,i],i<,i>,it, with count, same with 'a'. n and l options, quotes, even back-ticks
 Plug 'Yggdroot/indentLine', {'for': ['python','matlab','octave']}
 Plug 'wannesm/wmgraphviz.vim'

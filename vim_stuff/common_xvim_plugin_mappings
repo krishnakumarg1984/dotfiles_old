@@ -84,34 +84,34 @@ else
 endif
 
 if executable('ag')
-  let g:ackprg = 'ag --vimgrep'
+    let g:ackprg = 'ag --vimgrep'
 endif
 
 " highlight ExtraWhitespace ctermbg=Blue
 
 let g:rainbow_active = 1
 let g:rainbow_conf = {
-    \   'guifgs': ['royalblue3', 'darkorange3', 'seagreen3', 'firebrick'],
-    \   'ctermfgs': ['lightblue', 'lightyellow', 'lightcyan', 'lightmagenta'],
-    \   'operators': '_,_',
-    \   'parentheses': ['start=/(/ end=/)/ fold', 'start=/\[/ end=/\]/ fold', 'start=/{/ end=/}/ fold'],
-    \   'separately': {
-    \       '*': {},
-    \       'tex': {
-    \           'parentheses': ['start=/(/ end=/)/', 'start=/\[/ end=/\]/'],
-    \       },
-    \       'lisp': {
-    \           'guifgs': ['royalblue3', 'darkorange3', 'seagreen3', 'firebrick', 'darkorchid3'],
-    \       },
-    \       'vim': {
-    \           'parentheses': ['start=/(/ end=/)/', 'start=/\[/ end=/\]/', 'start=/{/ end=/}/ fold', 'start=/(/ end=/)/ containedin=vimFuncBody', 'start=/\[/ end=/\]/ containedin=vimFuncBody', 'start=/{/ end=/}/ fold containedin=vimFuncBody'],
-    \       },
-    \       'html': {
-    \           'parentheses': ['start=/\v\<((area|base|br|col|embed|hr|img|input|keygen|link|menuitem|meta|param|source|track|wbr)[ >])@!\z([-_:a-zA-Z0-9]+)(\s+[-_:a-zA-Z0-9]+(\=("[^"]*"|'."'".'[^'."'".']*'."'".'|[^ '."'".'"><=`]*))?)*\>/ end=#</\z1># fold'],
-    \       },
-    \       'css': 0,
-    \   }
-    \}
+            \   'guifgs': ['royalblue3', 'darkorange3', 'seagreen3', 'firebrick'],
+            \   'ctermfgs': ['lightblue', 'lightyellow', 'lightcyan', 'lightmagenta'],
+            \   'operators': '_,_',
+            \   'parentheses': ['start=/(/ end=/)/ fold', 'start=/\[/ end=/\]/ fold', 'start=/{/ end=/}/ fold'],
+            \   'separately': {
+            \       '*': {},
+            \       'tex': {
+            \           'parentheses': ['start=/(/ end=/)/', 'start=/\[/ end=/\]/'],
+            \       },
+            \       'lisp': {
+            \           'guifgs': ['royalblue3', 'darkorange3', 'seagreen3', 'firebrick', 'darkorchid3'],
+            \       },
+            \       'vim': {
+            \           'parentheses': ['start=/(/ end=/)/', 'start=/\[/ end=/\]/', 'start=/{/ end=/}/ fold', 'start=/(/ end=/)/ containedin=vimFuncBody', 'start=/\[/ end=/\]/ containedin=vimFuncBody', 'start=/{/ end=/}/ fold containedin=vimFuncBody'],
+            \       },
+            \       'html': {
+            \           'parentheses': ['start=/\v\<((area|base|br|col|embed|hr|img|input|keygen|link|menuitem|meta|param|source|track|wbr)[ >])@!\z([-_:a-zA-Z0-9]+)(\s+[-_:a-zA-Z0-9]+(\=("[^"]*"|'."'".'[^'."'".']*'."'".'|[^ '."'".'"><=`]*))?)*\>/ end=#</\z1># fold'],
+            \       },
+            \       'css': 0,
+            \   }
+            \}
 
 let g:tq_online_backends_timeout = 0.6
 let g:tq_mthesaur_file="~/dotfiles/mthesaur.txt"
@@ -161,10 +161,10 @@ autocmd! User GoyoLeave Limelight!
 "" let g:textobj#quote#matchit = 1       " 0=disable, 1=enable (def)
 
 augroup textobj_sentence
-  autocmd!
-  autocmd FileType markdown call textobj#sentence#init()
-  autocmd FileType textile call textobj#sentence#init()
-  autocmd FileType text call textobj#sentence#init()
+    autocmd!
+    autocmd FileType markdown call textobj#sentence#init()
+    autocmd FileType textile call textobj#sentence#init()
+    autocmd FileType text call textobj#sentence#init()
 augroup END
 
 augroup litecorrect
@@ -222,9 +222,9 @@ endfun
 
 " This is the default extra key bindings
 let g:fzf_action = {
-	\ 'ctrl-t': 'tab split',
-	\ 'ctrl-x': 'split',
-	\ 'ctrl-v': 'vsplit' }
+            \ 'ctrl-t': 'tab split',
+            \ 'ctrl-x': 'split',
+            \ 'ctrl-v': 'vsplit' }
 
 " Default fzf layout
 " - down / up / left / right
@@ -373,32 +373,41 @@ augroup END
 
 function! s:latexSurround()
     let b:surround_{char2nr("e")}
-    \ = "\\begin{\1environment: \1}\n\t\r\n\\end{\1\1}"
+                \ = "\\begin{\1environment: \1}\n\t\r\n\\end{\1\1}"
     let b:surround_{char2nr("c")} = "\\\1command: \1{\r}"
 endfunction
 
 " let g:latex_view_general_viewer = 'zathura'
-let g:vimtex_view_method = "zathura"
+
+if has('win32')
+    let g:vimtex_view_general_viewer = 'SumatraPDF'
+    let g:vimtex_view_general_options
+                \ = '-reuse-instance -forward-search @tex @line @pdf'
+    let g:vimtex_view_general_options_latexmk = '-reuse-instance'
+else
+    let g:vimtex_view_method = "zathura"
+endif
+
 let g:vimtex_labels_enabled=1
 let g:vimtex_fold_enabled=1
 let g:vimtex_complete_close_braces=1
-" let g:vimtex_view_automatic=1
-" let g:vimtex_view_enabled=1
-let g:vimtex_quickfix_open_on_warning=1
-" let g:vimtex_quickfix_mode=1
-let g:vimtex_quickfix_method='pplatex'
-let g:vimtex_quickfix_fix_paths = 1
+let g:vimtex_view_automatic=1
+let g:vimtex_view_enabled=1
+let g:vimtex_quickfix_open_on_warning=0
+let g:vimtex_quickfix_mode=1
+" "let g:vimtex_quickfix_method='pplatex'
+" "let g:vimtex_quickfix_fix_paths = 1
 
 augroup vimtex_config
-au!
-au User VimtexEventQuit     VimtexClean
-au User VimtexEventInitPost VimtexCompile
+    au!
+    au User VimtexEventQuit     VimtexClean
+    au User VimtexEventInitPost VimtexCompile
 augroup END
 
 
 let g:ale_linters = {
-    \   'latex': ['chktex','proselint','lacheck'],
-    \}
+            \   'latex': ['chktex','proselint','lacheck'],
+            \}
 
 " Plugin key-mappings.
 " Note: It must be "imap" and "smap".  It uses <Plug> mappings.
@@ -407,11 +416,11 @@ smap <C-space>     <Plug>(neosnippet_expand_or_jump)
 xmap <C-space>     <Plug>(neosnippet_expand_target)
 
 smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-\ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+            \ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
 
 " For conceal markers.
 if has('conceal')
-      set conceallevel=2 concealcursor=niv
+    set conceallevel=2 concealcursor=niv
 endif
 
 " Enable snipMate compatibility feature.
