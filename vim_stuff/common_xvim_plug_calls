@@ -90,7 +90,6 @@
 " Plug 'scrooloose/nerdtree'
 " Plug 'sheerun/vim-polyglot'
 " Plug 'sickill/vim-pasta'
-" Plug 'simnalamburt/vim-mundo'
 " Plug 'suan/vim-instant-markdown
 " Plug 'sunaku/vim-dasht',{'for':['tex']}
 " Plug 'sunaku/vim-shortcut'
@@ -119,7 +118,6 @@
 " Plug 'yuttie/comfortable-motion.vim' "Physics-based scrolling there are also accelerated smooth scrolling plugins available.
 " Plug 'zanglg/nova.vim'
 "osyo-manga/vim-watchdogs
-
 Plug 'Konfekt/FastFold'
 Plug 'Shougo/neosnippet'
 Plug 'Shougo/neosnippet-snippets'
@@ -148,7 +146,9 @@ Plug 'reedes/vim-litecorrect',{'for': ['tex','text']}
 Plug 'rhysd/vim-grammarous',{'for':['tex','text']}
 Plug 'romainl/vim-cool' "Vim-cool disables search highlighting when you are done searching and re-enables it when you search again.
 Plug 'romainl/vim-qf' "short for vim-quickfix—is a growing collection of settings, commands and mappings put together to make working with the location list/window and the quickfix list/window smoother.
+Plug 'simnalamburt/vim-mundo'
 Plug 'sonph/onehalf',{'rtp': 'vim/'}
+Plug 'takac/vim-hardtime'
 Plug 'tommcdo/vim-exchange'
 Plug 'tpope/vim-abolish'  "crc, crm, crs (cr_), cru, cr-
 Plug 'tpope/vim-commentary'

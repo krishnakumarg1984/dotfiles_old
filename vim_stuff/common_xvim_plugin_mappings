@@ -55,7 +55,7 @@ let g:bufferline_echo = 0
 " noremap <silent><expr> z? incsearch#go(<SID>config_fuzzyall({'command': '?'}))
 " noremap <silent><expr> zg? incsearch#go(<SID>config_fuzzyall({'is_stay': 1}))
 
-" nnoremap <F2> :MundoToggle<CR>
+nnoremap <leader>m :MundoToggle<CR>
 "
 " nnoremap <F3> :NERDTreeToggle<CR>
 " autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
@@ -527,15 +527,19 @@ let g:fastfold_fold_command_suffixes = ['x','X','a','A','o','O','c','C','r','R',
 " call EightHeader( 78, "left", 1, ".", "\\='|'.matchstr(s:str, ';\\@<=.*').'|'", "\\=matchstr(s:str, '.*;\\@=')" )
 let &foldtext = "EightHeaderFolds( '\\=s:fullwidth-2', 'left', [ repeat( '  ', v:foldlevel - 1 ), '.', '' ], '\\= s:foldlines . \" lines\"', '' )"
 
-inoremap <silent> <Bar>   <Bar><Esc>:call <SID>align()<CR>a
+" inoremap <silent> <Bar>   <Bar><Esc>:call <SID>align()<CR>a
+"
+" function! s:align()
+"     let p = '^\s*|\s.*\s|\s*$'
+"     if exists(':Tabularize') && getline('.') =~# '^\s*|' && (getline(line('.')-1) =~# p || getline(line('.')+1) =~# p)
+"         let column = strlen(substitute(getline('.')[0:col('.')],'[^|]','','g'))
+"         let position = strlen(matchstr(getline('.')[0:col('.')],'.*|\s*\zs.*'))
+"         Tabularize/|/l1
+"         normal! 0
+"         call search(repeat('[^|]*|',column).'\s\{-\}'.repeat('.',position),'ce',line('.'))
+"     endif
+" endfunction
 
-function! s:align()
-    let p = '^\s*|\s.*\s|\s*$'
-    if exists(':Tabularize') && getline('.') =~# '^\s*|' && (getline(line('.')-1) =~# p || getline(line('.')+1) =~# p)
-        let column = strlen(substitute(getline('.')[0:col('.')],'[^|]','','g'))
-        let position = strlen(matchstr(getline('.')[0:col('.')],'.*|\s*\zs.*'))
-        Tabularize/|/l1
-        normal! 0
-        call search(repeat('[^|]*|',column).'\s\{-\}'.repeat('.',position),'ce',line('.'))
-    endif
-endfunction
+let g:hardtime_default_on = 1
+let g:hardtime_allow_different_key = 1
+let g:hardtime_maxcount = 2

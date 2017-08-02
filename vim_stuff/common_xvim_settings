@@ -102,10 +102,10 @@ set shiftround  " Round indent by shiftwidth
 
 set foldmethod=syntax
 set foldenable
-set foldcolumn=4
-set foldnestmax=3
-set foldlevel=0
-set foldlevelstart=0
+set foldcolumn=3
+set foldnestmax=2
+set foldlevel=1
+set foldlevelstart=1
 " specifies for which commands a fold will be opened
 set foldopen=block,hor,insert,jump,mark,percent,quickfix,search,tag,undo
 
@@ -535,3 +535,5 @@ if has("autocmd")
   let pandoc_pipeline .= " | pandoc --from=markdown --to=html"
   autocmd FileType html setlocal formatexpr=FormatprgLocal(pandoc_pipeline)
 endif
+
+nnoremap <Space> za
