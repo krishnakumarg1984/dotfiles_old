@@ -538,3 +538,5 @@ endif
 
 nnoremap <Space> za
 au FileType gitcommit 1 | startinsert
+
+nnoremap / /\v
