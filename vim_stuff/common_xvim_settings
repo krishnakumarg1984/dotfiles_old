@@ -141,13 +141,14 @@ set foldopen=block,hor,insert,jump,mark,percent,quickfix,search,tag,undo
 set noswapfile
 set backupext=.bak
 
+" Use the same symbols as TextMate for tabstops and EOLs
+set listchars=tab:▸\ ,eol:¬
+
 if has('conceal')
     set listchars+=conceal:^
     set conceallevel=1 concealcursor=i
 endif
 
-" Use the same symbols as TextMate for tabstops and EOLs
-set listchars=tab:▸\ ,eol:¬
 
 " Shortcut to rapidly toggle set list
 " nnoremap <leader>a :set list!<CR>
@@ -391,20 +392,12 @@ au BufEnter,BufNew * if &diff | syntax off | else | syntax on | endif
 " highlight! link DiffText Todo
 
 
-set diffopt=filler
-set diffopt+=iwhite
-" set diffexpr=DiffW()
-" function DiffW()
-"   let opt = ""
-"    if &diffopt =~ "icase"
-"      let opt = opt . "-i "
-"    endif
-"    if &diffopt =~ "iwhite"
-"      let opt = opt . "-w " " swapped vim's -b with -w
-"    endif
-"    silent execute "!diff -a --binary " . opt .
-"      \ v:fname_in . " " . v:fname_new .  " > " . v:fname_out
-" endfunction
+set diffopt=filler,vertical
+set diffopt+=iwhite " set diffexpr=DiffW() " function DiffW() "   let opt = ""
+"    if &diffopt =~ "icase" "      let opt = opt . "-i " "    endif "    if
+&diffopt =~ "iwhite" "      let opt = opt . "-w " " swapped vim's -b with -w "
+endif "    silent execute "!diff -a --binary " . opt . "      \ v:fname_in . "
+" . v:fname_new .  " > " . v:fname_out " endfunction
 
 nmap du :wincmd w<cr>:normal u<cr>:wincmd w<cr>
 nnoremap Q :normal n.<CR>
@@ -546,3 +539,17 @@ nnoremap / /\v
 nmap <silent> <leader>s :set spell!<CR>
 
 command! -nargs=* Wrap set wrap linebreak nolist
+let g:netrw_list_hide='\.un\~$'
+
+nnoremap & :&&<Enter>
+xnoremap & :&&<Enter>
+
+" Visual line repeat {{{2
+xnoremap . :normal .<CR>
+xnoremap @ :<C-u>call ExecuteMacroOverVisualRange()<CR>
+
+function! ExecuteMacroOverVisualRange()
+  echo '@'.getcmdline()
+  execute ":'<,'>normal @".nr2char(getchar())
+endfunction
+
