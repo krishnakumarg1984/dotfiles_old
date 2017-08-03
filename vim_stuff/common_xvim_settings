@@ -416,9 +416,9 @@ set titleold=
 
 set formatoptions+=j " Delete comment character when joining commented lines
 set formatoptions+=t "
-set formatoptions+=a "
-set formatoptions+=n "
-" set fillchars=vert:\|,fold:+ */
+" set formatoptions+=a
+" set formatoptions+=n "
+" set fillchars=vert:\|,fold:+ 
 " set fillchars=fold:+
 
 " if has("autocmd")
@@ -516,19 +516,19 @@ endif
 map <C-S-O> :tabnew<CR>bwipeout<CR>:vs<CR>
 
 function! FormatprgLocal(filter)
-  if !empty(v:char)
-    return 1
-  else
-    let l:command = v:lnum.','.(v:lnum+v:count-1).'!'.a:filter
-    echo l:command
-    execute l:command
-  endif
+    if !empty(v:char)
+        return 1
+    else
+        let l:command = v:lnum.','.(v:lnum+v:count-1).'!'.a:filter
+        echo l:command
+        execute l:command
+    endif
 endfunction
 
 if has("autocmd")
-  let pandoc_pipeline  = "pandoc --from=html --to=markdown"
-  let pandoc_pipeline .= " | pandoc --from=markdown --to=html"
-  autocmd FileType html setlocal formatexpr=FormatprgLocal(pandoc_pipeline)
+    let pandoc_pipeline  = "pandoc --from=html --to=markdown"
+    let pandoc_pipeline .= " | pandoc --from=markdown --to=html"
+    autocmd FileType html setlocal formatexpr=FormatprgLocal(pandoc_pipeline)
 endif
 
 nnoremap <Space> za
@@ -538,7 +538,7 @@ nnoremap / /\v
 
 nmap <silent> <leader>s :set spell!<CR>
 
-command! -nargs=* Wrap set wrap linebreak nolist
+" command! -nargs=* Wrap set wrap linebreak nolist
 let g:netrw_list_hide='\.un\~$'
 
 nnoremap & :&&<Enter>
@@ -549,7 +549,6 @@ xnoremap . :normal .<CR>
 xnoremap @ :<C-u>call ExecuteMacroOverVisualRange()<CR>
 
 function! ExecuteMacroOverVisualRange()
-  echo '@'.getcmdline()
-  execute ":'<,'>normal @".nr2char(getchar())
+    echo '@'.getcmdline()
+    execute ":'<,'>normal @".nr2char(getchar())
 endfunction
-
