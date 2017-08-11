@@ -562,3 +562,7 @@ endfunction
 " map <C-8> 8gt
 " map <C-9> 9gt
 " map <C-0> :tablast<CR>
+" Automatically set current directory to browsing directory.
+let g:netrw_keepdir=0
+autocmd BufEnter * if expand("%:p:h") !~ '^/tmp' | silent! lcd %:p:h | endif
+nnoremap ,cd :cd %:p:h<CR>:pwd<CR>

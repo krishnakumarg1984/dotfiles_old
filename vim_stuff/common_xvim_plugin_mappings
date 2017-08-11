@@ -425,10 +425,12 @@ let g:vimtex_index_split_width = 60
 let g:vimtex_labels_enabled=1
 " let g:vimtex_complete_close_braces=1
 let g:vimtex_toc_depth=2
+" let g:vimtex_disable_recursive_main_file_detection=1
 
 if has('nvim')
     let g:vimtex_compiler_latexmk = {
-                \ 'backend' : 'nvim'
+                \ 'backend' : 'nvim',
+                \ 'continuous' : 1,
                 \}
 else
     let g:vimtex_compiler_latexmk = {

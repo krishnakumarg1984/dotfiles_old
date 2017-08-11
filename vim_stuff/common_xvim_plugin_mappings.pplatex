@@ -1,0 +1,3039 @@
+** Error   in ./common_xvim_plugin_mappings, Line 1: 
+    Missing \begin{document}.
+   See the LaTeX manual or LaTeX Companion for explanation.
+   ...                                              
+   l
+
+** Error   in ./common_xvim_plugin_mappings, Line 1: 
+   Missing $ inserted <inserted text>  $ let g:airline_
+
+** Error   in ./common_xvim_plugin_mappings, Line 3: 
+   You can't use `macro parameter character #' in math mode " let g:airline#
+
+** Error   in ./common_xvim_plugin_mappings, Line 3: 
+   You can't use `macro parameter character #' in math mode
+   " let g:airline#extensions#
+
+** Error   in ./common_xvim_plugin_mappings, Line 3: 
+   You can't use `macro parameter character #' in math mode
+   " let g:airline#extensions#tabline#
+
+** Error   in ./common_xvim_plugin_mappings, Line 4: 
+   You can't use `macro parameter character #' in math mode " let g:airline#
+
+** Error   in ./common_xvim_plugin_mappings, Line 4: 
+   You can't use `macro parameter character #' in math mode
+   " let g:airline#extensions#
+
+** Error   in ./common_xvim_plugin_mappings, Line 4: 
+   You can't use `macro parameter character #' in math mode
+   " let g:airline#extensions#tabline#
+
+** Error   in ./common_xvim_plugin_mappings, Line 5: 
+   You can't use `macro parameter character #' in math mode " let g:airline#
+
+** Error   in ./common_xvim_plugin_mappings, Line 5: 
+   You can't use `macro parameter character #' in math mode
+   " let g:airline#extensions#
+
+** Error   in ./common_xvim_plugin_mappings, Line 5: 
+   You can't use `macro parameter character #' in math mode
+   " let g:airline#extensions#clock#
+
+** Error   in ./common_xvim_plugin_mappings, Line 11: 
+   Undefined control sequence let g:airline_symbols.space = "\ua
+
+** Error   in ./common_xvim_plugin_mappings, Line 14: 
+   Missing $ inserted <inserted text>  $ 
+
+** BadBox  in ./common_xvim_plugin_mappings, Line 1: 
+   Overfull \hbox (20.0pt too wide) in paragraph
+
+** BadBox  in ./common_xvim_plugin_mappings, Line 1: 
+   Overfull \hbox (40.73616pt too wide) in paragraph
+
+** BadBox  in ./common_xvim_plugin_mappings, Line 1: 
+   Overfull \hbox (58.85883pt too wide) in paragraph
+
+** BadBox  in ./common_xvim_plugin_mappings, Line 1: 
+   Overfull \hbox (71.54086pt too wide) in paragraph
+
+** BadBox  in ./common_xvim_plugin_mappings, Line 1: 
+   Overfull \hbox (76.72346pt too wide) in paragraph
+
+** BadBox  in ./common_xvim_plugin_mappings, Line 1: 
+   Overfull \hbox (153.42203pt too wide) in paragraph
+
+** BadBox  in ./common_xvim_plugin_mappings, Line 1: 
+   Overfull \hbox (32.13194pt too wide) in paragraph
+
+** BadBox  in ./common_xvim_plugin_mappings, Line 1: 
+   Overfull \hbox (183.53906pt too wide) in paragraph
+
+** BadBox  in ./common_xvim_plugin_mappings, Line 1: 
+   Overfull \hbox (32.13194pt too wide) in paragraph
+
+** BadBox  in ./common_xvim_plugin_mappings, Line 1: 
+   Overfull \hbox (161.88156pt too wide) in paragraph
+
+** BadBox  in ./common_xvim_plugin_mappings, Line 1: 
+   Overfull \hbox (42.13197pt too wide) in paragraph
+
+** BadBox  in ./common_xvim_plugin_mappings, Line 1: 
+   Overfull \hbox (109.32027pt too wide) in paragraph
+
+** BadBox  in ./common_xvim_plugin_mappings, Line 1: 
+   Overfull \hbox (27.13193pt too wide) in paragraph
+
+** BadBox  in ./common_xvim_plugin_mappings, Line 1: 
+   Overfull \hbox (95.49855pt too wide) in paragraph
+
+** BadBox  in ./common_xvim_plugin_mappings, Line 1: 
+   Overfull \hbox (93.38991pt too wide) in paragraph
+
+** BadBox  in []\OML/cmm/m/it/10 g \OT1/cmr/m/n/10 :[], Line 1: 
+   Overfull \hbox (94.95409pt too wide) in paragraph
+
+** BadBox  in ./common_xvim_plugin_mappings, Line 1: 
+   Overfull \hbox (76.68323pt too wide) in paragraph
+
+** BadBox  in ./common_xvim_plugin_mappings, Line 1: 
+   Overfull \hbox (47.41278pt too wide) in paragraph
+
+** BadBox  in ./common_xvim_plugin_mappings, Line 1: 
+   Overfull \hbox (103.44948pt too wide) in paragraph
+
+** BadBox  in ./common_xvim_plugin_mappings, Line 1: 
+   Overfull \hbox (37.13196pt too wide) in paragraph
+
+** BadBox  in ./common_xvim_plugin_mappings, Line 1: 
+   Overfull \hbox (122.10266pt too wide) in paragraph
+
+** BadBox  in ./common_xvim_plugin_mappings, Line 1: 
+   Overfull \hbox (27.13193pt too wide) in paragraph
+
+** BadBox  in ./common_xvim_plugin_mappings, Line 1: 
+   Overfull \hbox (78.4767pt too wide) in paragraph
+
+** BadBox  in ./common_xvim_plugin_mappings, Line 1: 
+   Overfull \hbox (5.00002pt too wide) in paragraph
+
+** Error   in ./common_xvim_plugin_mappings, Line 16: 
+    Missing \begin{document}.
+   See the LaTeX manual or LaTeX Companion for explanation.
+   ...                                              
+   "
+
+** Error   in ./common_xvim_plugin_mappings, Line 16: 
+   Missing $ inserted <inserted text>  $ " noremap <silent> <c-u> :call smooth_
+
+** Error   in ./common_xvim_plugin_mappings, Line 16: 
+   You can't use `macro parameter character #' in math mode
+   " noremap <silent> <c-u> :call smooth_scroll#
+
+** Error   in ./common_xvim_plugin_mappings, Line 16: 
+   Misplaced alignment tab character &
+   ...ap <silent> <c-u> :call smooth_scroll#up(&
+
+** Error  , Line 17: 
+   You can't use `macro parameter character #' in math mode
+   " noremap <silent> <c-d> :call smooth_scroll#
+
+** Error  , Line 17: 
+   Misplaced alignment tab character &
+   ... <silent> <c-d> :call smooth_scroll#down(&
+
+** Error  , Line 18: 
+   You can't use `macro parameter character #' in math mode
+   " noremap <silent> <c-b> :call smooth_scroll#
+
+** Error  , Line 18: 
+   Misplaced alignment tab character &
+   ...ap <silent> <c-b> :call smooth_scroll#up(&
+
+** Error  , Line 19: 
+   You can't use `macro parameter character #' in math mode
+   " noremap <silent> <c-f> :call smooth_scroll#
+
+** Error  , Line 19: 
+   Misplaced alignment tab character &
+   ... <silent> <c-f> :call smooth_scroll#down(&
+
+** Error  , Line 20: Missing $ inserted <inserted text>  $ 
+
+** BadBox , Line 16: Overfull \hbox (20.0pt too wide) in paragraph
+
+** BadBox , Line 16: Overfull \hbox (97.59042pt too wide) in paragraph
+
+** BadBox , Line 16: Overfull \hbox (26.08815pt too wide) in paragraph
+
+** BadBox , Line 16: Overfull \hbox (54.94801pt too wide) in paragraph
+
+** BadBox , Line 16: Overfull \hbox (43.91624pt too wide) in paragraph
+
+** BadBox , Line 16: Overfull \hbox (12.10536pt too wide) in paragraph
+
+** BadBox , Line 16: Overfull \hbox (18.53816pt too wide) in paragraph
+
+** BadBox , Line 16: Overfull \hbox (158.82668pt too wide) in paragraph
+
+** BadBox , Line 16: Overfull \hbox (26.08815pt too wide) in paragraph
+
+** BadBox , Line 16: Overfull \hbox (54.94801pt too wide) in paragraph
+
+** BadBox , Line 16: Overfull \hbox (43.91624pt too wide) in paragraph
+
+** BadBox , Line 16: Overfull \hbox (12.10536pt too wide) in paragraph
+
+** BadBox , Line 16: Overfull \hbox (17.62495pt too wide) in paragraph
+
+** BadBox , Line 16: Overfull \hbox (117.76656pt too wide) in paragraph
+
+** BadBox  in \OML/cmm/m/it/10 scroll \OMS/cmsy/m/n/10 ^^C[], Line 16: 
+   Overfull \hbox (38.33328pt too wide) in paragraph
+
+** BadBox , Line 16: Overfull \hbox (26.08815pt too wide) in paragraph
+
+** BadBox , Line 16: Overfull \hbox (54.94801pt too wide) in paragraph
+
+** BadBox , Line 16: Overfull \hbox (43.91624pt too wide) in paragraph
+
+** BadBox , Line 16: Overfull \hbox (12.10536pt too wide) in paragraph
+
+** BadBox , Line 16: Overfull \hbox (19.30556pt too wide) in paragraph
+
+** BadBox , Line 16: Overfull \hbox (130.49342pt too wide) in paragraph
+
+** BadBox  in \OML/cmm/m/it/10 scroll \OMS/cmsy/m/n/10 ^^C[], Line 16: 
+   Overfull \hbox (38.33328pt too wide) in paragraph
+
+** BadBox , Line 16: Overfull \hbox (26.08815pt too wide) in paragraph
+
+** Error  , Line 21: 
+    Missing \begin{document}.
+   See the LaTeX manual or LaTeX Companion for explanation.
+   ...                                              
+   "
+
+** Error  , Line 21: Missing $ inserted <inserted text>  $ "g:clever_
+
+** Error  , Line 21: Double subscript "g:clever_f_
+
+** Error  , Line 22: Missing $ inserted <inserted text>  $ 
+
+** BadBox , Line 21: Overfull \hbox (83.19595pt too wide) in paragraph
+
+** BadBox , Line 21: Overfull \hbox (5.00002pt too wide) in paragraph
+
+** Error  , Line 23: 
+    Missing \begin{document}.
+   See the LaTeX manual or LaTeX Companion for explanation.
+   ...                                              
+   "
+
+** Error  , Line 23: Missing $ inserted <inserted text>  $ " let g:indent_
+
+** Error  , Line 26: Missing $ inserted <inserted text>  $ 
+
+** BadBox , Line 23: Overfull \hbox (20.0pt too wide) in paragraph
+
+** BadBox , Line 23: Overfull \hbox (126.39081pt too wide) in paragraph
+
+** BadBox , Line 23: Overfull \hbox (32.13194pt too wide) in paragraph
+
+** BadBox , Line 23: Overfull \hbox (110.18875pt too wide) in paragraph
+
+** BadBox , Line 23: Overfull \hbox (32.13194pt too wide) in paragraph
+
+** BadBox , Line 23: Overfull \hbox (108.99768pt too wide) in paragraph
+
+** BadBox , Line 23: Overfull \hbox (5.00002pt too wide) in paragraph
+
+** Error  , Line 27: 
+    Missing \begin{document}.
+   See the LaTeX manual or LaTeX Companion for explanation.
+   ...                                              
+   "
+
+** Error  , Line 27: Missing $ inserted <inserted text>  $ " let g:indentLine_
+
+** Error  , Line 30: Missing $ inserted <inserted text>  $ 
+
+** BadBox , Line 27: Overfull \hbox (20.0pt too wide) in paragraph
+
+** BadBox , Line 27: Overfull \hbox (53.3116pt too wide) in paragraph
+
+** BadBox , Line 27: Overfull \hbox (213.80688pt too wide) in paragraph
+
+** BadBox , Line 27: Overfull \hbox (83.10304pt too wide) in paragraph
+
+** BadBox , Line 27: Overfull \hbox (29.93748pt too wide) in paragraph
+
+** BadBox , Line 27: Overfull \hbox (93.30261pt too wide) in paragraph
+
+** BadBox , Line 27: Overfull \hbox (5.00002pt too wide) in paragraph
+
+** Error  , Line 31: 
+    Missing \begin{document}.
+   See the LaTeX manual or LaTeX Companion for explanation.
+   ...                                              
+   "
+
+** Error  , Line 35: 
+   You can't use `macro parameter character #' in horizontal mode
+   " :h g:incsearch#
+
+** Error  , Line 35: 
+   Missing $ inserted <inserted text>  $ " :h g:incsearch#auto_
+
+** Error  , Line 37: 
+   You can't use `macro parameter character #' in math mode " let g:incsearch#
+
+** Error  , Line 41: 
+   You can't use `macro parameter character #' in math mode " map #
+
+** Error  , Line 41: 
+   You can't use `macro parameter character #' in math mode
+   " map #  <Plug>(incsearch-nohl-#
+
+** Error  , Line 43: 
+   You can't use `macro parameter character #' in math mode " map g#
+
+** Error  , Line 43: 
+   You can't use `macro parameter character #' in math mode
+   " map g# <Plug>(incsearch-nohl-g#
+
+** Error  , Line 44: Missing $ inserted <inserted text>  $ 
+
+** BadBox , Line 31: Overfull \hbox (20.0pt too wide) in paragraph
+
+** BadBox , Line 31: Overfull \hbox (187.24031pt too wide) in paragraph
+
+** BadBox , Line 31: Overfull \hbox (122.0484pt too wide) in paragraph
+
+** BadBox , Line 31: Overfull \hbox (45.65517pt too wide) in paragraph
+
+** BadBox , Line 31: Overfull \hbox (32.39816pt too wide) in paragraph
+
+** BadBox , Line 31: Overfull \hbox (54.9499pt too wide) in paragraph
+
+** BadBox  in \OML/cmm/m/it/10 incsearch \OMS/cmsy/m/n/10 ^^@, Line 31: 
+   Overfull \hbox (27.56953pt too wide) in paragraph
+
+** BadBox  in \OML/cmm/m/it/10 incsearch \OMS/cmsy/m/n/10 ^^@, Line 31: 
+   Overfull \hbox (53.66902pt too wide) in paragraph
+
+** BadBox , Line 31: Overfull \hbox (32.39816pt too wide) in paragraph
+
+** BadBox , Line 31: Overfull \hbox (54.9499pt too wide) in paragraph
+
+** BadBox  in \OML/cmm/m/it/10 incsearch \OMS/cmsy/m/n/10 ^^@, Line 31: 
+   Overfull \hbox (27.56953pt too wide) in paragraph
+
+** BadBox  in \OML/cmm/m/it/10 incsearch \OMS/cmsy/m/n/10 ^^@, Line 31: 
+   Overfull \hbox (52.66669pt too wide) in paragraph
+
+** BadBox , Line 31: Overfull \hbox (32.39816pt too wide) in paragraph
+
+** BadBox , Line 31: Overfull \hbox (54.9499pt too wide) in paragraph
+
+** BadBox  in \OML/cmm/m/it/10 incsearch \OMS/cmsy/m/n/10 ^^@, Line 31: 
+   Overfull \hbox (27.56953pt too wide) in paragraph
+
+** BadBox  in \OML/cmm/m/it/10 incsearch \OMS/cmsy/m/n/10 ^^@, Line 31: 
+   Overfull \hbox (43.54172pt too wide) in paragraph
+
+** BadBox , Line 31: Overfull \hbox (32.39816pt too wide) in paragraph
+
+** BadBox , Line 31: Overfull \hbox (54.9499pt too wide) in paragraph
+
+** BadBox  in \OML/cmm/m/it/10 incsearch \OMS/cmsy/m/n/10 ^^@, Line 31: 
+   Overfull \hbox (76.23972pt too wide) in paragraph
+
+** BadBox , Line 31: Overfull \hbox (32.39816pt too wide) in paragraph
+
+** BadBox , Line 31: Overfull \hbox (54.9499pt too wide) in paragraph
+
+** BadBox  in \OML/cmm/m/it/10 incsearch \OMS/cmsy/m/n/10 ^^@, Line 31: 
+   Overfull \hbox (27.56953pt too wide) in paragraph
+
+** BadBox  in \OML/cmm/m/it/10 incsearch \OMS/cmsy/m/n/10 ^^@, Line 31: 
+   Overfull \hbox (53.79865pt too wide) in paragraph
+
+** BadBox , Line 31: Overfull \hbox (32.39816pt too wide) in paragraph
+
+** BadBox , Line 31: Overfull \hbox (54.9499pt too wide) in paragraph
+
+** BadBox  in \OML/cmm/m/it/10 incsearch \OMS/cmsy/m/n/10 ^^@, Line 31: 
+   Overfull \hbox (27.56953pt too wide) in paragraph
+
+** BadBox  in \OML/cmm/m/it/10 incsearch \OMS/cmsy/m/n/10 ^^@, Line 31: 
+   Overfull \hbox (9.01736pt too wide) in paragraph
+
+** Error  , Line 45: 
+    Missing \begin{document}.
+   See the LaTeX manual or LaTeX Companion for explanation.
+   ...                                              
+   "
+
+** Error  , Line 45: 
+   Missing $ inserted <inserted text>  $ " function! s:config_
+
+** Error  , Line 48: 
+   You can't use `macro parameter character #' in math mode "   \     incsearch#
+
+** Error   in ),, Line 48: 
+   You can't use `macro parameter character #' in math mode
+   "   \     incsearch#config#
+
+** Error   in ),, Line 48: 
+   You can't use `macro parameter character #' in math mode
+   "   \     incsearch#config#fuzzy#
+
+** Error   in ),, Line 49: 
+   You can't use `macro parameter character #' in math mode "   \     incsearch#
+
+** Error   in ), Line 49: 
+   You can't use `macro parameter character #' in math mode
+   "   \     incsearch#config#
+
+** Error   in ), Line 49: 
+   You can't use `macro parameter character #' in math mode
+   "   \     incsearch#config#fuzzyspell#
+
+** Error   in ), Line 53: Missing $ inserted <inserted text>  $ 
+
+** BadBox  in ), Line 45: Overfull \hbox (20.0pt too wide) in paragraph
+
+** BadBox  in ), Line 45: Overfull \hbox (628.37349pt too wide) in paragraph
+
+** BadBox  in \OML/cmm/m/it/10 a \OT1/cmr/m/n/10 :[], Line 45: 
+   Overfull \hbox (80.79604pt too wide) in paragraph
+
+** Error   in ), Line 54: 
+    Missing \begin{document}.
+   See the LaTeX manual or LaTeX Companion for explanation.
+   ...                                              
+   "
+
+** Error   in ), Line 54: 
+   You can't use `macro parameter character #' in horizontal mode
+   " noremap <silent><expr> z/ incsearch#
+
+** Error   in  in font nullfont!, Line 54: 
+   Missing $ inserted <inserted text>  $
+   ...silent><expr> z/ incsearch#go(<SID>config_
+
+** Error   in  in font nullfont!, Line 55: 
+   You can't use `macro parameter character #' in math mode
+   " noremap <silent><expr> z? incsearch#
+
+** Error   in {'command..., Line 56: 
+   You can't use `macro parameter character #' in math mode
+   " noremap <silent><expr> zg? incsearch#
+
+** Error   in {'is_sta..., Line 57: Missing $ inserted <inserted text>  $ 
+
+** BadBox  in {'is_sta..., Line 54: 
+   Overfull \hbox (20.0pt too wide) in paragraph
+
+** BadBox  in {'is_sta..., Line 54: 
+   Overfull \hbox (104.61261pt too wide) in paragraph
+
+** BadBox  in {'is_sta..., Line 54: 
+   Overfull \hbox (43.91624pt too wide) in paragraph
+
+** BadBox  in {'is_sta..., Line 54: 
+   Overfull \hbox (30.74767pt too wide) in paragraph
+
+** BadBox  in {'is_sta..., Line 54: 
+   Overfull \hbox (74.73813pt too wide) in paragraph
+
+** BadBox  in \OML/cmm/m/it/10 <[], Line 54: 
+   Overfull \hbox (31.00131pt too wide) in paragraph
+
+** BadBox  in \OML/cmm/m/it/10 <[], Line 54: 
+   Overfull \hbox (198.70494pt too wide) in paragraph
+
+** BadBox  in {'is_sta..., Line 54: 
+   Overfull \hbox (43.91624pt too wide) in paragraph
+
+** BadBox  in {'is_sta..., Line 54: 
+   Overfull \hbox (30.74767pt too wide) in paragraph
+
+** BadBox  in {'is_sta..., Line 54: 
+   Overfull \hbox (79.8666pt too wide) in paragraph
+
+** BadBox  in \OML/cmm/m/it/10 <[], Line 54: 
+   Overfull \hbox (31.00131pt too wide) in paragraph
+
+** BadBox  in \OML/cmm/m/it/10 <[], Line 54: 
+   Overfull \hbox (124.5387pt too wide) in paragraph
+
+** Error   in {'is_sta..., Line 58: 
+    Missing \begin{document}.
+   See the LaTeX manual or LaTeX Companion for explanation.
+   ...                                              
+   n
+
+** Error   in  in font nullfont!, Line 61: 
+   Misplaced alignment tab character & " autocmd bufenter * if (winnr("$") == 1 &
+
+** Error   in  in font nullfont!, Line 61: 
+   Misplaced alignment tab character & " autocmd bufenter * if (winnr("$") == 1 &&
+
+** Error   in  in font nullfont!, Line 61: 
+   Misplaced alignment tab character &
+   ...(winnr("$") == 1 && exists("b:NERDTree") &
+
+** Error   in  in font nullfont!, Line 61: 
+   Misplaced alignment tab character &
+   ...winnr("$") == 1 && exists("b:NERDTree") &&
+
+** Error   in  in font nullfont!, Line 63: 
+   Misplaced alignment tab character & " autocmd VimEnter * if argc() == 1 &
+
+** Error   in  in font nullfont!, Line 63: 
+   Misplaced alignment tab character & " autocmd VimEnter * if argc() == 1 &&
+
+** Error   in {'is_sta..., Line 63: 
+   Misplaced alignment tab character &
+   ...if argc() == 1 && isdirectory(argv()[0]) &
+
+** Error   in {'is_sta..., Line 63: 
+   Misplaced alignment tab character &
+   ...f argc() == 1 && isdirectory(argv()[0]) &&
+
+** Error   in {'is_sta..., Line 64: Missing $ inserted <inserted text>  $ 
+
+** BadBox  in {'is_sta..., Line 58: 
+   Overfull \hbox (20.0pt too wide) in paragraph
+
+** BadBox  in {'is_sta..., Line 58: 
+   Overfull \hbox (27.22223pt too wide) in paragraph
+
+** BadBox  in {'command..., Line 58: 
+   Overfull \hbox (50.53886pt too wide) in paragraph
+
+** BadBox  in "\OML/cmm/m/it/10 b \OT1/cmr/m/n/10 :[], Line 58: 
+   Overfull \hbox (73.381pt too wide) in paragraph
+
+** BadBox  in {'command..., Line 58: 
+   Overfull \hbox (263.85115pt too wide) in paragraph
+
+** BadBox  in {'command..., Line 58: 
+   Overfull \hbox (21.69095pt too wide) in paragraph
+
+** BadBox  in {'command..., Line 58: 
+   Overfull \hbox (33.39063pt too wide) in paragraph
+
+** BadBox  in {'command..., Line 58: 
+   Overfull \hbox (100.07965pt too wide) in paragraph
+
+** BadBox  in {'command..., Line 58: 
+   Overfull \hbox (55.05978pt too wide) in paragraph
+
+** BadBox  in ) ==, Line 58: 
+   Overfull \hbox (149.29854pt too wide) in paragraph
+
+** BadBox  in "\OML/cmm/m/it/10 s \OT1/cmr/m/n/10 :[], Line 58: 
+   Overfull \hbox (237.67743pt too wide) in paragraph
+
+** Error   in )[0]\OMS/cmsy/m/n/10 j\OML/cmm/m/it/10 wincmdp\OMS/cmsy/m/n/10 j\OML/cmm/m/it/10 ene\OMS/cmsy/m/n/10 j\OML/cmm/m/it/10 endif$ [], Line 65: 
+    Missing \begin{document}.
+   See the LaTeX manual or LaTeX Companion for explanation.
+   ...                                              
+   "
+
+** Error   in )[0]\OMS/cmsy/m/n/10 j\OML/cmm/m/it/10 wincmdp\OMS/cmsy/m/n/10 j\OML/cmm/m/it/10 ene\OMS/cmsy/m/n/10 j\OML/cmm/m/it/10 endif$ [], Line 65: 
+   Missing $ inserted <inserted text>  $ " let g:ctrlp_
+
+** Error   in )[0]\OMS/cmsy/m/n/10 j\OML/cmm/m/it/10 wincmdp\OMS/cmsy/m/n/10 j\OML/cmm/m/it/10 ene\OMS/cmsy/m/n/10 j\OML/cmm/m/it/10 endif$ [], Line 69: 
+   Missing $ inserted <inserted text>  $ 
+
+** BadBox  in )[0]\OMS/cmsy/m/n/10 j\OML/cmm/m/it/10 wincmdp\OMS/cmsy/m/n/10 j\OML/cmm/m/it/10 ene\OMS/cmsy/m/n/10 j\OML/cmm/m/it/10 endif$ [], Line 65: 
+   Overfull \hbox (20.0pt too wide) in paragraph
+
+** BadBox  in )[0]\OMS/cmsy/m/n/10 j\OML/cmm/m/it/10 wincmdp\OMS/cmsy/m/n/10 j\OML/cmm/m/it/10 ene\OMS/cmsy/m/n/10 j\OML/cmm/m/it/10 endif$ [], Line 65: 
+   Overfull \hbox (75.41882pt too wide) in paragraph
+
+** BadBox  in )[0]\OMS/cmsy/m/n/10 j\OML/cmm/m/it/10 wincmdp\OMS/cmsy/m/n/10 j\OML/cmm/m/it/10 ene\OMS/cmsy/m/n/10 j\OML/cmm/m/it/10 endif$ [], Line 65: 
+   Overfull \hbox (47.75653pt too wide) in paragraph
+
+** BadBox  in )[0]\OMS/cmsy/m/n/10 j\OML/cmm/m/it/10 wincmdp\OMS/cmsy/m/n/10 j\OML/cmm/m/it/10 ene\OMS/cmsy/m/n/10 j\OML/cmm/m/it/10 endif$ [], Line 65: 
+   Overfull \hbox (96.35869pt too wide) in paragraph
+
+** BadBox  in )[0]\OMS/cmsy/m/n/10 j\OML/cmm/m/it/10 wincmdp\OMS/cmsy/m/n/10 j\OML/cmm/m/it/10 ene\OMS/cmsy/m/n/10 j\OML/cmm/m/it/10 endif$ [], Line 65: 
+   Overfull \hbox (54.09451pt too wide) in paragraph
+
+** BadBox  in )[0]\OMS/cmsy/m/n/10 j\OML/cmm/m/it/10 wincmdp\OMS/cmsy/m/n/10 j\OML/cmm/m/it/10 ene\OMS/cmsy/m/n/10 j\OML/cmm/m/it/10 endif$ [], Line 65: 
+   Overfull \hbox (26.15277pt too wide) in paragraph
+
+** BadBox  in )[0]\OMS/cmsy/m/n/10 j\OML/cmm/m/it/10 wincmdp\OMS/cmsy/m/n/10 j\OML/cmm/m/it/10 ene\OMS/cmsy/m/n/10 j\OML/cmm/m/it/10 endif$ [], Line 65: 
+   Overfull \hbox (72.74307pt too wide) in paragraph
+
+** BadBox  in )[0]\OMS/cmsy/m/n/10 j\OML/cmm/m/it/10 wincmdp\OMS/cmsy/m/n/10 j\OML/cmm/m/it/10 ene\OMS/cmsy/m/n/10 j\OML/cmm/m/it/10 endif$ [], Line 65: 
+   Overfull \hbox (26.08815pt too wide) in paragraph
+
+** Error   in )[0]\OMS/cmsy/m/n/10 j\OML/cmm/m/it/10 wincmdp\OMS/cmsy/m/n/10 j\OML/cmm/m/it/10 ene\OMS/cmsy/m/n/10 j\OML/cmm/m/it/10 endif$ [], Line 69: 
+    there is probably something wrong with the class file.
+   See the LaTeX manual or LaTeX Companion for explanation.
+   ...                                              
+   
+
+** Error   in )[0]\OMS/cmsy/m/n/10 j\OML/cmm/m/it/10 wincmdp\OMS/cmsy/m/n/10 j\OML/cmm/m/it/10 ene\OMS/cmsy/m/n/10 j\OML/cmm/m/it/10 endif$ [], Line 70: 
+    Missing \begin{document}.
+   See the LaTeX manual or LaTeX Companion for explanation.
+   ...                                              
+   "
+
+** BadBox  in )[0]\OMS/cmsy/m/n/10 j\OML/cmm/m/it/10 wincmdp\OMS/cmsy/m/n/10 j\OML/cmm/m/it/10 ene\OMS/cmsy/m/n/10 j\OML/cmm/m/it/10 endif$ [], Line 70: 
+   Overfull \hbox (20.0pt too wide) in paragraph
+
+** Error   in )[0]\OMS/cmsy/m/n/10 j\OML/cmm/m/it/10 wincmdp\OMS/cmsy/m/n/10 j\OML/cmm/m/it/10 ene\OMS/cmsy/m/n/10 j\OML/cmm/m/it/10 endif$ [], Line 80: 
+    Missing \begin{document}.
+   See the LaTeX manual or LaTeX Companion for explanation.
+   ...                                              
+   i
+
+** Error   in )[0]\OMS/cmsy/m/n/10 j\OML/cmm/m/it/10 wincmdp\OMS/cmsy/m/n/10 j\OML/cmm/m/it/10 ene\OMS/cmsy/m/n/10 j\OML/cmm/m/it/10 endif$ [], Line 81: 
+   Undefined control sequence ...t g:UltiSnipsSnippetDirectories=['C:\Users
+
+** Error   in )[0]\OMS/cmsy/m/n/10 j\OML/cmm/m/it/10 wincmdp\OMS/cmsy/m/n/10 j\OML/cmm/m/it/10 ene\OMS/cmsy/m/n/10 j\OML/cmm/m/it/10 endif$ [], Line 81: 
+   Undefined control sequence ...tiSnipsSnippetDirectories=['C:\Users\krish
+
+** Error   in )[0]\OMS/cmsy/m/n/10 j\OML/cmm/m/it/10 wincmdp\OMS/cmsy/m/n/10 j\OML/cmm/m/it/10 ene\OMS/cmsy/m/n/10 j\OML/cmm/m/it/10 endif$ [], Line 81: 
+   Undefined control sequence ...ippetDirectories=['C:\Users\krish\vimfiles
+
+** Error   in )[0]\OMS/cmsy/m/n/10 j\OML/cmm/m/it/10 wincmdp\OMS/cmsy/m/n/10 j\OML/cmm/m/it/10 ene\OMS/cmsy/m/n/10 j\OML/cmm/m/it/10 endif$ [], Line 81: 
+   Undefined control sequence ...ectories=['C:\Users\krish\vimfiles\plugged
+
+** Error   in )[0]\OMS/cmsy/m/n/10 j\OML/cmm/m/it/10 wincmdp\OMS/cmsy/m/n/10 j\OML/cmm/m/it/10 ene\OMS/cmsy/m/n/10 j\OML/cmm/m/it/10 endif$ [], Line 81: 
+   Undefined control sequence ...ries=['C:\Users\krish\vimfiles\plugged\vim
+
+** Error   in )[0]\OMS/cmsy/m/n/10 j\OML/cmm/m/it/10 wincmdp\OMS/cmsy/m/n/10 j\OML/cmm/m/it/10 ene\OMS/cmsy/m/n/10 j\OML/cmm/m/it/10 endif$ [], Line 81: 
+   Undefined control sequence ...sh\vimfiles\plugged\vim-snippets\UltiSnips
+
+** BadBox  in )[0]\OMS/cmsy/m/n/10 j\OML/cmm/m/it/10 wincmdp\OMS/cmsy/m/n/10 j\OML/cmm/m/it/10 ene\OMS/cmsy/m/n/10 j\OML/cmm/m/it/10 endif$ [], Line 80: 
+   Overfull \hbox (20.0pt too wide) in paragraph
+
+** Error   in )[0]\OMS/cmsy/m/n/10 j\OML/cmm/m/it/10 wincmdp\OMS/cmsy/m/n/10 j\OML/cmm/m/it/10 ene\OMS/cmsy/m/n/10 j\OML/cmm/m/it/10 endif$ [], Line 86: 
+    Missing \begin{document}.
+   See the LaTeX manual or LaTeX Companion for explanation.
+   ...                                              
+   i
+
+** BadBox  in )[0]\OMS/cmsy/m/n/10 j\OML/cmm/m/it/10 wincmdp\OMS/cmsy/m/n/10 j\OML/cmm/m/it/10 ene\OMS/cmsy/m/n/10 j\OML/cmm/m/it/10 endif$ [], Line 86: 
+   Overfull \hbox (20.0pt too wide) in paragraph
+
+** Error   in )[0]\OMS/cmsy/m/n/10 j\OML/cmm/m/it/10 wincmdp\OMS/cmsy/m/n/10 j\OML/cmm/m/it/10 ene\OMS/cmsy/m/n/10 j\OML/cmm/m/it/10 endif$ [], Line 92: 
+    Missing \begin{document}.
+   See the LaTeX manual or LaTeX Companion for explanation.
+   ...                                              
+   "
+
+** BadBox  in )[0]\OMS/cmsy/m/n/10 j\OML/cmm/m/it/10 wincmdp\OMS/cmsy/m/n/10 j\OML/cmm/m/it/10 ene\OMS/cmsy/m/n/10 j\OML/cmm/m/it/10 endif$ [], Line 92: 
+   Overfull \hbox (20.0pt too wide) in paragraph
+
+** Error   in )[0]\OMS/cmsy/m/n/10 j\OML/cmm/m/it/10 wincmdp\OMS/cmsy/m/n/10 j\OML/cmm/m/it/10 ene\OMS/cmsy/m/n/10 j\OML/cmm/m/it/10 endif$ [], Line 94: 
+    Missing \begin{document}.
+   See the LaTeX manual or LaTeX Companion for explanation.
+   ...                                              
+   l
+
+** Error   in )[0]\OMS/cmsy/m/n/10 j\OML/cmm/m/it/10 wincmdp\OMS/cmsy/m/n/10 j\OML/cmm/m/it/10 ene\OMS/cmsy/m/n/10 j\OML/cmm/m/it/10 endif$ [], Line 94: 
+   Missing $ inserted <inserted text>  $ let g:rainbow_
+
+** Error   in )[0]\OMS/cmsy/m/n/10 j\OML/cmm/m/it/10 wincmdp\OMS/cmsy/m/n/10 j\OML/cmm/m/it/10 ene\OMS/cmsy/m/n/10 j\OML/cmm/m/it/10 endif$ [], Line 98: 
+   Double subscript \   'operators': '_,_
+
+** Error   in )[0]\OMS/cmsy/m/n/10 j\OML/cmm/m/it/10 wincmdp\OMS/cmsy/m/n/10 j\OML/cmm/m/it/10 ene\OMS/cmsy/m/n/10 j\OML/cmm/m/it/10 endif$ [], Line 98: 
+   Missing { inserted <to be read again>  ^ \   'operators': '_,_'
+
+** Error   in )[0]\OMS/cmsy/m/n/10 j\OML/cmm/m/it/10 wincmdp\OMS/cmsy/m/n/10 j\OML/cmm/m/it/10 ene\OMS/cmsy/m/n/10 j\OML/cmm/m/it/10 endif$ [], Line 99: 
+    Bad math environment delimiter.
+   See the LaTeX manual or LaTeX Companion for explanation.
+   ...                                              
+   ...es': ['start=/(/ end=/)/ fold', 'start=/\[
+
+** Error   in )[0]\OMS/cmsy/m/n/10 j\OML/cmm/m/it/10 wincmdp\OMS/cmsy/m/n/10 j\OML/cmm/m/it/10 ene\OMS/cmsy/m/n/10 j\OML/cmm/m/it/10 endif$ [], Line 99: 
+    Bad math environment delimiter.
+   See the LaTeX manual or LaTeX Companion for explanation.
+   ...                                              
+   ...art=/(/ end=/)/ fold', 'start=/\[/ end=/\]
+
+** Error   in )[0]\OMS/cmsy/m/n/10 j\OML/cmm/m/it/10 wincmdp\OMS/cmsy/m/n/10 j\OML/cmm/m/it/10 ene\OMS/cmsy/m/n/10 j\OML/cmm/m/it/10 endif$ [], Line 103: 
+    Bad math environment delimiter.
+   See the LaTeX manual or LaTeX Companion for explanation.
+   ...                                              
+   ...theses': ['start=/(/ end=/)/', 'start=/\[
+
+** Error   in )[0]\OMS/cmsy/m/n/10 j\OML/cmm/m/it/10 wincmdp\OMS/cmsy/m/n/10 j\OML/cmm/m/it/10 ene\OMS/cmsy/m/n/10 j\OML/cmm/m/it/10 endif$ [], Line 103: 
+    Bad math environment delimiter.
+   See the LaTeX manual or LaTeX Companion for explanation.
+   ...                                              
+   ...['start=/(/ end=/)/', 'start=/\[/ end=/\]
+
+** Error   in )[0]\OMS/cmsy/m/n/10 j\OML/cmm/m/it/10 wincmdp\OMS/cmsy/m/n/10 j\OML/cmm/m/it/10 ene\OMS/cmsy/m/n/10 j\OML/cmm/m/it/10 endif$ [], Line 109: 
+    Bad math environment delimiter.
+   See the LaTeX manual or LaTeX Companion for explanation.
+   ...                                              
+   ...theses': ['start=/(/ end=/)/', 'start=/\[
+
+** Error   in )[0]\OMS/cmsy/m/n/10 j\OML/cmm/m/it/10 wincmdp\OMS/cmsy/m/n/10 j\OML/cmm/m/it/10 ene\OMS/cmsy/m/n/10 j\OML/cmm/m/it/10 endif$ [], Line 109: 
+    Bad math environment delimiter.
+   See the LaTeX manual or LaTeX Companion for explanation.
+   ...                                              
+   ...['start=/(/ end=/)/', 'start=/\[/ end=/\]
+
+** Error   in )[0]\OMS/cmsy/m/n/10 j\OML/cmm/m/it/10 wincmdp\OMS/cmsy/m/n/10 j\OML/cmm/m/it/10 ene\OMS/cmsy/m/n/10 j\OML/cmm/m/it/10 endif$ [], Line 109: 
+    Bad math environment delimiter.
+   See the LaTeX manual or LaTeX Companion for explanation.
+   ...                                              
+   ...=/)/ containedin=vimFuncBody', 'start=/\[
+
+** Error   in )[0]\OMS/cmsy/m/n/10 j\OML/cmm/m/it/10 wincmdp\OMS/cmsy/m/n/10 j\OML/cmm/m/it/10 ene\OMS/cmsy/m/n/10 j\OML/cmm/m/it/10 endif$ [], Line 109: 
+    Bad math environment delimiter.
+   See the LaTeX manual or LaTeX Companion for explanation.
+   ...                                              
+   ...ainedin=vimFuncBody', 'start=/\[/ end=/\]
+
+** Warning in )[0]\OMS/cmsy/m/n/10 j\OML/cmm/m/it/10 wincmdp\OMS/cmsy/m/n/10 j\OML/cmm/m/it/10 ene\OMS/cmsy/m/n/10 j\OML/cmm/m/it/10 endif$ [], Line 112: 
+    Command \v invalid in math mode on input line 112.
+
+** Warning in )[0]\OMS/cmsy/m/n/10 j\OML/cmm/m/it/10 wincmdp\OMS/cmsy/m/n/10 j\OML/cmm/m/it/10 ene\OMS/cmsy/m/n/10 j\OML/cmm/m/it/10 endif$ [], Line 112: 
+    Command \v invalid in math mode on input line 112.
+
+** Warning in )[0]\OMS/cmsy/m/n/10 j\OML/cmm/m/it/10 wincmdp\OMS/cmsy/m/n/10 j\OML/cmm/m/it/10 ene\OMS/cmsy/m/n/10 j\OML/cmm/m/it/10 endif$ []: 
+   No file cmr.fd. on input line 112.
+
+** Warning in )[0]\OMS/cmsy/m/n/10 j\OML/cmm/m/it/10 wincmdp\OMS/cmsy/m/n/10 j\OML/cmm/m/it/10 ene\OMS/cmsy/m/n/10 j\OML/cmm/m/it/10 endif$ []: 
+   (LaTeX Font)  Font shape `/cmr/m/n' undefined using `/cmr/m/n' instead on input line 112.
+
+** Error   in )[0]\OMS/cmsy/m/n/10 j\OML/cmm/m/it/10 wincmdp\OMS/cmsy/m/n/10 j\OML/cmm/m/it/10 ene\OMS/cmsy/m/n/10 j\OML/cmm/m/it/10 endif$ [], Line 112: 
+   Corrupted NFSS tables wrong@fontshape ...message {Corrupted NFSS tables}
+   error@fontshape else let f...
+   ... \           'parentheses': ['start=/\v\<
+
+** Warning in area|base|br|col|embed|h...: 
+   (LaTeX Font)  Font shape `/cmr/m/n' undefined using `OT1/cmr/m/n' instead on input line 112.
+
+** Error   in area|base|br|col|embed|h..., Line 112: 
+   Undefined control sequence <argument> \@use@text@encoding \@curr@enc \<
+   ... \           'parentheses': ['start=/\v\<
+
+** Error   in area|base|br|col|embed|h..., Line 112: 
+   Please use \mathaccent for accents in math mode
+   \add@accent ...@spacefactor \spacefactor }\accent 
+   #1 #2\egroup \spacefactor ...
+   ... \           'parentheses': ['start=/\v\<
+
+** Error   in area|base|br|col|embed|h..., Line 112: 
+   Missing { inserted <to be read again>  \edef 
+   ... \           'parentheses': ['start=/\v\<
+
+** Error   in area|base|br|col|embed|h..., Line 112: 
+   Undefined control sequence <argument> \@use@text@encoding \@curr@enc \<
+   ... \           'parentheses': ['start=/\v\<
+
+** Error   in area|base|br|col|embed|h..., Line 112: 
+   You can't use `\spacefactor' in math mode
+   \add@accent ...}\accent #1 #2\egroup \spacefactor 
+   \accent@spacefactor 
+   ... \           'parentheses': ['start=/\v\<
+
+** Error   in area|base|br|col|embed|h..., Line 112: 
+   Undefined control sequence ...tem|meta|param|source|track|wbr)[ >])@!\z
+
+** Error   in \s+[-_:a..., Line 112: 
+   Undefined control sequence ...e|track|wbr)[ >])@!\z([-_:a-zA-Z0-9]+)(\s
+
+** Warning in "[^"]*..., Line 112: 
+    Command \= invalid in math mode on input line 112.
+
+** Error   in "[^"]*..., Line 112: 
+   Please use \mathaccent for accents in math mode
+   \add@accent ...@spacefactor \spacefactor }\accent 
+   #1 #2\egroup \spacefactor ...
+   ...z([-_:a-zA-Z0-9]+)(\s+[-_:a-zA-Z0-9]+(\=(
+
+** Error   in "[^"]*..., Line 112: 
+   You can't use `\spacefactor' in math mode
+   \add@accent ...}\accent #1 #2\egroup \spacefactor 
+   \accent@spacefactor 
+   ...z([-_:a-zA-Z0-9]+)(\s+[-_:a-zA-Z0-9]+(\=(
+
+** Error   in "[^"]*..., Line 112: 
+   Missing { inserted <to be read again>  ^
+   ...(\s+[-_:a-zA-Z0-9]+(\=("[^"]*"|'."'".'[^'
+
+** Error   in "[^"]*..., Line 112: 
+   Missing { inserted <to be read again>  ^
+   ...\=("[^"]*"|'."'".'[^'."'".']*'."'".'|[^ '
+
+** Error   in area|base|br|col|embed|h..., Line 112: 
+   You can't use `macro parameter character #' in math mode
+   ...]*'."'".'|[^ '."'".'"><=`]*))?)*\>/ end=#
+
+** Error   in area|base|br|col|embed|h..., Line 112: 
+   Undefined control sequence ..."'".'|[^ '."'".'"><=`]*))?)*\>/ end=#</\z
+
+** Error   in area|base|br|col|embed|h..., Line 112: 
+   You can't use `macro parameter character #' in math mode
+   ....'|[^ '."'".'"><=`]*))?)*\>/ end=#</\z1>#
+
+** Error   in area|base|br|col|embed|h..., Line 117: 
+   Missing $ inserted <inserted text>  $ 
+
+** Error   in area|base|br|col|embed|h..., Line 117: 
+   Missing } inserted <inserted text>  } 
+
+** Error   in area|base|br|col|embed|h..., Line 117: 
+   Missing } inserted <inserted text>  } 
+
+** Error   in area|base|br|col|embed|h..., Line 117: 
+   Missing } inserted <inserted text>  } 
+
+** Error   in area|base|br|col|embed|h..., Line 117: 
+   Missing } inserted <inserted text>  } 
+
+** Error   in area|base|br|col|embed|h..., Line 117: 
+   Missing } inserted <inserted text>  } 
+
+** BadBox  in area|base|br|col|embed|h..., Line 94: 
+   Overfull \hbox (20.0pt too wide) in paragraph
+
+** BadBox  in area|base|br|col|embed|h..., Line 94: 
+   Overfull \hbox (36.63924pt too wide) in paragraph
+
+** BadBox  in area|base|br|col|embed|h..., Line 94: 
+   Overfull \hbox (27.13193pt too wide) in paragraph
+
+** BadBox  in area|base|br|col|embed|h..., Line 94: 
+   Overfull \hbox (67.27188pt too wide) in paragraph
+
+** BadBox  in area|base|br|col|embed|h..., Line 94: 
+   Overfull \hbox (3234.93196pt too wide) in paragraph
+
+** Error   in area|base|br|col|embed|h..., Line 118: 
+    Missing \begin{document}.
+   See the LaTeX manual or LaTeX Companion for explanation.
+   ...                                              
+   l
+
+** Error   in area|base|br|col|embed|h..., Line 118: 
+   Missing $ inserted <inserted text>  $ let g:tq_
+
+** Error   in area|base|br|col|embed|h..., Line 124: 
+   Double subscript "     \   'operators': '_,_
+
+** Error   in area|base|br|col|embed|h..., Line 124: 
+   Missing { inserted <to be read again>  ^ "     \   'operators': '_,_'
+
+** Error   in area|base|br|col|embed|h..., Line 125: 
+    Bad math environment delimiter.
+   See the LaTeX manual or LaTeX Companion for explanation.
+   ...                                              
+   ...s': ['start=/(/ end=/)/ fold', 'start=/\[
+
+** Error   in area|base|br|col|embed|h..., Line 125: 
+    Bad math environment delimiter.
+   See the LaTeX manual or LaTeX Companion for explanation.
+   ...                                              
+   ...rt=/(/ end=/)/ fold', 'start=/\[/ end=/\]
+
+** Error   in area|base|br|col|embed|h..., Line 129: 
+    Bad math environment delimiter.
+   See the LaTeX manual or LaTeX Companion for explanation.
+   ...                                              
+   ...theses': ['start=/(/ end=/)/', 'start=/\[
+
+** Error   in area|base|br|col|embed|h..., Line 129: 
+    Bad math environment delimiter.
+   See the LaTeX manual or LaTeX Companion for explanation.
+   ...                                              
+   ...['start=/(/ end=/)/', 'start=/\[/ end=/\]
+
+** Error   in area|base|br|col|embed|h..., Line 135: 
+    Bad math environment delimiter.
+   See the LaTeX manual or LaTeX Companion for explanation.
+   ...                                              
+   ...theses': ['start=/(/ end=/)/', 'start=/\[
+
+** Error   in area|base|br|col|embed|h..., Line 135: 
+    Bad math environment delimiter.
+   See the LaTeX manual or LaTeX Companion for explanation.
+   ...                                              
+   ...['start=/(/ end=/)/', 'start=/\[/ end=/\]
+
+** Error   in area|base|br|col|embed|h..., Line 135: 
+    Bad math environment delimiter.
+   See the LaTeX manual or LaTeX Companion for explanation.
+   ...                                              
+   ...=/)/ containedin=vimFuncBody', 'start=/\[
+
+** Error   in area|base|br|col|embed|h..., Line 135: 
+    Bad math environment delimiter.
+   See the LaTeX manual or LaTeX Companion for explanation.
+   ...                                              
+   ...ainedin=vimFuncBody', 'start=/\[/ end=/\]
+
+** Warning in area|base|br|col|embed|h..., Line 138: 
+    Command \v invalid in math mode on input line 138.
+
+** Warning in area|base|br|col|embed|h..., Line 138: 
+    Command \v invalid in math mode on input line 138.
+
+** Error   in area|base|br|col|embed|h..., Line 138: 
+   Undefined control sequence <argument> \@use@text@encoding \@curr@enc \<
+   ... \           'parentheses': ['start=/\v\<
+
+** Error   in area|base|br|col|embed|h..., Line 138: 
+   Please use \mathaccent for accents in math mode
+   \add@accent ...@spacefactor \spacefactor }\accent 
+   #1 #2\egroup \spacefactor ...
+   ... \           'parentheses': ['start=/\v\<
+
+** Error   in area|base|br|col|embed|h..., Line 138: 
+   Missing { inserted <to be read again>  \edef 
+   ... \           'parentheses': ['start=/\v\<
+
+** Error   in area|base|br|col|embed|h..., Line 138: 
+   Undefined control sequence <argument> \@use@text@encoding \@curr@enc \<
+   ... \           'parentheses': ['start=/\v\<
+
+** Error   in area|base|br|col|embed|h..., Line 138: 
+   You can't use `\spacefactor' in math mode
+   \add@accent ...}\accent #1 #2\egroup \spacefactor 
+   \accent@spacefactor 
+   ... \           'parentheses': ['start=/\v\<
+
+** Error   in area|base|br|col|embed|h..., Line 138: 
+   Undefined control sequence ...tem|meta|param|source|track|wbr)[ >])@!\z
+
+** Error   in \s+[-_:a..., Line 138: 
+   Undefined control sequence ...e|track|wbr)[ >])@!\z([-_:a-zA-Z0-9]+)(\s
+
+** Warning in "[^"]*..., Line 138: 
+    Command \= invalid in math mode on input line 138.
+
+** Error   in "[^"]*..., Line 138: 
+   Please use \mathaccent for accents in math mode
+   \add@accent ...@spacefactor \spacefactor }\accent 
+   #1 #2\egroup \spacefactor ...
+   ...z([-_:a-zA-Z0-9]+)(\s+[-_:a-zA-Z0-9]+(\=(
+
+** Error   in "[^"]*..., Line 138: 
+   You can't use `\spacefactor' in math mode
+   \add@accent ...}\accent #1 #2\egroup \spacefactor 
+   \accent@spacefactor 
+   ...z([-_:a-zA-Z0-9]+)(\s+[-_:a-zA-Z0-9]+(\=(
+
+** Error   in "[^"]*..., Line 138: 
+   Missing { inserted <to be read again>  ^
+   ...(\s+[-_:a-zA-Z0-9]+(\=("[^"]*"|'."'".'[^'
+
+** Error   in "[^"]*..., Line 138: 
+   Missing { inserted <to be read again>  ^
+   ...\=("[^"]*"|'."'".'[^'."'".']*'."'".'|[^ '
+
+** Error   in area|base|br|col|embed|h..., Line 138: 
+   You can't use `macro parameter character #' in math mode
+   ...]*'."'".'|[^ '."'".'"><=`]*))?)*\>/ end=#
+
+** Error   in area|base|br|col|embed|h..., Line 138: 
+   Undefined control sequence ..."'".'|[^ '."'".'"><=`]*))?)*\>/ end=#</\z
+
+** Error   in area|base|br|col|embed|h..., Line 138: 
+   You can't use `macro parameter character #' in math mode
+   ....'|[^ '."'".'"><=`]*))?)*\>/ end=#</\z1>#
+
+** Error   in area|base|br|col|embed|h..., Line 143: 
+   Missing $ inserted <inserted text>  $ 
+
+** Error   in area|base|br|col|embed|h..., Line 143: 
+   Missing } inserted <inserted text>  } 
+
+** Error   in area|base|br|col|embed|h..., Line 143: 
+   Missing } inserted <inserted text>  } 
+
+** Error   in area|base|br|col|embed|h..., Line 143: 
+   Missing } inserted <inserted text>  } 
+
+** Error   in area|base|br|col|embed|h..., Line 143: 
+   Missing } inserted <inserted text>  } 
+
+** Error   in area|base|br|col|embed|h..., Line 143: 
+   Missing } inserted <inserted text>  } 
+
+** BadBox  in area|base|br|col|embed|h..., Line 118: 
+   Overfull \hbox (20.0pt too wide) in paragraph
+
+** BadBox  in area|base|br|col|embed|h..., Line 118: 
+   Overfull \hbox (112.57663pt too wide) in paragraph
+
+** BadBox  in area|base|br|col|embed|h..., Line 118: 
+   Overfull \hbox (34.90973pt too wide) in paragraph
+
+** BadBox  in area|base|br|col|embed|h..., Line 118: 
+   Overfull \hbox (76.93143pt too wide) in paragraph
+
+** BadBox  in area|base|br|col|embed|h..., Line 118: 
+   Overfull \hbox (141.19308pt too wide) in paragraph
+
+** BadBox  in area|base|br|col|embed|h..., Line 118: 
+   Overfull \hbox (72.46002pt too wide) in paragraph
+
+** BadBox  in area|base|br|col|embed|h..., Line 118: 
+   Overfull \hbox (32.13194pt too wide) in paragraph
+
+** BadBox  in area|base|br|col|embed|h..., Line 118: 
+   Overfull \hbox (67.27188pt too wide) in paragraph
+
+** BadBox  in area|base|br|col|embed|h..., Line 118: 
+   Overfull \hbox (3319.93245pt too wide) in paragraph
+
+** Error   in area|base|br|col|embed|h..., Line 144: 
+    Missing \begin{document}.
+   See the LaTeX manual or LaTeX Companion for explanation.
+   ...                                              
+   "
+
+** Error   in area|base|br|col|embed|h..., Line 144: 
+   Missing $ inserted <inserted text>  $ " "let g:tq_
+
+** Error   in area|base|br|col|embed|h..., Line 146: 
+   Missing $ inserted <inserted text>  $ 
+
+** BadBox  in area|base|br|col|embed|h..., Line 144: 
+   Overfull \hbox (20.0pt too wide) in paragraph
+
+** BadBox  in area|base|br|col|embed|h..., Line 144: 
+   Overfull \hbox (112.57663pt too wide) in paragraph
+
+** BadBox  in area|base|br|col|embed|h..., Line 144: 
+   Overfull \hbox (44.90976pt too wide) in paragraph
+
+** BadBox  in area|base|br|col|embed|h..., Line 144: 
+   Overfull \hbox (76.93143pt too wide) in paragraph
+
+** BadBox  in area|base|br|col|embed|h..., Line 144: 
+   Overfull \hbox (114.06116pt too wide) in paragraph
+
+** Error   in area|base|br|col|embed|h..., Line 147: 
+    Missing \begin{document}.
+   See the LaTeX manual or LaTeX Companion for explanation.
+   ...                                              
+   "
+
+** Error   in area|base|br|col|embed|h..., Line 149: 
+   You can't use `macro parameter character #' in horizontal mode
+   ...tocmd FileType markdown,mkd call lexical#
+
+** Error   in ), Line 150: 
+   You can't use `macro parameter character #' in horizontal mode
+   "   autocmd FileType textile call lexical#
+
+** Error   in ), Line 151: 
+   You can't use `macro parameter character #' in horizontal mode
+   "   autocmd FileType text call lexical#
+
+** BadBox  in ), Line 147: Overfull \hbox (20.0pt too wide) in paragraph
+
+** Error   in ), Line 154: 
+    Missing \begin{document}.
+   See the LaTeX manual or LaTeX Companion for explanation.
+   ...                                              
+   "
+
+** Error   in ), Line 156: 
+   You can't use `macro parameter character #' in horizontal mode
+   ...utocmd FileType markdown,mkd call pencil#
+
+** Error   in ), Line 157: 
+   You can't use `macro parameter character #' in horizontal mode
+   ...utocmd FileType text         call pencil#
+
+** BadBox  in ), Line 154: Overfull \hbox (20.0pt too wide) in paragraph
+
+** Error   in ), Line 160: 
+    Missing \begin{document}.
+   See the LaTeX manual or LaTeX Companion for explanation.
+   ...                                              
+   "
+
+** BadBox  in ), Line 160: Overfull \hbox (20.0pt too wide) in paragraph
+
+** Error   in ), Line 163: 
+    Missing \begin{document}.
+   See the LaTeX manual or LaTeX Companion for explanation.
+   ...                                              
+   "
+
+** BadBox  in ), Line 163: Overfull \hbox (20.0pt too wide) in paragraph
+
+** Error   in ), Line 165: 
+    Missing \begin{document}.
+   See the LaTeX manual or LaTeX Companion for explanation.
+   ...                                              
+   "
+
+** Error   in ), Line 168: Missing $ inserted <inserted text>  $ " nmap _
+
+** Error   in ), Line 171: Missing $ inserted <inserted text>  $ 
+
+** BadBox  in ), Line 165: Overfull \hbox (20.0pt too wide) in paragraph
+
+** BadBox  in ), Line 165: Overfull \hbox (15.21838pt too wide) in paragraph
+
+** BadBox  in ), Line 165: Overfull \hbox (32.39816pt too wide) in paragraph
+
+** BadBox  in ), Line 165: Overfull \hbox (261.14397pt too wide) in paragraph
+
+** BadBox  in ), Line 165: Overfull \hbox (32.39816pt too wide) in paragraph
+
+** BadBox  in ), Line 165: Overfull \hbox (198.66325pt too wide) in paragraph
+
+** BadBox  in ), Line 165: Overfull \hbox (32.39816pt too wide) in paragraph
+
+** BadBox  in ), Line 165: Overfull \hbox (164.1801pt too wide) in paragraph
+
+** Error   in ), Line 172: 
+    Missing \begin{document}.
+   See the LaTeX manual or LaTeX Companion for explanation.
+   ...                                              
+   "
+
+** BadBox  in ), Line 172: Overfull \hbox (20.0pt too wide) in paragraph
+
+** Error   in ), Line 175: 
+    Missing \begin{document}.
+   See the LaTeX manual or LaTeX Companion for explanation.
+   ...                                              
+   "
+
+** BadBox  in ), Line 175: Overfull \hbox (20.0pt too wide) in paragraph
+
+** Error   in ), Line 178: 
+    Missing \begin{document}.
+   See the LaTeX manual or LaTeX Companion for explanation.
+   ...                                              
+   "
+
+** Error   in ), Line 178: 
+   Missing $ inserted <inserted text>  $ " augroup textobj_
+
+** Error   in ), Line 180: 
+   You can't use `macro parameter character #' in math mode
+   "   autocmd FileType markdown call textobj#
+
+** Error   in ), Line 180: 
+   You can't use `macro parameter character #' in math mode
+   ...cmd FileType markdown call textobj#quote#
+
+** Error   in ), Line 181: 
+   You can't use `macro parameter character #' in math mode
+   "   autocmd FileType textile call textobj#
+
+** Error   in ), Line 181: 
+   You can't use `macro parameter character #' in math mode
+   ...ocmd FileType textile call textobj#quote#
+
+** Error   in ), Line 182: 
+   You can't use `macro parameter character #' in math mode
+   "   autocmd FileType text call textobj#
+
+** Error   in ), Line 182: 
+   You can't use `macro parameter character #' in math mode
+   ...autocmd FileType text call textobj#quote#
+
+** Error   in ), Line 183: 
+   You can't use `macro parameter character #' in math mode
+   "   " autocmd FileType text call textobj#
+
+** Error   in ), Line 183: 
+   You can't use `macro parameter character #' in math mode
+   ...autocmd FileType text call textobj#quote#
+
+** Error   in ), Line 185: Missing $ inserted <inserted text>  $ 
+
+** BadBox  in ), Line 178: Overfull \hbox (20.0pt too wide) in paragraph
+
+** BadBox  in ), Line 178: Overfull \hbox (1075.35397pt too wide) in paragraph
+
+** Error   in ), Line 186: 
+    Missing \begin{document}.
+   See the LaTeX manual or LaTeX Companion for explanation.
+   ...                                              
+   "
+
+** Error   in ), Line 186: 
+   You can't use `macro parameter character #' in horizontal mode
+   "" let g:textobj#
+
+** Error   in ), Line 186: 
+   You can't use `macro parameter character #' in horizontal mode
+   "" let g:textobj#quote#
+
+** Error   in ), Line 187: 
+   You can't use `macro parameter character #' in horizontal mode
+   "" let g:textobj#
+
+** Error   in ), Line 187: 
+   You can't use `macro parameter character #' in horizontal mode
+   "" let g:textobj#quote#
+
+** BadBox  in ), Line 186: Overfull \hbox (20.0pt too wide) in paragraph
+
+** Error   in ), Line 189: 
+    Missing \begin{document}.
+   See the LaTeX manual or LaTeX Companion for explanation.
+   ...                                              
+   "
+
+** Error   in ), Line 189: 
+   Missing $ inserted <inserted text>  $ " augroup textobj_
+
+** Error   in ), Line 191: 
+   You can't use `macro parameter character #' in math mode
+   ...  autocmd FileType markdown call textobj#
+
+** Error   in ), Line 191: 
+   You can't use `macro parameter character #' in math mode
+   ... FileType markdown call textobj#sentence#
+
+** Error   in ), Line 192: 
+   You can't use `macro parameter character #' in math mode
+   "     autocmd FileType textile call textobj#
+
+** Error   in ), Line 192: 
+   You can't use `macro parameter character #' in math mode
+   ...d FileType textile call textobj#sentence#
+
+** Error   in ), Line 193: 
+   You can't use `macro parameter character #' in math mode
+   "     autocmd FileType text call textobj#
+
+** Error   in ), Line 193: 
+   You can't use `macro parameter character #' in math mode
+   ...ocmd FileType text call textobj#sentence#
+
+** Error   in ), Line 195: Missing $ inserted <inserted text>  $ 
+
+** BadBox  in ), Line 189: Overfull \hbox (20.0pt too wide) in paragraph
+
+** BadBox  in ), Line 189: Overfull \hbox (828.27621pt too wide) in paragraph
+
+** Error   in )"\OML/cmm/m/it/10 augroupEND$ [], Line 196: 
+    Missing \begin{document}.
+   See the LaTeX manual or LaTeX Companion for explanation.
+   ...                                              
+   a
+
+** Error   in )"\OML/cmm/m/it/10 augroupEND$ [], Line 198: 
+   You can't use `macro parameter character #' in horizontal mode
+   ...d FileType markdown,mkd call litecorrect#
+
+** Error   in ), Line 199: 
+   You can't use `macro parameter character #' in horizontal mode
+   ...utocmd FileType textile call litecorrect#
+
+** Error   in ), Line 200: 
+   You can't use `macro parameter character #' in horizontal mode
+   autocmd FileType text call litecorrect#
+
+** Error   in ), Line 201: 
+   You can't use `macro parameter character #' in horizontal mode
+   autocmd FileType tex call litecorrect#
+
+** BadBox  in ), Line 196: Overfull \hbox (20.0pt too wide) in paragraph
+
+** Error   in ), Line 204: 
+    Missing \begin{document}.
+   See the LaTeX manual or LaTeX Companion for explanation.
+   ...                                              
+   "
+
+** Error   in ), Line 205: Missing $ inserted <inserted text>  $ let g:qs_
+
+** Error   in ), Line 206: Missing $ inserted <inserted text>  $ 
+
+** BadBox  in ), Line 204: Overfull \hbox (20.0pt too wide) in paragraph
+
+** BadBox  in ), Line 204: Overfull \hbox (81.1744pt too wide) in paragraph
+
+** BadBox  in ), Line 204: Overfull \hbox (65.96875pt too wide) in paragraph
+
+** Error   in ), Line 207: 
+    Missing \begin{document}.
+   See the LaTeX manual or LaTeX Companion for explanation.
+   ...                                              
+   "
+
+** BadBox  in ), Line 207: Overfull \hbox (20.0pt too wide) in paragraph
+
+** Error   in ), Line 209: 
+    Missing \begin{document}.
+   See the LaTeX manual or LaTeX Companion for explanation.
+   ...                                              
+   l
+
+** Error   in ), Line 209: Missing $ inserted <inserted text>  $ let g:vim_
+
+** Error   in ), Line 210: Missing $ inserted <inserted text>  $ 
+
+** BadBox  in ), Line 209: Overfull \hbox (20.0pt too wide) in paragraph
+
+** BadBox  in ), Line 209: Overfull \hbox (54.84438pt too wide) in paragraph
+
+** Error   in ), Line 211: 
+    Missing \begin{document}.
+   See the LaTeX manual or LaTeX Companion for explanation.
+   ...                                              
+   "
+
+** Error   in ), Line 211: 
+   Misplaced alignment tab character & " au FilterWritePre * if &
+
+** Error   in ), Line 211: 
+   Missing $ inserted <inserted text>  $
+   ...rWritePre * if &diff | let g:diminactive_
+
+** Error   in ), Line 212: Missing $ inserted <inserted text>  $ 
+
+** BadBox  in ), Line 211: Overfull \hbox (20.0pt too wide) in paragraph
+
+** BadBox  in ), Line 211: Overfull \hbox (79.7279pt too wide) in paragraph
+
+** BadBox  in ), Line 211: Overfull \hbox (29.90971pt too wide) in paragraph
+
+** BadBox  in ), Line 211: Overfull \hbox (108.68745pt too wide) in paragraph
+
+** BadBox  in ), Line 211: Overfull \hbox (134.38521pt too wide) in paragraph
+
+** BadBox  in ), Line 211: Overfull \hbox (116.44688pt too wide) in paragraph
+
+** BadBox  in ), Line 211: Overfull \hbox (82.411pt too wide) in paragraph
+
+** BadBox  in ), Line 211: Overfull \hbox (295.96602pt too wide) in paragraph
+
+** Error   in ), Line 213: 
+    Missing \begin{document}.
+   See the LaTeX manual or LaTeX Companion for explanation.
+   ...                                              
+   "
+
+** BadBox  in ), Line 213: Overfull \hbox (20.0pt too wide) in paragraph
+
+** Error   in ), Line 216: 
+    Missing \begin{document}.
+   See the LaTeX manual or LaTeX Companion for explanation.
+   ...                                              
+   "
+
+** BadBox  in ), Line 216: Overfull \hbox (20.0pt too wide) in paragraph
+
+** Error   in ), Line 219: 
+    Missing \begin{document}.
+   See the LaTeX manual or LaTeX Companion for explanation.
+   ...                                              
+   n
+
+** BadBox  in ), Line 219: Overfull \hbox (20.0pt too wide) in paragraph
+
+** Error   in ), Line 222: 
+    Missing \begin{document}.
+   See the LaTeX manual or LaTeX Companion for explanation.
+   ...                                              
+   l
+
+** BadBox  in ), Line 222: Overfull \hbox (20.0pt too wide) in paragraph
+
+** Error   in ), Line 225: 
+    Missing \begin{document}.
+   See the LaTeX manual or LaTeX Companion for explanation.
+   ...                                              
+   "
+
+** Error   in ), Line 225: 
+   You can't use `macro parameter character #' in horizontal mode "#
+
+** Error   in ), Line 226: 
+   You can't use `macro parameter character #' in horizontal mode "#
+
+** Error   in ), Line 228: 
+   You can't use `macro parameter character #' in horizontal mode "#
+
+** Error   in ), Line 230: 
+   You can't use `macro parameter character #' in horizontal mode "#
+
+** BadBox  in ), Line 225: Overfull \hbox (20.0pt too wide) in paragraph
+
+** Error   in ), Line 234: 
+    Missing \begin{document}.
+   See the LaTeX manual or LaTeX Companion for explanation.
+   ...                                              
+   l
+
+** Error   in ), Line 234: 
+   Missing $ inserted <inserted text>  $ let g:colorizer_
+
+** Error   in ), Line 235: Missing $ inserted <inserted text>  $ 
+
+** BadBox  in ), Line 234: Overfull \hbox (20.0pt too wide) in paragraph
+
+** BadBox  in ), Line 234: Overfull \hbox (51.31422pt too wide) in paragraph
+
+** BadBox  in ), Line 234: Overfull \hbox (5.00002pt too wide) in paragraph
+
+** Error   in ), Line 236: 
+    Missing \begin{document}.
+   See the LaTeX manual or LaTeX Companion for explanation.
+   ...                                              
+   h
+
+** BadBox  in ), Line 236: Overfull \hbox (20.0pt too wide) in paragraph
+
+** Error   in ), Line 239: 
+    Missing \begin{document}.
+   See the LaTeX manual or LaTeX Companion for explanation.
+   ...                                              
+   "
+
+** BadBox  in ), Line 239: Overfull \hbox (20.0pt too wide) in paragraph
+
+** Error   in ), Line 242: 
+    Missing \begin{document}.
+   See the LaTeX manual or LaTeX Companion for explanation.
+   ...                                              
+   "
+
+** BadBox  in ), Line 242: Overfull \hbox (20.0pt too wide) in paragraph
+
+** Error   in ), Line 249: 
+    Missing \begin{document}.
+   See the LaTeX manual or LaTeX Companion for explanation.
+   ...                                              
+   f
+
+** Error   in ), Line 250: Missing $ inserted <inserted text>  $ let is_
+
+** Error   in ), Line 257: Missing $ inserted <inserted text>  $ 
+
+** BadBox  in ), Line 249: Overfull \hbox (20.0pt too wide) in paragraph
+
+** BadBox  in ), Line 249: Overfull \hbox (22.2642pt too wide) in paragraph
+
+** BadBox  in ), Line 249: Overfull \hbox (105.04433pt too wide) in paragraph
+
+** BadBox  in ), Line 249: Overfull \hbox (50.33466pt too wide) in paragraph
+
+** BadBox  in ), Line 249: Overfull \hbox (46.52502pt too wide) in paragraph
+
+** BadBox  in ), Line 249: Overfull \hbox (95.88452pt too wide) in paragraph
+
+** Error   in ), Line 258: 
+    Missing \begin{document}.
+   See the LaTeX manual or LaTeX Companion for explanation.
+   ...                                              
+   "
+
+** Error   in ), Line 259: Missing $ inserted <inserted text>  $ let g:fzf_
+
+** Error   in ), Line 263: Missing $ inserted <inserted text>  $ 
+
+** BadBox  in ), Line 258: Overfull \hbox (20.0pt too wide) in paragraph
+
+** BadBox  in ), Line 258: Overfull \hbox (37.62654pt too wide) in paragraph
+
+** BadBox  in ), Line 258: Overfull \hbox (244.74115pt too wide) in paragraph
+
+** Error   in ), Line 264: 
+    Missing \begin{document}.
+   See the LaTeX manual or LaTeX Companion for explanation.
+   ...                                              
+   "
+
+** Error   in ), Line 266: Missing $ inserted <inserted text>  $ let g:fzf_
+
+** Error   in ), Line 267: Missing $ inserted <inserted text>  $ 
+
+** Error   in ), Line 267: Missing } inserted <inserted text>  } 
+
+** BadBox  in ), Line 264: Overfull \hbox (20.0pt too wide) in paragraph
+
+** BadBox  in ), Line 264: Overfull \hbox (38.35538pt too wide) in paragraph
+
+** BadBox  in ), Line 264: Overfull \hbox (50.2326pt too wide) in paragraph
+
+** Error   in ), Line 268: 
+    Missing \begin{document}.
+   See the LaTeX manual or LaTeX Companion for explanation.
+   ...                                              
+   "
+
+** Error   in ), Line 269: Missing $ inserted <inserted text>  $ let g:fzf_
+
+** Error   in ), Line 272: Missing $ inserted <inserted text>  $ 
+
+** BadBox  in ), Line 268: Overfull \hbox (20.0pt too wide) in paragraph
+
+** BadBox  in ), Line 268: Overfull \hbox (38.35538pt too wide) in paragraph
+
+** BadBox  in ), Line 268: Overfull \hbox (98.78656pt too wide) in paragraph
+
+** BadBox  in ), Line 268: Overfull \hbox (54.3138pt too wide) in paragraph
+
+** BadBox  in ), Line 268: Overfull \hbox (115.09676pt too wide) in paragraph
+
+** BadBox  in ), Line 268: Overfull \hbox (54.3138pt too wide) in paragraph
+
+** BadBox  in ), Line 268: Overfull \hbox (106.61024pt too wide) in paragraph
+
+** Error   in ), Line 274: 
+    Missing \begin{document}.
+   See the LaTeX manual or LaTeX Companion for explanation.
+   ...                                              
+   l
+
+** Error   in ), Line 274: Missing $ inserted <inserted text>  $ let g:fzf_
+
+** Error   in ), Line 287: Missing $ inserted <inserted text>  $ 
+
+** BadBox  in ), Line 274: Overfull \hbox (20.0pt too wide) in paragraph
+
+** BadBox  in ), Line 274: Overfull \hbox (36.98116pt too wide) in paragraph
+
+** BadBox  in ), Line 274: Overfull \hbox (1590.10524pt too wide) in paragraph
+
+** Error   in ), Line 288: 
+    Missing \begin{document}.
+   See the LaTeX manual or LaTeX Companion for explanation.
+   ...                                              
+   l
+
+** Error   in ), Line 288: Missing $ inserted <inserted text>  $ let g:fzf_
+
+** Error   in ), Line 289: Missing $ inserted <inserted text>  $ 
+
+** BadBox  in ), Line 288: Overfull \hbox (20.0pt too wide) in paragraph
+
+** BadBox  in ), Line 288: Overfull \hbox (149.09393pt too wide) in paragraph
+
+** BadBox  in ), Line 288: Overfull \hbox (35.20908pt too wide) in paragraph
+
+** Error   in ), Line 290: 
+    Missing \begin{document}.
+   See the LaTeX manual or LaTeX Companion for explanation.
+   ...                                              
+   l
+
+** Error   in ), Line 290: Missing $ inserted <inserted text>  $ let g:fzf_
+
+** Error   in ), Line 291: Missing $ inserted <inserted text>  $ 
+
+** BadBox  in ), Line 290: Overfull \hbox (20.0pt too wide) in paragraph
+
+** BadBox  in ), Line 290: Overfull \hbox (70.12393pt too wide) in paragraph
+
+** BadBox  in ), Line 290: Overfull \hbox (5.00002pt too wide) in paragraph
+
+** Error   in ), Line 292: 
+    Missing \begin{document}.
+   See the LaTeX manual or LaTeX Companion for explanation.
+   ...                                              
+   l
+
+** Error   in a..., Line 292: Missing $ inserted <inserted text>  $ let g:fzf_
+
+** Error   in a..., Line 293: Missing $ inserted <inserted text>  $ 
+
+** BadBox  in a..., Line 292: Overfull \hbox (20.0pt too wide) in paragraph
+
+** BadBox  in a..., Line 292: 
+   Overfull \hbox (96.34422pt too wide) in paragraph
+
+** BadBox  in a..., Line 292: Overfull \hbox (15.5556pt too wide) in paragraph
+
+** BadBox  in a..., Line 292: 
+   Overfull \hbox (33.77435pt too wide) in paragraph
+
+** BadBox  in a..., Line 292: 
+   Overfull \hbox (40.32527pt too wide) in paragraph
+
+** BadBox  in a..., Line 292: Overfull \hbox (38.9075pt too wide) in paragraph
+
+** BadBox  in a..., Line 292: 
+   Overfull \hbox (51.61931pt too wide) in paragraph
+
+** BadBox  in a..., Line 292: Overfull \hbox (5.00002pt too wide) in paragraph
+
+** Error   in a..., Line 294: 
+    Missing \begin{document}.
+   See the LaTeX manual or LaTeX Companion for explanation.
+   ...                                              
+   l
+
+** Error   in a..., Line 294: Missing $ inserted <inserted text>  $ let g:fzf_
+
+** Error   in a..., Line 295: Missing $ inserted <inserted text>  $ 
+
+** BadBox  in a..., Line 294: Overfull \hbox (20.0pt too wide) in paragraph
+
+** BadBox  in a..., Line 294: 
+   Overfull \hbox (74.95811pt too wide) in paragraph
+
+** BadBox  in a..., Line 294: 
+   Overfull \hbox (30.81833pt too wide) in paragraph
+
+** BadBox  in a..., Line 294: 
+   Overfull \hbox (10.47571pt too wide) in paragraph
+
+** Error   in a..., Line 296: 
+    Missing \begin{document}.
+   See the LaTeX manual or LaTeX Companion for explanation.
+   ...                                              
+   l
+
+** Error   in a..., Line 296: Missing $ inserted <inserted text>  $ let g:fzf_
+
+** Error   in a..., Line 297: Missing $ inserted <inserted text>  $ 
+
+** BadBox  in a..., Line 296: Overfull \hbox (20.0pt too wide) in paragraph
+
+** BadBox  in a..., Line 296: Overfull \hbox (88.6585pt too wide) in paragraph
+
+** BadBox  in a..., Line 296: 
+   Overfull \hbox (19.85538pt too wide) in paragraph
+
+** BadBox  in a..., Line 296: 
+   Overfull \hbox (51.29063pt too wide) in paragraph
+
+** BadBox  in a..., Line 296: Overfull \hbox (8.52083pt too wide) in paragraph
+
+** Error   in a..., Line 298: 
+    Missing \begin{document}.
+   See the LaTeX manual or LaTeX Companion for explanation.
+   ...                                              
+   l
+
+** Error   in a..., Line 298: Missing $ inserted <inserted text>  $ let g:fzf_
+
+** Error   in a..., Line 300: Missing $ inserted <inserted text>  $ 
+
+** BadBox  in a..., Line 298: Overfull \hbox (20.0pt too wide) in paragraph
+
+** BadBox  in a..., Line 298: 
+   Overfull \hbox (63.78085pt too wide) in paragraph
+
+** BadBox  in a..., Line 298: 
+   Overfull \hbox (10.58336pt too wide) in paragraph
+
+** BadBox  in a..., Line 298: 
+   Overfull \hbox (180.52046pt too wide) in paragraph
+
+** BadBox  in  []\OML/cmm/m/it/10 =dev=termpix=bin=termpix \OMS/cmsy/m/n/10 ^^@[], Line 298: 
+   Overfull \hbox (51.00658pt too wide) in paragraph
+
+** BadBox  in  []\OML/cmm/m/it/10 =dev=termpix=bin=termpix \OMS/cmsy/m/n/10 ^^@[], Line 298: 
+   Overfull \hbox (34.33693pt too wide) in paragraph
+
+** BadBox  in  []\OML/cmm/m/it/10 =dev=termpix=bin=termpix \OMS/cmsy/m/n/10 ^^@[], Line 298: 
+   Overfull \hbox (60.21652pt too wide) in paragraph
+
+** BadBox  in a..., Line 298: 
+   Overfull \hbox (50.96082pt too wide) in paragraph
+
+** Error   in a..., Line 302: 
+    Missing \begin{document}.
+   See the LaTeX manual or LaTeX Companion for explanation.
+   ...                                              
+   f
+
+** Error   in ), Line 302: 
+   Missing $ inserted <inserted text>  $ function! s:fzf_
+
+** Error   in ), Line 309: Missing $ inserted <inserted text>  $ 
+
+** BadBox  in ), Line 302: Overfull \hbox (20.0pt too wide) in paragraph
+
+** BadBox  in ), Line 302: Overfull \hbox (296.49022pt too wide) in paragraph
+
+** BadBox  in )"\OML/cmm/m/it/10 Overridestatuslineasyoulikehighlightfzf\/cmr/m/n/10 1\OML/cmm/m/it/10 ctermfg \/cmr/m/n/10 =[], Line 302: 
+   Overfull \hbox (61.14012pt too wide) in paragraph
+
+** BadBox  in )"\OML/cmm/m/it/10 Overridestatuslineasyoulikehighlightfzf\/cmr/m/n/10 1\OML/cmm/m/it/10 ctermfg \/cmr/m/n/10 =[], Line 302: 
+   Overfull \hbox (126.07918pt too wide) in paragraph
+
+** BadBox  in )"\OML/cmm/m/it/10 Overridestatuslineasyoulikehighlightfzf\/cmr/m/n/10 1\OML/cmm/m/it/10 ctermfg \/cmr/m/n/10 =[], Line 302: 
+   Overfull \hbox (56.1401pt too wide) in paragraph
+
+** BadBox  in )"\OML/cmm/m/it/10 Overridestatuslineasyoulikehighlightfzf\/cmr/m/n/10 1\OML/cmm/m/it/10 ctermfg \/cmr/m/n/10 =[], Line 302: 
+   Overfull \hbox (126.07918pt too wide) in paragraph
+
+** BadBox  in )"\OML/cmm/m/it/10 Overridestatuslineasyoulikehighlightfzf\/cmr/m/n/10 1\OML/cmm/m/it/10 ctermfg \/cmr/m/n/10 =[], Line 302: 
+   Overfull \hbox (61.14012pt too wide) in paragraph
+
+** BadBox  in )"\OML/cmm/m/it/10 Overridestatuslineasyoulikehighlightfzf\/cmr/m/n/10 1\OML/cmm/m/it/10 ctermfg \/cmr/m/n/10 =[], Line 302: 
+   Overfull \hbox (104.22427pt too wide) in paragraph
+
+** BadBox  in )"\OML/cmm/m/it/10 Overridestatuslineasyoulikehighlightfzf\/cmr/m/n/10 1\OML/cmm/m/it/10 ctermfg \/cmr/m/n/10 =[], Line 302: 
+   Overfull \hbox (54.12938pt too wide) in paragraph
+
+** Error   in )"\OML/cmm/m/it/10 Overridestatuslineasyoulikehighlightfzf\/cmr/m/n/10 1\OML/cmm/m/it/10 ctermfg \/cmr/m/n/10 =[], Line 310: 
+    Missing \begin{document}.
+   See the LaTeX manual or LaTeX Companion for explanation.
+   ...                                              
+   a
+
+** Error   in ), Line 310: 
+   Missing $ inserted <inserted text>  $
+   autocmd! User FzfStatusLine call <SID>fzf_
+
+** Error   in ), Line 311: Missing $ inserted <inserted text>  $ 
+
+** BadBox  in ), Line 310: Overfull \hbox (20.0pt too wide) in paragraph
+
+** BadBox  in ), Line 310: Overfull \hbox (52.25664pt too wide) in paragraph
+
+** Error   in )$ , Line 312: 
+    Missing \begin{document}.
+   See the LaTeX manual or LaTeX Companion for explanation.
+   ...                                              
+   "
+
+** Error   in )$ , Line 313: 
+   You can't use `macro parameter character #' in horizontal mode " - fzf#
+
+** Error   in )$ , Line 313: 
+   You can't use `macro parameter character #' in horizontal mode " - fzf#vim#
+
+** Error   in  in font nullfont!, Line 313: 
+   Missing $ inserted <inserted text>  $ " - fzf#vim#grep(command, with_
+
+** Error   in )$ , Line 315: 
+   You can't use `macro parameter character #' in math mode \ call fzf#
+
+** Error   in ..., Line 315: 
+   You can't use `macro parameter character #' in math mode \ call fzf#vim#
+
+** Error   in ..., Line 316: Missing $ inserted <inserted text>  $ 
+
+** BadBox  in ..., Line 312: Overfull \hbox (20.0pt too wide) in paragraph
+
+** BadBox  in ..., Line 312: 
+   Overfull \hbox (189.93033pt too wide) in paragraph
+
+** BadBox  in ..., Line 312: Overfull \hbox (28.48616pt too wide) in paragraph
+
+** BadBox  in ..., Line 312: Overfull \hbox (36.44908pt too wide) in paragraph
+
+** BadBox  in ..., Line 312: 
+   Overfull \hbox (151.51022pt too wide) in paragraph
+
+** BadBox  in []\OML/cmm/m/it/10 gitgrep \OMS/cmsy/m/n/10 ^^@[], Line 312: 
+   Overfull \hbox (32.83992pt too wide) in paragraph
+
+** BadBox  in []\OML/cmm/m/it/10 gitgrep \OMS/cmsy/m/n/10 ^^@[], Line 312: 
+   Overfull \hbox (101.60562pt too wide) in paragraph
+
+** BadBox  in \OML/cmm/m/it/10 <, Line 312: 
+   Overfull \hbox (12.60071pt too wide) in paragraph
+
+** BadBox  in \OML/cmm/m/it/10 <, Line 312: 
+   Overfull \hbox (30.44673pt too wide) in paragraph
+
+** BadBox  in \OML/cmm/m/it/10 <, Line 312: 
+   Overfull \hbox (25.55554pt too wide) in paragraph
+
+** BadBox  in []\OML/cmm/m/it/10 gitgrep \OMS/cmsy/m/n/10 ^^@[], Line 312: 
+   Overfull \hbox (31.26387pt too wide) in paragraph
+
+** BadBox  in []\OML/cmm/m/it/10 gitgrep \OMS/cmsy/m/n/10 ^^@[], Line 312: 
+   Overfull \hbox (8.88892pt too wide) in paragraph
+
+** Error   in ..., Line 317: 
+    Missing \begin{document}.
+   See the LaTeX manual or LaTeX Companion for explanation.
+   ...                                              
+   "
+
+** Error   in ..., Line 320: 
+   You can't use `macro parameter character #' in horizontal mode \ call fzf#
+
+** Error   in {'left': '15%', 'options': '--revers..., Line 320: 
+   You can't use `macro parameter character #' in horizontal mode \ call fzf#vim#
+
+** BadBox  in  in font nullfont!, Line 317: 
+   Overfull \hbox (20.0pt too wide) in paragraph
+
+** Error   in  in font nullfont!, Line 322: 
+    Missing \begin{document}.
+   See the LaTeX manual or LaTeX Companion for explanation.
+   ...                                              
+   "
+
+** Error   in  in font nullfont!, Line 322: 
+   You can't use `macro parameter character #' in horizontal mode
+   " Augmenting Ag command using fzf#
+
+** Error   in  in font nullfont!, Line 322: 
+   You can't use `macro parameter character #' in horizontal mode
+   " Augmenting Ag command using fzf#vim#
+
+** Error   in  in font nullfont!, Line 322: 
+   Missing $ inserted <inserted text>  $
+   " Augmenting Ag command using fzf#vim#with_
+
+** Error   in  in font nullfont!, Line 323: 
+   You can't use `macro parameter character #' in math mode "   * fzf#
+
+** Error   in  in font nullfont!, Line 323: 
+   You can't use `macro parameter character #' in math mode "   * fzf#vim#
+
+** Error   in  in font nullfont!, Line 332: 
+   You can't use `macro parameter character #' in math mode \ call fzf#
+
+** Error   in <q-args>,, Line 332: 
+   You can't use `macro parameter character #' in math mode \ call fzf#vim#
+
+** Error   in <q-args>,, Line 333: 
+   You can't use `macro parameter character #' in math mode
+   \                 <bang>0 ? fzf#
+
+** Error   in <q-args>,, Line 333: 
+   You can't use `macro parameter character #' in math mode
+   ...     \                 <bang>0 ? fzf#vim#
+
+** Error   in <q-args>,, Line 334: 
+   You can't use `macro parameter character #' in math mode
+   \                         : fzf#
+
+** Error   in 'right:50..., Line 334: 
+   You can't use `macro parameter character #' in math mode
+   ...     \                         : fzf#vim#
+
+** Error   in 'right:50%:hi..., Line 336: 
+   Missing $ inserted <inserted text>  $ 
+
+** BadBox  in 'right:50%:hi..., Line 322: 
+   Overfull \hbox (20.0pt too wide) in paragraph
+
+** BadBox  in 'right:50%:hi..., Line 322: 
+   Overfull \hbox (84.73624pt too wide) in paragraph
+
+** BadBox  in 'right:50%:hi..., Line 322: 
+   Overfull \hbox (289.90128pt too wide) in paragraph
+
+** BadBox  in 'right:50%:hi..., Line 322: 
+   Overfull \hbox (55.79758pt too wide) in paragraph
+
+** BadBox  in 'right:50%:hi..., Line 322: 
+   Overfull \hbox (264.66481pt too wide) in paragraph
+
+** BadBox  in 'right:50%:hi..., Line 322: 
+   Overfull \hbox (12.77782pt too wide) in paragraph
+
+** BadBox  in 'right:50%:hi..., Line 322: 
+   Overfull \hbox (50.1425pt too wide) in paragraph
+
+** BadBox  in 'right:50%:hi..., Line 322: 
+   Overfull \hbox (23.57056pt too wide) in paragraph
+
+** BadBox  in 'right:50%:hi..., Line 322: 
+   Overfull \hbox (68.77911pt too wide) in paragraph
+
+** BadBox  in 'right:50%:hi..., Line 322: 
+   Overfull \hbox (206.18437pt too wide) in paragraph
+
+** BadBox  in 'right:50%:hi..., Line 322: 
+   Overfull \hbox (46.34398pt too wide) in paragraph
+
+** BadBox  in 'right:50%:hi..., Line 322: 
+   Overfull \hbox (23.57056pt too wide) in paragraph
+
+** BadBox  in 'right:50%:hi..., Line 322: 
+   Overfull \hbox (119.01192pt too wide) in paragraph
+
+** BadBox  in 'right:50%:hi..., Line 322: 
+   Overfull \hbox (33.58218pt too wide) in paragraph
+
+** BadBox  in 'right:50%:hi..., Line 322: 
+   Overfull \hbox (28.25806pt too wide) in paragraph
+
+** BadBox  in 'right:50%:hi..., Line 322: 
+   Overfull \hbox (135.40445pt too wide) in paragraph
+
+** BadBox  in 'right:50%:hi..., Line 322: 
+   Overfull \hbox (20.40628pt too wide) in paragraph
+
+** BadBox  in 'right:50%:hi..., Line 322: 
+   Overfull \hbox (298.20421pt too wide) in paragraph
+
+** BadBox  in 'right:50%:hi..., Line 322: 
+   Overfull \hbox (23.18407pt too wide) in paragraph
+
+** BadBox  in 'right:50%:hi..., Line 322: 
+   Overfull \hbox (307.92368pt too wide) in paragraph
+
+** BadBox  in 'right:50%:hi..., Line 322: 
+   Overfull \hbox (28.48616pt too wide) in paragraph
+
+** BadBox  in 'right:50%:hi..., Line 322: 
+   Overfull \hbox (36.44908pt too wide) in paragraph
+
+** BadBox  in 'right:50%:hi..., Line 322: 
+   Overfull \hbox (90.15024pt too wide) in paragraph
+
+** BadBox  in \OML/cmm/m/it/10 <[], Line 322: 
+   Overfull \hbox (12.60071pt too wide) in paragraph
+
+** BadBox  in \OML/cmm/m/it/10 <[], Line 322: 
+   Overfull \hbox (30.44673pt too wide) in paragraph
+
+** BadBox  in \OML/cmm/m/it/10 <[], Line 322: 
+   Overfull \hbox (12.22221pt too wide) in paragraph
+
+** BadBox  in \OML/cmm/m/it/10 <[], Line 322: 
+   Overfull \hbox (31.26387pt too wide) in paragraph
+
+** BadBox  in \OML/cmm/m/it/10 <[], Line 322: 
+   Overfull \hbox (134.9707pt too wide) in paragraph
+
+** BadBox  in []\OML/cmm/m/it/10 down \/cmr/m/n/10 :[], Line 322: 
+   Overfull \hbox (15.55553pt too wide) in paragraph
+
+** BadBox  in []\OML/cmm/m/it/10 down \/cmr/m/n/10 :[], Line 322: 
+   Overfull \hbox (124.50142pt too wide) in paragraph
+
+** BadBox  in []\OML/cmm/m/it/10 right \/cmr/m/n/10 :[], Line 322: 
+   Overfull \hbox (20.55554pt too wide) in paragraph
+
+** BadBox  in []\OML/cmm/m/it/10 right \/cmr/m/n/10 :[], Line 322: 
+   Overfull \hbox (31.26387pt too wide) in paragraph
+
+** BadBox  in []\OML/cmm/m/it/10 right \/cmr/m/n/10 :[], Line 322: 
+   Overfull \hbox (8.88892pt too wide) in paragraph
+
+** Error   in []\OML/cmm/m/it/10 down \/cmr/m/n/10 :[], Line 337: 
+    Missing \begin{document}.
+   See the LaTeX manual or LaTeX Companion for explanation.
+   ...                                              
+   "
+
+** Error   in []\OML/cmm/m/it/10 down \/cmr/m/n/10 :[], Line 337: 
+   You can't use `macro parameter character #' in horizontal mode
+   " Similarly, we can apply it to fzf#
+
+** Error   in []\OML/cmm/m/it/10 down \/cmr/m/n/10 :[], Line 337: 
+   You can't use `macro parameter character #' in horizontal mode
+   " Similarly, we can apply it to fzf#vim#
+
+** Error   in []\OML/cmm/m/it/10 down \/cmr/m/n/10 :[], Line 339: 
+   You can't use `macro parameter character #' in horizontal mode \ call fzf#
+
+** Error   in []\OML/cmm/m/it/10 down \/cmr/m/n/10 :[], Line 339: 
+   You can't use `macro parameter character #' in horizontal mode \ call fzf#vim#
+
+** Error   in  in font nullfont!, Line 341: 
+   You can't use `macro parameter character #' in horizontal mode
+   \   <bang>0 ? fzf#
+
+** Error   in  in font nullfont!, Line 341: 
+   You can't use `macro parameter character #' in horizontal mode
+   \   <bang>0 ? fzf#vim#
+
+** Error   in  in font nullfont!, Line 341: 
+   Missing $ inserted <inserted text>  $ \   <bang>0 ? fzf#vim#with_
+
+** Error   in  in font nullfont!, Line 342: 
+   You can't use `macro parameter character #' in math mode \           : fzf#
+
+** Error   in  in font nullfont!, Line 342: 
+   You can't use `macro parameter character #' in math mode \           : fzf#vim#
+
+** Error   in  in font nullfont!, Line 344: 
+   Missing $ inserted <inserted text>  $ 
+
+** BadBox  in  in font nullfont!, Line 337: 
+   Overfull \hbox (20.0pt too wide) in paragraph
+
+** BadBox  in  in font nullfont!, Line 337: 
+   Overfull \hbox (70.53629pt too wide) in paragraph
+
+** BadBox  in []\OML/cmm/m/it/10 down \/cmr/m/n/10 :, Line 337: 
+   Overfull \hbox (15.55553pt too wide) in paragraph
+
+** BadBox  in []\OML/cmm/m/it/10 down \/cmr/m/n/10 :, Line 337: 
+   Overfull \hbox (124.50142pt too wide) in paragraph
+
+** BadBox  in []\OML/cmm/m/it/10 right \/cmr/m/n/10 :[], Line 337: 
+   Overfull \hbox (20.55554pt too wide) in paragraph
+
+** BadBox  in []\OML/cmm/m/it/10 right \/cmr/m/n/10 :[], Line 337: 
+   Overfull \hbox (31.26387pt too wide) in paragraph
+
+** BadBox  in []\OML/cmm/m/it/10 right \/cmr/m/n/10 :[], Line 337: 
+   Overfull \hbox (8.88892pt too wide) in paragraph
+
+** Error   in []\OML/cmm/m/it/10 down \/cmr/m/n/10 :, Line 345: 
+    Missing \begin{document}.
+   See the LaTeX manual or LaTeX Companion for explanation.
+   ...                                              
+   "
+
+** Error   in []\OML/cmm/m/it/10 down \/cmr/m/n/10 :, Line 347: 
+   You can't use `macro parameter character #' in horizontal mode \ call fzf#
+
+** Error   in []\OML/cmm/m/it/10 down \/cmr/m/n/10 :, Line 347: 
+   You can't use `macro parameter character #' in horizontal mode \ call fzf#vim#
+
+** Error   in  in font nullfont!, Line 347: 
+   You can't use `macro parameter character #' in horizontal mode
+   ...      \ call fzf#vim#files(<q-args>, fzf#
+
+** Error   in []\OML/cmm/m/it/10 down \/cmr/m/n/10 :, Line 347: 
+   You can't use `macro parameter character #' in horizontal mode
+   ...  \ call fzf#vim#files(<q-args>, fzf#vim#
+
+** Error   in  in font nullfont!, Line 347: 
+   Missing $ inserted <inserted text>  $
+   ...all fzf#vim#files(<q-args>, fzf#vim#with_
+
+** Error   in []\OML/cmm/m/it/10 down \/cmr/m/n/10 :[], Line 348: 
+   Missing $ inserted <inserted text>  $ 
+
+** BadBox  in []\OML/cmm/m/it/10 down \/cmr/m/n/10 :[], Line 345: 
+   Overfull \hbox (20.0pt too wide) in paragraph
+
+** BadBox  in []\OML/cmm/m/it/10 down \/cmr/m/n/10 :[], Line 345: 
+   Overfull \hbox (54.80365pt too wide) in paragraph
+
+** BadBox  in )\OML/cmm/m/it/10 ; <, Line 345: 
+   Overfull \hbox (31.26387pt too wide) in paragraph
+
+** BadBox  in )\OML/cmm/m/it/10 ; <, Line 345: 
+   Overfull \hbox (8.88892pt too wide) in paragraph
+
+** Error   in \OML/cmm/m/it/10 <[], Line 349: 
+    Missing \begin{document}.
+   See the LaTeX manual or LaTeX Companion for explanation.
+   ...                                              
+   a
+
+** BadBox  in \OML/cmm/m/it/10 <[], Line 349: 
+   Overfull \hbox (20.0pt too wide) in paragraph
+
+** Error   in \OML/cmm/m/it/10 <[], Line 355: 
+    Missing \begin{document}.
+   See the LaTeX manual or LaTeX Companion for explanation.
+   ...                                              
+   "
+
+** Error   in \OML/cmm/m/it/10 <[], Line 356: 
+   Missing $ inserted <inserted text>  $ " let cmdline_
+
+** Error   in \OML/cmm/m/it/10 <[], Line 362: 
+   Missing $ inserted <inserted text>  $ 
+
+** BadBox  in \OML/cmm/m/it/10 <[], Line 355: 
+   Overfull \hbox (20.0pt too wide) in paragraph
+
+** BadBox  in \OML/cmm/m/it/10 <[], Line 355: 
+   Overfull \hbox (50.04057pt too wide) in paragraph
+
+** BadBox  in \OML/cmm/m/it/10 <[], Line 355: 
+   Overfull \hbox (15.55553pt too wide) in paragraph
+
+** BadBox  in \OML/cmm/m/it/10 <[], Line 355: 
+   Overfull \hbox (66.40056pt too wide) in paragraph
+
+** BadBox  in \OML/cmm/m/it/10 <[], Line 355: 
+   Overfull \hbox (110.33893pt too wide) in paragraph
+
+** BadBox  in \OML/cmm/m/it/10 <[], Line 355: 
+   Overfull \hbox (15.55553pt too wide) in paragraph
+
+** BadBox  in \OML/cmm/m/it/10 <[], Line 355: 
+   Overfull \hbox (36.56479pt too wide) in paragraph
+
+** BadBox  in \OML/cmm/m/it/10 <[], Line 355: 
+   Overfull \hbox (131.04396pt too wide) in paragraph
+
+** BadBox  in \OML/cmm/m/it/10 <[], Line 355: 
+   Overfull \hbox (15.55553pt too wide) in paragraph
+
+** BadBox  in \OML/cmm/m/it/10 <[], Line 355: 
+   Overfull \hbox (66.40056pt too wide) in paragraph
+
+** BadBox  in \OML/cmm/m/it/10 <[], Line 355: 
+   Overfull \hbox (157.60373pt too wide) in paragraph
+
+** BadBox  in \OML/cmm/m/it/10 <[], Line 355: 
+   Overfull \hbox (15.55553pt too wide) in paragraph
+
+** BadBox  in \OML/cmm/m/it/10 <[], Line 355: 
+   Overfull \hbox (66.40056pt too wide) in paragraph
+
+** BadBox  in \OML/cmm/m/it/10 <[], Line 355: 
+   Overfull \hbox (132.57555pt too wide) in paragraph
+
+** BadBox  in \OML/cmm/m/it/10 <[], Line 355: 
+   Overfull \hbox (15.55553pt too wide) in paragraph
+
+** BadBox  in \OML/cmm/m/it/10 <[], Line 355: 
+   Overfull \hbox (66.40056pt too wide) in paragraph
+
+** BadBox  in \OML/cmm/m/it/10 <[], Line 355: 
+   Overfull \hbox (107.00244pt too wide) in paragraph
+
+** BadBox  in \OML/cmm/m/it/10 <[], Line 355: 
+   Overfull \hbox (15.55553pt too wide) in paragraph
+
+** BadBox  in \OML/cmm/m/it/10 <[], Line 355: 
+   Overfull \hbox (66.40056pt too wide) in paragraph
+
+** BadBox  in \OML/cmm/m/it/10 <[], Line 355: 
+   Overfull \hbox (9.82292pt too wide) in paragraph
+
+** Error   in \OML/cmm/m/it/10 <[], Line 363: 
+    Missing \begin{document}.
+   See the LaTeX manual or LaTeX Companion for explanation.
+   ...                                              
+   "
+
+** Error   in \OML/cmm/m/it/10 <[], Line 364: 
+   Missing $ inserted <inserted text>  $ " let cmdline_
+
+** Error   in \OML/cmm/m/it/10 <[], Line 378: 
+   Missing $ inserted <inserted text>  $ 
+
+** BadBox  in \OML/cmm/m/it/10 <[], Line 363: 
+   Overfull \hbox (20.0pt too wide) in paragraph
+
+** BadBox  in \OML/cmm/m/it/10 <[], Line 363: 
+   Overfull \hbox (35.26227pt too wide) in paragraph
+
+** BadBox  in \OML/cmm/m/it/10 <[], Line 363: 
+   Overfull \hbox (220.96167pt too wide) in paragraph
+
+** BadBox  in \OML/cmm/m/it/10 <[], Line 363: 
+   Overfull \hbox (51.97923pt too wide) in paragraph
+
+** BadBox  in \OML/cmm/m/it/10 <[], Line 363: 
+   Overfull \hbox (27.52888pt too wide) in paragraph
+
+** BadBox  in \OML/cmm/m/it/10 <[], Line 363: 
+   Overfull \hbox (14.01384pt too wide) in paragraph
+
+** BadBox  in \OML/cmm/m/it/10 <[], Line 363: 
+   Overfull \hbox (233.69025pt too wide) in paragraph
+
+** BadBox  in \OML/cmm/m/it/10 <[], Line 363: 
+   Overfull \hbox (292.40341pt too wide) in paragraph
+
+** BadBox  in \OML/cmm/m/it/10 <[], Line 363: 
+   Overfull \hbox (308.18375pt too wide) in paragraph
+
+** BadBox  in \OML/cmm/m/it/10 <[], Line 363: 
+   Overfull \hbox (292.063pt too wide) in paragraph
+
+** BadBox  in \OML/cmm/m/it/10 <[], Line 363: 
+   Overfull \hbox (257.3955pt too wide) in paragraph
+
+** BadBox  in \OML/cmm/m/it/10 <[], Line 363: 
+   Overfull \hbox (208.88753pt too wide) in paragraph
+
+** BadBox  in \OML/cmm/m/it/10 <[], Line 363: 
+   Overfull \hbox (123.57123pt too wide) in paragraph
+
+** BadBox  in \OML/cmm/m/it/10 <[], Line 363: 
+   Overfull \hbox (170.72597pt too wide) in paragraph
+
+** BadBox  in \OML/cmm/m/it/10 <[], Line 363: 
+   Overfull \hbox (128.58743pt too wide) in paragraph
+
+** BadBox  in \OML/cmm/m/it/10 <[], Line 363: 
+   Overfull \hbox (180.63333pt too wide) in paragraph
+
+** BadBox  in \OML/cmm/m/it/10 <[], Line 363: 
+   Overfull \hbox (5.00002pt too wide) in paragraph
+
+** Error   in \OML/cmm/m/it/10 <[], Line 379: 
+    Missing \begin{document}.
+   See the LaTeX manual or LaTeX Companion for explanation.
+   ...                                              
+   "
+
+** Error   in \OML/cmm/m/it/10 <[], Line 379: 
+   Missing $ inserted <inserted text>  $ " let g:vim_
+
+** Error   in \OML/cmm/m/it/10 <[], Line 380: 
+   Missing $ inserted <inserted text>  $ 
+
+** BadBox  in \OML/cmm/m/it/10 <[], Line 379: 
+   Overfull \hbox (20.0pt too wide) in paragraph
+
+** BadBox  in \OML/cmm/m/it/10 <[], Line 379: 
+   Overfull \hbox (89.14293pt too wide) in paragraph
+
+** BadBox  in \OML/cmm/m/it/10 <[], Line 379: 
+   Overfull \hbox (5.00002pt too wide) in paragraph
+
+** Error   in \OML/cmm/m/it/10 <[], Line 381: 
+    Missing \begin{document}.
+   See the LaTeX manual or LaTeX Companion for explanation.
+   ...                                              
+   "
+
+** Error   in \OML/cmm/m/it/10 <[], Line 381: 
+   Missing $ inserted <inserted text>  $ " let g:diminactive_
+
+** Error   in \OML/cmm/m/it/10 <[], Line 383: 
+   Missing $ inserted <inserted text>  $ 
+
+** BadBox  in \OML/cmm/m/it/10 <[], Line 381: 
+   Overfull \hbox (20.0pt too wide) in paragraph
+
+** BadBox  in \OML/cmm/m/it/10 <[], Line 381: 
+   Overfull \hbox (55.27788pt too wide) in paragraph
+
+** BadBox  in \OML/cmm/m/it/10 <[], Line 381: 
+   Overfull \hbox (32.13194pt too wide) in paragraph
+
+** BadBox  in \OML/cmm/m/it/10 <[], Line 381: 
+   Overfull \hbox (116.44688pt too wide) in paragraph
+
+** BadBox  in \OML/cmm/m/it/10 <[], Line 381: 
+   Overfull \hbox (5.00002pt too wide) in paragraph
+
+** Error   in \OML/cmm/m/it/10 <[], Line 384: 
+    Missing \begin{document}.
+   See the LaTeX manual or LaTeX Companion for explanation.
+   ...                                              
+   "
+
+** BadBox  in \OML/cmm/m/it/10 <[], Line 384: 
+   Overfull \hbox (20.0pt too wide) in paragraph
+
+** Error   in \OML/cmm/m/it/10 <[], Line 387: 
+    Missing \begin{document}.
+   See the LaTeX manual or LaTeX Companion for explanation.
+   ...                                              
+   "
+
+** BadBox  in \OML/cmm/m/it/10 <[], Line 387: 
+   Overfull \hbox (20.0pt too wide) in paragraph
+
+** Error   in \OML/cmm/m/it/10 <[], Line 390: 
+    Missing \begin{document}.
+   See the LaTeX manual or LaTeX Companion for explanation.
+   ...                                              
+   l
+
+** Error   in \OML/cmm/m/it/10 <[], Line 390: 
+   Missing $ inserted <inserted text>  $ let g:highlightedyank_
+
+** Error   in \OML/cmm/m/it/10 <[], Line 391: 
+   Missing $ inserted <inserted text>  $ 
+
+** BadBox  in \OML/cmm/m/it/10 <[], Line 390: 
+   Overfull \hbox (20.0pt too wide) in paragraph
+
+** BadBox  in \OML/cmm/m/it/10 <[], Line 390: 
+   Overfull \hbox (89.56783pt too wide) in paragraph
+
+** BadBox  in \OML/cmm/m/it/10 <[], Line 390: 
+   Overfull \hbox (15.00005pt too wide) in paragraph
+
+** Error   in \OML/cmm/m/it/10 <[], Line 392: 
+    Missing \begin{document}.
+   See the LaTeX manual or LaTeX Companion for explanation.
+   ...                                              
+   "
+
+** BadBox  in \OML/cmm/m/it/10 <[], Line 392: 
+   Overfull \hbox (20.0pt too wide) in paragraph
+
+** Error   in \OML/cmm/m/it/10 <[], Line 395: 
+    Missing \begin{document}.
+   See the LaTeX manual or LaTeX Companion for explanation.
+   ...                                              
+   "
+
+** BadBox  in \OML/cmm/m/it/10 <[], Line 395: 
+   Overfull \hbox (20.0pt too wide) in paragraph
+
+** Error   in \OML/cmm/m/it/10 <[], Line 397: 
+    Missing \begin{document}.
+   See the LaTeX manual or LaTeX Companion for explanation.
+   ...                                              
+   "
+
+** Error   in \OML/cmm/m/it/10 <[], Line 398: 
+   Misplaced alignment tab character & if &
+
+** Error   in \OML/cmm/m/it/10 <[], Line 399: 
+   Misplaced alignment tab character & let &
+
+** Error   in "git diff", "--diff-algorithm=pat..., Line 399: 
+   You can't use `macro parameter character #' in horizontal mode
+   let &diffexpr='EnhancedDiff#
+
+** BadBox  in "git diff", "--diff-algorithm=pat..., Line 397: 
+   Overfull \hbox (20.0pt too wide) in paragraph
+
+** Error   in "git diff", "--diff-algorithm=pat..., Line 402: 
+    Missing \begin{document}.
+   See the LaTeX manual or LaTeX Companion for explanation.
+   ...                                              
+   "
+
+** BadBox  in "git diff", "--diff-algorithm=pat..., Line 402: 
+   Overfull \hbox (20.0pt too wide) in paragraph
+
+** Error   in "git diff", "--diff-algorithm=pat..., Line 407: 
+    Missing \begin{document}.
+   See the LaTeX manual or LaTeX Companion for explanation.
+   ...                                              
+   f
+
+** Error   in ), Line 408: 
+   Missing $ inserted <inserted text>  $ let b:surround_
+
+** Error   in ), Line 409: Undefined control sequence \ = "\\begin{\1
+
+** Error   in ), Line 409: 
+   Undefined control sequence ...           \ = "\\begin{\1environment: \1
+
+** Error   in ), Line 409: 
+   Undefined control sequence ...        \ = "\\begin{\1environment: \1}\n
+
+** Warning in ), Line 409:  Command \t invalid in math mode on input line 409.
+
+** Warning in ), Line 409:  Command \t invalid in math mode on input line 409.
+
+** Error   in ), Line 409: 
+   You can't use a prefix with `end-group character }' <to be read again> 
+   \egroup 
+   ...    \ = "\\begin{\1environment: \1}\n\t\r
+
+** Error   in ), Line 409: 
+   Please use \mathaccent for accents in math mode
+   \add@accent ...@spacefactor \spacefactor }\accent 
+   #1 #2\egroup \spacefactor ...
+   ...    \ = "\\begin{\1environment: \1}\n\t\r
+
+** Error   in ), Line 409: 
+   Missing { inserted <to be read again>  \edef 
+   ...    \ = "\\begin{\1environment: \1}\n\t\r
+
+** Warning in ), Line 409:  Command \r invalid in math mode on input line 409.
+
+** Warning in ), Line 409:  Command \r invalid in math mode on input line 409.
+
+** Error   in ), Line 409: 
+   Improper \spacefactor <recently read> \spacefactor 
+   ...    \ = "\\begin{\1environment: \1}\n\t\r
+
+** Error   in ), Line 409: 
+   Please use \mathaccent for accents in math mode
+   \add@accent ...@spacefactor \spacefactor }\accent 
+   #1 #2\egroup \spacefactor ...
+   ...    \ = "\\begin{\1environment: \1}\n\t\r
+
+** Error   in ), Line 409: 
+   Missing { inserted <to be read again>  \edef 
+   ...    \ = "\\begin{\1environment: \1}\n\t\r
+
+** Error   in ), Line 409: 
+   You can't use `\spacefactor' in math mode
+   \add@accent ...}\accent #1 #2\egroup \spacefactor 
+   \accent@spacefactor 
+   ...    \ = "\\begin{\1environment: \1}\n\t\r
+
+** Error   in ), Line 409: 
+   You can't use `\spacefactor' in math mode
+   \add@accent ...}\accent #1 #2\egroup \spacefactor 
+   \accent@spacefactor 
+   ...    \ = "\\begin{\1environment: \1}\n\t\r
+
+** Error   in ), Line 409: 
+   Undefined control sequence ...  \ = "\\begin{\1environment: \1}\n\t\r\n
+
+** Error   in ), Line 409: 
+   Undefined control sequence ...\begin{\1environment: \1}\n\t\r\n\\end{\1
+
+** Error   in ), Line 409: 
+   Undefined control sequence ...egin{\1environment: \1}\n\t\r\n\\end{\1\1
+
+** Error   in ), Line 410: 
+   Undefined control sequence <recently read> \1
+   let b:surround_{char2nr("c")} = "\\\1
+
+** Error   in ), Line 410: 
+   Undefined control sequence ...urround_{char2nr("c")} = "\\\1command: \1
+
+** Warning in ), Line 410:  Command \r invalid in math mode on input line 410.
+
+** Error   in ), Line 410: 
+   Argument of \UseTextAccent has an extra } <inserted text>  \par 
+   ...und_{char2nr("c")} = "\\\1command: \1{\r}
+
+** Error   in ), Line 410: 
+   Paragraph ended before \UseTextAccent was complete <to be read again>  \par 
+   ...und_{char2nr("c")} = "\\\1command: \1{\r}
+
+** Error   in ), Line 410: 
+   Missing $ inserted <inserted text>  $
+   ...und_{char2nr("c")} = "\\\1command: \1{\r}
+
+** Error   in ), Line 410: 
+   Missing } inserted <inserted text>  }
+   ...und_{char2nr("c")} = "\\\1command: \1{\r}
+
+** Error   in ), Line 410: 
+   Missing } inserted <inserted text>  }
+   ...und_{char2nr("c")} = "\\\1command: \1{\r}
+
+** BadBox  in ), Line 407: Overfull \hbox (20.0pt too wide) in paragraph
+
+** BadBox  in ), Line 407: Overfull \hbox (58.45102pt too wide) in paragraph
+
+** BadBox  in ), Line 407: Overfull \hbox (5.00002pt too wide) in paragraph
+
+** BadBox  in ), Line 407: Overfull \hbox (303.85385pt too wide) in paragraph
+
+** Error   in ), Line 410: 
+    Missing \begin{document}.
+   See the LaTeX manual or LaTeX Companion for explanation.
+   ...                                              
+   ...nd_{char2nr("c")} = "\\\1command: \1{\r}"
+
+** BadBox  in ), Line 410: Overfull \hbox (20.0pt too wide) in paragraph
+
+** Error   in ), Line 414: 
+    Missing \begin{document}.
+   See the LaTeX manual or LaTeX Companion for explanation.
+   ...                                              
+   l
+
+** Error   in ), Line 414: Missing $ inserted <inserted text>  $ let g:tex_
+
+** Error   in ), Line 429: Missing $ inserted <inserted text>  $ 
+
+** BadBox  in ), Line 414: Overfull \hbox (20.0pt too wide) in paragraph
+
+** BadBox  in ), Line 414: Overfull \hbox (41.85422pt too wide) in paragraph
+
+** BadBox  in ), Line 414: Overfull \hbox (47.38658pt too wide) in paragraph
+
+** BadBox  in ), Line 414: Overfull \hbox (115.01927pt too wide) in paragraph
+
+** BadBox  in ), Line 414: Overfull \hbox (57.44908pt too wide) in paragraph
+
+** BadBox  in ), Line 414: Overfull \hbox (93.3019pt too wide) in paragraph
+
+** BadBox  in ), Line 414: Overfull \hbox (27.13193pt too wide) in paragraph
+
+** BadBox  in ), Line 414: Overfull \hbox (117.78218pt too wide) in paragraph
+
+** BadBox  in ), Line 414: Overfull \hbox (32.71527pt too wide) in paragraph
+
+** BadBox  in ), Line 414: Overfull \hbox (100.64868pt too wide) in paragraph
+
+** BadBox  in ), Line 414: Overfull \hbox (32.13194pt too wide) in paragraph
+
+** BadBox  in ), Line 414: Overfull \hbox (102.84102pt too wide) in paragraph
+
+** BadBox  in ), Line 414: Overfull \hbox (27.13193pt too wide) in paragraph
+
+** BadBox  in ), Line 414: Overfull \hbox (148.25015pt too wide) in paragraph
+
+** BadBox  in ), Line 414: Overfull \hbox (32.13194pt too wide) in paragraph
+
+** BadBox  in ), Line 414: Overfull \hbox (123.78357pt too wide) in paragraph
+
+** BadBox  in ), Line 414: Overfull \hbox (27.13193pt too wide) in paragraph
+
+** BadBox  in ), Line 414: Overfull \hbox (106.45158pt too wide) in paragraph
+
+** BadBox  in ), Line 414: Overfull \hbox (27.13193pt too wide) in paragraph
+
+** BadBox  in ), Line 414: Overfull \hbox (118.84946pt too wide) in paragraph
+
+** BadBox  in ), Line 414: Overfull \hbox (27.13193pt too wide) in paragraph
+
+** BadBox  in ), Line 414: Overfull \hbox (110.91595pt too wide) in paragraph
+
+** BadBox  in ), Line 414: Overfull \hbox (32.13194pt too wide) in paragraph
+
+** BadBox  in ), Line 414: Overfull \hbox (100.05649pt too wide) in paragraph
+
+** BadBox  in ), Line 414: Overfull \hbox (32.13194pt too wide) in paragraph
+
+** BadBox  in ), Line 414: Overfull \hbox (130.01457pt too wide) in paragraph
+
+** BadBox  in ), Line 414: Overfull \hbox (27.13193pt too wide) in paragraph
+
+** BadBox  in ), Line 414: Overfull \hbox (78.38815pt too wide) in paragraph
+
+** BadBox  in ), Line 414: Overfull \hbox (27.13193pt too wide) in paragraph
+
+** BadBox  in ), Line 414: Overfull \hbox (192.71568pt too wide) in paragraph
+
+** BadBox  in ), Line 414: Overfull \hbox (5.00002pt too wide) in paragraph
+
+** Error   in ), Line 430: 
+    Missing \begin{document}.
+   See the LaTeX manual or LaTeX Companion for explanation.
+   ...                                              
+   i
+
+** Error   in ), Line 431: Missing $ inserted <inserted text>  $ let g:vimtex_
+
+** Error   in ), Line 444: Missing $ inserted <inserted text>  $ 
+
+** Error   in ), Line 444: Missing } inserted <inserted text>  } 
+
+** Error   in ), Line 444: Missing } inserted <inserted text>  } 
+
+** BadBox  in ), Line 430: Overfull \hbox (20.0pt too wide) in paragraph
+
+** BadBox  in ), Line 430: Overfull \hbox (85.7204pt too wide) in paragraph
+
+** BadBox  in ), Line 430: Overfull \hbox (592.32832pt too wide) in paragraph
+
+** Error   in ), Line 445: 
+    Missing \begin{document}.
+   See the LaTeX manual or LaTeX Companion for explanation.
+   ...                                              
+   i
+
+** Error   in ), Line 446: Missing $ inserted <inserted text>  $ let g:vimtex_
+
+** Error   in ), Line 448: 
+   You can't use `macro parameter character #' in math mode call vimtex#
+
+** Error   in ), Line 448: 
+   You can't use `macro parameter character #' in math mode call vimtex#doc#
+
+** Error   in ), Line 450: 
+   Misplaced alignment tab character & <recently read> &
+   ...  execute '!texdoc' a:context.selected '&
+
+** Error   in ), Line 450: 
+   Double superscript <recently read> ^
+   ... execute '!texdoc' a:context.selected '&'
+
+** Error   in ), Line 455: Missing $ inserted <inserted text>  $ 
+
+** BadBox  in ), Line 445: Overfull \hbox (20.0pt too wide) in paragraph
+
+** BadBox  in ), Line 445: Overfull \hbox (63.38173pt too wide) in paragraph
+
+** BadBox  in ), Line 445: Overfull \hbox (342.76321pt too wide) in paragraph
+
+** BadBox  in \OML/cmm/m/it/10 a \/cmr/m/n/10 :[], Line 445: 
+   Overfull \hbox (90.92563pt too wide) in paragraph
+
+** BadBox  in \OML/cmm/m/it/10 a \/cmr/m/n/10 :[], Line 445: 
+   Overfull \hbox (155.35791pt too wide) in paragraph
+
+** BadBox  in ), Line 445: Overfull \hbox (215.40439pt too wide) in paragraph
+
+** Error   in ), Line 456: 
+    Missing \begin{document}.
+   See the LaTeX manual or LaTeX Companion for explanation.
+   ...                                              
+   i
+
+** Error   in ), Line 457: Missing $ inserted <inserted text>  $ let g:vimtex_
+
+** Error   in ), Line 464: Missing $ inserted <inserted text>  $ 
+
+** BadBox  in ), Line 456: Overfull \hbox (20.0pt too wide) in paragraph
+
+** BadBox  in ), Line 456: Overfull \hbox (96.12567pt too wide) in paragraph
+
+** BadBox  in ), Line 456: Overfull \hbox (89.3082pt too wide) in paragraph
+
+** BadBox  in ), Line 456: Overfull \hbox (129.88492pt too wide) in paragraph
+
+** BadBox  in ), Line 456: Overfull \hbox (40.06958pt too wide) in paragraph
+
+** BadBox  in ), Line 456: Overfull \hbox (45.79596pt too wide) in paragraph
+
+** BadBox  in ), Line 456: Overfull \hbox (46.09503pt too wide) in paragraph
+
+** BadBox  in ), Line 456: Overfull \hbox (123.5877pt too wide) in paragraph
+
+** BadBox  in ), Line 456: Overfull \hbox (166.5239pt too wide) in paragraph
+
+** BadBox  in ), Line 456: Overfull \hbox (40.06958pt too wide) in paragraph
+
+** BadBox  in ), Line 456: Overfull \hbox (80.13623pt too wide) in paragraph
+
+** BadBox  in ), Line 456: Overfull \hbox (93.65836pt too wide) in paragraph
+
+** BadBox  in ), Line 456: Overfull \hbox (70.82962pt too wide) in paragraph
+
+** Error   in ), Line 465: 
+    Missing \begin{document}.
+   See the LaTeX manual or LaTeX Companion for explanation.
+   ...                                              
+   l
+
+** Error   in ), Line 465: Missing $ inserted <inserted text>  $ let g:vimtex_
+
+** Error   in ), Line 475: Missing $ inserted <inserted text>  $ 
+
+** BadBox  in ), Line 465: Overfull \hbox (20.0pt too wide) in paragraph
+
+** BadBox  in ), Line 465: Overfull \hbox (68.64256pt too wide) in paragraph
+
+** BadBox  in ), Line 465: Overfull \hbox (27.13193pt too wide) in paragraph
+
+** BadBox  in ), Line 465: Overfull \hbox (93.3019pt too wide) in paragraph
+
+** BadBox  in ), Line 465: Overfull \hbox (27.13193pt too wide) in paragraph
+
+** BadBox  in ), Line 465: Overfull \hbox (130.01457pt too wide) in paragraph
+
+** BadBox  in ), Line 465: Overfull \hbox (27.13193pt too wide) in paragraph
+
+** BadBox  in ), Line 465: Overfull \hbox (106.45158pt too wide) in paragraph
+
+** BadBox  in ), Line 465: Overfull \hbox (27.13193pt too wide) in paragraph
+
+** BadBox  in ), Line 465: Overfull \hbox (94.8969pt too wide) in paragraph
+
+** BadBox  in ), Line 465: Overfull \hbox (27.13193pt too wide) in paragraph
+
+** BadBox  in ), Line 465: Overfull \hbox (148.25015pt too wide) in paragraph
+
+** BadBox  in ), Line 465: Overfull \hbox (27.13193pt too wide) in paragraph
+
+** BadBox  in ), Line 465: Overfull \hbox (102.84102pt too wide) in paragraph
+
+** BadBox  in ), Line 465: Overfull \hbox (37.13196pt too wide) in paragraph
+
+** BadBox  in ), Line 465: Overfull \hbox (115.01927pt too wide) in paragraph
+
+** BadBox  in ), Line 465: Overfull \hbox (67.44911pt too wide) in paragraph
+
+** BadBox  in ), Line 465: Overfull \hbox (118.84946pt too wide) in paragraph
+
+** BadBox  in ), Line 465: Overfull \hbox (27.13193pt too wide) in paragraph
+
+** BadBox  in ), Line 465: Overfull \hbox (160.6266pt too wide) in paragraph
+
+** BadBox  in ), Line 465: Overfull \hbox (5.00002pt too wide) in paragraph
+
+** Error   in ), Line 476: 
+    Missing \begin{document}.
+   See the LaTeX manual or LaTeX Companion for explanation.
+   ...                                              
+   a
+
+** Error   in ), Line 476: 
+   Missing $ inserted <inserted text>  $ augroup vimtex_
+
+** Error   in ), Line 481: Missing $ inserted <inserted text>  $ 
+
+** BadBox  in ), Line 476: Overfull \hbox (20.0pt too wide) in paragraph
+
+** BadBox  in ), Line 476: Overfull \hbox (488.1453pt too wide) in paragraph
+
+** Error   in ), Line 482: 
+    Missing \begin{document}.
+   See the LaTeX manual or LaTeX Companion for explanation.
+   ...                                              
+   a
+
+** Error   in ), Line 484: 
+   You can't use `macro parameter character #' in horizontal mode
+   autocmd BufWritePost *.tex call vimtex#
+
+** Error   in ), Line 484: 
+   You can't use `macro parameter character #' in horizontal mode
+   ...md BufWritePost *.tex call vimtex#labels#
+
+** Error   in ), Line 485: 
+   You can't use `macro parameter character #' in horizontal mode
+   ..." autocmd BufWritePost *.tex call vimtex#
+
+** Error   in ), Line 485: 
+   You can't use `macro parameter character #' in horizontal mode
+   ...tocmd BufWritePost *.tex call vimtex#toc#
+
+** BadBox  in ), Line 482: Overfull \hbox (20.0pt too wide) in paragraph
+
+** Error   in ), Line 488: 
+    Missing \begin{document}.
+   See the LaTeX manual or LaTeX Companion for explanation.
+   ...                                              
+   l
+
+** Error   in ), Line 488: Missing $ inserted <inserted text>  $ let g:ale_
+
+** Error   in ), Line 491: Missing $ inserted <inserted text>  $ 
+
+** Error   in ), Line 491: Missing } inserted <inserted text>  } 
+
+** BadBox  in ), Line 488: Overfull \hbox (20.0pt too wide) in paragraph
+
+** BadBox  in ), Line 488: Overfull \hbox (40.8167pt too wide) in paragraph
+
+** BadBox  in ), Line 488: Overfull \hbox (136.90349pt too wide) in paragraph
+
+** Error   in ), Line 492: 
+    Missing \begin{document}.
+   See the LaTeX manual or LaTeX Companion for explanation.
+   ...                                              
+   "
+
+** Error   in  in font nullfont!, Line 494: 
+   Missing $ inserted <inserted text>  $ imap <C-space>     <Plug>(neosnippet_
+
+** Error   in ), Line 497: Missing $ inserted <inserted text>  $ 
+
+** BadBox  in ), Line 492: Overfull \hbox (20.0pt too wide) in paragraph
+
+** BadBox  in ), Line 492: Overfull \hbox (102.47125pt too wide) in paragraph
+
+** BadBox  in ), Line 492: Overfull \hbox (15.64029pt too wide) in paragraph
+
+** BadBox  in ), Line 492: Overfull \hbox (42.32178pt too wide) in paragraph
+
+** BadBox  in ), Line 492: Overfull \hbox (32.39816pt too wide) in paragraph
+
+** BadBox  in ), Line 492: Overfull \hbox (155.35863pt too wide) in paragraph
+
+** BadBox  in ), Line 492: Overfull \hbox (15.64029pt too wide) in paragraph
+
+** BadBox  in ), Line 492: Overfull \hbox (42.32178pt too wide) in paragraph
+
+** BadBox  in ), Line 492: Overfull \hbox (32.39816pt too wide) in paragraph
+
+** BadBox  in ), Line 492: Overfull \hbox (114.27419pt too wide) in paragraph
+
+** Error   in ), Line 498: 
+    Missing \begin{document}.
+   See the LaTeX manual or LaTeX Companion for explanation.
+   ...                                              
+   s
+
+** Error   in ) ?, Line 498: 
+   You can't use `macro parameter character #' in horizontal mode
+   smap <expr><TAB> neosnippet#
+
+** Error   in ) ?, Line 498: 
+   Missing $ inserted <inserted text>  $ smap <expr><TAB> neosnippet#expandable_
+
+** Error   in ) ?, Line 499: Undefined control sequence \ "\<
+
+** Error   in ) ?, Line 499: 
+   Undefined control sequence ...\<Plug>(neosnippet_expand_or_jump)" : "\<
+
+** Error   in ) ?, Line 500: Missing $ inserted <inserted text>  $ 
+
+** BadBox  in ) ?, Line 498: Overfull \hbox (20.0pt too wide) in paragraph
+
+** BadBox  in ) ?, Line 498: 
+   Overfull \hbox (100.02092pt too wide) in paragraph
+
+** BadBox  in )? "\OML/cmm/m/it/10 Plug >, Line 498: 
+   Overfull \hbox (130.54608pt too wide) in paragraph
+
+** BadBox  in )? "\OML/cmm/m/it/10 Plug >, Line 498: 
+   Overfull \hbox (38.375pt too wide) in paragraph
+
+** BadBox  in )? "\OML/cmm/m/it/10 Plug >, Line 498: 
+   Overfull \hbox (5.00002pt too wide) in paragraph
+
+** Error   in )? "\OML/cmm/m/it/10 Plug >, Line 501: 
+    Missing \begin{document}.
+   See the LaTeX manual or LaTeX Companion for explanation.
+   ...                                              
+   "
+
+** BadBox  in )? "\OML/cmm/m/it/10 Plug >, Line 501: 
+   Overfull \hbox (20.0pt too wide) in paragraph
+
+** Error   in )? "\OML/cmm/m/it/10 Plug >, Line 506: 
+    Missing \begin{document}.
+   See the LaTeX manual or LaTeX Companion for explanation.
+   ...                                              
+   "
+
+** Error   in )? "\OML/cmm/m/it/10 Plug >, Line 507: 
+   You can't use `macro parameter character #' in horizontal mode
+   let g:neosnippet#
+
+** Error   in )? "\OML/cmm/m/it/10 Plug >, Line 507: 
+   Missing $ inserted <inserted text>  $ let g:neosnippet#enable_
+
+** Error   in )? "\OML/cmm/m/it/10 Plug >, Line 508: 
+   Missing $ inserted <inserted text>  $ 
+
+** BadBox  in )? "\OML/cmm/m/it/10 Plug >, Line 506: 
+   Overfull \hbox (20.0pt too wide) in paragraph
+
+** BadBox  in )? "\OML/cmm/m/it/10 Plug >, Line 506: 
+   Overfull \hbox (109.95166pt too wide) in paragraph
+
+** BadBox  in )? "\OML/cmm/m/it/10 Plug >, Line 506: 
+   Overfull \hbox (5.00002pt too wide) in paragraph
+
+** Error   in )? "\OML/cmm/m/it/10 Plug >, Line 509: 
+    Missing \begin{document}.
+   See the LaTeX manual or LaTeX Companion for explanation.
+   ...                                              
+   "
+
+** Error   in )? "\OML/cmm/m/it/10 Plug >, Line 511: 
+   You can't use `macro parameter character #' in horizontal mode
+   let g:neosnippet#
+
+** Error   in )? "\OML/cmm/m/it/10 Plug >, Line 511: 
+   Missing $ inserted <inserted text>  $ let g:neosnippet#snippets_
+
+** Error   in )? "\OML/cmm/m/it/10 Plug >, Line 513: 
+   You can't use `macro parameter character #' in math mode let g:neosnippet#
+
+** Error   in )? "\OML/cmm/m/it/10 Plug >, Line 515: 
+   Missing $ inserted <inserted text>  $ 
+
+** BadBox  in )? "\OML/cmm/m/it/10 Plug >, Line 509: 
+   Overfull \hbox (20.0pt too wide) in paragraph
+
+** BadBox  in )? "\OML/cmm/m/it/10 Plug >, Line 509: 
+   Overfull \hbox (213.00673pt too wide) in paragraph
+
+** BadBox  in )? "\OML/cmm/m/it/10 Plug >, Line 509: 
+   Overfull \hbox (133.29985pt too wide) in paragraph
+
+** BadBox  in )? "\OML/cmm/m/it/10 Plug >, Line 509: 
+   Overfull \hbox (298.12979pt too wide) in paragraph
+
+** BadBox  in )? "\OML/cmm/m/it/10 Plug >, Line 509: 
+   Overfull \hbox (107.39116pt too wide) in paragraph
+
+** Error   in )? "\OML/cmm/m/it/10 Plug >, Line 516: 
+    Missing \begin{document}.
+   See the LaTeX manual or LaTeX Companion for explanation.
+   ...                                              
+   l
+
+** Error   in )? "\OML/cmm/m/it/10 Plug >, Line 516: 
+   Missing $ inserted <inserted text>  $ let g:tex_
+
+** Error   in )? "\OML/cmm/m/it/10 Plug >, Line 524: 
+   Missing $ inserted <inserted text>  $ 
+
+** BadBox  in )? "\OML/cmm/m/it/10 Plug >, Line 516: 
+   Overfull \hbox (20.0pt too wide) in paragraph
+
+** BadBox  in )? "\OML/cmm/m/it/10 Plug >, Line 516: 
+   Overfull \hbox (61.88797pt too wide) in paragraph
+
+** BadBox  in )? "\OML/cmm/m/it/10 Plug >, Line 516: 
+   Overfull \hbox (27.13193pt too wide) in paragraph
+
+** BadBox  in )? "\OML/cmm/m/it/10 Plug >, Line 516: 
+   Overfull \hbox (79.73648pt too wide) in paragraph
+
+** BadBox  in )? "\OML/cmm/m/it/10 Plug >, Line 516: 
+   Overfull \hbox (36.19562pt too wide) in paragraph
+
+** BadBox  in )? "\OML/cmm/m/it/10 Plug >, Line 516: 
+   Overfull \hbox (91.17795pt too wide) in paragraph
+
+** BadBox  in )? "\OML/cmm/m/it/10 Plug >, Line 516: 
+   Overfull \hbox (27.13193pt too wide) in paragraph
+
+** BadBox  in )? "\OML/cmm/m/it/10 Plug >, Line 516: 
+   Overfull \hbox (59.37228pt too wide) in paragraph
+
+** BadBox  in )? "\OML/cmm/m/it/10 Plug >, Line 516: 
+   Overfull \hbox (27.13193pt too wide) in paragraph
+
+** BadBox  in )? "\OML/cmm/m/it/10 Plug >, Line 516: 
+   Overfull \hbox (46.43294pt too wide) in paragraph
+
+** BadBox  in )? "\OML/cmm/m/it/10 Plug >, Line 516: 
+   Overfull \hbox (27.13193pt too wide) in paragraph
+
+** BadBox  in )? "\OML/cmm/m/it/10 Plug >, Line 516: 
+   Overfull \hbox (61.18832pt too wide) in paragraph
+
+** BadBox  in )? "\OML/cmm/m/it/10 Plug >, Line 516: 
+   Overfull \hbox (65.12865pt too wide) in paragraph
+
+** BadBox  in )? "\OML/cmm/m/it/10 Plug >, Line 516: 
+   Overfull \hbox (89.46127pt too wide) in paragraph
+
+** BadBox  in )? "\OML/cmm/m/it/10 Plug >, Line 516: 
+   Overfull \hbox (5.00002pt too wide) in paragraph
+
+** Error   in )? "\OML/cmm/m/it/10 Plug >, Line 525: 
+    Missing \begin{document}.
+   See the LaTeX manual or LaTeX Companion for explanation.
+   ...                                              
+   l
+
+** Error   in )? "\OML/cmm/m/it/10 Plug >, Line 525: 
+   Missing $ inserted <inserted text>  $ let g:fastfold_
+
+** Error   in )? "\OML/cmm/m/it/10 Plug >, Line 527: 
+   Missing $ inserted <inserted text>  $ 
+
+** BadBox  in )? "\OML/cmm/m/it/10 Plug >, Line 525: 
+   Overfull \hbox (20.0pt too wide) in paragraph
+
+** BadBox  in )? "\OML/cmm/m/it/10 Plug >, Line 525: 
+   Overfull \hbox (50.95488pt too wide) in paragraph
+
+** BadBox  in )? "\OML/cmm/m/it/10 Plug >, Line 525: 
+   Overfull \hbox (27.13193pt too wide) in paragraph
+
+** BadBox  in )? "\OML/cmm/m/it/10 Plug >, Line 525: 
+   Overfull \hbox (151.15588pt too wide) in paragraph
+
+** BadBox  in )? "\OML/cmm/m/it/10 Plug >, Line 525: 
+   Overfull \hbox (255.06125pt too wide) in paragraph
+
+** Error   in )? "\OML/cmm/m/it/10 Plug >, Line 528: 
+    Missing \begin{document}.
+   See the LaTeX manual or LaTeX Companion for explanation.
+   ...                                              
+   "
+
+** Error   in s:str, ';\\@<..., Line 529: 
+   Misplaced alignment tab character & let &
+
+** BadBox  in  '\\=s:fullwidth-2', 'left', [ repea..., Line 528: 
+   Overfull \hbox (20.0pt too wide) in paragraph
+
+** BadBox  in  '\\=s:fullwidth-2', 'left', [ repea..., Line 528: 
+   Overfull \hbox (5.55557pt too wide) in paragraph
+
+** Error   in  '\\=s:fullwidth-2', 'left', [ repea..., Line 531: 
+    Missing \begin{document}.
+   See the LaTeX manual or LaTeX Companion for explanation.
+   ...                                              
+   "
+
+** Error   in )<CR>a, Line 534: 
+   Missing $ inserted <inserted text>  $ "     let p = '^
+
+** Error   in )<CR>a, Line 534: Undefined control sequence "     let p = '^\s
+
+** Error   in )<CR>a, Line 534: 
+   Undefined control sequence "     let p = '^\s*|\s
+
+** Error   in )<CR>a, Line 534: 
+   Undefined control sequence "     let p = '^\s*|\s.*\s
+
+** Error   in )<CR>a, Line 534: 
+   Undefined control sequence "     let p = '^\s*|\s.*\s|\s
+
+** Error   in )<CR>a, Line 535: 
+   Misplaced alignment tab character & "     if exists(':Tabularize') &
+
+** Error   in getline..., Line 535: 
+   Misplaced alignment tab character & "     if exists(':Tabularize') &&
+
+** Error   in getline..., Line 535: 
+   You can't use `macro parameter character #' in horizontal mode
+   ...exists(':Tabularize') && getline('.') =~#
+
+** Error   in ..., Line 535: 
+   Missing $ inserted <inserted text>  $
+   ...sts(':Tabularize') && getline('.') =~# '^
+
+** Error   in '.'..., Line 535: 
+   Undefined control sequence ...s(':Tabularize') && getline('.') =~# '^\s
+
+** Error   in '.'..., Line 535: 
+   Misplaced alignment tab character &
+   ...abularize') && getline('.') =~# '^\s*|' &
+
+** Error   in ..., Line 535: 
+   Misplaced alignment tab character &
+   ...bularize') && getline('.') =~# '^\s*|' &&
+
+** Error   in getline..., Line 535: 
+   You can't use `macro parameter character #' in math mode
+   ... =~# '^\s*|' && (getline(line('.')-1) =~#
+
+** Error   in getline..., Line 535: 
+   You can't use `macro parameter character #' in math mode
+   ...'.')-1) =~# p || getline(line('.')+1) =~#
+
+** Error   in )<CR>a, Line 537: 
+   Undefined control sequence ...(matchstr(getline('.')[0:col('.')],'.*|\s
+
+** Error   in )? "\OML/cmm/m/it/10 Plug >, Line 537: 
+   Undefined control sequence ...chstr(getline('.')[0:col('.')],'.*|\s*\zs
+
+** Error   in ) ?, Line 540: 
+   Undefined control sequence <recently read> \s 
+   ...  call search(repeat('[^|]*|',column).'\s
+
+** Error   in '.',position..., Line 543: 
+   Missing $ inserted <inserted text>  $ 
+
+** BadBox  in '.',position..., Line 531: 
+   Overfull \hbox (20.0pt too wide) in paragraph
+
+** BadBox  in '.',position..., Line 531: 
+   Overfull \hbox (15.15282pt too wide) in paragraph
+
+** BadBox  in '.',position..., Line 531: 
+   Overfull \hbox (7.7778pt too wide) in paragraph
+
+** BadBox  in '.',position..., Line 531: 
+   Overfull \hbox (89.86736pt too wide) in paragraph
+
+** BadBox  in '.',position..., Line 531: 
+   Overfull \hbox (108.60684pt too wide) in paragraph
+
+** BadBox  in ) ?, Line 531: Overfull \hbox (91.0082pt too wide) in paragraph
+
+** BadBox  in ), Line 531: Overfull \hbox (138.93568pt too wide) in paragraph
+
+** BadBox  in ), Line 531: Overfull \hbox (145.22368pt too wide) in paragraph
+
+** BadBox  in ), Line 531: Overfull \hbox (135.7394pt too wide) in paragraph
+
+** BadBox  in ), Line 531: Overfull \hbox (46.32762pt too wide) in paragraph
+
+** BadBox  in ), Line 531: Overfull \hbox (7.7778pt too wide) in paragraph
+
+** BadBox  in ), Line 531: Overfull \hbox (241.49211pt too wide) in paragraph
+
+** BadBox  in [][[]] \OMS/cmsy/m/n/10 ^^C[], Line 531: 
+   Overfull \hbox (310.51576pt too wide) in paragraph
+
+** Error   in \OML/cmm/m/it/10 <[], Line 544: 
+    Missing \begin{document}.
+   See the LaTeX manual or LaTeX Companion for explanation.
+   ...                                              
+   l
+
+** Error   in \OML/cmm/m/it/10 <[], Line 544: 
+   Missing $ inserted <inserted text>  $ let g:hardtime_
+
+** Error   in 'right:50%:hi...: 
+   Emergency stop <*> common_xvim_plugin_mappings
+   *** (job aborted, no legal \end found)
+   Here is how much of TeX's memory you used:
+   38 strings out of 493488
+   638 string characters out of 3141347
+   82152 words of memory out of 3000000
+   3439 multiletter control sequences out of 15000+200000
+
+Result: o) Errors: 432, Warnings: 14, BadBoxes: 512
+
