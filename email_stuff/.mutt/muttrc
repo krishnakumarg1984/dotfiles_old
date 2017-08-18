@@ -1,38 +1,34 @@
 # mailboxes
 source ~/.mutt/kg314_office365
-# source ~/.mutt/muttcol
 # source ~/.mutt/aliases.txt
+bind pager g noop
+bind attach,browser,index       g   noop
 
 set sort=threads
 set sort_browser=reverse-date
 # set sort_aux=last-date-received
 set sort_aux=reverse-last-date-received
 
-set editor="vim -c start"   # start editor in insert mode
+# set editor="vim -c start"   # start editor in insert mode
+set editor="nvim -c start"   # start editor in insert mode
+# set editor="echo \$EDITOR"   # start editor in insert mode
 set timeout = "5"
-set mail_check = "120"  # How often to check in seconds
+set mail_check = "30"  # How often to check in seconds
 set mailcap_path = ~/.mutt/mailcap
-set date_format="%d-%b-%Y %I:%M"
-set index_format="%2C %Z %d %-15.15F %s (%-4.4c)"
+# set date_format="%d-%b-%Y %I:%M"
+# set index_format="%2C %Z %d %-15.15F %s (%-4.4c)"
+set index_format="%2C %Z %{%b %d} %-15.15L (%?l?%4l&%4c?) %s"
 
 auto_view text/html
 alternative_order text/plain text/enriched text/html
 
-mono bold bold
-mono underline underline
-mono indicator reverse
-color index yellow default '.*'
-color index_author red default '.*'
-color index_number blue default
-color index_subject cyan default '.s'
-color index_size green default
-color normal default default
-color body brightred default [\-\.+_a-zA-Z0-9]+@[\-\.a-zA-Z0-9]+
-color body brightblue default (https?|ftp)://[\-\.,/%~_:?&=\#a-zA-Z0-9]+
-
 bind editor <space> noop
-bind index d half-down
-bind index u half-up
+# bind index d half-down
+bind index \Cd half-down
+bind pager \Cd half-down
+# bind index u half-up
+bind index \Cu half-up
+bind pager \Cu half-up
 bind index D delete-message
 bind index U undelete-message
 bind index F search
@@ -43,15 +39,26 @@ bind pager <up> previous-line #scroll inside the message rather than the index
 bind pager <down> next-line
 bind pager k previous-line #scroll inside the message rather than the index
 bind pager j next-line
-bind attach,index,pager \CD next-page
-bind attach,index,pager \CU previous-page
+bind attach,browser,index,pager \CF next-page
+bind attach,browser,index,pager \CB previous-page
+bind attach,browser,pager,index \Cu half-up
+bind attach,browser,pager,index \Cd half-down
+bind browser,pager              \Ce next-line
+bind browser,pager              \Cy previous-line
+bind index                      \Ce next-line
+bind index                      \Cy previous-line
 bind pager gg top
 bind pager G bottom
 bind pager R group-reply
-bind attach,index gg first-entry
-bind attach,index G last-entry
+# bind attach,index gg first-entry
+bind attach,browser,index       gg  first-entry
+# bind attach,index G last-entry
+bind attach,browser,index       G   last-entry
+bind pager,index                d   noop
+bind pager,index                dd  delete-message
 
-macro pager \cu |urlview\n
+# macro pager \cu |urlview\n
+macro pager \cu <pipe-entry>'urlview'<enter> 'Follow links with urlview'
 
 set message_cachedir="~/.mutt/message_cache"
 set header_cache="~/.mutt/header_cache"
@@ -68,6 +75,7 @@ unset confirmappend        # may want to change this later
 set copy                 # save copies of sent messages
 set delete               # don't ask me to delete messages - just do it!
 # set   edit_headers         # display the headers when I'm editing a message
+unset user_agent
 set fast_reply           # don't prompt for stuff when replying
 set followup_to          # add Mail-Followup-To header
 set help                 # show help on first line of display
@@ -85,89 +93,240 @@ set forward_format="Fwd: %s"    # subject to use when forwarding
 unset markers       # put a '+' at the beginning of wrapped lines.
 # set mime_forward=no # forward all attachments as a single attachment?
 set pager_index_lines=6 # add small message index at top of pager (5)
-set pipe_decode
-set quit=yes        # don't ask before quitting.
-set shell=/bin/bash
-set sig_dashes=no   # no dashes between message text and signature
-set sig_on_top      # puts signature above quoted or forwarded text
-set smart_wrap      # wrap long lines at word boundary.
-set tilde           # Internal Pager: ~~~~ at end of message?
-unset wait_key      # don't wait for keystroke to return from shell
-set sleep_time = 0 # be fast
-set imap_check_subscribed  # check for all subscribed IMAP folders
-unset imap_passive  # Allow Mutt to open new imap connection automatically.
-set imap_keepalive = 300 #  Keep IMAP connection alive by polling intermittently (time in seconds).
-bind generic,alias,attach,browser,editor,index,compose,pager,pgp,postpone ':' noop
-set send_charset="us-ascii:utf-8"
-set thorough_search      # strip headers and eval mimes before searching
+    set pipe_decode
+    set quit=yes        # don't ask before quitting.
+    set shell=/bin/bash
+    set sig_dashes=no   # no dashes between message text and signature
+    set sig_on_top      # puts signature above quoted or forwarded text
+    set smart_wrap      # wrap long lines at word boundary.
+    set tilde           # Internal Pager: ~~~~ at end of message?
+    unset wait_key      # don't wait for keystroke to return from shell
+    set sleep_time = 0 # be fast
+    set imap_check_subscribed  # check for all subscribed IMAP folders
+    unset imap_passive  # Allow Mutt to open new imap connection automatically.
+    set imap_keepalive = 300 #  Keep IMAP connection alive by polling intermittently (time in seconds).
+    bind generic,alias,attach,browser,editor,index,compose,pager,pgp,postpone ':' noop
+    set send_charset="us-ascii:utf-8"
+    set thorough_search      # strip headers and eval mimes before searching
 
 
-my_hdr X-Operating-System: `uname -s`, kernel `uname -r`
-my_hdr User-Agent: Every email client sucks, this one just sucks less.
+    my_hdr X-Operating-System: `uname -s`, kernel `uname -r`
+    my_hdr User-Agent: Every email client sucks, this one just sucks less.
 
-macro attach 'V' "<pipe-entry>cat >~/.cache/mutt/mail.html && $BROWSER ~/.cache/mutt/mail.html && rm ~/.cache/mutt/mail.html<enter>"
+    macro attach 'V' "<pipe-entry>cat >~/.cache/mutt/mail.html && $BROWSER ~/.cache/mutt/mail.html && rm ~/.cache/mutt/mail.html<enter>"
 
-bind index,pager B sidebar-toggle-visible
-set pager_index_lines=10
-set pager_context=3
+    bind index,pager B sidebar-toggle-visible
+    set pager_index_lines=10
+    set pager_context=3
 
-alternates kg314@imperial.ac.uk|k.gopalakrishnan14@imperial.ac.uk
+    alternates kg314@imperial.ac.uk|k.gopalakrishnan14@imperial.ac.uk
 
 ## Abook
-set query_command= "abook --mutt-query '%s'"
-macro index,pager  a "<pipe-message>abook --add-email-quiet<return>" "Add this sender to Abook"
-bind editor        <Tab> complete-query
+    set query_command= "abook --mutt-query '%s'"
+    macro index,pager  a "<pipe-message>abook --add-email-quiet<return>" "Add this sender to Abook"
+    bind editor        <Tab> complete-query
 
 # Sidebar Patch --------------------------------------
 # set sidebar_delim   = '  │'
-set sidebar_visible = yes
-set sidebar_width   = 24
-color sidebar_new color221 color233
+    set sidebar_visible = yes
+    set sidebar_width   = 24
 
 # Status Bar -----------------------------------------
-set status_chars  = " *%A"
+    set status_chars  = " *%A"
 # set status_format = "───[ Folder: %f ]───[%r%m messages%?n? (%n new)?%?d? (%d to delete)?%?t? (%t tagged)? ]───%>─%?p?( %p postponed )?───"
+set status_format='-%r-Mutt: %f [Msgs:%?M?%M/?%m%?n? New:%n?%?o? Old:%o?%?d? Del:%d?%?F? Flag:%F?%?t? Tag:%t?%?p? Post:%p?%?b? Inc:%b?%?l? %l?]---(%s/%S)-%>-(%P)---'
+
 #
 # Header Options -------------------------------------
-ignore *                                # ignore all headers
-unignore from: to: cc: date: subject:   # show only these
-unhdr_order *                           # some distros order things by default
-hdr_order from: to: cc: date: subject:  # and in this order
+    ignore *                                # ignore all headers
+    unignore from: to: cc: date: subject:   # show only these
+    unhdr_order *                           # some distros order things by default
+    hdr_order from: to: cc: date: subject:  # and in this order
 
-# macro index y "<change-folder>?<toggle-mailboxes>" "show incoming mailboxes list"       #I have seen on some Mutt configs that y sometimes does not toggle the list of mailboxes. In that case, you can add something like:
+    macro index y "<change-folder>?<toggle-mailboxes>" "show incoming mailboxes list"       #I have seen on some Mutt configs that y sometimes does not toggle the list of mailboxes. In that case, you can add something like:
 
 # Sidebar Navigation ---------------------------------
-bind index,pager <down>   sidebar-next
-bind index,pager <up>     sidebar-prev
-bind index,pager <right>  sidebar-open
+    bind index,pager <down>   sidebar-next
+    bind index,pager <up>     sidebar-prev
+    bind index,pager <right>  sidebar-open
 
-set quote_regexp = "^( {0,4}[>|:#%]| {0,4}[a-z0-9]+[>|]+)+"
+    set quote_regexp = "^( {0,4}[>|:#%]| {0,4}[a-z0-9]+[>|]+)+"
 
-bind attach <return> view-mailcap
+    bind attach <return> view-mailcap
+    macro index,pager H view-mailcap
 
 # Compose View Options -------------------------------
-set realname = "Krishna"          # who am i?
-set envelope_from                    # which from?
-set fcc_attach                       # save attachments with the body
-unset mime_forward                   # forward attachments as part of body
-set forward_format = "Fwd: %s"       # format of subject when forwarding
-set forward_decode                   # decode when forwarding
-set attribution = "On %d, %n wrote:" # format of quoting header
-set reply_to                         # reply to Reply to: field
-set reverse_name                     # reply as whomever it was to
-set include                          # include message in replies
-set forward_quote                    # include message in forwards
+    set realname = "Krishna"          # who am i?
+    set envelope_from                    # which from?
+    set fcc_attach                       # save attachments with the body
+    unset mime_forward                   # forward attachments as part of body
+    set forward_format = "Fwd: %s"       # format of subject when forwarding
+    set forward_decode                   # decode when forwarding
+    set attribution = "On %d, %n wrote:" # format of quoting header
+    set reply_to                         # reply to Reply to: field
+    set reverse_name                     # reply as whomever it was to
+    set include                          # include message in replies
+    set forward_quote                    # include message in forwards
 
-bind compose p postpone-message
-bind index p recall-message
+    bind compose p postpone-message
+    bind index p recall-message
 
 # bind index N search-opposite
 # bind pager N search-opposite
 #
-set print_command="mutt-print %s"
-set recall=no
+    set print_command="mutt-print %s"
+    set recall=no
 #don't resume postponed messages
 #
-set postpone=ask-no
-unset reply_self
+    set postpone=ask-no
+    unset reply_self
 
+    set sidebar_visible = no
+    set sidebar_width = 20
+    set sidebar_short_path = yes
+    set sidebar_delim_chars = '/.'
+    set sidebar_folder_indent = no
+    set sidebar_indent_string = '  '
+    set sidebar_new_mail_only = yes
+    set sidebar_next_new_wrap = yes
+    set sidebar_on_right = no
+    set sidebar_divider_char = ' ▐ '
+    set mail_check_stats
+    set sidebar_format = '%B %?N?(%N)?%* %S'
+    set sidebar_sort_method = 'path'
+
+    set new_mail_command="notify-send 'New Email in %f' '%n new messages, %u unread.' &"
+
+# ======================================================================
+# INDEX_FORMAT
+# ======================================================================
+# the if-then-else patch allows for spattern!
+
+# 2016-08-10   in = index new
+    macro index ,in ":set index_format='%4C %Z %<X?%X& > %{%Y-%b-%d} %-23.23F|%4c|%s'"
+# this uses the if-then-else on the %X pattern!
+
+# 2016-08-10   index for reading news
+# doesnt need %X (#attachments) or %Y (year), or %Z (status flags).
+# %C (count) - 3 suffices.
+    macro index ,iN ":set index_format='%3C %{%b-%d} %-23.23F|%4c|%s'"
+# ======================================================================
+# BINDINGS
+# ======================================================================
+# NOTE: these bindings must come *after* the previuos "source" commands.
+
+# the command "edit-label" wasnt bound by default:
+    bind index,pager \ey edit-label
+
+# revert to the bindings in mutt:
+    bind index,pager F   flag-message
+    bind index,pager P parent-message
+
+# however - i like 'P' for both postponing and recalling messages:
+    bind index        P recall-message
+# 2016-10-02
+# new command "compose-to-sender":
+    bind index,pager @ compose-to-sender
+# tag some messages and use ";@" to send to them all!
+
+# startup
+# too many messages showing up on updates. o_O
+# so must increase the net_inc, too.
+# set net_inc="100" # default
+    set net_inc="100"
+
+# show the newsgroups line!
+    unignore Newsgroups:
+    ignore Content-Type:
+    ignore Content-Transfer-Encoding:
+
+    set ask_follow_up = no
+    set ask_x_comment_to = no
+    set catchup_newsgroup = ask-yes
+    set followup_to_poster = ask-yes
+    set group_index_format = '%4C %M%N %5s  %-45.45f %d'
+    set inews = ''
+    set mime_subject = yes
+    set newsgroups_charset = utf-8
+    set newsrc = '~/.newsrc'
+# set news_cache_dir = '~/.mutt'
+    set news_cache_dir = '~/.neomutt'
+    set news_server = 'news.in-berlin.de'
+    set nntp_authenticators = ''
+# set nntp_context = 1000 # default
+    set nntp_context = 200
+    set nntp_listgroup = yes
+    set nntp_load_description = yes
+    set nntp_pass = ''
+    set nntp_poll = 60
+    set nntp_user = ''
+    set post_moderated = ask-yes
+    set save_unsubscribed = no
+    set show_new_news = yes
+    set show_only_unread = no
+    set x_comment_to = no
+
+# CTRL-A: show *all* mailboxes
+    macro index      \Ca ":toggle sidebar_new_mail_only\n" "show *all* mailboxes"
+# the "\n" only has an effect when using '"' quotes!
+
+# CTRL-P: Move the highlight to the *previous* mailbox
+    bind index,pager \Cp sidebar-prev
+
+# CTRL-N: Move the highlight to the *next* mailbox
+    bind index,pager \Cn sidebar-next
+
+# CTRL-O: *Open* the highlighted mailbox
+    bind index,pager \Co sidebar-open
+
+# Move the highlight to the previous page
+# This is useful if you have a LOT of mailboxes.
+    bind index,pager <F3> sidebar-page-up
+
+# Move the highlight to the next page
+# This is useful if you have a LOT of mailboxes.
+    bind index,pager <F4> sidebar-page-down
+
+# Move the highlight to the previous mailbox
+# containing new, or flagged, mail.
+    bind index,pager <F5> sidebar-prev-new
+
+# Move the highlight to the next mailbox
+# containing new, or flagged, mail.
+    bind index,pager <F6> sidebar-next-new
+
+# B: Toggle (open/close) the visibility of the Sidebar.
+    bind index,pager B sidebar-toggle-visible
+
+    # source ~/.mutt/muttcol
+    # source ~/.mutt/neonwolf-256.muttrc
+    # source ~/.mutt/zenburn
+    source ~/.mutt/vombatidae
+    # source ~/.mutt/sol_dark
+# Threads
+bind browser,pager,index        N   search-opposite
+bind pager,index                dT  delete-thread
+bind pager,index                dt  delete-subthread
+bind pager,index                gt  next-thread
+bind pager,index                gT  previous-thread
+bind index                      za  collapse-thread
+bind index                      zA  collapse-all # Missing :folddisable/foldenable
+
+
+
+# mono bold bold
+# mono underline underline
+# mono indicator reverse
+# color index yellow default '.*'
+# color index_author red default '.*'
+# color index_number blue default
+# color index_subject cyan default '.s'
+# color index_size green default
+# color normal default default
+# color body brightred default [\-\.+_a-zA-Z0-9]+@[\-\.a-zA-Z0-9]+
+# color body brightblue default (https?|ftp)://[\-\.,/%~_:?&=\#a-zA-Z0-9]+
+
+
+# color sidebar_new color221 color233
+
+# set record = +SENT

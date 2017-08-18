@@ -4,11 +4,31 @@ text/html; mv %s %s.html && qutebrowser %s.html > /dev/null; needsterminal;
 # image/*; ~/.config/mutt/muttimage.sh %s ; copiousoutput
 
 application/pdf; zathura %s &>/dev/null
-image/JPG; feh -F -Z %s &>/dev/null
-image/jpeg; feh -F -Z %s &>/dev/null
-image/gif; feh -F -Z %s &>/dev/null
-image/png; feh -F -Z %s &>/dev/null
+# image/JPG; feh -F -Z %s &>/dev/null
+# image/jpeg; feh -F -Z %s &>/dev/null
+# image/gif; feh -F -Z %s &>/dev/null
+# image/png; feh -F -Z %s &>/dev/null
 application/vnd.oasis.opendocument.text; libreoffice %s &>/dev/null
 application/vnd.ms-excel; libreoffice %s &>/dev/null
 application/vnd.oasis.opendocument.spreadsheet; libreoffice %s &>/dev/null
 application/msword; libreoffice %s &>/dev/null
+
+#
+application/vnd.ms-powerpoint;	mutt_bgrun qvpview %s; test=RunningX
+application/vnd.ms-powerpoint;	ppt2text %s; copiousoutput
+application/x-mspowerpoint;	mutt_bgrun qvpview %s; test=RunningX
+application/x-mspowerpoint;	ppt2text %s; copiousoutput
+application/ppt;		mutt_bgrun qvpview %s; test=RunningX
+application/ppt;		ppt2text %s; copiousoutput
+
+application/postscript;		mutt_bgrun ghostview %s; test=RunningX
+
+application/rtf;		mutt_bgrun qvpview %s; test=RunningX
+application/rtf;		rtf2text %s; copiousoutput
+
+application/ms-tnef;		tnef -w %s
+
+# image/*;			mutt_bgrun xv %s; test=RunningX
+text/m;			less %s
+image/*; ~/.mutt/muttimage.sh %s ; copiousoutput
+
