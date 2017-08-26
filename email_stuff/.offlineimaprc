@@ -1,20 +1,55 @@
-# Sample minimal config file.  Copy this to ~/.offlineimaprc and edit to
-# get started fast.
-
 [general]
+# ui = TTY.TTYUI
+ui=ttyui
+# ui = Noninteractive.Basic
+socktimeout = 30
 accounts = ICaccount_Krishna
+pythonfile = /home/gopalakrishnan/dotfiles/email_stuff/offlineimap.py
+# Controls how many accounts may be synced simultaneously
+maxsyncaccounts = 3
+fsync = False
+
+[mbnames]
+enabled = yes
+filename = ~/dotfiles/email_stuff/.mutt/muttrc_mailboxes
+header = "mailboxes "
+peritem = ="%(foldername)s"
+sep = " "
+footer = "\n"
 
 [Account ICaccount_Krishna]
 localrepository = Local
 remoterepository = Remote
+# Minutes between syncs
+autorefresh = 0.5
+# Quick-syncs do not update if the only changes were to IMAP flags.
+# autorefresh=0.5 together with quick=10 yields
+# 10 quick refreshes between each full refresh, with 0.5 minutes between every
+# refresh, regardless of type.
+quick = 10
+status_backend = sqlite
 
 [Repository Local]
 type = Maildir
-localfolders = ~/ICaccount_Krishna_Mailfldr
+localfolders = ~/Mail/ICaccount_Krishna_MailFolder
 
 [Repository Remote]
+maxconnections=3
 type = IMAP
 remotehost = outlook.office365.com
 remoteuser = kg314@ic.ac.uk
 sslcacertfile = /etc/ssl/certs/ca-certificates.crt
-remotepass = 
+remotepasseval = mailpasswd()
+# Instead of closing the connection once a sync is complete, offlineimap will
+# send empty data to the server to hold the connection open. A value of 60
+# attempts to hold the connection for a minute between syncs (both quick and
+# autorefresh).This setting has no effect if autorefresh and holdconnectionopen
+# are not both set.
+keepalive = 60
+timeout=120
+# OfflineIMAP normally closes IMAP server connections between refreshes if
+# the global option autorefresh is specified.  If you wish it to keep the
+# connection open, set this to true. This setting has no effect if autorefresh
+# is not set.
+holdconnectionopen = true
+realdelete=yes

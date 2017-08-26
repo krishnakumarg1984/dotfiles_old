@@ -2,7 +2,7 @@ call plug#begin('~/.local/share/nvim/plugged')
 if has('win32')
 	source ~\dotfiles\vim_stuff\common_xvim_plug_calls
 else
-	source /home/kg314/dotfiles/vim_stuff/common_xvim_plug_calls
+	source ~/dotfiles/vim_stuff/common_xvim_plug_calls
 endif
 Plug 'nhooyr/neoman.vim'
 " Plug 'vifm/neovim-vifm'

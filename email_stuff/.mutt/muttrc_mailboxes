@@ -1,0 +1,2 @@
+# mailboxes `find ~/Mail/ -type d -name cur -printf '%h '`
+mailboxes `find ~/Mail '(' -type d '(' -name 'cur' -o -name 'new' ')' -prune -printf '%h ' ')' -o '(' -type f -printf '%p ' ')'`

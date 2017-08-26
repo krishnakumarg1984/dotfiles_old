@@ -1,0 +1,14 @@
+source ~/dotfiles/email_stuff/.mutt/muttrc
+
+ unset spoolfile
+ unset folder
+ unset postponed
+ unset record
+
+ # required to prevent imap connections even though spoolfile and folder are changed,
+ # for some reason
+ set imap_passive=yes
+
+ # point to the appropriate directories
+ set spoolfile=~/.mutt/message_cache/imaps\:kg314@ic.ac.uk@outlook.office365.com/INBOX/
+ set folder=~/.mutt/message_cache/imaps\:kg314@ic.ac.uk@outlook.office365.com/

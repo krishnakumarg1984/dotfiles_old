@@ -147,4 +147,15 @@ color body          color160        color234        "([a-z][a-z0-9+-]*://(((([a-
 
 #folder-hook .                  "color status        J_black         J_status        "
 #folder-hook gmail/inbox        "color status        J_black         color136        "
-#folder-hook gmail/important    "color status        J_black         color136        "
+#folder-hook gmail/important    "color status        J_black         color136        "mono bold bold
+mono underline underline
+mono indicator reverse
+# color index yellow default '.*'
+color index_author red default '.*'
+color index_number blue default
+color index_subject cyan default '.s'
+color index_size green default
+# color body brightred default [\-\.+_a-zA-Z0-9]+@[\-\.a-zA-Z0-9]+
+# color body red default [\-\.+_a-zA-Z0-9]+@[\-\.a-zA-Z0-9]+
+# color body brightblue default (https?|ftp)://[\-\.,/%~_:?&=\#a-zA-Z0-9]+
+# color body blue default (https?|ftp)://[\-\.,/%~_:?&=\#a-zA-Z0-9]+

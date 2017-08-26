@@ -1,6 +1,7 @@
 # IMAP config
 set imap_user="kg314@ic.ac.uk"
 # source "gpg -dq /home/kg314/.o365_pass.gpg |"
+source "gpg2 -dq ~/dotfiles/email_stuff/.mutt/passwords.gpg |"
 
 set folder="imaps://outlook.office365.com/"
 set spoolfile= +INBOX

@@ -1,0 +1,52 @@
+# Color Scheme {{{1
+# Based on colors used by [jellybeans.vim](https://github.com/nanotech/jellybeans.vim) and
+# [jellyjam.vim](https://github.com/meribold/jellyjam.vim) in 256-color terminals.
+# `color0` to `color15` are those defined in `Xresources`.  `color16` to `color255` should
+# be these: <https://commons.wikimedia.org/wiki/File:Xterm_256color_chart.svg>.  See
+# <file:///usr/share/doc/mutt/manual.html#color>.
+
+#     <object>   <fg>    <bg>
+color attachment yellow  color0
+color error      red     color0
+color hdrdefault color8  color0 # Default color of the message header in the pager.
+color indicator  color15 red
+color markers    red     color0 # The + at the beginning of wrapped lines in the pager.
+color message    white   color0
+color normal     white   color0
+color prompt     white   color0
+color quoted     color8  color0
+color quoted1    color8  color0
+color quoted2    color8  color0
+color quoted3    color8  color0
+color quoted4    color8  color0
+color quoted5    color8  color0
+color quoted6    color8  color0
+color quoted7    color8  color0
+color quoted8    color8  color0
+color quoted9    color8  color0
+color search     default magenta
+color signature  color8  color0
+color status     black   blue
+color tilde      default color0 # Used to pad blank lines in the pager.
+color tree       default color0
+
+# Regexp patterns for the message header.
+color header     red     color0 ^From
+color header     red     color0 ^Subject
+
+# Regexp patterns for the index.
+color index      red     color0 ~F # Flagged
+color index      green   color0 ~N # New
+color index      yellow  color0 ~T # Tagged
+color index      color8  color0 ~D # Deletedmono bold bold
+mono underline underline
+mono indicator reverse
+# color index yellow default '.*'
+color index_author red default '.*'
+color index_number blue default
+color index_subject cyan default '.s'
+color index_size green default
+# color body brightred default [\-\.+_a-zA-Z0-9]+@[\-\.a-zA-Z0-9]+
+# color body red default [\-\.+_a-zA-Z0-9]+@[\-\.a-zA-Z0-9]+
+# color body brightblue default (https?|ftp)://[\-\.,/%~_:?&=\#a-zA-Z0-9]+
+# color body blue default (https?|ftp)://[\-\.,/%~_:?&=\#a-zA-Z0-9]+
