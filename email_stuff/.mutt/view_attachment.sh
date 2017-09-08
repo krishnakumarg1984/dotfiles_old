@@ -136,7 +136,8 @@ if [ $type = "doc" ]; then
 fi
 
 if [ $type = "pdf" ]; then
-    evince $newfile
+    # evince $newfile
+    zathura $newfile
     exit 0;
 fi
 

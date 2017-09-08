@@ -1,3 +1,5 @@
+" vim:ft=vim:norl:
+
 " set keywordprg=:help
 " set thesaurus+=~/dotfiles/mthesaur.txt
 colorscheme gruvbox
@@ -533,7 +535,7 @@ if has('win32')
     set selection=inclusive
 endif
 
-map <C-S-O> :tabnew<CR>bwipeout<CR>:vs<CR>
+" map <C-S-O> :tabnew<CR>bwipeout<CR>:vs<CR>
 
 function! FormatprgLocal(filter)
     if !empty(v:char)
@@ -591,4 +593,7 @@ let g:netrw_keepdir=0
 autocmd BufEnter * if expand("%:p:h") !~ '^/tmp' | silent! lcd %:p:h | endif
 nnoremap ,cd :cd %:p:h<CR>:pwd<CR>
 
-au BufRead,BufNewFile .followup,.article,.letter,/tmp/pico*,nn.*,snd.*,/tmp/mutt* :set ft=mail 
+au BufRead,BufNewFile .followup,.article,.letter,/tmp/pico*,nn.*,snd.*,/tmp/mutt* :set ft=mail
+" autocmd BufEnter * :syntax sync fromstart
+" let c_minlines=500
+:noremap <Leader>f :filetype detect<CR>

@@ -1,3 +1,5 @@
+" vim:ft=vim:norl:
+
 let g:airline_theme='base16'
 " let g:airline_theme='papercolor'
 " let g:airline#extensions#tabline#enabled = 1
@@ -75,7 +77,6 @@ let g:UltiSnipsJumpForwardTrigger="<C-b>"
 let g:UltiSnipsJumpBackwardTrigger="<C-z>"
 " If you want :UltiSnipsEdit to split your window.
 let g:UltiSnipsEditSplit="vertical"
-" let g:UltiSnipsExpandTrigger="<C-j>"
 
 if has('win32')
     let g:UltiSnipsSnippetDirectories=['C:\Users\krish\vimfiles\plugged\vim-snippets\UltiSnips']

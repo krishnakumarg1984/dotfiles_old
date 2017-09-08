@@ -1,11 +1,12 @@
 # source ~/dotfiles/email_stuff/.mutt/kg314_office365
 # set sendmail = "/usr/bin/msmtp -a ICAccount"
-set sendmail = "~/dotfiles/email_stuff/msmtpqueue/msmtp-enqueue.sh"
+set sendmail = "~/dotfiles/email_stuff/msmtpq/msmtpq"
+# set sendmail = "~/dotfiles/email_stuff/msmtpqueue/msmtp-enqueue.sh"
 set spoolfile="~/Mail/ICaccount_Krishna_MailFolder/INBOX"
 source ~/dotfiles/email_stuff/.mutt/muttrc_mailboxes
 
 # set sendmail = "/usr/bin/msmtp"
-set sendmail_wait = 0
+set sendmail_wait = -1
 # source ~/dotfiles/email_stuff/.mutt/aliases.txt
 bind pager g noop
 bind attach,browser,index       g   noop
@@ -62,6 +63,7 @@ set date_format="%d/%m/%y"
 # set index_format = "%4C %Z %{%b %d} %-15.15L %?M?(#%03M)&(%4l)? %?y?{%.20y}? %?g?{%.20g} ?%s (%c)"
 
 auto_view text/html
+auto_view text/calendar application/ics
 # text/enriched and text/plain support are builtins
 # # how to auto_view text/html takes mutt from  mailcap files:
 #  ~/.mailcap  then /etc/mailcap or so
@@ -203,7 +205,8 @@ color body brightyellow black "^@@.*"
 set mime_forward_rest="yes"
 unset mime_forward
 set pager_index_lines=4 # add small message index at top of pager (5)
-set display_filter = "/usr/bin/fribidi"
+# set display_filter = "/usr/bin/fribidi"
+# set display_filter="t-prot -cemt -M=mutt"
 set pipe_decode
 # set quit=yes        # don't ask before quitting.
 set shell=/bin/bash
@@ -306,7 +309,7 @@ unignore From To Cc Subject Date Reply-To Organization X-Mailer User-Agent
 
 unhdr_order *                           # some distros order things by default
 hdr_order from: to: cc: date: subject:  # and in this order
-set   edit_headers         # display the headers when I'm editing a message
+# set   edit_headers         # display the headers when I'm editing a message
 
 macro index y "<change-folder>?<toggle-mailboxes>" "show incoming mailboxes list"       #I have seen on someemail_stuff/.mutt configs that y sometimes does not toggle the list of mailboxes. In that case, you can add something like:
 
@@ -351,7 +354,7 @@ set forward_format = "Fwd: %s"       # format of subject when forwarding
 set forward_decode                   # decode when forwarding
 set attribution = "On %d, %n wrote:" # format of quoting header
 set reply_to                         # reply to Reply to: field
-set resolve = no # Don't auto-advance to the next message after every single op.
+# set resolve = no # Don't auto-advance to the next message after every single op.
 set reverse_name                     # reply as whomever it was to
 set include                          # include message in replies
 set forward_quote                    # include message in forwards
@@ -536,7 +539,31 @@ set abort_unmodified=ask-yes
 color sidebar_new yellow default
 
 # set record = "+SENT ITEMS"
+set record=no
 # folder-hook . 'set record="^"'
 folder-hook . "push <collapse-all>\n"
 macro compose \e5 "F pandoc -s -f markdown -t html \ny^T^Utext/html; charset=us-ascii\n"
 bind attach,browser,index,pager \CB previous-page
+
+
+# This all works only if you have mutt-1.3.12 or newer
+# or if you use something like the pagerfilter patch
+# (http://www.escape.de/users/tolot/mutt/).
+#
+# The $my_tprot variable works since mutt-1.5.12, in older
+# versions you must copy its value in each macro.
+
+set my_tprot='t-prot -aelmtS -c --bigq -Mmutt --spass'
+set display_filter=$my_tprot
+
+# toggle TOFU protection with ESC-0 and ESC-1
+macro generic \e0 ":unset display_filter\n" "Turn TOFU protection off"
+macro generic \e1 ":set display_filter='$my_tprot'\n" "Turn TOFU protection on"
+
+# same in pager mode - ugly but what the hell...
+macro pager \e0 ":unset display_filter; exec exit\n:exec display-message\n" "Turn TOFU protection off"
+macro pager \e1 ":set display_filter='$my_tprot'; exec exit\n:exec display-message\n" "Turn TOFU protection on"
+
+# highlight TOFU protection:
+color body	brightmagenta	black	"^\\[---.*"
+color body	green			black	"^#v[-+]"

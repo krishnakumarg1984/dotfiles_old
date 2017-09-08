@@ -1,3 +1,5 @@
+" vim:ft=vim:norl:
+
 " Plug 'AndrewRadev/linediff.vim'
 " Plug 'AndrewRadev/splitjoin.vim'
 " Plug 'KabbAmine/yowish.vim'
@@ -24,9 +26,9 @@
 " Plug 'chrisbra/vim-diff-enhanced'
 " Plug 'christoomey/vim-tmux-navigator'
 " Plug 'coderifous/textobj-word-column.vim'  " provides cic and vic mappings
-" Plug 'critiqjo/husk-x.vim' " for command line mode (readline bindings)
+Plug 'critiqjo/husk-x.vim',{'for': ['tex']} " for command line mode (readline bindings)
 " Plug 'ctrlpvim/ctrlp.vim'
-" Plug 'dahu/bisectly'
+Plug 'dahu/bisectly'
 " Plug 'davidhalter/jedi-vim', {'for': 'python'}
 " Plug 'dbmrq/vim-ditto',{'for': ['tex','text']}
 " Plug 'dhruvasagar/vim-prosession'

@@ -1,8 +1,9 @@
+" vim:ft=vim:norl:
 call plug#begin('~/.local/share/nvim/plugged')
 if has('win32')
-	source ~\dotfiles\vim_stuff\common_xvim_plug_calls
+    source ~\dotfiles\vim_stuff\common_xvim_plug_calls
 else
-	source ~/dotfiles/vim_stuff/common_xvim_plug_calls
+    source ~/dotfiles/vim_stuff/common_xvim_plug_calls
 endif
 Plug 'nhooyr/neoman.vim'
 " Plug 'vifm/neovim-vifm'
@@ -17,11 +18,11 @@ Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 call plug#end()
 
 if has('win32')
-	source ~\dotfiles\vim_stuff\common_xvim_settings
-	source ~\dotfiles\vim_stuff\common_xvim_plugin_mappings
+    source ~\dotfiles\vim_stuff\common_xvim_settings
+    source ~\dotfiles\vim_stuff\common_xvim_plugin_mappings
 else
-	source ~/dotfiles/vim_stuff/common_xvim_settings
-	source ~/dotfiles/vim_stuff/common_xvim_plugin_mappings
+    source ~/dotfiles/vim_stuff/common_xvim_settings
+    source ~/dotfiles/vim_stuff/common_xvim_plugin_mappings
 endif
 
 " Use deoplete.
@@ -37,22 +38,22 @@ highlight TermCursor ctermfg=red guifg=red
 tnoremap <Leader><ESC> <C-\><C-n>
 
 if !exists('g:deoplete#omni#input_patterns')
-	let g:deoplete#omni#input_patterns = {}
+    let g:deoplete#omni#input_patterns = {}
 endif
 
 let g:deoplete#omni#input_patterns.tex = '\\(?:'
-			\ .  '\w*cite\w*(?:\s*\[[^]]*\]){0,2}\s*{[^}]*'
-			\ . '|\w*ref(?:\s*\{[^}]*|range\s*\{[^,}]*(?:}{)?)'
-			\ . '|hyperref\s*\[[^]]*'
-			\ . '|includegraphics\*?(?:\s*\[[^]]*\]){0,2}\s*\{[^}]*'
-			\ . '|(?:include(?:only)?|input)\s*\{[^}]*'
-			\ . '|\w*(gls|Gls|GLS)(pl)?\w*(\s*\[[^]]*\]){0,2}\s*\{[^}]*'
-			\ . '|includepdf(\s*\[[^]]*\])?\s*\{[^}]*'
-			\ . '|includestandalone(\s*\[[^]]*\])?\s*\{[^}]*'
-			\ . '|usepackage(\s*\[[^]]*\])?\s*\{[^}]*'
-			\ . '|documentclass(\s*\[[^]]*\])?\s*\{[^}]*'
-			\ . '|\w*'
-			\ .')'
+            \ .  '\w*cite\w*(?:\s*\[[^]]*\]){0,2}\s*{[^}]*'
+            \ . '|\w*ref(?:\s*\{[^}]*|range\s*\{[^,}]*(?:}{)?)'
+            \ . '|hyperref\s*\[[^]]*'
+            \ . '|includegraphics\*?(?:\s*\[[^]]*\]){0,2}\s*\{[^}]*'
+            \ . '|(?:include(?:only)?|input)\s*\{[^}]*'
+            \ . '|\w*(gls|Gls|GLS)(pl)?\w*(\s*\[[^]]*\]){0,2}\s*\{[^}]*'
+            \ . '|includepdf(\s*\[[^]]*\])?\s*\{[^}]*'
+            \ . '|includestandalone(\s*\[[^]]*\])?\s*\{[^}]*'
+            \ . '|usepackage(\s*\[[^]]*\])?\s*\{[^}]*'
+            \ . '|documentclass(\s*\[[^]]*\])?\s*\{[^}]*'
+            \ . '|\w*'
+            \ .')'
 
 let g:UltiSnipsSnippetDirectories = ["~/.local/share/nvim/plugged/vim-snippets/UltiSnips/", "~/.local/share/nvim/plugged/wmgraphviz.vim/snippets/"]
 call deoplete#custom#set('ultisnips', 'matchers', ['matcher_fuzzy'])
@@ -80,18 +81,18 @@ set inccommand=nosplit
 
 " Define a group for autocommands
 augroup vimrc
-	autocmd!
+    autocmd!
 augroup END
 
 if exists(':terminal')
-	tnoremap <expr> <C-\><C-R> '<C-\><C-N>"'.nr2char(getchar()).'pi'
+    tnoremap <expr> <C-\><C-R> '<C-\><C-N>"'.nr2char(getchar()).'pi'
 
-	autocmd vimrc TermOpen * nnoremap <buffer> I I<C-a>
-	autocmd vimrc TermOpen * nnoremap <buffer> A A<C-e>
-	autocmd vimrc TermOpen * nnoremap <buffer> C i<C-k>
-	autocmd vimrc TermOpen * nnoremap <buffer> D i<C-k><C-\><C-n>
-	autocmd vimrc TermOpen * nnoremap <buffer> cc i<C-e><C-u>
-	autocmd vimrc TermOpen * nnoremap <buffer> dd i<C-e><C-u><C-\><C-n>
+    autocmd vimrc TermOpen * nnoremap <buffer> I I<C-a>
+    autocmd vimrc TermOpen * nnoremap <buffer> A A<C-e>
+    autocmd vimrc TermOpen * nnoremap <buffer> C i<C-k>
+    autocmd vimrc TermOpen * nnoremap <buffer> D i<C-k><C-\><C-n>
+    autocmd vimrc TermOpen * nnoremap <buffer> cc i<C-e><C-u>
+    autocmd vimrc TermOpen * nnoremap <buffer> dd i<C-e><C-u><C-\><C-n>
 endif
 
 " https://github.com/neovim/neovim/pull/2076#issuecomment-76998265
@@ -112,10 +113,9 @@ cnoremap <a-j> <c-\><c-n><c-w>j
 cnoremap <a-k> <c-\><c-n><c-w>k
 cnoremap <a-l> <c-\><c-n><c-w>l
 if has('nvim')
-	tnoremap <a-h> <c-\><c-n><c-w>h
-	tnoremap <a-j> <c-\><c-n><c-w>j
-	tnoremap <a-k> <c-\><c-n><c-w>k
-	tnoremap <a-l> <c-\><c-n><c-w>l
-	tnoremap <Esc> <C-\><C-n>
+    tnoremap <a-h> <c-\><c-n><c-w>h
+    tnoremap <a-j> <c-\><c-n><c-w>j
+    tnoremap <a-k> <c-\><c-n><c-w>k
+    tnoremap <a-l> <c-\><c-n><c-w>l
+    tnoremap <Esc> <C-\><C-n>
 endif
-
