@@ -51,7 +51,7 @@ Plug 'dahu/bisectly'
 " Plug 'jonhiggs/vim-readline'
 " Plug 'jreybert/vimagit'
 " Plug 'jsfaint/gen_tags.vim'
-" Plug 'junegunn/goyo.vim' " :Goyo to toggle
+Plug 'junegunn/goyo.vim' " :Goyo to toggle
 " Plug 'junegunn/gv.vim'
 " Plug 'junegunn/vim-easy-align' " gaip=, gaip2=, gaip*=, gaip**=, gaip<CR>=,gaip<CR><CR>=
 " Plug 'junegunn/vim-peekaboo'
@@ -111,9 +111,10 @@ Plug 'dahu/bisectly'
 " Plug 'tpope/vim-rhubarb'
 " Plug 'tweekmonster/startuptime.vim'
 " Plug 'tyru/capture.vim' "capture ex-command outputs
+Plug 'tyru/open-browser.vim'
 " Plug 'unblevable/quick-scope' " for f, F, t and T
-" Plug 'vim-pandoc/vim-pandoc'
-" Plug 'vim-pandoc/vim-pandoc-syntax'
+Plug 'vim-pandoc/vim-pandoc'
+Plug 'vim-pandoc/vim-pandoc-syntax'
 " Plug 'vim-scripts/MatlabFilesEdition',{'for':'matlab'}
 " Plug 'vim-utils/vim-husk' " for command line mode (readline bindings)
 " Plug 'vim-utils/vim-troll-stopper' " highlights invalid unicode characters
@@ -152,7 +153,7 @@ Plug 'romainl/vim-cool' "Vim-cool disables search highlighting when you are done
 Plug 'romainl/vim-qf' "short for vim-quickfix—is a growing collection of settings, commands and mappings put together to make working with the location list/window and the quickfix list/window smoother.
 Plug 'sjl/gundo.vim'
 Plug 'sonph/onehalf',{'rtp': 'vim/'}
-Plug 'takac/vim-hardtime'
+" Plug 'takac/vim-hardtime'
 Plug 'tommcdo/vim-exchange'
 Plug 'tpope/vim-abolish'  "crc, crm, crs (cr_), cru, cr-
 Plug 'tpope/vim-commentary'
@@ -170,6 +171,15 @@ Plug 'vim-scripts/loremipsum'
 Plug 'w0rp/ale',{ 'on': 'ALEEnable', 'for': ['dot', 'sh','matlab','python','tex'] }
 Plug 'wannesm/wmgraphviz.vim'
 Plug 'wellle/targets.vim' "To change the text in the next pair of parentheses, use the cin) command,To delete the item in a comma separated list under the cursor, use da, last pair seems very useful, i(,i),ib,i{,i},i[,i],i<,i>,it, with count, same with 'a'. n and l options, quotes, even back-ticks
+" Plug 'kannokanno/previm'}
+" Plug 'pyarmak/vim-pandoc-live-preview'
+" Plug 'lambdalisue/shareboard.vim'
+" Plug 'tex/vimpreviewpandoc'
+Plug 'vim-pandoc/vim-pandoc-after'
+Plug 'JamshedVesuna/vim-markdown-preview'
+Plug 'tpope/vim-dispatch'
+" Plug 'neomake/neomake'
+Plug 'dhruvasagar/vim-table-mode'
 
 if has('nvim')
     Plug 'w0rp/ale',{ 'on': 'ALEEnable', 'for': ['dot', 'sh','matlab','python','tex'] }

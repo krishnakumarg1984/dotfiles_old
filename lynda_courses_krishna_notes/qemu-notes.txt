@@ -1,0 +1,26 @@
+qemu-img 
+raw - all space taken up at creation (a file that represents the disk)
+qcow2 = stil la file representing the disk. Space is taken up as it's used:
+thin provisioning
+layering is possible. Gues OS doesn't know about any of these. Overlay file
+gets copied from the base etc. Helpful to clone application-specific machine
+backups, roll-back etc. is easy
+
+qemu-img create -f qcow2 my-image.qcow2 60G
+qemu-system-x86_64 -cdrom Downloads/ubuntu-17.10-desktop-amd64\ \(1\).iso my-image.qcow2 -m 2G -enable-kvm
+qemu-system-x86_64 my-image.qcow2 -m 2G -enable-kvm
+
+qemu-system-x86_64 my-image.qcow2 -m 4G -net none -vga qxl -enable-kvm
+qxl = paravirualiseed video driver
+
+libvirt
+
+virsh shell, virt-install, virt-manager
+xml files or domain xml
+guests are called domains
+further info about these domains
+
+virt-manager package
+
+virt-install --name my-ubuntu --memory 2048 --disk size=60 --cdrom ~/Downloads/ubuntu-17.10-desktop-amd64 (1).iso
+default path is /var/lib/libvirt/images/my-ubuntu.qcow2

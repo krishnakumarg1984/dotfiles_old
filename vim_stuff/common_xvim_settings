@@ -311,7 +311,7 @@ if has("autocmd")
 
 
     function IsReply()
-    colorscheme pencil
+        colorscheme pencil
         if line('$') > 1
             :g/^>\s\=--\s\=$/,$ delete
             :%!par w72q
@@ -597,3 +597,12 @@ au BufRead,BufNewFile .followup,.article,.letter,/tmp/pico*,nn.*,snd.*,/tmp/mutt
 " autocmd BufEnter * :syntax sync fromstart
 " let c_minlines=500
 :noremap <Leader>f :filetype detect<CR>
+
+" function! Zathura_md()
+"     execute !zathura %:r.pdf
+" endfunction
+
+" map <leader>v Zathura_md()<CR>
+
+" nnoremap <leader>v !make<CR>
+:nnoremap <silent> <leader>bi :!make<CR><CR>

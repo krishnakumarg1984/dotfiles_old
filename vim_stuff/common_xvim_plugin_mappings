@@ -194,13 +194,13 @@ let g:tq_mthesaur_file="~/dotfiles/mthesaur.txt"
 "     autocmd FileType text call textobj#sentence#init()
 " augroup END
 
-augroup litecorrect
-    autocmd!
-    autocmd FileType markdown,mkd call litecorrect#init()
-    autocmd FileType textile call litecorrect#init()
-    autocmd FileType text call litecorrect#init()
-    autocmd FileType tex call litecorrect#init()
-augroup END
+" augroup litecorrect
+"     autocmd!
+"     autocmd FileType markdown,mkd call litecorrect#init()
+"     autocmd FileType textile call litecorrect#init()
+"     autocmd FileType text call litecorrect#init()
+"     autocmd FileType tex call litecorrect#init()
+" augroup END
 
 " Trigger a highlight in the appropriate direction when pressing these keys:
 let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
@@ -543,6 +543,18 @@ let &foldtext = "EightHeaderFolds( '\\=s:fullwidth-2', 'left', [ repeat( '  ', v
 "     endif
 " endfunction
 
-let g:hardtime_default_on = 1
-let g:hardtime_allow_different_key = 1
-let g:hardtime_maxcount = 2
+" let g:hardtime_default_on = 1
+" let g:hardtime_allow_different_key = 1
+" let g:hardtime_maxcount = 2
+
+" let g:pandoc#formatting#mode = 'ha'
+" let g:livepreview_previewer = 'zathura'
+let g:pandoc#after#modules#enabled = ["ultisnips"]
+
+" let vim_markdown_preview_toggle=2
+let vim_markdown_preview_pandoc=1
+" " let vim_markdown_preview_use_xdg_open=1
+" let vim_markdown_preview_hotkey='<leader>z'
+let vim_markdown_preview_browser='Firefox'
+
+" call neomake#configure#automake('w')
