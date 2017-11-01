@@ -521,11 +521,11 @@ set fo+=aw
 autocmd FileType dot setlocal commentstring=//\ %s
 autocmd FileType tex setlocal textwidth=130
 if executable("par")
-    autocmd FileType tex setlocal formatprg=par\ -w130rjeq
-    autocmd FileType text setlocal formatprg=par\ -w130req
+    autocmd FileType tex setlocal formatprg=par\ -w95rjeq
+    autocmd FileType text setlocal formatprg=par\ -w95req
 elseif executable("fmt")
-    autocmd FileType tex setlocal formatprg=fmt -w130
-    autocmd FileType text setlocal formatprg=fmt -w130
+    autocmd FileType tex setlocal formatprg=fmt -w95
+    autocmd FileType text setlocal formatprg=fmt -w95
 endif
 " autocmd BufReadPre *.tex setlocal textwidth=130
 
@@ -597,3 +597,6 @@ au BufRead,BufNewFile .followup,.article,.letter,/tmp/pico*,nn.*,snd.*,/tmp/mutt
 " autocmd BufEnter * :syntax sync fromstart
 " let c_minlines=500
 :noremap <Leader>f :filetype detect<CR>
+
+" autocmd filetype matlab setlocal colorscheme PaperColor
+" autocmd filetype matlab setlocal set background=light

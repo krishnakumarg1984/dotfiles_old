@@ -84,12 +84,13 @@ Plug 'dahu/bisectly'
 " Plug 'reedes/vim-textobj-quote'
 " Plug 'reedes/vim-textobj-sentence',{'for': ['text']} " as, is, g), g(, ), (
 " Plug 'reedes/vim-wheel' " a different scrolling experience
-" Plug 'reedes/vim-wordy',{'for': ['tex','text']}
+Plug 'reedes/vim-wordy',{'for': ['tex','text']}
 " Plug 'rhysd/clever-f.vim'
 " Plug 'rhysd/vim-textobj-anyblock' " provides ib and ab objects
 " Plug 'rickhowe/diffchar.vim'
 " Plug 'romainl/tinyMRU'
 " Plug 'romainl/vim-qlist' "make the results of include-search and definition-search easier to navigate and more persistent by using the quickfix list instead of the default list-like interface.
+" Plug 'Olical/vim-enmasse' "make the results of include-search and definition-search easier to navigate and more persistent by using the quickfix list instead of the default list-like interface.
 " Plug 'scrooloose/nerdtree'
 " Plug 'sheerun/vim-polyglot'
 " Plug 'sickill/vim-pasta'
@@ -102,11 +103,11 @@ Plug 'dahu/bisectly'
 " Plug 'tkhren/vim-fake'
 " Plug 'tmux-plugins/vim-tmux'
 " Plug 'tmux-plugins/vim-tmux-focus-events'
-" Plug 'tomtom/tcomment_vim',{'for':'matlab'} " supports matlab
+Plug 'tomtom/tcomment_vim',{'for':'matlab'} " supports matlab
 " Plug 'tomtom/ttags_vim'
 " Plug 'tpope/speeddating.vim'
 " Plug 'tpope/vim-characterize' "In Vim, pressing ga on a character reveals its representation in decimal, octal, and hex. Characterize.vim modernizes this with a few additions
-" Plug 'tpope/vim-commentary',{'for':['tex','dot']} "gcc, gc3j, gc}, gcip, gcu
+Plug 'tpope/vim-commentary',{'for':['tex','dot']} "gcc, gc3j, gc}, gcip, gcu
 " Plug 'tpope/vim-obsession'
 " Plug 'tpope/vim-rhubarb'
 " Plug 'tweekmonster/startuptime.vim'
@@ -131,7 +132,7 @@ Plug 'airblade/vim-gitgutter'
 Plug 'bimlas/vim-eightheader'
 Plug 'djoshea/vim-autoread'
 Plug 'flazz/vim-colorschemes'
-Plug 'godlygeek/tabular',{'for':'tex'}
+Plug 'godlygeek/tabular',{'for':['tex','matlab']}
 Plug 'google/vim-searchindex'
 Plug 'honza/vim-snippets'
 Plug 'jiangmiao/auto-pairs' "quick jump to closed pair using }.  <M-p> : Toggle Autopairs,  <M-e> : Fast Wrap, <M-n> : Jump to next closed pair,<M-b> : BackInsert
@@ -147,7 +148,8 @@ Plug 'nelstrom/vim-visual-star-search'
 Plug 'ntpeters/vim-better-whitespace' " :ToggleWhitespace, :StripWhitespace
 Plug 'poppyschmo/vim-latexrefman',{'for':'tex'}
 Plug 'reedes/vim-litecorrect',{'for': ['tex','text']}
-Plug 'rhysd/vim-grammarous',{'for':['tex','text']}
+"Plug 'rhysd/vim-grammarous',{'for':['tex','text']}
+" Plug 'dpelle/vim-LanguageTool'
 Plug 'romainl/vim-cool' "Vim-cool disables search highlighting when you are done searching and re-enables it when you search again.
 Plug 'romainl/vim-qf' "short for vim-quickfix—is a growing collection of settings, commands and mappings put together to make working with the location list/window and the quickfix list/window smoother.
 Plug 'sjl/gundo.vim'
@@ -155,7 +157,7 @@ Plug 'sonph/onehalf',{'rtp': 'vim/'}
 Plug 'takac/vim-hardtime'
 Plug 'tommcdo/vim-exchange'
 Plug 'tpope/vim-abolish'  "crc, crm, crs (cr_), cru, cr-
-Plug 'tpope/vim-commentary'
+" Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-repeat'
@@ -170,6 +172,10 @@ Plug 'vim-scripts/loremipsum'
 Plug 'w0rp/ale',{ 'on': 'ALEEnable', 'for': ['dot', 'sh','matlab','python','tex'] }
 Plug 'wannesm/wmgraphviz.vim'
 Plug 'wellle/targets.vim' "To change the text in the next pair of parentheses, use the cin) command,To delete the item in a comma separated list under the cursor, use da, last pair seems very useful, i(,i),ib,i{,i},i[,i],i<,i>,it, with count, same with 'a'. n and l options, quotes, even back-ticks
+Plug 'jmarkow/vim-matlab'
+" Plug 'junkblocker/patchreview-vim'
+" Plug 'promix17/typer'
+Plug 'arecarn/vim-crunch'
 
 if has('nvim')
     Plug 'w0rp/ale',{ 'on': 'ALEEnable', 'for': ['dot', 'sh','matlab','python','tex'] }
