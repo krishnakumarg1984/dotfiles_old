@@ -177,7 +177,7 @@ Plug 'wellle/targets.vim' "To change the text in the next pair of parentheses, u
 " Plug 'tex/vimpreviewpandoc'
 Plug 'vim-pandoc/vim-pandoc-after'
 Plug 'JamshedVesuna/vim-markdown-preview'
-Plug 'tpope/vim-dispatch'
+" Plug 'tpope/vim-dispatch'
 " Plug 'neomake/neomake'
 Plug 'dhruvasagar/vim-table-mode'
 
