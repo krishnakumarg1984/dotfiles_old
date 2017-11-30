@@ -35,7 +35,7 @@ set undofile
 
 :au BufEnter * if &buftype == 'terminal' | :startinsert | endif
 highlight TermCursor ctermfg=red guifg=red
-tnoremap <Leader><ESC> <C-\><C-n>
+tnoremap <ESC> <C-\><C-n>
 
 if !exists('g:deoplete#omni#input_patterns')
     let g:deoplete#omni#input_patterns = {}
@@ -113,9 +113,16 @@ cnoremap <a-j> <c-\><c-n><c-w>j
 cnoremap <a-k> <c-\><c-n><c-w>k
 cnoremap <a-l> <c-\><c-n><c-w>l
 if has('nvim')
-    tnoremap <a-h> <c-\><c-n><c-w>h
-    tnoremap <a-j> <c-\><c-n><c-w>j
-    tnoremap <a-k> <c-\><c-n><c-w>k
-    tnoremap <a-l> <c-\><c-n><c-w>l
-    tnoremap <Esc> <C-\><C-n>
+    :tnoremap <A-h> <C-\><C-N><C-w>h
+    :tnoremap <A-j> <C-\><C-N><C-w>j
+    :tnoremap <A-k> <C-\><C-N><C-w>k
+    :tnoremap <A-l> <C-\><C-N><C-w>l
+    :inoremap <A-h> <C-\><C-N><C-w>h
+    :inoremap <A-j> <C-\><C-N><C-w>j
+    :inoremap <A-k> <C-\><C-N><C-w>k
+    :inoremap <A-l> <C-\><C-N><C-w>l
+    :nnoremap <A-h> <C-w>h
+    :nnoremap <A-j> <C-w>j
+    :nnoremap <A-k> <C-w>k
+    :nnoremap <A-l> <C-w>l
 endif
