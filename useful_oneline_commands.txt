@@ -1,0 +1,20 @@
+find /path -name '*.pdf' -exec sh -c 'pdftotext "{}" - | grep --with-filename --label="{}" --color "your pattern"' \;
+pdfgrep -HiR 'a pattern to search recursively from path' /some/path
+
+H: Print the file name for each match.
+i: Ignore case distinctions.
+R: Search directories recursively.
+recoll -t -q dir:pwd ext:pdf 'neuro*'
+find /path -iname '*.pdf' -exec pdfgrep pattern {} +
+
+There's a Haskell program called pdf2line which works well.
+
+ebook-convert file.pdf file.txt
+it can convert PDF to plain text, or other ebook-format (RTF, ePub), in my
+opinion it generates better results than pdftotext, although it is
+considerably slower.
+
+abiword --to=txt file.pdf
+
+Recoll is great stuff as well
+PDFMiner for Python
