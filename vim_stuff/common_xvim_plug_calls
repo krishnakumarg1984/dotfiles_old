@@ -189,6 +189,10 @@ Plug 'JamshedVesuna/vim-markdown-preview'
 Plug 'dhruvasagar/vim-table-mode'
 " Plug 'tenfyzhong/CompleteParameter.vim'
 " context_filetype
+Plug 'lotabout/skim', { 'dir': '~/.skim', 'do': './install' }
+Plug 'tyrannicaltoucan/vim-quantum'
+Plug 'tyrannicaltoucan/vim-deep-space'
+Plug 'andymass/vim-matchup'
 
 
 if has('nvim')
