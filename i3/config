@@ -267,13 +267,16 @@ exec --no-startup-id xautolock -time 10 -locker blurlock
 exec_always --no-startup-id fix_xcursor
 exec_always numlockx
 exec gnome-terminal
-exec google-chrome-stable
+# exec google-chrome-stable
+exec chromium
 exec pcmanfm
+exec thunar
+exec greenclip daemon
 
 # Start i3bar to display a workspace bar (plus the system information i3status if available)
 bar {
-  # status_command i3status
-  status_command bumblebee-status -m  xrandr weather redshift cpu date time pasink -p root.path=/ time.format="%H:%M" date.format="%a, %b %d %Y" -t gruvbox-powerline
+# status_command i3status
+    status_command bumblebee-status -m  xrandr weather redshift cpu date time pasink -p root.path=/ time.format="%H:%M" date.format="%a, %b %d %Y" -t gruvbox-powerline
 # status_command i3blocks
         position top
 
@@ -284,17 +287,17 @@ bar {
         bindsym button4 nop
         bindsym button5 nop
         font xft:Icons 20
-        # font xft:Noto Sans 17.5, Icons 23
+# font xft:Noto Sans 17.5, Icons 23
         strip_workspace_numbers yes
-  colors {
-    separator #666666
-    background #333333
-    statusline #bbbbbb
-    focused_workspace #888888 #dddddd #222222
-    active_workspace #333333 #555555 #bbbbbb
-    inactive_workspace #333333 #555555 #bbbbbb
-    urgent_workspace #2f343a #900000 #ffffff
-  }
+        colors {
+            separator #666666
+                background #333333
+                statusline #bbbbbb
+                focused_workspace #888888 #dddddd #222222
+                active_workspace #333333 #555555 #bbbbbb
+                inactive_workspace #333333 #555555 #bbbbbb
+                urgent_workspace #2f343a #900000 #ffffff
+        }
 }
 
 # hide/unhide i3status bar
@@ -366,7 +369,8 @@ mode "$mode_gaps_outer" {
 
 # Start Applications
 bindsym $mod+Ctrl+b exec terminal -e 'bmenu'
-bindsym $mod+F2 exec google-chrome-stable
+# bindsym $mod+F2 exec google-chrome-stable
+bindsym $mod+F2 exec chromium
 bindsym $mod+F3 exec pcmanfm
 # bindsym $mod+F3 exec ranger
 bindsym $mod+Shift+F3 exec gksu pcmanfm
@@ -391,10 +395,12 @@ bindsym Mod1+u exec setxkbmap us
 assign [class="Gnome-terminal"] $workspace2
 assign [class="Zathura"] $workspace3
 assign [class="Google-chrome"] $workspace4
+assign [class="Chromium"] $workspace4
 assign [class="Firefox"] $workspace4
 assign [class="Pcmanfm"] $workspace5
 assign [class="Thunar"] $workspace5
 assign [class="vlc"] $workspace6
+assign [class="mpv"] $workspace6
 assign [class="MATLAB R2017a - academic use"] $workspace7
 
 # Pulse Audio controls
