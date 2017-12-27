@@ -1,8 +1,47 @@
 " vim:ft=vim:norl:
+" download vim-plug if not exists
 
-" set keywordprg=:help
+if has('nvim')
+    if empty(glob('~/.local/share/nvim/site/autoload/plug.vim'))
+        silent !curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs
+                    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+        augroup vimplug
+            autocmd!
+            autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+        augroup END
+    endif
+else
+    if empty(glob('~/.vim/autoload/plug.vim'))
+        silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+                    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+        augroup vimplug
+            autocmd!
+            autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+        augroup END
+    endif
+endif
+
+
+set noexrc                 "don't source ~/.exrc (vi/vim shared config)
+filetype plugin indent on
+if !has('g:syntax_on')|syntax enable|endif
+set history=100            "make history remember 100 :-commands and searches
+set keywordprg=:help
+set copyindent          " copy the previous indentation on autoindenting
 " set thesaurus+=~/dotfiles/mthesaur.txt
+
+if has('nvim')
+else
+	packadd! matchit
+endif
+
 colorscheme gruvbox
+set tags=tags;/
+
+" Turns off physical line wrapping (ie: automatic insertion of newlines)
+set textwidth=0
+set wrapmargin=0
+
 " colorscheme onehalfdark
 
 " function! ToggleBG()
@@ -19,15 +58,27 @@ colorscheme gruvbox
 set background=dark
 
 " set path+=**                     "Find will start working (under the current directory)
-set path+=$PWD/**/*
+set path=.,./**,,
 set suffixesadd=.py,.m,.mat,.gv,.tex      "Find will work harder for these filetypes
 
 " set noshowmatch                " when on a [{(, highlight the matching )}]
 " set cpoptions-=m               " ? Highlight when CursorMoved
+set cpoptions+=d
+set cpoptions+=d
 set matchpairs+=<:>            " Highlight <>
-set matchtime=1                " In 10ths of a second
+" When a bracket is inserted, briefly jump to the matching one.
+set showmatch
+" Tenths of a second to show the matching paren, when 'showmatch' is set.
+set matchtime=1
+let g:matchparen_timeout = 20
+let g:matchparen_insert_timeout = 20
 
-if has('mouse') | set mouse=a | endif"+
+if has('mouse')
+    set mouse=a
+endif"
+
+set dictionary+=/usr/share/dict/words
+
 set mousehide
 
 set number
@@ -43,24 +94,62 @@ nnoremap <silent> <leader>n :call NumberToggle()<cr>
 autocmd InsertEnter * :set norelativenumber
 autocmd InsertLeave * :set relativenumber
 
-set cursorline " highlight current line
+" Vim needs a more POSIX compatible shell than fish for certain functionality
+" to work, such as :%!, compressed help pages and many third-party addons.  If
+" you use fish as your login shell or launch Vim from fish, you need to set
+" shell to something else in your ~/.vimrc.
+" Seriously... god dammit Vim.
+if &shell =~# 'fish$'
+    set shell=sh
+endif
+
+" Only show cursorline in the current window and in normal mode.
+augroup cline
+    autocmd!
+
+    autocmd WinLeave,InsertEnter * set nocursorline
+    autocmd WinEnter,InsertLeave * set cursorline
+augroup END
+
+
+" " On save strip trailing whitespace and convert line endings to Unix format
+" " http://stackoverflow.com/questions/356126/how-can-you-automatically-remove-trailing-whitespace-in-vim
+" augroup prewrites
+"     autocmd!
+
+"     autocmd BufWritePre,FileWritePre * :%s/\s\+$//e | %s/\r$//e
+" augroup END
 
 " Don't try to highlight lines longer than 1000 characters
 set synmaxcol=300   "Boost performance in rendering long lines
 
 " Make ESC respond faster Lower the delay of escaping out of other modes " keycode times out fast, mapping times out in a bit more time
 set timeout       " time out on mappings and keycodes (stronger of the two conditions)
+set timeoutlen=500
 set ttimeoutlen=0 " A non-negative number here will make the delay to be timeoutlen
 
 " Show @@@ in the last line if it is truncated.
 set spelllang=en_gb
 syntax spell toplevel
 
+" persistent undo
+set undofile
+set undodir=$HOME/.vimundo
+set undolevels=1000
+set undoreload=10000
+
+" Increment alpha strings with vim
+" https://blog.mozilla.org/jv/2011/01/12/incrementing-alpha-strings-with-vim/
+set nf=octal,hex,alpha
+
+
 set visualbell               " Use visual bell instead of beeping
 set t_vb=                    " But don't want any beep or flash
 set noerrorbells
+set belloff=all
 
-set encoding=utf-8           " Default encoding for saving and reading file
+set encoding=utf-8 nobomb           " Default encoding for saving and reading file
+set fileencoding=utf-8     "set file encoding
 scriptencoding utfs8
 set termencoding=utf-8
 
@@ -71,7 +160,13 @@ set termencoding=utf-8
 " set iskeyword+=@-@
 
 " set autochdir
-" set autowrite                       " Automatically write a file when leaving a modified buffer
+" Write the contents of the file, if it has been modified, on each
+" :next, :rewind, :last, :first, :previous, :stop, :suspend, :tag, :!,
+" :make, CTRL-] and CTRL-^ command; and when a :buffer, CTRL-O, CTRL-I,
+" '{A-Z0-9}, or `{A-Z0-9} command takes one to another file.
+set autowrite
+
+
 set autoread                        " Autoread when a file is changed from outside
 
 " set viewoptions=cursor,folds,options,cursor,unix,slash " Better Unix / Windows compatibility
@@ -80,36 +175,35 @@ set viewoptions=cursor,folds,slash,unix
 set fileformat=unix          " Default fileformat
 set fileformats=unix,dos,mac
 
+if exists('&inccommand')
+    set inccommand=split
+endif
+
+set incsearch
+
 set virtualedit=block,insert        " Enable virtualedit in visual block and insert modes
+" set virtualedit=onemore                       " Allow the cursor to go
+set viminfo='1000,f1,<500
 
 set hidden      " Allow switching buffers without saving current buffer with changes
 
-set infercase   " Ignore case on insert completion
 set ignorecase  " Ignore case search for normal letters
+set infercase   " Ignore case on insert completion
 set smartcase   " Do case-sensitive search if pattern contains upper case letters
 
-set smartindent
 
-set tabstop=4 shiftwidth=4
-set softtabstop=4
-set expandtab   " Expand tab to space
+" set tabstop=4 shiftwidth=4
+" set softtabstop=4
+" set expandtab   " Expand tab to space
 
 set shiftround  " Round indent by shiftwidth
 
-" set foldmethod=indent   " Fold by indent
-" set foldlevel=1         " Starting fold level
-" set foldnestmax=20      " Deepest fold is 20 levels
-" set foldlevelstart=99   " Open all folds by default
-" set nofoldenable        " Disable fold by default
-
-set foldmethod=syntax
 set foldenable
-set foldcolumn=3
-set foldnestmax=2
-set foldlevel=1
-set foldlevelstart=1
+set foldnestmax=5
+set foldlevelstart=20
 " specifies for which commands a fold will be opened
 set foldopen=block,hor,insert,jump,mark,percent,quickfix,search,tag,undo
+" set highlight+=N:DiffText
 
 " nnoremap <silent> zr zr:<c-u>setlocal foldlevel?<CR>
 " nnoremap <silent> zm zm:<c-u>setlocal foldlevel?<CR>
@@ -139,12 +233,20 @@ set foldopen=block,hor,insert,jump,mark,percent,quickfix,search,tag,undo
 " endfunction
 
 
-" Turn off swapfile and backup
+" Turn off swapfile
+set backup
+set backupcopy=yes  " see :help crontab " make a copy of the file and overwrite the original one
 set noswapfile
 set backupext=.bak
 
-" Use the same symbols as TextMate for tabstops and EOLs
-set listchars=tab:▸\ ,eol:¬
+" Only shown when not in insert mode so I don't go insane.
+augroup trailing
+    autocmd!
+
+    autocmd InsertEnter * :set listchars-=tab:▸\ ,eol:¬,extends:❯,precedes:❮
+    autocmd InsertLeave * :set listchars+=tab:▸\ ,eol:¬,extends:❯,precedes:❮
+    " Use the same symbols as TextMate for tabstops and EOLs
+augroup END
 
 if has('conceal')
     set listchars+=conceal:^
@@ -171,6 +273,11 @@ if has('linebreak')
     endif
 endif
 
+" Highlight searches
+set hlsearch
+" remove search highlight
+nnoremap <leader><space> :nohlsearch<CR>
+
 set cmdheight=2                 " Height of command-line (easy-readable)
 
 " Completion settings in insert mode
@@ -181,23 +288,59 @@ set complete=.,w,b,u,t,i,kspell ". till i is the default. . = current buffer. w 
 set pumheight=15                " Set popup menu max height
 
 set wildmenu
+set wildchar=<TAB> " Character for CLI expansion (TAB-completion)
 set wildmode=list:longest,full
 " Ignore the following stuff when tab completing
 set wildignore+=.hg,.git,.svn,*.o,*.obj,*.pyc,*.luac,*.jpg,*.jpeg,*.png,*.gif,*.bmp,*.pdf,*.class,*.dmg,*.DS_Store,*.lnk,*.ini,*.dats
 
+set wildignore=.git,*.pyc,*.o,*.a,*.swp,*.dll,*.obj,*.bak,*.exe,*.jpg,*.gif,*.png
+
+" Disable output and VCS files
+set wildignore+=*.o,*.out,*.obj,.git,*.rbc,*.rbo,*.class,.svn,*.gem
+
+" Disable archive files
+set wildignore+=*.zip,*.tar.gz,*.tar.bz2,*.rar,*.tar.xz
+
+" Ignore bundler and sass cache
+set wildignore+=*/vendor/gems/*,*/vendor/cache/*,*/.bundle/*,*/.sass-cache/*
+
+" Ignore rails temporary asset caches
+set wildignore+=*/tmp/cache/assets/*/sprockets/*,*/tmp/cache/assets/*/sass/*
+
+" Ignore build dir
+set wildignore+=build/*,media/*
+
+" Ignore node modules
+set wildignore+=node_modules/*,bower_components/*
+
+" Disable temp and backup files
+set wildignore+=*.swp,*~,._*
+set wildignore+=.hg,.git,.svn,*.o,*.obj,*.pyc,*.luac,*.jpg,*.jpeg,*.png,*.gif,*.bmp,*.pdf,*.class,*.dmg,*.DS_Store,*.lnk,*.ini,*.dats
+
+set wildignore+=types_*taghl,tags
+
 "Adjust window size of preview and help
 set previewheight=8
 set helpheight=12
+set ttyfast
 
 set nostartofline               " The cursor is kept in the same column (if possible)
+set backspace=indent,eol,start
 
 set splitbelow                  " Splitting a window will put the new window below the current one
 set splitright                  " Splitting a window will put the new windowright the current one
 
 set showmode                    " Display the current mode
 
+" Set's comments to italics
+" Reference: https://www.reddit.com/r/vim/comments/24g8r8/italics_in_terminal_vim_and_tmux/
+" I realize setting t_ZH and t_ZR directly is probably 'bad' to more advanced
+" vim folks.  Practicality beats purity. ¯\_(ツ)_/¯
+set t_ZH=[3m
+set t_ZR=[23m
 highlight clear SignColumn      " SignColumn should match background,SignColumn column where |signs| are displayed
-highlight Comment cterm=italic  " make comments in code to be italic
+highlight Comment cterm=italic
+
 
 if has('cmdline_info')
     set ruler                   " Show the ruler
@@ -207,11 +350,14 @@ endif
 
 if has('statusline')
     set laststatus=2 "Always show a status line
-    set statusline=%<%f\
-    set statusline+=%w%h%m%r
-    set statusline+=\ [%{&ff}/%Y]
-    set statusline+=\ [%{getcwd()}]
-    set statusline+=%=%-14.(%l,%c%V%)\ %p%%
+    set statusline=%F%m%r%h%w[%L][%{&ff}]%y%=[%p%%][%04l,%04v]
+    " filepath | modified flag | read only flag | help flag | preview flag |
+    " number of lines | current ft | current syntax | % into file | line, column
+    " set statusline=%<%f\
+    " set statusline+=%w%h%m%r
+    " set statusline+=\ [%{&ff}/%Y]
+    " set statusline+=\ [%{getcwd()}]
+    " set statusline+=%=%-14.(%l,%c%V%)\ %p%%
 endif
 
 
@@ -221,16 +367,36 @@ set numberwidth=5               " Width of the line-no. column
 set magic                       " Make regex a little easier to type
 set winminheight=0              " Windows can be 0 line high
 
+if has('ag')
+    set grepprg=ag
+endif
+
 set report=0                    " Threshold for reporting number of lines changed.
 set updatecount=0               " After typing this many characters the swap file will be written to disk.  When zero, no swap file will be created at all (see chapter on recovery |crash-recovery|).  "
 set updatetime=250              " milliseconds elapsed before which swap file will be written to disk (250 ms is recommende by gitgutter plugin)
 
-highlight ColorColumn ctermbg=magenta
-call matchadd('ColorColumn', '\%81v', 100)
-" highlight OverLength ctermbg=red ctermfg=white guibg=#592929
-" match OverLength /\%81v.\+/
+" highlight ColorColumn ctermbg=magenta
+" call matchadd('ColorColumn', '\%81v', 100)
+" set colorcolumn=121
+" Sets the ColorColumn to a sensible color.
+" highlight ColorColumn ctermbg=237 guibg=#3a3a3a
+" only show the colorcolumn if the width surpasses 80 on that specific line
+highlight OverLength ctermfg=0 ctermbg=3
+match OverLength /\%121v/
 
 set nojoinspaces
+
+" When switching buffers, preserve window view.(Vim tip 1375)
+if v:version >= 700
+    au BufLeave * if !&diff |
+                \ let b:winview = winsaveview() |
+                \ endif
+    au BufEnter * if exists('b:winview') && !&diff |
+                \ call winrestview(b:winview) |
+                \ unlet! b:winview |
+                \ endif
+endif
+
 
 nnoremap : ;
 nnoremap ; :
@@ -261,28 +427,26 @@ set guioptions-=T
 " Revert with ":iunmap <C-U>".
 " inoremap <C-U> <C-G>u<C-U>
 
+" C-n and C-p now complete commands in command mode like up and down arrow
+cnoremap <c-n>  <down>
+cnoremap <c-p> <up>
+
 
 if has("autocmd")
     " autocmd BufRead,BufNewFile *mutt-* setfiletype mail
     " autocmd BufRead,BufNewFile *mutt-* setlocal fo+=aw
-    autocmd FileType mail setlocal fo=aw
-    autocmd FileType mail setlocal tw=72
-    autocmd FileType text setlocal textwidth=78
-    " autocmd FileType tex setlocal textwidth=78
+    " autocmd FileType text setlocal textwidth=78
+    autocmd FileType tex setlocal textwidth=120
     au BufNewFile,BufRead *.tex set list
-    " autocmd FileType tex setlocal keywordprg=texdoc
-    autocmd FileType help setlocal number
+    autocmd FileType tex setlocal keywordprg=texdoc
     " Syntax of the following languages is fussy over tabs Vs spaces
-    " autocmd FileType make setlocal ts=8 sts=8 sw=8 noexpandtab
     " autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
     " autocmd FileType c,cpp :set cindent
-    " autocmd FileType markdown setlocal spell
-    autocmd FileType gitcommit setlocal spell
-    " autocmd FileType python nnoremap <buffer> <F11> :exec '!clear;python' shellescape(@%, 1)<cr>  # execute python commands
+    " autocmd FileType python nnoremap <buffer> <F11> :exec '!clear;python'
+    " shellescape(@%, 1)<cr>  # execute python commands
     autocmd BufEnter * silent! normal! g`"
     " autocmd BufNewFile,BufRead *.rss setfiletype xml     " Treat .rss files as XML
     " autocmd BufNewFile,BufRead *.json setfiletype json syntax=javascript
-    autocmd VimResized * :wincmd =      " automatically rebalance windows on vim resize
     au BufNewFile,BufRead *.py "(PEP8 indentation)
     " au BufAddr highlighted search,BufNewFile * nested tab sball "To open each buffer in its own tabpage
     autocmd FileType c,cpp,java,php,text,python,matlab,tex autocmd BufWritePre <buffer> %s/\s\+$//e
@@ -310,23 +474,6 @@ if has("autocmd")
     augroup END
 
 
-    function IsReply()
-        colorscheme pencil
-        if line('$') > 1
-            :g/^>\s\=--\s\=$/,$ delete
-            :%!par w72q
-            :%s/^.\+\ze\n\(>*$\)\@!/\0 /e
-            :%s/^>*\zs\s\+$//e
-            :1
-            :put! =\"\n\n\"
-            :1
-        endif
-    endfunction
-
-    augroup mail_filetype
-        autocmd!
-        autocmd! VimEnter /tmp/mutt* :call IsReply()
-    augroup END
 
 
 
@@ -345,12 +492,12 @@ if has("autocmd")
     augroup reload_vimrc
         autocmd!
         autocmd! BufWritePost $MYVIMRC,$MYGVIMRC nested source %
+        au FocusLost * :wa
     augroup END
 
     " au VimEnter,BufRead,BufNewFile *.jl set filetype=julia
     " au VimEnter,BufRead,BufNewFile *.idr set filetype=idris
     " au VimEnter,BufRead,BufNewFile *.lidr set filetype=lidris
-    autocmd FileType tex,text,markdown,mail setlocal spell
 
     au BufWritePre * :set binary | set noeol
     au BufWritePost * :set nobinary | set eol
@@ -372,15 +519,19 @@ vnoremap g{ k{<Space>0
 nnoremap g} j}<BS>0
 vnoremap g} j}<BS>0
 
-set termguicolors
 
-if has('clipboard')
-    if has('unnamedplus')  " When possible use + register for copy-paste
-        set clipboard=unnamed,unnamedplus
-    else         " On mac and Windows, use * register for copy-paste
-        set clipboard=unnamed
-    endif
+if (has("termguicolors"))
+    set t_8f=[38;2;%lu;%lu;%lum
+    set t_8b=[48;2;%lu;%lu;%lum
+    set termguicolors
 endif
+
+if has('win32')
+    set clipboard=unnamed " normal OS clipboard interaction
+else                    " use xsel on Linux
+    set clipboard+=unnamedplus
+endif
+
 
 set scrolloff=3        " Minimal number of screen lines to keep above and below the cursor
 set sidescroll=3       " The minimal number of columns to scroll horizontally
@@ -422,20 +573,42 @@ set diffopt+=iwhite
 nmap du :wincmd w<cr>:normal u<cr>:wincmd w<cr>
 nnoremap Q :normal n.<CR>
 
+" Use sane movement along wrapped lines
+nnoremap j gj
+nnoremap k gk
+vnoremap j gj
+vnoremap k gk
+
 vnoremap y myy`y
 vnoremap Y myY`y
 
-" set lazyredraw
-set shortmess=atI
+set lazyredraw
+set shortmess+=atI
 
+" Reselect visual block after indent/outdent
 vnoremap < <gv
+vnoremap > >gv
+xnoremap > >gv
+xnoremap < <gvoremap w!! w !sudo tee > /dev/null %
+
+
+" Re-hardwrap paragraph
+nnoremap <leader>q gqip
+
 set secure
 
 set title
 set titleold=
 
-set formatoptions+=j " Delete comment character when joining commented lines
+" Delete comment character when joining commented lines
+if v:version > 703 || v:version == 703 && has("patch541")
+    set formatoptions+=j
+elseif has('nvim')
+    set formatoptions+=j
+endif
+
 set formatoptions+=t "
+" set formatoptions=qrno
 set fo+=aw
 " set formatoptions+=w
 " set formatoptions+=a
@@ -522,10 +695,10 @@ autocmd FileType dot setlocal commentstring=//\ %s
 autocmd FileType tex setlocal textwidth=130
 if executable("par")
     autocmd FileType tex setlocal formatprg=par\ -w95rjeq
-    autocmd FileType text setlocal formatprg=par\ -w95req
+    autocmd FileType txt setlocal formatprg=par\ -w95req
 elseif executable("fmt")
     autocmd FileType tex setlocal formatprg=fmt -w95
-    autocmd FileType text setlocal formatprg=fmt -w95
+    autocmd FileType txt setlocal formatprg=fmt -w95
 endif
 " autocmd BufReadPre *.tex setlocal textwidth=130
 
@@ -547,21 +720,19 @@ function! FormatprgLocal(filter)
     endif
 endfunction
 
-if has("autocmd")
-    let pandoc_pipeline  = "pandoc --from=html --to=markdown"
-    let pandoc_pipeline .= " | pandoc --from=markdown --to=html"
-    autocmd FileType html setlocal formatexpr=FormatprgLocal(pandoc_pipeline)
-endif
 
 nnoremap <Space> za
-" au FileType gitcommit 1 | startinsert
 
+" Use sane regexes
 nnoremap / /\v
+vnoremap / /\v
+nnoremap ? ?\v
+vnoremap ? ?\v
+
 
 nmap <silent> <leader>s :set spell!<CR>
 
 " command! -nargs=* Wrap set wrap linebreak nolist
-let g:netrw_list_hide='\.un\~$'
 
 nnoremap & :&&<Enter>
 xnoremap & :&&<Enter>
@@ -589,7 +760,23 @@ endfunction
 " map <C-9> 9gt
 " map <C-0> :tablast<CR>
 " Automatically set current directory to browsing directory.
+
 let g:netrw_keepdir=0
+let g:netrw_list_hide='\.un\~$'
+let g:netrw_banner       = 0
+let g:netrw_keepdir      = 0
+" let g:netrw_liststyle    = 1 " or 3
+let g:netrw_sort_options = 'i'
+" absolute width of netrw window
+let g:netrw_winsize = -28
+
+" tree-view
+let g:netrw_liststyle = 3
+
+" sort is affecting only: directories on the top, files below
+let g:netrw_sort_sequence = '[\/]$,*'
+
+
 autocmd BufEnter * if expand("%:p:h") !~ '^/tmp' | silent! lcd %:p:h | endif
 nnoremap ,cd :cd %:p:h<CR>:pwd<CR>
 
@@ -607,4 +794,60 @@ au BufRead,BufNewFile .followup,.article,.letter,/tmp/pico*,nn.*,snd.*,/tmp/mutt
 " map <leader>v Zathura_md()<CR>
 
 " nnoremap <leader>v !make<CR>
-:nnoremap <silent> <leader>bi :!make<CR><CR>
+" :nnoremap <silent> <leader>bi :!make<CR><CR>
+
+if exists('$TMUX')
+    let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+    let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+    let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
+    let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
+else
+    let &t_SI = "\<Esc>]50;CursorShape=1\x7"
+    let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+endif
+
+augroup SaveCursor
+    autocmd!
+    autocmd BufReadPost * call setpos(".", getpos("'\""))
+augroup END
+
+" http://vim.wikia.com/wiki/Detect_window_creation_with_WinEnter
+augroup vim_enter
+    autocmd!
+    autocmd VimEnter * autocmd vim_enter WinEnter * let w:created=1
+augroup END
+
+" disable paste mode on leaving INSERT mode
+augroup insert_leave
+    autocmd!
+    autocmd InsertLeave * set nopaste
+augroup END
+
+augroup FileChangedAlert
+    " Helps if you have to use another editor on the same file
+    autocmd! FileChangedShell * echoerr "File has been changed outside of Vim."
+augroup END
+
+if has('gui_running')
+    if has("gui_win32") " NT Windows
+        augroup win_gui
+            autocmd!
+            autocmd GUIEnter * :simalt ~x
+        augroup END
+        set guifont=DejaVu\ Sans\ Mono\ for\ Powerline:h14
+    elseif has("mac")
+        set guifont=DejaVu\ Sans\ Mono\ for\ Powerline:h16
+    else
+        set guifont=DejaVu\ Sans\ Mono\ for\ Powerline\ 20
+    endif
+endif
+
+if has('nvim')
+    augroup FZFNvim
+        autocmd!
+        autocmd TermOpen */*fzf* tnoremap <buffer><c-k> <UP>
+        autocmd TermOpen */*fzf* tnoremap <buffer><c-j> <DOWN>
+    augroup END
+endif
+
+source ~/dotfiles/vim_stuff/ft_settings.vim

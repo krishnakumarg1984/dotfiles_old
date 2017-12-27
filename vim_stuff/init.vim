@@ -35,7 +35,22 @@ set undofile
 
 :au BufEnter * if &buftype == 'terminal' | :startinsert | endif
 highlight TermCursor ctermfg=red guifg=red
-tnoremap <ESC> <C-\><C-n>
+
+if has('nvim')
+    " start terminal in vertical split
+    nnoremap <leader>t :vs<CR>:te<CR>A
+    " " exit from terminal mode using ESC key
+    if empty($TMUX)
+        tnoremap <C-s> <C-\><C-n>
+    endif
+    tnoremap <A-k><A-j> <C-\><C-n>
+    tnoremap <C-q> <C-\><C-n>
+    tnoremap <ESC> <C-\><C-n>
+    tnoremap <C-h> <C-\><C-n><C-w>h
+    tnoremap <C-j> <C-\><C-n><C-w>j
+    tnoremap <C-k> <C-\><C-n><C-w>k
+    tnoremap <C-l> <C-\><C-n><C-w>l
+endif
 
 if !exists('g:deoplete#omni#input_patterns')
     let g:deoplete#omni#input_patterns = {}
