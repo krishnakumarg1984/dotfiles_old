@@ -173,7 +173,7 @@ Plug 'cohama/lexima.vim'
 Plug 'critiqjo/husk-x.vim' " for command line mode (readline bindings)
 Plug 'dhruvasagar/vim-table-mode'
 Plug 'flazz/vim-colorschemes'
-Plug 'godlygeek/tabular',{'for':['tex','matlab','markdown']}
+Plug 'godlygeek/tabular',{'for':['tex','matlab','markdown','muttrc']}
 Plug 'google/vim-searchindex'
 Plug 'junegunn/goyo.vim',{'for':['tex','text','txt','markdown']} " :Goyo to toggle
 Plug 'junegunn/limelight.vim'

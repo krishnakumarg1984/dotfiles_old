@@ -1,0 +1,24 @@
+# WARSAW - mutt theme
+# OX! // github: acannibalox // https: raisedfist.net // smtp: kpatterson0@gmail.com
+
+color normal	    color250            default
+color status        color03             default  #color132
+color indicator     color15             color06
+color tree          color238            default
+color attachment    color6              default
+
+color index         brightcolor246      default     ~N      #new
+color index         color243            default     ~R      #replied
+color index_flags  	color253            default 	%A
+
+color header        color101            default     "^from:"
+color header        color101            default     "^to:"
+color header        yellow              default     "^cc:"
+color header        magenta             default     "^date:"
+color header        color101            default     "^subject:"
+
+color body          red                 black       [\-\.+_a-zA-Z0-9]+@[\-\.a-zA-Z0-9]+
+color body          color181            default     (https?|ftp)://[\-\.,/%~_:?&=\#a-zA-Z0-9]+
+color quoted        brightcolor250      default
+
+# vim: syntax=muttrc textwidth=100

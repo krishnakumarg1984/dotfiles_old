@@ -7,15 +7,33 @@ application/ics; mutt-ics; copiousoutput
 video/*; mplayer '%s'; test=test -n "$DISPLAY"
 # MS Excel
 # this will use the default xls spreadsheet handler from open
+application/excel; mutt_bgrun qvpview %s; test=RunningX
+application/excel; excel2text %s; copiousoutput
+application/msexcel; mutt_bgrun qvpview %s; test=RunningX
+application/msexcel; excel2text %s; copiousoutput
+application/vnd.ms-excel; mutt_bgrun qvpview %s; test=RunningX
+application/vnd.ms-excel; excel2text %s; copiousoutput
+application/x-excel; mutt_bgrun qvpview %s; test=RunningX
+application/x-excel; excel2text %s; copiousoutput
+application/x-msexcel; mutt_bgrun qvpview %s; test=RunningX
+application/x-msexcel; excel2text %s; copiousoutput
+application/ms-Excel; mutt_bgrun qvpview %s; test=RunningX
+application/ms-Excel; excel2text %s; copiousoutput
 application/x-msexcel; ~/dotfiles/email_stuff/.mutt/view_attachment.sh %s doc
 application/ms-exc; ~/dotfiles/email_stuff/.mutt/view_attachment.sh %s doc
 application/excel; ~/dotfiles/email_stuff/.mutt/view_attachment.sh %s doc
 application/msexcel; ~/dotfiles/email_stuff/.mutt/view_attachment.sh %s doc
 application/vnd.ms-exc; ~/dotfiles/email_stuff/.mutt/view_attachment.sh %s doc
 application/vnd.ms-excel; ~/dotfiles/email_stuff/.mutt/view_attachment.sh %s doc
+application/vnd.ms-excel; libreoffice %s &>/dev/null
 
 # MS Word
 # use textedit to open .doc files as it's more light-weight
+application/msword; mutt_bgrun qvpview %s; test=RunningX
+application/msword; word2text %s; copiousoutput
+application/vnd.msword; mutt_bgrun qvpview %s; test=RunningX
+application/vnd.msword; word2text %s; copiousoutput
+application/msword; libreoffice %s &>/dev/null
 application/msword; ~/dotfiles/email_stuff/.mutt/view_attachment.sh %s doc
 
 # docx
@@ -30,46 +48,64 @@ image/png; ~/dotfiles/email_stuff/.mutt/view_attachment.sh %s img
 image/gif; ~/dotfiles/email_stuff/.mutt/view_attachment.sh %s img
 
 # PDF
+application/pdf; zathura %s &>/dev/null
 application/pdf; ~/dotfiles/email_stuff/.mutt/view_attachment.sh %s pdf
+application/pdf; mutt_bgrun acroread +useFrontEndProgram %s; test=RunningX
+application/pdf; pdftotext %s -; copiousoutput
 
-# HTML
-# text/html; ~/dotfiles/email_stuff/.mutt/view_attachment.sh %s html
 
 # Unidentified.
+application/octet-stream; mutt.octet.filter -x %s; test=RunningX
+application/octet-stream; mutt.octet.filter -v %s
+application/octet-stream; mutt.octet.filter %s; copiousoutput
 application/octet-stream; ~/dotfiles/email_stuff/.mutt/view_attachment.sh %s "-" # # text/html; w3m -I %{charset} -T text/html; copiousoutput;
-# text/html; pandoc -f html -t markdown; copiousoutput; description=HTML Text; test=type pandoc >/dev/null
-# text/html; lynx -stdin -dump -force_html -width 70; copiousoutput; description=HTML Text; test=type lynx >/dev/null
+application/octet-stream; mutt_octet_view -x %s; test=RunningX
+application/octet-stream; mutt_octet_view -v %s
+application/octet-stream; mutt_octet_view %s; copiousoutput
+
+# HTML
 text/html; w3m -dump -T text/html -cols 70; copiousoutput; description=HTML Text; test=type w3m >/dev/null
 text/html; html2text -width 70; copiousoutput; description=HTML Text; test=type html2text >/dev/null
 text/html; elinks -dump %s -eval 'set document.codepage.assume = "%{charset}"' -eval 'set document.dump.width = 100'; nametemplate=%s.html; copiousoutput
 text/html; mv %s %s.html && qutebrowser %s.html > /dev/null; needsterminal;
-# # image/*; ~/.config/dotfiles/email_stuff/.mutt/muttimage.sh %s ; copiousoutput
+text/html; lynx -stdin -dump -force_html -width 70; copiousoutput; description=HTML Text; test=type lynx >/dev/null
+text/html; ~/dotfiles/email_stuff/.mutt/view_attachment.sh %s html
+text/html; pandoc -f html -t markdown; copiousoutput; description=HTML Text; test=type pandoc >/dev/null
 
-# application/pdf; zathura %s &>/dev/null
-# # image/JPG; feh -F -Z %s &>/dev/null
-# # image/jpeg; feh -F -Z %s &>/dev/null
-# # image/gif; feh -F -Z %s &>/dev/null
-# # image/png; feh -F -Z %s &>/dev/null
 # application/vnd.oasis.opendocument.text; libreoffice %s &>/dev/null
-# application/vnd.ms-excel; libreoffice %s &>/dev/null
 # application/vnd.oasis.opendocument.spreadsheet; libreoffice %s &>/dev/null
-# application/msword; libreoffice %s &>/dev/null
 
-# #
-# application/vnd.ms-powerpoint;dotfiles/email_stuff/.mutt_bgrun qvpview %s; test=RunningX
-# application/vnd.ms-powerpoint;	ppt2text %s; copiousoutput
-# application/x-mspowerpoint;dotfiles/email_stuff/.mutt_bgrun qvpview %s; test=RunningX
-# application/x-mspowerpoint;	ppt2text %s; copiousoutput
-# application/ppt;	dotfiles/email_stuff/.mutt_bgrun qvpview %s; test=RunningX
-# application/ppt;		ppt2text %s; copiousoutput
+# Powerpoint
+application/vnd.ms-powerpoint;dotfiles/email_stuff/.mutt_bgrun qvpview %s; test=RunningX
+application/vnd.ms-powerpoint; ppt2text %s; copiousoutput
+application/x-mspowerpoint;dotfiles/email_stuff/.mutt_bgrun qvpview %s; test=RunningX
+application/x-mspowerpoint; ppt2text %s; copiousoutput
+application/ppt; dotfiles/email_stuff/.mutt_bgrun qvpview %s; test=RunningX
+application/ppt; ppt2text %s; copiousoutput
+application/vnd.ms-powerpoint; mutt_bgrun qvpview %s; test=RunningX
+application/vnd.ms-powerpoint; ppt2text %s; copiousoutput
+application/x-mspowerpoint; mutt_bgrun qvpview %s; test=RunningX
+application/x-mspowerpoint; ppt2text %s; copiousoutput
+application/ppt; mutt_bgrun qvpview %s; test=RunningX
+application/ppt; ppt2text %s; copiousoutput
 
-# application/postscript;	dotfiles/email_stuff/.mutt_bgrun ghostview %s; test=RunningX
+application/postscript; dotfiles/email_stuff/.mutt_bgrun ghostview %s; test=RunningX
+application/postscript; mutt_bgrun ghostview %s; test=RunningX
 
-# application/rtf;	dotfiles/email_stuff/.mutt_bgrun qvpview %s; test=RunningX
-# application/rtf;		rtf2text %s; copiousoutput
+application/rtf; dotfiles/email_stuff/.mutt_bgrun qvpview %s; test=RunningX
+application/rtf; rtf2text %s; copiousoutput
 
-# application/ms-tnef;		tnef -w %s
+# application/ms-tnef; tnef -w %s
 
-# # image/*;		dotfiles/email_stuff/.mutt_bgrun xv %s; test=RunningX
-# text/m;			less %s
-# image/*; ~/dotfiles/email_stuff/.mutt/muttimage.sh %s ; copiousoutput
+# text/m; less %s
+# text/*; cat; copiousoutput; edit=$VISUAL %s
+
+image/JPG; feh -F -Z %s &>/dev/null
+image/jpeg; feh -F -Z %s &>/dev/null
+image/gif; feh -F -Z %s &>/dev/null
+image/png; feh -F -Z %s &>/dev/null
+image/*; ~/.config/dotfiles/email_stuff/.mutt/muttimage.sh %s ; copiousoutput
+image/*; dotfiles/email_stuff/.mutt_bgrun xv %s; test=RunningX
+image/*; ~/dotfiles/email_stuff/.mutt/muttimage.sh %s ; copiousoutput
+
+message/rfc822; cat; copiousoutput; edit=$VISUAL %s
