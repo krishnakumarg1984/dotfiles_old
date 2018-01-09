@@ -48,27 +48,19 @@ image/png; ~/dotfiles/email_stuff/.mutt/view_attachment.sh %s img
 image/gif; ~/dotfiles/email_stuff/.mutt/view_attachment.sh %s img
 
 # PDF
-application/pdf; zathura %s &>/dev/null
+application/pdf; zathura %s &>/dev/null description="PDF Document" ; test=test -n "$DISPLAY" ; nametemplate=%s.pdf
+application/pdf ; pdftotext %s -          ; description="PDF Document" ; nametemplate=%s.pdf     ; copiousoutput
 application/pdf; ~/dotfiles/email_stuff/.mutt/view_attachment.sh %s pdf
 application/pdf; mutt_bgrun acroread +useFrontEndProgram %s; test=RunningX
-application/pdf; pdftotext %s -; copiousoutput
 
-
-# Unidentified.
-application/octet-stream; mutt.octet.filter -x %s; test=RunningX
-application/octet-stream; mutt.octet.filter -v %s
-application/octet-stream; mutt.octet.filter %s; copiousoutput
-application/octet-stream; ~/dotfiles/email_stuff/.mutt/view_attachment.sh %s "-" # # text/html; w3m -I %{charset} -T text/html; copiousoutput;
-application/octet-stream; mutt_octet_view -x %s; test=RunningX
-application/octet-stream; mutt_octet_view -v %s
-application/octet-stream; mutt_octet_view %s; copiousoutput
 
 # HTML
+# text/html ; uconv --add-signature -f %{charset} -t UTF-8 %s | sponge %s && firefox -new-tab %s & sleep 5 ; description="HTML Document" ; 
+text/html; mv %s %s.html && firefox %s.html > /dev/null; needsterminal;
 text/html; w3m -dump -T text/html -cols 70; copiousoutput; description=HTML Text; test=type w3m >/dev/null
 text/html; html2text -width 70; copiousoutput; description=HTML Text; test=type html2text >/dev/null
 text/html; elinks -dump %s -eval 'set document.codepage.assume = "%{charset}"' -eval 'set document.dump.width = 100'; nametemplate=%s.html; copiousoutput
-text/html; mv %s %s.html && qutebrowser %s.html > /dev/null; needsterminal;
-text/html; lynx -stdin -dump -force_html -width 70; copiousoutput; description=HTML Text; test=type lynx >/dev/null
+text/html; lynx -assume_charset=%{charset} -display_charset=utf-8 -dump %s; nametemplate=%s.html; copiousoutput
 text/html; ~/dotfiles/email_stuff/.mutt/view_attachment.sh %s html
 text/html; pandoc -f html -t markdown; copiousoutput; description=HTML Text; test=type pandoc >/dev/null
 
@@ -99,6 +91,7 @@ application/rtf; rtf2text %s; copiousoutput
 
 # text/m; less %s
 # text/*; cat; copiousoutput; edit=$VISUAL %s
+text/* ; nvim -Rc Goyo '%s' ; edit=nvim -c Goyo '%s' ; compose=nvim -c Goyo '%s' ; needsterminal
 
 image/JPG; feh -F -Z %s &>/dev/null
 image/jpeg; feh -F -Z %s &>/dev/null
@@ -109,3 +102,12 @@ image/*; dotfiles/email_stuff/.mutt_bgrun xv %s; test=RunningX
 image/*; ~/dotfiles/email_stuff/.mutt/muttimage.sh %s ; copiousoutput
 
 message/rfc822; cat; copiousoutput; edit=$VISUAL %s
+
+# Unidentified.
+application/octet-stream; mutt.octet.filter -x %s; test=RunningX
+application/octet-stream; mutt.octet.filter -v %s
+application/octet-stream; mutt.octet.filter %s; copiousoutput
+application/octet-stream; ~/dotfiles/email_stuff/.mutt/view_attachment.sh %s "-" # # text/html; w3m -I %{charset} -T text/html; copiousoutput;
+application/octet-stream; mutt_octet_view -x %s; test=RunningX
+application/octet-stream; mutt_octet_view -v %s
+application/octet-stream; mutt_octet_view %s; copiousoutput

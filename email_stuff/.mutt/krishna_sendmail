@@ -1,0 +1,3 @@
+#!/bin/sh
+
+~/dotfiles/email_stuff/.mutt/MIMEmbellish | msmtp  "$@"

@@ -127,17 +127,19 @@ cnoremap <a-h> <c-\><c-n><c-w>h
 cnoremap <a-j> <c-\><c-n><c-w>j
 cnoremap <a-k> <c-\><c-n><c-w>k
 cnoremap <a-l> <c-\><c-n><c-w>l
+
 if has('nvim')
-    :tnoremap <A-h> <C-\><C-N><C-w>h
-    :tnoremap <A-j> <C-\><C-N><C-w>j
-    :tnoremap <A-k> <C-\><C-N><C-w>k
-    :tnoremap <A-l> <C-\><C-N><C-w>l
-    :inoremap <A-h> <C-\><C-N><C-w>h
-    :inoremap <A-j> <C-\><C-N><C-w>j
-    :inoremap <A-k> <C-\><C-N><C-w>k
-    :inoremap <A-l> <C-\><C-N><C-w>l
-    :nnoremap <A-h> <C-w>h
-    :nnoremap <A-j> <C-w>j
-    :nnoremap <A-k> <C-w>k
-    :nnoremap <A-l> <C-w>l
+	let g:python3_host_prog = '/usr/bin/python'
+	:tnoremap <A-h> <C-\><C-N><C-w>h
+	:tnoremap <A-j> <C-\><C-N><C-w>j
+	:tnoremap <A-k> <C-\><C-N><C-w>k
+	:tnoremap <A-l> <C-\><C-N><C-w>l
+	:inoremap <A-h> <C-\><C-N><C-w>h
+	:inoremap <A-j> <C-\><C-N><C-w>j
+	:inoremap <A-k> <C-\><C-N><C-w>k
+	:inoremap <A-l> <C-\><C-N><C-w>l
+	:nnoremap <A-h> <C-w>h
+	:nnoremap <A-j> <C-w>j
+	:nnoremap <A-k> <C-w>k
+	:nnoremap <A-l> <C-w>l
 endif

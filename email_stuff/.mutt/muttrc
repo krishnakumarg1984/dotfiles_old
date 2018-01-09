@@ -1,3 +1,4 @@
+# /opt/local/share/doc/mutt/manual.txt<Enter>"
 # <enter-command> set pipe_decode<enter>\
 # <enter-command> set pipe_decode=\$my_pdsave<enter>" "decrypt message, then get URLs"
 # <enter-command> set pipe_decode=\$my_pdsave<enter>" "get URLs"
@@ -13,12 +14,15 @@
 # bind index o display-message
 # bind index u half-up
 # bind index,pager <F6> sidebar-next-new
+# bind pager V noop              # Normally <show-version>.
+# list macro index,pager ,B "<enter-command> set
 # macro attach 'V' "<pipe-entry>cat >~/.cacheemail_stuff/.mutt/mail.html && $BROWSER ~/.cache/mutt/mail.html && rm ~/.cache/mutt/mail.html<enter>"
 # macro attach w "|w3m -T text/html\n"
 # macro compose \Cf "F pandoc -s --webtex -f markdown -t html \ny^T^Utext/html; charset=utf-8\n"
 # macro compose \e5 "F pandoc -s -f markdown -t html \ny^T^Utext/html; charset=us-ascii\n"
 # macro generic \e0 ":unset display_filter\n" "Turn TOFU protection off"
 # macro generic \e1 ":set display_filter='$my_tprot'\n" "Turn TOFU protection on"
+# macro generic,pager <F1> "<shell-escape> less 
 # macro index      \Ca ":toggle sidebar_new_mail_only\n" "show *all* mailboxes"
 # macro index ,iN ":set index_format='%3C %{%b-%d} %-23.23F|%4c|%s'"
 # macro index ,in ":set index_format='%4C %Z %<X?%X& > %{%Y-%b-%d} %-23.23F|%4c|%s'"
@@ -26,21 +30,20 @@
 # macro index .i  "<limit>(~N|~F)<Enter>"  "view new/flag"
 # macro index C "<copy-message>?<toggle-mailboxes>" "copy a message to a mailbox"
 # macro index M "<save-message>?<toggle-mailboxes>" "move a message to a mailbox"
-# macro index S "<shell-escape>offlineimap<enter>"
 # macro index \Cr "T~U<enter><tag-prefix><clear-flag>N<untag-pattern>.<enter>"
-# macro index s "<shell-escape>offlineimap -qf INBOX<enter>"
-# macro index y "<change-folder>?<toggle-mailboxes>" "show incoming mailboxes list 
-# macro index,pager ,B "<enter-command> set my_pdsave=\$pipe_decode<enter>\
+# macro index h "c?t"   # "h" will take you to the folder list in the index
+# macro index y "<change-folder>?<toggle-mailboxes>" "show incoming mailboxes
 # macro index,pager ,b "<enter-command> set my_pdsave=\$pipe_decode<enter>\
-# macro pager \cu <pipe-entry>'urlview'<enter> 'Follow links with urlview'
 # macro pager \cu |urlview\n
 # macro pager \e0 ":unset display_filter; exec exit\n:exec display-message\n" "Turn TOFU protection off"
 # macro pager \e1 ":set display_filter='$my_tprot'; exec exit\n:exec display-message\n" "Turn TOFU protection on"
-# set   edit_headers         # display the headers when I'm editing a message
+# my_hdr User-Agent:Mutt/1.8.3-neo
+# my_pdsave=\$pipe_decode<enter>\
 # set autoedit="yes"
 # set display_filter = "/usr/bin/fribidi"
-# set display_filter="t-prot -cemt -M=mutt"
-# set display_filter="~/dotfiles/email_stuff/.mutt/addalias.sh ~/.mutt/aliases" # filters new messages through a shell script that automatically generates a mutt alias for new senders
+# set display_filter="~/dotfiles/email_stuff/.mutt/addalias.sh ~/.mutt/aliases" 
+# # filters new messages through a shell script that automatically generates a 
+# mutt alias for new senders
 # set editor="echo \$EDITOR"   # start editor in insert mode
 # set editor="nvim -c 'call append(0, ["foo", "bar"])'"
 # set editor='nvim -c "set textwidth=72" -c "set wrap" -c "set nocp" -c "set spell" -c "normal 2O" +3 +1 start'
@@ -63,11 +66,10 @@
 # set nntp_context = 1000 # default
 # set pager=nvim
 # set pager_format="%s%*   %P"
-# set print_command="/usr/bin/muttprint %s -p {PrinterName}"
+# set print_command="muttdoc | pandoc --template=email.tex -V fullpage --latex-engine=xelatex --listings -o ~/email.pdf"
 # set print_command=email_stuff/.mutt-print %s"
 # set quit=yes        # don't ask before quitting.
 # set record = "+SENT ITEMS"
-# set record=no
 # set resolve = no # Don't auto-advance to the next message after every single op.
 # set sendmail = "/usr/bin/msmtp -a ICAccount"
 # set sendmail = "~/dotfiles/email_stuff/msmtpq/msmtpq"
@@ -79,36 +81,20 @@
 # set sort_aux=last-date-received
 # set sort_aux=reverse-last-date-received
 # set sort_browser=reverse-date
-# set status_format = "───[ Folder: %f ]───[%r%m messages%?n? (%n new)?%?d? (%d 
+# set status_format = "───[ Folder: %f ]───[%r%m messages%?n? (%n new)?%?d? (%d
 # set status_format='-%remail_stuff/.mutt: %f [Msgs:%?M?%M/?%m%?n? New:%n?%?o? Old:%o?%?d? Del:%d?%?F? Flag:%F?%?t? Tag:%t?%?p? Post:%p?%?b? Inc:%b?%?l? %l?]---(%s/%S)-%>-(%P)---'
 # set tilde           # Internal Pager: ~~~~ at end of message?
 # source ~/dotfiles/email_stuff/.mutt/aliases.txt
-# source ~/dotfiles/email_stuff/.mutt/colors_dir/atomic
-# source ~/dotfiles/email_stuff/.mutt/colors_dir/colors256-dark
-# source ~/dotfiles/email_stuff/.mutt/colors_dir/colors256-light
-# source ~/dotfiles/email_stuff/.mutt/colors_dir/gruvbox
-# source ~/dotfiles/email_stuff/.mutt/colors_dir/jellyjam
-# source ~/dotfiles/email_stuff/.mutt/colors_dir/konsole-color
-# source ~/dotfiles/email_stuff/.mutt/colors_dir/neonwolf-256.muttrc
-# source ~/dotfiles/email_stuff/.mutt/colors_dir/sol_dark
-# source ~/dotfiles/email_stuff/.mutt/colors_dir/zenburn
 # source ~/dotfiles/email_stuff/.mutt/kg314_office365
 # source ~/dotfiles/email_stuff/.mutt/muttrc_mailboxes
 # to delete)?%?t? (%t tagged)? ]───%>─%?p?( %p postponed )?───"
-# unignore from: to: cc: date: subject:   # show only these
 # unset record
 
-# color body	brightmagenta	black	"^\\[---.*"
-# color body	green			black	"^#v[-+]"
-# color body brightgreen  black "^[+].*"
-# color body brightred    black "^-.*"
-# color body brightwhite  black "^diff --git.*"
-# color body brightwhite  black "^index [a-f0-9].*"
-# color body brightyellow black "^@@.*"
-# color sidebar_new yellow default
-
+set edit_headers         # display the headers when I'm editing a message
 alternates kg314@imperial.ac.uk|k.gopalakrishnan14@imperial.ac.uk|krishnakumar@imperial.ac.uk
 alternative_order text/calendar text/plain text/enriched text/html
+attachments   -A message/external-body
+attachments -I message/external-body
 auto_view text/calendar application/ics
 auto_view text/html
 auto_view text/x-diff
@@ -142,6 +128,7 @@ bind browser,pager,generic \Cy previous-line
 bind browser,pager,index  N search-opposite
 bind compose p postpone-message
 bind editor <Tab> complete-query
+bind editor ^T    complete
 bind editor <backspace> backspace
 bind editor <delete> delete-char
 bind editor <space> noop     # So line-editor can accept folders with spaces in their names.
@@ -196,6 +183,7 @@ bind index,pager B sidebar-toggle-visible
 bind index,pager F flag-message
 bind index,pager O edit
 bind index,pager P parent-message
+bind index,pager V  noop       # Unbinds V from version
 bind index,pager \Cn sidebar-next
 bind index,pager \Co sidebar-open
 bind index,pager \Cp sidebar-prev
@@ -211,7 +199,6 @@ bind pager G bottom
 bind pager Q noop              # Normally <quit>.
 bind pager R group-reply
 bind pager T noop              # Normally <toggle-quoted>.
-bind pager V noop              # Normally <show-version>.
 bind pager \t next-unread
 bind pager ^ noop              # Normally <top>, which we have bound to gg.
 bind pager g noop
@@ -230,23 +217,26 @@ bind pager,index gt next-thread
 charset-hook ^iso-8859-1$ cp1252
 folder-hook . "push <collapse-all>\n"
 folder-hook . 'set read_inc=1000'
-hdr_order from: to: cc: date: subject:  # and in this order
 ignore *                                # ignore all headers
 ignore Content-Transfer-Encoding:
 ignore Content-Type:
 ignore User-Agent
+macro attach,compose \cu "<pipe-entry> urlscan -cd<Enter>" 
+macro index S "<shell-escape>offlineimap<enter>"
 macro index gd "<change-folder>=Drafts<enter>" "Go to drafts"
 macro index gi "<change-folder>=INBOX<enter>"  "Go to inbox"
 macro index gj "<change-folder>=Junk<enter>"   "Go to junk"
 macro index gs "<change-folder>=Sent<enter>"   "Go to sent"
 macro index gt "<change-folder>=Trash<enter>"  "Go to trash"
+macro index p "<display-toggle-weed> <print-message> <display-toggle-weed> <exit>"
+macro index s "<shell-escape>offlineimap -qf INBOX<enter>"
 macro index,pager  a "<pipe-message>abook --add-email-quiet<return>" "Add this sender to Abook"
 macro index,pager H view-mailcap
+macro index,pager V "<view-attachments><search>html<enter><view-mailcap><exit>"
+macro index,pager \cu "<pipe-message> urlscan<Enter>" "call urlscan to extract URLs out of a message"
+macro pager p "<display-toggle-weed> <print-message> <display-toggle-weed>"
 message-hook .  'macro index,pager \cb ,b "URL viewer"'
 message-hook ~G 'macro index,pager \cb ,B "URL viewer"'
-my_hdr Organization: Imperial College London
-my_hdr User-Agent:Mutt/1.8.3-neo
-my_hdr X-Operating-System: `uname -s`, kernel `uname -r`
 set abort_nosubject  = no
 set abort_unmodified = ask-yes
 set alias_format="%4n %2f %t %-12a  %r"
@@ -272,7 +262,7 @@ set date_format       ="%d/%m/%y %I:%M"
 set delete                       # don't ask me to delete messages - just do it!
 set delete_untag                 # untag messages when marking them for deletion
 set display_filter = $my_tprot
-set editor         = "nvim +/^$ ++1 -c start 'set expandtab spell'"       # start editor in insert mode
+set editor         = "nvim +/^$ ++1 -c start"       # start editor in insert mode
 set envelope_from                # which from?
 set fast_reply                   # don't prompt for stuff when replying
 set fcc_attach                   # save attachments with the body
@@ -281,7 +271,6 @@ set folder_format="%3C %t%N %F %-8.8u %-8.8g %8s %d %f"
 set followup_to                  # add Mail-Followup-To header
 set followup_to_poster = ask-yes
 set forward_decode               # decode when forwarding
-set forward_decode = yes
 set forward_edit   = ask-yes     # automatically start editor when forwarding.
 set forward_format = "Fwd: %s"   # format of subject when forwarding
 set forward_quote                # include message in forwards
@@ -320,30 +309,30 @@ set nntp_poll             = 60
 set nntp_user             = ''
 set pager_context         = 3
 set pager_format          = "~~~~~~~~~ On %{%a, %d %b %Y} at [%[%H:%M]]: %s %|~"
-set pager_index_lines     = 10
 set pager_index_lines     = 4 # add small message index at top of pager (5)
-set pager_index_lines=15
 set pager_stop            = yes      # don't go to next message at end of message
 set pipe_decode  # strip headers and eval mimes when piping
 set post_moderated        = ask-yes
 set postpone              = ask-no
 set postponed             = Drafts
 set print                 = ask-yes
+set print_command="/usr/bin/muttprint %s -p {PrinterName}"
 set prompt_after          = no
 set query_command         = "abook --mutt-query '%s'"
+# set query_command         = "mates --mutt-query '%s'"
 set quote_regexp          = "^( {0,4}[>|:#%]| {0,4}[a-z0-9]+[>|]+)+"
-set realname              = "Krishna"  # who am i?
+set realname              = "Krishnakumar"  # who am i?
 set recall                = no
 set record                = +$my_sent_noquote
 set reply_regexp          = "^(([Rr][Ee]?(\[[0-9]+\])?: *)?(\[[^]]+\] *)?)*"
 set reply_to                                  # reply to Reply to: field
-set reverse_alias=yes
+set reverse_alias         = yes
 set reverse_name                              # reply as whomever it was to
-set reverse_realname=yes
+set reverse_realname      = yes
 set rfc2047_parameters    = yes               # encode = ?iso-8858....? = filenames
 set save_unsubscribed     = no
-set send_charset          = "utf-8:iso-8859-15:us-ascii"
-set sendmail              = "/usr/bin/msmtp"
+set send_charset          = "us-ascii:utf-8"
+set sendmail              = "~/dotfiles/email_stuff/.mutt/krishna_sendmail"
 set sendmail_wait         = 0                 # Wait until the email is sent successfully
 set shell                 = /bin/bash
 set show_new_news         = yes
@@ -364,30 +353,30 @@ set sig_dashes=no   # no dashes between message text and signature
 set sig_on_top                     # puts signature above quoted or forwarded text
 set sleep_time = 0                 # be fast
 set smart_wrap                     # wrap long lines at word boundary.
-set sort           = reverse-threads
-set sort_aux       = date-received
-set sort_browser   = alpha         # is the default I think, but anyway
+set sort             = reverse-threads
+set sort_alias = alias
+set sort_aux         = date-received
+set sort_browser     = alpha       # is the default I think, but anyway
 set sort_re                        # thread based on regex
-set spoolfile      = +INBOX
-set status_chars   = " *%A"
-set status_format  = "%f%?V?/%V? [%m%?M?, %M shown?%?n?, %n new?%?o?, %o old?%?d?, %d deleted?%?F?, %F flagged?%?t?, %t tagged?%?p?, %p postponed?] %> %P"
+set spoolfile        = +INBOX
+set status_chars     = " *%A"
+set status_format    = "%f%?V?/%V? [%m%?M?, %M shown?%?n?, %n new?%?o?, %o old?%?d?, %d deleted?%?F?, %F flagged?%?t?, %t tagged?%?p?, %p postponed?] %> %P"
 set status_on_top
-set strict_threads = yes
-set text_flowed    = yes  # send format-flowed; vim must be set to fo+ = w
+set strict_threads   = yes
+set text_flowed      = yes  # send format-flowed; vim must be set to fo+ = w
 set thorough_search  # strip headers and eval mimes before searching
 set tilde            = yes
 set timeout          = "5"
+set tmpdir = '/tmp/mutt'
+set tmpdir = '/tmp/mutt'
 set to_chars         = " +TCF" # no L for mail_list
 set ts_enabled       = yes
 set ts_status_format = 'mutt %m messages%?n?, %n new?'
 set uncollapse_jump  # jump to unread message when uncollapse
-set use_from     = yes
 set visual       = "nvim"
 set x_comment_to = no
 set xterm_set_titles
-source ~/dotfiles/email_stuff/.mutt/colors_dir/monster_island
 source ~/dotfiles/email_stuff/.mutt/mailboxes
-unhdr_order *         # some distros order things by default
 unignore From To Cc Subject Date Reply-To Organization X-Mailer User-Agent
 unignore Newsgroups:
 unset arrow_cursor    # use arrow cursor
@@ -399,13 +388,41 @@ unset confirmappend   # may want to change this later
 unset ignore_list_reply_to
 unset mark_old        # don't mark unread messages as Old
 unset markers         # put a '+' at the beginning of wrapped lines.
-unset menu_scroll          # scroll menu a page on last line
-unset mime_forward
+unset menu_scroll     # scroll menu a page on last line
 unset mime_forward    # forward attachments as part of body
 unset move
 unset reply_self
 unset use_domain
 unset use_from
 unset user_agent
-unset user_agent
 unset wait_key        # don't wait for keystroke to return from shell
+# set display_filter="t-prot -cemt -M=mutt"
+
+my_hdr Organization: Imperial College London
+my_hdr X-Operating-System: `uname -s`, kernel `uname -r`
+unhdr_order *         # some distros order things by default
+hdr_order from: to: cc: date: subject:  # and in this order
+
+# macro index,pager A \
+#     "<pipe-message>abook add | xargs abook edit<enter>" \
+#     "add the sender address"
+
+# source ~/dotfiles/email_stuff/.mutt/colors_dir/atomic
+# source ~/dotfiles/email_stuff/.mutt/colors_dir/colors256-light
+source ~/dotfiles/email_stuff/.mutt/colors_dir/gruvbox
+# source ~/dotfiles/email_stuff/.mutt/colors_dir/jellyjam
+# source ~/dotfiles/email_stuff/.mutt/colors_dir/konsole-color
+# source ~/dotfiles/email_stuff/.mutt/colors_dir/monster_island
+# source ~/dotfiles/email_stuff/.mutt/colors_dir/neonwolf-256.muttrc
+# source ~/dotfiles/email_stuff/.mutt/colors_dir/sol_dark
+# source ~/dotfiles/email_stuff/.mutt/colors_dir/zenburn
+
+# color body brightmagenta black "^\\[---.*"
+# color body green	 black "^#v[-+]"
+# color body brightgreen   black "^[+].*"
+# color body brightred     black "^-.*"
+# color body brightwhite   black "^diff --git.*"
+# color body brightwhite   black "^index [a-f0-9].*"
+# color body brightyellow  black "^@@.*"
+# color sidebar_new yellow default
+color body red default "([a-z][a-z0-9+-]*://(((([a-z0-9_.!~*'();:&=+$,-]|%[0-9a-f][0-9a-f])*@)?((([a-z0-9]([a-z0-9-]*[a-z0-9])?)\\.)*([a-z]([a-z0-9-]*[a-z0-9])?)\\.?|[0-9]+\\.[0-9]+\\.[0-9]+\\.[0-9]+)(:[0-9]+)?)|([a-z0-9_.!~*'()$,;:@&=+-]|%[0-9a-f][0-9a-f])+)(/([a-z0-9_.!~*'():@&=+$,-]|%[0-9a-f][0-9a-f])*(;([a-z0-9_.!~*'():@&=+$,-]|%[0-9a-f][0-9a-f])*)*(/([a-z0-9_.!~*'():@&=+$,-]|%[0-9a-f][0-9a-f])*(;([a-z0-9_.!~*'():@&=+$,-]|%[0-9a-f][0-9a-f])*)*)*)?(\\?([a-z0-9_.!~*'();/?:@&=+$,-]|%[0-9a-f][0-9a-f])*)?(#([a-z0-9_.!~*'();/?:@&=+$,-]|%[0-9a-f][0-9a-f])*)?|(www|ftp)\\.(([a-z0-9]([a-z0-9-]*[a-z0-9])?)\\.)*([a-z]([a-z0-9-]*[a-z0-9])?)\\.?(:[0-9]+)?(/([-a-z0-9_.!~*'():@&=+$,]|%[0-9a-f][0-9a-f])*(;([-a-z0-9_.!~*'():@&=+$,]|%[0-9a-f][0-9a-f])*)*(/([-a-z0-9_.!~*'():@&=+$,]|%[0-9a-f][0-9a-f])*(;([-a-z0-9_.!~*'():@&=+$,]|%[0-9a-f][0-9a-f])*)*)*)?(\\?([-a-z0-9_.!~*'();/?:@&=+$,]|%[0-9a-f][0-9a-f])*)?(#([-a-z0-9_.!~*'();/?:@&=+$,]|%[0-9a-f][0-9a-f])*)?)[^].,:;!)? \t\r\n<>\"]"

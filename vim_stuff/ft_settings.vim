@@ -73,9 +73,9 @@ function IsReply()
     colorscheme pencil
     if line('$') > 1
         :g/^>\s\=--\s\=$/,$ delete
-        if executable("par")
-            :%!par\ -w72q
-        elseif executable("fmt")
+        if executable('par')
+            :%!par w72q
+        elseif executable('fmt')
             :%!fmt -w72
         endif
         :%s/^.\+\ze\n\(>*$\)\@!/\0 /e

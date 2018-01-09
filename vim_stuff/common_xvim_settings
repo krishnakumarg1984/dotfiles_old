@@ -850,4 +850,9 @@ if has('nvim')
     augroup END
 endif
 
+if executable("rg")
+    set grepprg=rg\ --vimgrep\ --no-heading
+    set grepformat=%f:%l:%c:%m,%f:%l:%m
+endif
+
 source ~/dotfiles/vim_stuff/ft_settings.vim

@@ -26,7 +26,6 @@
 " Plug 'blueyed/vim-diminactive'
 " Plug 'brennier/quicktex',{'for':'tex'}
 " Plug 'brooth/far.vim'
-" Plug 'chrisbra/Colorizer'
 " Plug 'chrisbra/NrrwRgn'
 " Plug 'chrisbra/csv.vim',{'for': ['csv']}
 " Plug 'chrisbra/improvedft'
@@ -164,6 +163,7 @@
 " context_filetype
 "Plug 'rhysd/vim-grammarous',{'for':['tex','text']}
 "osyo-manga/vim-watchdogs
+
 Plug 'JamshedVesuna/vim-markdown-preview',{'for':['markdown']}
 Plug 'Konfekt/FastFold'
 Plug 'Yggdroot/indentLine', {'for': ['python','octave']}
@@ -189,7 +189,7 @@ Plug 'romainl/vim-qf' "short for vim-quickfix—is a growing collection of setti
 Plug 'sjl/gundo.vim'
 Plug 'tdehaeze/matlab-vim',{'for':['matlab']}
 Plug 'tommcdo/vim-exchange'
-Plug 'tpope/vim-commentary',{'for':['tex','matlab','dot','markdown','vim']} "gcc, gc3j, gc}, gcip, gcu
+Plug 'tpope/vim-commentary',{'for':['tex','matlab','dot','markdown','vim','muttrc']} "gcc, gc3j, gc}, gcip, gcu
 Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-repeat'
@@ -204,6 +204,7 @@ Plug 'vim-pandoc/vim-pandoc-after',{'for':['markdown']}
 Plug 'vim-pandoc/vim-pandoc-syntax',{'for':['markdown']}
 Plug 'wannesm/wmgraphviz.vim',{'for':['dot','gv']}
 Plug 'wellle/targets.vim' "To change the text in the next pair of parentheses, use the cin) command,To delete the item in a comma separated list under the cursor, use da, last pair seems very useful, i(,i),ib,i{,i},i[,i],i<,i>,it, with count, same with 'a'. n and l options, quotes, even back-ticks
+Plug 'chrisbra/Colorizer',{'for':['muttrc']}
 
 if has('nvim')
 	Plug 'w0rp/ale',{ 'on': 'ALEEnable', 'for': ['dot', 'sh','matlab','python','tex'] }
