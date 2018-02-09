@@ -28,7 +28,7 @@
 # macro index ,in ":set index_format='%4C %Z %<X?%X& > %{%Y-%b-%d} %-23.23F|%4c|%s'"
 # macro index .a  "<limit>~A<Enter>"       "view all"
 # macro index .i  "<limit>(~N|~F)<Enter>"  "view new/flag"
-# macro index C "<copy-message>?<toggle-mailboxes>" "copy a message to a mailbox"
+
 # macro index M "<save-message>?<toggle-mailboxes>" "move a message to a mailbox"
 # macro index \Cr "T~U<enter><tag-prefix><clear-flag>N<untag-pattern>.<enter>"
 # macro index h "c?t"   # "h" will take you to the folder list in the index
@@ -83,17 +83,20 @@
 # set sort_browser=reverse-date
 # set status_format = "───[ Folder: %f ]───[%r%m messages%?n? (%n new)?%?d? (%d
 # set status_format='-%remail_stuff/.mutt: %f [Msgs:%?M?%M/?%m%?n? New:%n?%?o? Old:%o?%?d? Del:%d?%?F? Flag:%F?%?t? Tag:%t?%?p? Post:%p?%?b? Inc:%b?%?l? %l?]---(%s/%S)-%>-(%P)---'
-# set tilde           # Internal Pager: ~~~~ at end of message?
+
 # source ~/dotfiles/email_stuff/.mutt/aliases.txt
 # source ~/dotfiles/email_stuff/.mutt/kg314_office365
 # source ~/dotfiles/email_stuff/.mutt/muttrc_mailboxes
 # to delete)?%?t? (%t tagged)? ]───%>─%?p?( %p postponed )?───"
 # unset record
 
-set edit_headers         # display the headers when I'm editing a message
+# set edit_headers         # display the headers when I'm editing a message
+# # Attachment View Options
+attachments +A message/.* multipart/.*
+attachments +I message/.* multipart/.*
 alternates kg314@imperial.ac.uk|k.gopalakrishnan14@imperial.ac.uk|krishnakumar@imperial.ac.uk
-alternative_order text/calendar text/plain text/enriched text/html
-attachments   -A message/external-body
+alternative_order text/calendar text/plain text/enriched text/html text/*
+attachments -A message/external-body
 attachments -I message/external-body
 auto_view text/calendar application/ics
 auto_view text/html
@@ -121,7 +124,7 @@ bind attach,index,pager <Esc>P noop     # Normally <check-traditional-pgp>.
 bind attach,index,pager \CE noop        # Normally <edit-type>.
 bind attach,index,pager \CK noop        # Normally <extract-keys>.
 bind attach,index,pager b previous-page # Normally <bounce-message>, but we use \b for that.
-bind attach,index,pager p noop          # Normally <print-entry> or <print-message>.
+# bind attach,index,pager p noop          # Normally <print-entry> or <print-message>.
 bind browser S unsubscribe
 bind browser,pager,generic \Ce next-line
 bind browser,pager,generic \Cy previous-line
@@ -172,6 +175,8 @@ bind index p recall-message
 bind index x tag-entry
 bind index zA  collapse-all # Missing :folddisable/foldenable
 bind index za  collapse-thread
+bind index - collapse-thread
+bind index _ collapse-all
 bind index,pager <F3> sidebar-page-up
 bind index,pager <F4> sidebar-page-down
 bind index,pager <F5> sidebar-prev-new
@@ -222,22 +227,25 @@ ignore Content-Transfer-Encoding:
 ignore Content-Type:
 ignore User-Agent
 macro attach,compose \cu "<pipe-entry> urlscan -cd<Enter>" 
+# macro index C "<copy-message>?<toggle-mailboxes>" "copy a message to a mailbox"macro index c "<change-folder>?" "change folder"
 macro index S "<shell-escape>offlineimap<enter>"
 macro index gd "<change-folder>=Drafts<enter>" "Go to drafts"
 macro index gi "<change-folder>=INBOX<enter>"  "Go to inbox"
 macro index gj "<change-folder>=Junk<enter>"   "Go to junk"
 macro index gs "<change-folder>=Sent<enter>"   "Go to sent"
 macro index gt "<change-folder>=Trash<enter>"  "Go to trash"
-macro index p "<display-toggle-weed> <print-message> <display-toggle-weed> <exit>"
+macro index M "<tag-thread><tag-prefix><save-message>?/" "move thread to mailbox"
+# macro index p "<display-toggle-weed> <print-message> <display-toggle-weed> <exit>"
 macro index s "<shell-escape>offlineimap -qf INBOX<enter>"
 macro index,pager  a "<pipe-message>abook --add-email-quiet<return>" "Add this sender to Abook"
 macro index,pager H view-mailcap
 macro index,pager V "<view-attachments><search>html<enter><view-mailcap><exit>"
 macro index,pager \cu "<pipe-message> urlscan<Enter>" "call urlscan to extract URLs out of a message"
-macro pager p "<display-toggle-weed> <print-message> <display-toggle-weed>"
 message-hook .  'macro index,pager \cb ,b "URL viewer"'
 message-hook ~G 'macro index,pager \cb ,B "URL viewer"'
 set abort_nosubject  = no
+set abort_noattach = ask-yes
+set attach_keyword = "\\<attach(|ed|ments?)\\>"
 set abort_unmodified = ask-yes
 set alias_format="%4n %2f %t %-12a  %r"
 set allow_ansi
@@ -261,7 +269,6 @@ set copy                         # save copies of sent messages
 set date_format       ="%d/%m/%y %I:%M"
 set delete                       # don't ask me to delete messages - just do it!
 set delete_untag                 # untag messages when marking them for deletion
-set display_filter = $my_tprot
 set editor         = "nvim +/^$ ++1 -c start"       # start editor in insert mode
 set envelope_from                # which from?
 set fast_reply                   # don't prompt for stuff when replying
@@ -279,15 +286,18 @@ set group_index_format = '%4C %M%N %5s  %-45.45f %d'
 set help                      # show help on first line of display
 set honor_followup_to=ask-yes # Ask whether to honor Mail-Followup-To header.
 set hostname = "ic.ac.uk"     # who am i?
+set implicit_autoview="no"
 set include                   # include message in replies
 set indent_str   = "> "
 set index_format = "%2C %Z %d %-15.15F %s (%-4.4c)"
 set inews        = ''
 set mail_check_stats = yes
 set mailcap_path = ~/dotfiles/email_stuff/.mutt/mailcap
+set mask = no
 set mbox_type=Maildir
 set menu_scroll
 set message_format="%-.16n: %s"
+set metoo=no
 set mime_forward          = no # forward all attachments as a single attachment?
 set mime_forward_rest     = "yes"
 set mime_subject          = yes
@@ -322,7 +332,7 @@ set query_command         = "abook --mutt-query '%s'"
 # set query_command         = "mates --mutt-query '%s'"
 set quote_regexp          = "^( {0,4}[>|:#%]| {0,4}[a-z0-9]+[>|]+)+"
 set realname              = "Krishnakumar"  # who am i?
-set recall                = no
+set recall                = yes
 set record                = +$my_sent_noquote
 set reply_regexp          = "^(([Rr][Ee]?(\[[0-9]+\])?: *)?(\[[^]]+\] *)?)*"
 set reply_to                                  # reply to Reply to: field
@@ -364,10 +374,11 @@ set status_format    = "%f%?V?/%V? [%m%?M?, %M shown?%?n?, %n new?%?o?, %o old?%
 set status_on_top
 set strict_threads   = yes
 set text_flowed      = yes  # send format-flowed; vim must be set to fo+ = w
+set reflow_text
+set reflow_space_quotes
 set thorough_search  # strip headers and eval mimes before searching
 set tilde            = yes
 set timeout          = "5"
-set tmpdir = '/tmp/mutt'
 set tmpdir = '/tmp/mutt'
 set to_chars         = " +TCF" # no L for mail_list
 set ts_enabled       = yes
@@ -376,7 +387,7 @@ set uncollapse_jump  # jump to unread message when uncollapse
 set visual       = "nvim"
 set x_comment_to = no
 set xterm_set_titles
-source ~/dotfiles/email_stuff/.mutt/mailboxes
+# source ~/dotfiles/email_stuff/.mutt/mailboxes
 unignore From To Cc Subject Date Reply-To Organization X-Mailer User-Agent
 unignore Newsgroups:
 unset arrow_cursor    # use arrow cursor
@@ -396,10 +407,12 @@ unset use_domain
 unset use_from
 unset user_agent
 unset wait_key        # don't wait for keystroke to return from shell
-# set display_filter="t-prot -cemt -M=mutt"
 
-my_hdr Organization: Imperial College London
-my_hdr X-Operating-System: `uname -s`, kernel `uname -r`
+# set display_filter="t-prot -cemt -M=mutt"
+set display_filter = $my_tprot
+
+# my_hdr Organization: Imperial College London
+# my_hdr X-Operating-System: `uname -s`, kernel `uname -r`
 unhdr_order *         # some distros order things by default
 hdr_order from: to: cc: date: subject:  # and in this order
 

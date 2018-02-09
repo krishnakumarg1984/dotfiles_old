@@ -31,11 +31,9 @@
 " Plug 'chrisbra/improvedft'
 " Plug 'chrisbra/unicode.vim'
 " Plug 'chrisbra/vim-diff-enhanced'
-" Plug 'christoomey/vim-tmux-navigator'
 " Plug 'coderifous/textobj-word-column.vim'  " provides cic and vic mappings
 " Plug 'critiqjo/husk-x.vim',{'for': ['tex']} " for command line mode (readline bindings)
 " Plug 'ctrlpvim/ctrlp.vim'
-" Plug 'daeyun/vim-matlab', { 'do': 'UpdateRemotePlugins' }
 " Plug 'dahu/bisectly'
 " Plug 'davidhalter/jedi-vim', {'for': 'python'}
 " Plug 'dbmrq/vim-ditto',{'for': ['tex','text']}
@@ -60,7 +58,6 @@
 " Plug 'jalvesaq/vimcmdline' "Send lines to interpreter
 " Plug 'jiangmiao/auto-pairs' "quick jump to closed pair using }.  <M-p> : Toggle Autopairs,  <M-e> : Fast Wrap, <M-n> : Jump to next closed pair,<M-b> : BackInsert
 " Plug 'jlanzarotta/bufexplorer'
-" Plug 'jmarkow/vim-matlab'
 " Plug 'jmarkow/vim-matlab'
 " Plug 'jonhiggs/vim-readline'
 " Plug 'jreybert/vimagit'
@@ -142,9 +139,9 @@
 " Plug 'tpope/vim-characterize' "In Vim, pressing ga on a character reveals its representation in decimal, octal, and hex. Characterize.vim modernizes this with a few additions
 " Plug 'tpope/vim-commentary'
 " Plug 'tpope/vim-dispatch'
-" Plug 'tpope/vim-dispatch'
 " Plug 'tpope/vim-obsession'
 " Plug 'tpope/vim-rhubarb'
+" Plug 'tpope/vim-projectionist'
 " Plug 'tweekmonster/startuptime.vim'
 " Plug 'tyru/capture.vim' "capture ex-command outputs
 " Plug 'tyru/open-browser.vim'
@@ -205,6 +202,8 @@ Plug 'vim-pandoc/vim-pandoc-syntax',{'for':['markdown']}
 Plug 'wannesm/wmgraphviz.vim',{'for':['dot','gv']}
 Plug 'wellle/targets.vim' "To change the text in the next pair of parentheses, use the cin) command,To delete the item in a comma separated list under the cursor, use da, last pair seems very useful, i(,i),ib,i{,i},i[,i],i<,i>,it, with count, same with 'a'. n and l options, quotes, even back-ticks
 Plug 'chrisbra/Colorizer',{'for':['muttrc']}
+Plug 'kopischke/vim-fetch'
+Plug 'christoomey/vim-tmux-navigator'
 
 if has('nvim')
 	Plug 'w0rp/ale',{ 'on': 'ALEEnable', 'for': ['dot', 'sh','matlab','python','tex'] }

@@ -57,7 +57,7 @@ application/pdf; mutt_bgrun acroread +useFrontEndProgram %s; test=RunningX
 # HTML
 # text/html ; uconv --add-signature -f %{charset} -t UTF-8 %s | sponge %s && firefox -new-tab %s & sleep 5 ; description="HTML Document" ; 
 text/html; mv %s %s.html && firefox %s.html > /dev/null; needsterminal;
-text/html; w3m -dump -T text/html -cols 70; copiousoutput; description=HTML Text; test=type w3m >/dev/null
+text/html; w3m -dump -T text/html -cols 80; copiousoutput; description=HTML Text; test=type w3m >/dev/null
 text/html; html2text -width 70; copiousoutput; description=HTML Text; test=type html2text >/dev/null
 text/html; elinks -dump %s -eval 'set document.codepage.assume = "%{charset}"' -eval 'set document.dump.width = 100'; nametemplate=%s.html; copiousoutput
 text/html; lynx -assume_charset=%{charset} -display_charset=utf-8 -dump %s; nametemplate=%s.html; copiousoutput

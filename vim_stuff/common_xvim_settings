@@ -1,5 +1,6 @@
 " vim:ft=vim:norl:
 " download vim-plug if not exists
+let g:python3_host_prog = '/home/linuxbrew/.linuxbrew/bin/python3'
 
 if has('nvim')
     if empty(glob('~/.local/share/nvim/site/autoload/plug.vim'))
@@ -100,7 +101,7 @@ autocmd InsertLeave * :set relativenumber
 " shell to something else in your ~/.vimrc.
 " Seriously... god dammit Vim.
 if &shell =~# 'fish$'
-    set shell=sh
+    set shell=/usr/bin/sh
 endif
 
 " Only show cursorline in the current window and in normal mode.
@@ -602,9 +603,10 @@ set titleold=
 
 " Delete comment character when joining commented lines
 if v:version > 703 || v:version == 703 && has("patch541")
-    set formatoptions+=j
+	set formatoptions+=j
 elseif has('nvim')
-    set formatoptions+=j
+	" let g:python3_host_prog = "/home/linuxbrew/.linuxbrew/bin/python3"
+	set formatoptions+=j
 endif
 
 set formatoptions+=t "
