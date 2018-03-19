@@ -1,0 +1,3456 @@
+## ========================================================================
+## File:           $HOME/.mutt/color.body
+## Purpose:        Colorization of text for mutt's builtin pager.
+## Author:         Sven Guckes setup-mutt.color.body @guckes.net
+## Latest change:  Sat Nov 18 23:05:42 CET 2017
+## Size:           3418 lines and 130Kb
+## Availability:   http://www.guckes.net/Setup/mutt.color
+##                 Comments per email are very very welcome! :-)
+## ========================================================================
+
+## =============================================================
+## COLOR!  colorize your text!
+## this file contains color commands to colorize the
+## following kinds of text: internet related addresses, eg
+## email addresses, ftp/http/mailto links, IP number of
+## hosts; names of directories (/home/me/) and filenames,
+## variables ($FOO), abbreviations (TLA), date+time in
+## various formats, names of places and zip codes, cited text;
+## numbers with currencies or percentages, phone numbers
+## or temperatures, smileys, emphased words, - and more.
+## =============================================================
+
+# 2017-08-11
+# dates as "yyyymmdd"
+# example: "19670406" "20170811"
+  color body cyan default '(19[6-9][0-9]|20[01][0-9])(0[1-9]|1[012])(0[1-9]|[12][0-9]|3[01])'
+
+## =============================================================
+## General remarks
+## =============================================================
+#  Words consist in a sequence of letters.
+#  While it is still easy for human beings
+#  to understand words with interspersed spaces
+#  it is not easy for a program to do that.
+#  Example:  "R E A L L Y  I M P O R T A N T"
+#  Creating regular expressions which also
+#  allow for this kind of "spacing" is not easy.
+#
+#  Instead, please indicate emphasis not by
+#  changing the definition of a word but by
+#  placing it into asterisks, eg "*important*".
+#
+#  Recognition of hyphenated words is difficult, too.
+#  So please try to not break words or phrases across
+#  lines at all.  Instead, put them on the next line.
+#  The same holds for combined words or
+#  terms, eg dates like "4th of July".
+
+#  MUTT COLOR RULES:
+#  there are only eight colors.
+#  there is  only one color combination for each match.
+#  a match MUST be within one line. -> an EOL is never part of a match.
+#  -> there is no detection of patterns across lines.
+#  no subgroups: you cannot define a match within another match.
+#  -> a match can take away part of another match.
+
+## 2016-02-03, 2017-07-05
+## MUTT pattern language:
+## "at least zero":      a*  (...)*
+## "at least one":       a+  (...)+
+## alternatives:         (ab|cd|ef|gh)
+## groups:               \(pattern\)+
+## use of quotes and ticks and
+## use of word boundaries:
+## as "\\<...\\>"
+## or  '\<...\>'
+
+## ------------------------------------
+## common patterns:
+## number ranges for hours and days:
+## hours_12:    1..12 -> (0?[1-9]|1[012])
+## hours_24:    1..24 -> (0?[1-9]|1[0-9]|2[0-4])
+## days:        1..31 -> (0?[1-9]|[12][0-9]|3[01])
+## month:       1..12 -> (0?[1-9]|1[012])
+## month names:
+## month names - short, DE+EN: (jan|feb|mar|mrz|apr|mai|may|jun|jul|aug|sep|oct|okt|nov|dec|dez)
+## month names - short, DE:    (jan|feb|mar|mrz|apr|mai|jun|jul|aug|sep|okt|nov|dez)
+## month names -  long, DE:    (jan|feb|mar|mrz|apr|mai|jun|jul|aug|sep|okt|nov|dez)[a-z]+
+## month names - short, EN:    (jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)
+## month names -  long, EN:    (jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)[a-z]+
+## years, 19th-21st century:   1900..2099 -> (19|20)[0-9][0-9]
+## all letters of month names: [aÃ¤bcdefgijklmnoprstuvz] (22 letters) missing: hqwxy
+
+## =============================================================
+## Macros
+## =============================================================
+
+# I'll need this macro when I do some testing -
+# just a simple way to reload this setup file:
+  macro index %  ':source ~/.mutt/color.body '
+# this macro does not include the ENTER
+# to send the command. instead, this let's
+# you choose between entering it yourself
+# and breaking it off with a CTRL-G. feature!
+
+## =============================================================
+## COLOR for the body (viewed with *internal* pager)
+## =============================================================
+
+## From the manual to mutt-1.2:
+##      Objects that you can colorize:
+##      attachment, body (regexpr), bold, error, header, hdrdefault,
+##      index, indicator, markers, message, normal,
+##      quoted, quoted1, ..., quotedN,
+##      search, signature, status, tilde, tree, underline.
+##
+## Color names you can use for "background" and "foreground":
+##      white black green magenta blue cyan yellow red default colorx
+##     (white|black|green|magenta|blue|cyan|yellow|red)
+
+## NOTE:  Although I'd like to use "default" as the background color,
+##        it somehow does not work out with "xterm".
+##        So I changed it to "black" everywhere.
+
+## ==================================================
+## COLOR for the body - special text parts
+## ==================================================
+
+#  Show  attachments:
+   color attachment  green  default
+
+#        Quoted text - coloring only the first four levels:
+   color quoted      cyan   default  # pager body
+   color quoted1     red    default  # pager body
+   color quoted2     cyan   default  # pager body
+   color quoted3     yellow default  # pager body
+
+#  The   Signature:
+   color signature   red    default  # pager body
+   color tilde       blue   default  # pager body
+
+#  Bold and unerlined text:
+   color bold        green  default   # bold text
+   color underline   yellow default   # underlined text
+#  How this works:  Mutt recognizes sequences with embedded CTRL-H ('^H').
+#  If this matches one of the following kinds
+#  then you get to see the text as either "bold text" or "underlined text"
+#  depending on the capabilities of your terminal.
+#  bold:       "c^Hc" -> "bold 'c'"
+#  underline:  "c^H_" -> "underlined 'c'"
+#  On color terminals you will see them with their own color.
+
+## ==================================================
+## COLOR for the body - special text parts
+## ==================================================
+
+   color normal       white  default
+   color tilde        blue   default
+
+## ==================================================
+## COLOR for the body - Internet Addresses
+## ==================================================
+
+# 2017-08-18
+# full month names (EN)
+  color body black white \
+  '\<(january|february|march|april|may|june|july|august|september|october|november|december)\>'
+# full month names (DE)
+  color body black white \
+  '\<(januar|februar|maerz|april|mai|juni|juli|august|september|oktober|november|dezember)\>'
+
+# 2017-05-12
+# Pseudo Keys
+# (put this up front for checking)
+  # color body brightyellow brightmagenta "^[0-9a-zA-Z+/]{76}$"
+
+# 2017-05-12
+# X-PHP-Originating-Script: 10002:post.php(5) : regexp code(1) : eval()'d code(17) : eval()'d code
+  save-hook '~C @guckes.net ~h X-PHP-Originating-Script ~b PGP.PUBLIC.KEY' +SPAM.PGP
+
+# 2004-04-27
+# IPv4 addresses
+# examples: 127.0.0.1 192.168.1.1 192.109.42.123 255.255.255.0
+#    color body white blue "(\
+# (1?[0-9]?[0-9]|2[0-4][0-9]|25[0-5])\\.){3}\
+# (1?[0-9]?[0-9]|2[0-4][0-9]|25[0-5])"
+   color body white blue '\<(\
+(1?[0-9]?[0-9]|2[0-4][0-9]|25[0-5])[.]){3}\
+(1?[0-9]?[0-9]|2[0-4][0-9]|25[0-5])\>'
+# 2017-01-05
+   color body white blue '192.168.'
+
+# 2016-02-13
+# IPv4 addresses with open last component
+# examples: 192.168.111.x
+   color body white blue '\<((1?[0-9]?[0-9]|2[0-4][0-9]|25[0-5])[.]){3}[a-z]\>'
+#
+# IP addresses as shown by "ifconfig":
+#  color body white blue "((1?[0-9]?[0-9]|2[0-4][0-9]|25[0-5])\.?){4}"
+#  color body white green  "inet addr:[^ ]*"
+# example:
+#  eth0      Link encap:Ethernet  HWaddr 00:16:3e:00:05:00
+#            inet addr:192.109.42.123  Bcast:192.109.42.127  Mask:255.255.255.192
+
+# 2015-12-17, 2017-08-25
+# IP ranges
+# example:   "10.20.30.40/32"   "10.0.0.0/8"
+   # color body black magenta '\<(\ (0|1?[0-9]?[0-9]|2[0-4][0-9]|25[0-5])[.]){3}\ (0|1?[0-9]?[0-9]|2[0-4][0-9]|25[0-5])/[0-6]?[0-9]'
+
+# IPv6 addresses
+# example: 2001:123:12:1::1234:1
+# each component has hex digits up to four digits,
+# all components are separated by colons.
+# special case:  at most one empty component.
+#  color body white magenta '\<([0-9a-f]{,4}:)+[0-9a-f]{,4}\>'
+#  clashes with times, eg "23:42:05"
+#
+#  (hex4:):(hex4:)hex4
+#  color body white magenta '\<([0-9a-f]{,4}:)+:?([0-9a-f]{,4}:)+[0-9a-f]{,4}\>'
+#
+## color body white magenta '\<([0-9a-f]{0,4}:)+[0-9a-f]{1,4}\>'
+#
+#  just hex and colons:
+#  color body white magenta '\<[0-9a-f:]+\>'
+#  too simple!  too many matches.
+#
+# IPv6 addresses must match "::1" at least, so - at least two colons.
+# -> at least two "hex0-4:", an optional colon, followed by more ":hex1-4"
+   # color body brightyellow magenta '\<([0-9a-f]{0,4}:){2,}:?(:[0-9a-f]{1,4})+\>:*'
+
+# 2016-03-01, 2017-02-01, 2017-03-14
+# IPv6 addresses with ranges
+# example: "2016:4:6::/64" "fe80::" "fe80::/64"
+   # color body magenta white '\<([0-9a-f]{1,4}:)*[0-9a-f]{1,4}::?[0-9a-f]{1,4}/(16|32|64|128)'
+#
+   # color body magenta white '\<([0-9a-f]{1,4}:)*::[0-9]'
+
+# 2015-11-16, 2016-03-09, 2016-09-09
+#  FTP, IRC, and HTTPS addresses:
+#  color body white blue  'https://[^ >]*'
+#  color body cyan  default   'ftp://[^ >]*'
+#  color body cyan  default   'irc://[^ >]*'
+#
+#  URLs (General Internet addresses):
+   color body cyan default "(finger|ftp|hkps?|https?|imap|irc|news|telnet)://[^ >]*"
+   color body cyan default "<URL:[^ ]*>"
+# example:
+# hkps://hkps.pool.sks-keyservers.net
+# 2016-08-26
+# special URLs - ending in filename with ".asc":
+   # color body magenta default 'https?://[^ ]+\.asc'
+
+# web address without "http":
+#  color body cyan default "www\\.[:alphanum:]+\\.[a-z][a-z][a-z]?([/a-z0-9.]+)?"
+#  color body cyan default 'www[.][-.a-z0-9]+[.][a-z][a-z][a-z]?([-_./~a-z0-9]+)?'
+   color body cyan default 'www[.][-.a-z0-9]+[.][a-z]{2,}([-_./~a-z0-9]+)?'
+# example:  www.guckes.net
+
+#  Email addresses:
+#  color body green default '[[:alnum:]][-+.#_[:alnum:]]*@[-+.[:alnum:]]*[[:alnum:]]'
+# 2016-11-07
+   color body green default '[^ ]+@[^ ]+'
+# example: setup-mutt.color.body @guckes.net
+
+#  Email addresses with query strings.
+#  see http://www.w3.org/DesignIssues/Axioms.html
+#  example: sympa@linuxtag.org?body =SUBSCRIBE%20helfer
+   color body brightgreen default \
+   "[[:alnum:]][-+.#_[:alnum:]]*@[-+.[:alnum:]]*[[:alnum:]][?][^ ]{3,}"
+   # here the literal question mark has been put
+   # into a set of its own, ie "[?]".
+
+#  Mailto links with a optional subject line:
+#  Example: mailto:guckes@gmx.net?subject=mutt
+#  color body brightred   default "mailto: *[^ ]+\(\\?subject=[^ ]+\)?"
+#  color body brightred   default "mailto:[^ ]+\(\\?subject=[^ ]+\)?"
+# single ticks, less backshlashes
+   color body brightred   default 'mailto:[^ ]+(\?subject=[^ ]+)?'
+
+## ===========================================================
+## COLOR for the body - Directories, Filenames, and Variables
+## ===========================================================
+
+#  File names ("/path/file")
+#  color body brightgreen default "\\~?\(/[-_.,a-zA-Z0-9{}]+\)+"
+#  this variant includes umlauts, too (damn those krauts! ;-):
+## color body brightgreen default "\\~?\(/[-_.,a-zA-Z0-9{}Ã¤Ã¶Ã¼ÃŸ]+\)+"
+#  Example:  ~/foo.txt /usr/src/linux/include/{asm,linux}
+
+#  DOS/Windows file names
+#  c:\vim\vim60e\runtime\syntax\vim.vim
+#  color body brightgreen default "[a-zA-Z]:[-_.a-zA-Z0-9\\]+"
+#
+#  lower case letters should suffice:
+#  color body brightgreen default "[a-z]:[-_.a-z0-9\\]+"
+#  but it's better when there is a minumum length:
+#  color body brightgreen default "[a-z]:[-_.a-z0-9\\]{3,}"
+#
+#  spaces are *not* included here, of course.
+#  who puts spaces into his filenames, anyway?  bah!
+
+#  Path names ("/path/")
+#  example:  /etc/foo/  /home/username/bin/
+#  color body brightred     default "\(/[-_.a-zA-Z0-9]+\)+/"
+   color body brightred     default "\(/[-_.a-zA-Z0-9]+\){2,}/"
+
+
+# 2016-02-11
+#  PATH = /dir/file
+   color body brightred     default  "\(/[-_.a-zA-Z0-9]+\)+/[-_.a-zA-Z0-9]+"
+
+#  Variables  ("$HOME")
+   # color body brightmagenta default "\\$[a-zA-Z][-_a-zA-Z]+"
+
+## ===========================================================
+## COLOR for the body - Miscellaneous
+## ===========================================================
+
+#  Attribution line:
+   color body red           default    "^[*] .*:$"
+#
+# my attribution line starts with '*' and ends with ':'
+# thus making it easier to recognize - eg for coloring.
+#
+# Example:
+#  * Joe Doe <joe.doe@company.com> [000907 18:00]:
+#  > quoted text
+#  > quoted text
+#  > quoted text
+#
+#  See also:
+#  The Attribution line FAQ:
+#  http://www.guckes.net/faq/attribution.html
+
+## ===========================================================
+#  Acronyms, Abbreviations, and "SCREAMING IN CAPS"
+## ===========================================================
+#  color body brightyellow  default    "[A-Z]+\([ ,]*[A-Z]+\)+"
+#  color body brightyellow  default    "[A-Z]{3,}"
+#  color body brightyellow  default    "\([A-Z]{3,} *\)+"
+#  color body brightyellow  default    "\([-A-Z']{2,}[ ,]*\)+"
+#
+#  The spaces at start and end are used for use with
+#  "-USE_GNU_REGEX":
+#  WARNING!  The following RegEx crashes mutt-1.2.x!
+#  color body brightyellow  default    " \([-A-Z']{2,}[ ,]*\)+ "
+#  color body brightyellow  default    " ([-A-Z]{2,}[ ,]*)+ "
+#
+#  The following includes umlauts - but that's quite clunky.
+## color body brightyellow  default    "[A-ZÃ„Ã–Ãœ][-A-ZÃ„Ã–Ãœ]+[A-ZÃ„Ã–Ãœ][ .!?]?"
+#  This works ok - but fails at the end of lines, of course.
+#
+#  "+USE_GNU_REGEX":
+#  When you use "+USE_GNU_REGEX" then you can also make use
+#  of "start of word" ("\<") and "end of word" ("\>"):
+#  color body brightyellow  default    "\\<[-A-Z']{3,}\\>"
+#  color body brightyellow  default    "\\<[-A-ZÃ„Ã–Ãœ']{3,}\\>"
+#
+#  2016-01-17 also allow underscores
+#  2017-02-17 also allow plural-s
+   color body brightyellow  default    "\\<[-_A-ZÃ„Ã–Ãœ']{3,}s?\\>"
+#  2016-06-28 also allow digits
+#  2017-02-17 also allow plural-s
+   color body brightyellow  default    "\\<[-_A-ZÃ„Ã–Ãœ0-9']{3,}s?\\>"
+#
+#  WARNING:
+#  with just "two or more" leads to *many* false positives,
+#  eg "AM" and "PM" in times and words like "A", "I", and
+#  AC AD AM AM AN AS AS AT AX BE BY DC DO GO HE HI IF
+#  IS IT ME MR MY NO OF ON OR OX PM RE TO TV UP US WE
+#
+#
+#  TEST:  try to catch such phrases:
+#  "T H I S  I S  A  C O O L  T E X T - N O T !"
+#  color body brightyellow  default    "([A-ZÃ„Ã–Ãœ]  {1,3}){3,}"
+#  color body brightyellow  default    "(\\<[-A-ZÃ„Ã–Ãœ]\\> *){3,}"
+#  color body brightyellow  default    "(\\<[-A-ZÃ„Ã–Ãœ]\\> ? ?){3,}"
+## ===========================================================
+
+# 2004-03-19
+# moved the emphasis stuff before the "alternatives"
+# because "/word/" should get colored as emphasized
+# before it is colorized in combination with "word /word/ word".
+
+# ============================================================
+# *Emphasized*, /emphasized/, and _emphasized_ words: "E M P H A S I S"
+# ============================================================
+#  color body brightred      default   "[*/_]+ *[- &[:alnum:]]+ *[*/_]+"
+#  this would catch false positives of the kind _foo* and /bar_
+#  so we should choose matching pairs only:
+   color body brightred      default   "[*][-[:alnum:]]+[*]"
+# examples:  *foo*  *bar*
+# 2016-11-02
+# adding umlauts and space:
+#  color body brightred      default   "[*][-[:alnum:]Ã¤Ã¶Ã¼ÃŸ ]+[*]"
+# 2017-09-30 the space should come *after* words!:
+   color body brightred      default   "[*]([-[:alnum:]Ã¤Ã¶Ã¼ÃŸ] ?)+[*]"
+#
+#  words emphasized in slashes:
+#  examples:  "/foo/"  "/italics/"
+#  color body brightred      default     "/[-[:alnum:]]+/"
+#  color body brightred      default     "/\<[-[:alnum:]]+\>/"
+   color body brightred      default     '/\<[-a-z0-9]+\>/'
+#
+# words emphasized in _underscores_:
+# examples: _foo_  _bar_
+#
+#  color body brightred      default     "_[-[:alnum:]]+_"
+#  try this with word boundaries to prevent words like "foo_bar_baz"
+#  color body brightred      default   '\<_[-[:alnum:]]+_\>'
+#
+# this works best:
+   color body brightred      default   '_[-a-z0-9]+_'
+#
+# words emphasized in 'ticks':
+# examples: 'foo'  'bar'
+#  color body brightred      default     "'[-[:alnum:]]+'"
+   color body brightred      default     "'[^ ]+'"
+   color body brightred      default     "'[^ ]+ [^ ]+'"
+# similar - but with forward ticks:
+# examples: "`trigger.pl`"
+   color body brightred      default     "\`[^ ]+\`"
+#
+# words emphasized in <angles>:
+   color body brightred      default     '>[-[:alnum:]]+<'
+# examples: >foo<  >bar<
+   color body brightred      default     '<[-[:alnum:]]+>'
+# examples: <foo>  <bar>
+#
+# Emphasis by interspersed spaces
+# Example: E M P H A S I S
+# color body white red '\<\w( +\w\>)+'
+# funny enough, this matched on "foo a".
+#
+# require a second single character:
+  color body white red '\<\w \w( +\w\>)+'
+
+# let's try this when the pattern starts with a word boundary:
+# example:  *foobar*  /foobar/  <foobar>
+#  color body brightred      default "\\<[*][-[:alnum:]]+[*]"
+#  color body brightred      default   "\\</[-[:alnum:]]+/"
+#  color body brightred      default   "\\<_[-[:alnum:] ]+_"
+#
+## color body brightred      default "[*]\\<[-[:alnum:] ]+\\>[*]"
+## color body brightred      default   "/\\<[-[:alnum:] ]+\\>/"
+## color body brightred      default   "_\\<[-[:alnum:] ]+\\>_"
+
+# 2015-06-15 adding dot, colon, underscore:
+#  color body brightred      default   "[/_*][- _.*:[:alnum:]]+[/_*]"
+# problem:  beginning and end may not match.
+
+# 2003-09-15, 2015-06-15
+# allow for spaces between two words, eg "*really important*":
+# example: "*really important*" "**very-much up-to-date **"
+#  color body brightred      default         "[*][-+[:alnum:]]+ *[-+[:alnum:]]+[*]"
+#  color body brightred      default      "[*][*][-+[:alnum:]]+ *[-+[:alnum:]]+[*][*]"
+#  color body brightred      default   "[*][*][*][-+[:alnum:]]+ *[-+[:alnum:]]+[*][*][*]"
+
+#  Alternatives ("either/or"):
+#  color body brightwhite    default   "\\w+/\\w+"
+#  color body brightwhite    default   "[-._a-zA-Z0-9]+/[-._a-zA-Z0-9]+"
+#  color body brightwhite    default   "([-._a-zA-Z0-9]+/)+[-._a-zA-Z0-9]+"
+#
+#  Kraut Version - with umlauts:
+#  color body brightwhite    default  \
+#  "([-._a-zA-Zdv|DV\0-9]+/)+[-._a-zA-Zdv|DV\0-9]+"
+#  but this has too many false positives!  :-(
+#
+#  this is much easier when you can use word boundaries:
+#  color body brightwhite    default   "\\<\\w+/\\w+\\>"
+#  allow a space before and after the '/':
+#  color body brightwhite    default   "\\<\\w+ ?/ ?\\w+\\>"
+#  color body brightwhite    default   "\\<[-\\w]+ ?/ ?[-\\w]+\\>"
+#
+#  Catching multiple alternatives:
+#  A/B/C/D
+#  color body brightwhite    default   "(\\<\\w+ ?/)+ ?\\w+\\>"
+#  this is fine - but fails on words containing dashes.
+#  however, building a character set with '-' and '\w'
+#  is not possiblem it seems:
+#  color body brightwhite    default   "(\\<[-\\w]+ ?/)+ ?[-\\w]+\\>"
+#
+#  so all you can do is list the characters again:
+#  color body brightwhite    default   "(\\<[-a-z0-9._]+ ?/)+ ?[-a-z0-9._]+\\>"
+# the same - but without allowing spaces between alternatives:
+   # color body brightwhite    default   "(\\<[a-z][-a-zÃ¤Ã¶Ã¼ÃŸ0-9._]+/)+[-a-zÃ¤Ã¶Ã¼ÃŸ0-9._]+\\>"
+#  example:  foobar.123/foo-123.bar/foo.bar_123
+#
+#  non-matches:  A/B/C/...
+
+#  Smileys:  :-)  ;-)  :-|  :-/  :-(
+#  color body yellow default    "[;:]-[)/(|]"
+#  Smileys:  :)   ;)   :|   :/   :(  :-O
+   color body yellow default    '[:;]-?[()/O]'
+
+#  2015-09-18
+#  Face:     o_O  \o/
+   color body brightyellow    default           '(o_O|\\o/)'
+#  2015-11-20
+#  smiley faces: ^^ and ^_^
+   color body black           brightyellow    '\^_?\^'
+#  2017-01-02
+# "oh, no!"
+   color body black           brightyellow    '/o\\'
+#  2016-01-27
+   color body brightyellow    default           'â˜º'
+#  "<3" heart!
+   color body brightred       default           '<3'
+
+#  Grinning:  "grin" ([g]) and "big grin" ([bg]):
+   color body blue   red      "<[Gg]>"
+   color body blue   red      "<[Bb][Gg]>"
+
+#  Border Lines of length three or more.
+#  (Several Newsletters use border lines..)
+   color body green  default    '[-._=+~/\*]{3,}'
+#
+#  Border lines with spaces in between charcaters:
+#  Allowing for arbitrary space runs in between,
+#  with a minimum length of four:
+#  color body green  default    "\( *[-+=#*~_]\){4,}"
+#  Examples:
+#  "- - -"  "#####"   "~~~~~~~"  "+-+-+-+-+-+"  "* * * *"
+#  "+ - ~ + === * ~~~" etc
+
+#  Extensive use of exclamation and question marks:
+#  "!!!"  "???"
+   color body red    white    "[!?]{3,}"
+
+#  .., 2017-06-10, 2017-06-29
+#  Percentages ("Save xx.x %!")
+#  example:  "23%"
+#  color body brightgreen   default    "[.,0-9]+ ?%"
+#  percentage ranges, eg "23 - 42%"
+#  color body brightgreen   default    "([.0-9]+ ?- ?)?[.0-9]+ ?%"
+#  color body brightgreen   default    "([.,0-9]+ *- *)?[.,0-9]+ ?%"
+   color body brightgreen   default    "([.,0-9]+ *- *)?[.,0-9]+ ?(%|percent|prozent)"
+
+#  MONEY!  Dollars!  "$$$"
+#  color body green  default    "$\d\+.\d\+"
+   color body white  red      "\\$[0-9]+[.,0-9]*"
+   color body white  red         '[0-9]+[.,0-9]* *USD'
+
+#  Offers in "money per minute" - eg "pf/min"
+   color body black yellow "[0-9]+[,.][0-9]* *pf/min"
+
+#  Money with "DM", "EUR", or "$$$" *before* the number
+#  with an optional dot or comma in between digits
+#  and an optional end 'f "-" to indicate zeros:
+#      matches:  DM1 DM10 DM10,00 DM10,-
+#      matches:  2euro 3euros "Euro 23,--"
+#  non-matches:  DM010  DM-100
+   color body black yellow "(dm|euro?s?|\$\$\$)\> *[1-9][0-9]*([.,][0-9]*-?-?)?"
+#
+# same thing with monetary unit *after* number:
+#  color body black yellow "[1-9][0-9]*([.,][0-9]*-?)* *(DM|EUR|Mark|\$\$\$)"
+#  color body black yellow "[1-9][0-9]*[.,]?(--?|[0-9][0-9])? *(DM|EUR|Mark|\$\$\$)"
+#
+# MONEY
+# 2015-11-14, 2016-01-27, 2016-02-03, 2016-02-28, 2016-10-07,
+# 2016-12-12, 2016-12-22, 2017-03-09, 2017-06-12, 2017-06-29
+# example:  "23â‚¬" "42.23euro"  "20.000 Euro"  "23 042 eur"  "-123 EUR"
+#  color body black yellow "[0-9]+([., ][0-9]+)? *(dm|â‚¬|euro?|[$])"
+#  color body black yellow "[-]?[0-9]+([., 0-9]+)? *(dm|â‚¬|euro?|[$])"
+   color body white magenta "[-+]?[0-9][., 0-9]*(dm|dollar|euro?s?|â‚¬)"
+# money ranges:
+# examples:  "5 - 23 euros"
+   color body black yellow "[0-9][0-9.,]*( *--? *[0-9][0-9,.]*)? *(dm|dollar|â‚¬|euro?|mark)"
+   color body black yellow "(dm|â‚¬|euro?|mark) *[0-9][0-9.,]*(--?|[0-9][0-9])?"
+### color body white         red "[0-9]+,-"
+### color body white         red "[0-9]+ *\?"
+#
+# 2005-02-17: use red for negative numbers
+#  the dollars didnt work. had to remove them.  weird.
+#  color body red   default  "-([0-9][0-9.,])? *(dm|Â¿|euro?|mark|\$\$\$)"
+#
+# 2015-11-01 number ranges with currency
+# example: "23.42 dm" "4711$$" "23-42euro" "1.23--42.23â‚¬"
+   color body green default  "[1-9][0-9.,]*--?[1-9][0-9.,]* *(dm|â‚¬|euro?|mark)"
+#
+# two digits followed by small monitary unit:
+#  color body black yellow "[1-9][0-9]? *(cents?|pfennig)"
+#  also allow commas, eg "0,99 cent" and "0.99cents":
+   color body black yellow "([0-9]*[,.])?[1-9][0-9]? *(cents?|pfennig)"
+
+# 2015-11-20, 2016-11-29, 2017-07-05
+# MONEY
+# "looks like prices"
+# example:  "23,-" "42,-â‚¬"
+  # color body black brightwhite '[0-9]+,- *(â‚¬|euro?s?)?'
+
+# numbers with a comma/dot and two more digits:
+# example:  "10.15"
+# color body black brightwhite '\<[0-9]+[.,][0-9][0-9]\>'
+# !!! clashes with dates, eg "10.15"
+#
+# workaround: only allow a comma and exactly two more digits:
+# example:  "10,15"
+  # color body black brightwhite   '\<[0-9]+,[0-9][0-9]\>'
+# 2017-07-17
+# numbers with one decimal dot:
+# example:  "2.718281828" "3.14159"
+  # color body black brightwhite '\<[0-9]+[.][0-9]+\>'
+
+# 2002-04-10, 2015-11-01:
+# Year Numbers 1970-2029
+# commented because these may be part of other combinations.
+#  color body yellow default "19[789][0-9]"
+#  color body yellow default "20[012][0-9]"
+
+# 2002-04-10: Copyright symbol "(c)"
+#  color body yellow default "\\(c\\)"
+   color body yellow default  '\(c\)'
+#  Copyright (C) and Registered Trademark (r)
+#  color body brightyellow default "[^ ]+ ?\\([cr]\\)"
+   color body brightyellow default "[(][cr][)]"
+
+#  FAX and TEL Numbers:
+#  "FAX:   (1 123) 4567 890"
+#  "TEL: +1-123-456-78900"
+#  "Tel.:   123/456-789"
+#  "Cell:   123/456-789"
+#  "Tel: +49-(0)30-883-8884"
+#  "Fax: +49-(0)"
+#  color body green default "(fax|tel)\.?:? *[+]?[-+0-9/() ]+"
+#  color body green default "(cell|fax|Fax|FAX|tel|Tel|TEL)[.:]+ *\\+?[-+0-9/()]+"
+#  color body green default "(cell|fax|tel|)?[.:]+ *[+]*[-+0-9/()]+"
+#  color body green default "(cell|fax|tel|)?[.:+ ]+[-+0-9/()]+"
+#  color body black green "(tele)?(cell|fax|fon|phone|tel)[.: ]+[+]?[- 0-9/()]{4,}[0-9]"
+# 2016-04-12: added dots within numbers, and "mobil".
+# 2017-07-10: added "private".
+   color body black green "(tele)?(cell|fax|fon|mobil|phone|private|tel)[.: ]+[+]?[-. 0-9/()]{4,}[0-9]"
+# 2017-07-02
+# "tel:" links:
+   color body black green "tel:[-+. 0-9/()]{4,}[0-9]"
+
+# phone numbers in austria (+43) and germany (+49)
+#  color body black green "[+](43|49)[- 0-9]+[0-9]"
+# for most countries in Europe:
+   color body black green "[+](3[0123469]|4[013456789])[- 0-9]+[0-9]"
+## +30:GR  +31:NL  +32:BE  +33:FR
+## +34:ES  +36:HU  +39:IT  +40:RO
+## +41:CH  +43:AT  +44:UK  +45:DK
+## +46:SE  +47:NO  +48:PL  +49:DE
+#
+#  Phone Numbers:
+#  "(123) 4567890"
+#  color body white red "(tele)?(fon|phone):? *\\([-/ 0-9]{4,}\\)"
+#  color body white red '(tele)?(fon|phone):? *[-/( )0-9]{4,}'
+#  "1-234-4567890"
+#  "1-234 4567890 ext. 123"
+   # color body brightyellow red "1-[0-9]{3}[- ][-0-9]+ +ext.? [0-9]+"
+#  Toll Free Numbers:
+#  "1-800-123-456-789"
+#  "(800) 123-456-789 x123"
+#  "(800) 123-456-789 ext 123"
+   color body white red "1-?800[-0-9]+"
+   color body white red "(1 ?)?\\(800\\) ?[-0-9]+( x[0-9]+)?"
+   color body white red "(1 ?)?\\(800\\) ?[-0-9]+( ext ?[0-9]+)?"
+
+# 2017-06-17, 2017-06-21
+# phone number for berlin
+# examples: "+49-30-123456878" "030 1234-578"  "030.20 309 - 21 01" "030 / 123 456 78"
+   color body brightmagenta white           "030[-./ 0-9]+[0-9]"
+   color body brightmagenta white "[+]49[- .]+30[-./ 0-9]+[0-9]"
+
+#  ISBNs
+#  color body white red "[-0-9]{9,12}[0-9X]"
+
+## ========================================================================
+## DATE&TIME
+## ========================================================================
+# 2003-09-04, 2016-03-16
+# Dates in filename listings - "MMM DD"
+# examples: "Jan  1" .. "Dec 31"
+# color body brightwhite red "(jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec) ?[ 0-9][0-9]"
+# color body brightwhite red "(jan|feb|mrz|apr|mai|jun|jul|aug|sep|okt|nov|dez) ?[ 0-9][0-9]"
+
+# 2017-05-22
+# "am DD Month Year"
+# examples: "am 1 Jan" "ca 22. Mai 2017"
+# color body brightwhite red "(am|ca|gegen|um) *([012][0-9])|3[01])[.]? *(jan|feb|mrz|apr|mai|jun|jul|aug|sep|okt|nov|dez)( *(19|20)[0-9][0-9])?"
+# add possible letters after month prefixes:
+# color body brightwhite red "(am|bis|ca|gegen|um) *([012][0-9])|3[01])[.]? *(jan|feb|mrz|apr|mai|jun|jul|aug|sep|okt|nov|dez)[a-z]+\>( *(19|20)[0-9][0-9])?"
+# color body brightwhite red "(am|bis|ca|gegen|um) *([012][0-9]|3[01])[.] *(jan|feb|mrz|apr|mai|jun|jul|aug|sep|okt|nov|dez)[a-z]*( *(19|20)[0-9][0-9])?"
+# previous line removed in favor of the longer version: "von $datum bis $datum $year"
+
+# 2017-05-30
+# "am DD.MM. Year"
+# examples: "am 15.02. 2017"  "bis 06.06"
+  # color body brightwhite   blue '\<(am|bis|ca|gegen|um) *([012][0-9]|3[01])[.]? +(0?[0-9]|1[012])[.]?( *(19|20)[0-9][0-9])?'
+# color body brightmagenta red "(am|bis|ca|gegen|um) *([012][0-9]|3[01])([.]? *)+(0?[0-9]|1[012])[.]?( *(19|20)[0-9][0-9])?"
+# without year
+# color body brightwhite red "(am|bis|ca|gegen|um) *([012][0-9]|3[01])[.]* *(0?[0-9]|1[012])[.]*"
+# color body brightwhite red "(am|bis|ca|gegen|um) *([012][0-9]|3[01])[.]([0-9]|1[012])"
+
+# 2016-09-16, 2017-06-18
+# Date ranges:
+# "MMM DD-DD"
+# "MMM DD+DD"
+# examples: "Jan 23-31" and "Apr 05-07"
+# color body brightwhite green "(jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec) ?[ 0-9][0-9][-+][0-9][0-9]"
+# color body brightwhite green "(jan|feb|mrz|apr|mai|jun|jul|aug|sep|okt|nov|dez) ?[ 0-9][0-9][-+][0-9][0-9]"
+# 2017-06-18 allowing longer month names, dots after days, and possible commata
+# examples: "Dec 27.-30." and "Apr 05.-07."
+  color body brightwhite green "(jan|feb|mrz|apr|mai|jun|jul|aug|sep|okt|nov|dez)[a-z]* ?[ 0-9][0-9][.]?[-+][0-9][0-9][.]?"
+
+# 2017-06-05, 2017-06-08, 2017-06-21
+# Date ranges:
+# "DD-DD Month (YYYY)"
+# "DD+DD Month (YYYY)"
+# "DD/DD Month (YYYY)"
+# examples: "23-31 Jan" "06+07 April 2017"  "3. bis 7. september"  "16./17. september"
+# color body brightwhite green "([012][0-9]|3[01][.]?) *[-+/] *([012][0-9]|3[01][.]?) *(jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)[a-z]*( *(19|20)[0-9][0-9])?"
+  color body brightwhite green "([012][0-9]|3[01][.]?) *[-+/] *([012][0-9]|3[01][.]?) *(jan|feb|mrz|apr|mai|jun|jul|aug|sep|okt|nov|dez)[a-z]*( *(19|20)[0-9][0-9])?"
+# 2017-06-08, 2017-06-14, 2017-07-07
+# Datenbereich - "von .. bis"
+# examples: "von 28. Jan bis 6. april 2018"   "am 5. und 6. april"
+# examples: "vom 27. bis 30. dezember"  "ab 27. bis 30.12."
+# color body brightyellow magenta "(ab|am|von) *([012][0-9]|3[01]) *(jan|feb|mrz|apr|mai|jun|jul|aug|sep|okt|nov|dez)[a-z] *(bis|[-+]|und) *([012][0-9]|3[01]) *(jan|feb|mrz|apr|mai|jun|jul|aug|sep|okt|nov|dez)[a-z]* ?( *(19|20)[0-9][0-9])?"
+# color body brightyellow magenta "\<(ab|am|vom|von) *([012][0-9]|3[01])[.]? *((jan|feb|mrz|apr|mai|jun|jul|aug|sep|okt|nov|dez)[a-z]*)? *([-+]|bis|und) *([012][0-9]|3[01])[.]? *(jan|feb|mrz|apr|mai|jun|jul|aug|sep|okt|nov|dez)[a-z]*( *(19|20)[0-9][0-9])?"
+# color body brightyellow magenta "(ab|am|vom|von) *([012]?[0-9]|3[01])[.]? *((jan|feb|mrz|apr|mai|jun|jul|aug|sep|okt|nov|dez)[a-z]*)? *([-+]|bis|und) *([012]?[0-9]|3[01])[.]? *((jan|jÃ¤nner|feb|mrz|apr|mai|jun|jul|aug|sep|okt|nov|dez)[a-z]*)?( *(19|20)[0-9][0-9])?"
+  # color body brightyellow magenta "(ab|am|vom|von) *([012]?[0-9]|3[01])[.]? *((jan|feb|mrz|apr|mai|jun|jul|aug|sep|okt|nov|dez)[a-z]*)? *([-+]|bis|und) *([012]?[0-9]|3[01])[.]? *((jan|jÃ¤nner|feb|mrz|apr|mai|jun|jul|aug|sep|okt|nov|dez)[a-z]*|(0?[0-9]|1[0-2])[.]?)?( *(19|20)[0-9][0-9])?"
+
+# 2016-03-16
+# month ranges - only month names
+# example: jan-jun, apr-may
+  color body brightyellow red '(jan|feb|mar|mrz|apr|mai|may|jun|jul|aug|sep|oct|okt|nov|dec|dez)[- ]?(jan|feb|mar|mrz|apr|mai|may|jun|jul|aug|sep|oct|okt|nov|dec|dez)'
+
+# 2010-01-15
+# Dates as "DD.MM." - leading zero and both dots are required
+# examples: 01.01. 06.04. 24.12.
+  color body brightblue default "(0[0-9]|1[012])[.]([012][0-9]|3[01])[.]"
+
+# Dates as "YYYY-MM-DD", "YYYY/MM/DD", and "YYYY MM DD"
+# examples: 1967-04-06    1967/04/06       "1967 04 06"
+# (maybe drop century to allow "YY/MM/DD")
+# color body white red "\(19|20\)?[0-9][0-9]/[01]?[0-9]/[0123]?[0-9]"
+# allow only months in range 01-12 and days in range 00-31:
+  color body white red '(19|20)[0-9][0-9][-/ ](0[0-9]|1[012])[-/ ]([012][0-9]|3[01])'
+
+# 2012-11-27
+# Date Ranges: "yyyy-mm-dd+(dd+1)" and "yyyy-mm-dd-dd"
+# examples: 2012-11-27+28, 2012-12-27-30
+  color body white red "\(19|20\)?[0-9][0-9]-(0[0-9]|1[012])-([012][0-9]|3[01])[-+]([012][0-9]|3[01])"
+
+# 2015-11-26, 2017-06-21
+# Date Ranges: "dd. (-/dd.)mm.(yyyy)"
+# examples:    "27. - 30.12.2015"     "16./17.9."
+  color body black yellow '(0?[1-9]|[12][0-9]|3[012])[.] ?([-/] ?(0?[1-9]|[12][0-9]|3[012])[.] ?)?(0?[1-9]|1[012])[.]( *(19|20)[0-9][0-9])?\>'
+
+# Dates: "dd.mm.jjjj"
+# matches: 4.6.1967 and "4.6. 1967"  "4. 6. 67"
+#  color body blue default \
+#"(0?[1-9]|[12][0-9]|3[012])[.] ?([1-9]|1[012])[.] ?(19|20)?([0-9][0-9])?"
+#   color body blue default \
+#"(0?[1-9]|[12][0-9]|3[012])[.] ?([1-9]|1[012])[.] ?(19|20)([0-9][0-9])"
+  color body brightblue default "(0?[1-9]|[12][0-9]|3[012])[.] ?(0?[1-9]|1[012])[.] ?(19|20)([0-9][0-9])"
+
+# 2015-11-03, 2015-11-14
+# dates in mm/dd/year
+# examples:  "4/6/1967" "11/3/2015"
+# color body brightyellow default "(0[0-9]|1[012])/([012][0-9]|3[01])/(19|20\)?[0-9][0-9]"
+# color body brightyellow default   "[1-9]|1[012])/([012][0-9]|3[01])/(19|20\)?[0-9][0-9]"
+# the previous one doesnt match the slashes at all?? o_O
+  color body brightblue default "([1-9]|1[012])[/]([1-9]|[012][0-9]|3[01])[/](19|20)?[0-9][0-9]"
+
+# ....,2017-07-05
+# dates:  "day month (year)"
+#   day: required (DE+EN)
+# month: required
+#  year: optional
+#  "6.Apr" "6. April 1967"
+##   color body white red \
+##"((0?[1-9]|[12][0-9]|3[012])[.]? ?)?\
+##\\<(jan(uar)?|jÃ¤nner|feber|feb(ruar)?|m(Ã¤|ae)rz|apr(il)?|mai|juni?|juli?|aug(ust)?|\
+##sept(ember)?|okt(ober)?|nov(ember)?|dez(ember)?)\\> *\
+##((19|20)?[0-9][0-9])?"
+# the dot might be taken by the pattern for punctuation (dot+space),
+# thus breaking up this pattern.
+# 2017-07-05 using the short notation of month names
+# and also requiring the century:
+   color body black   red \
+'(0?[1-9]|[12][0-9]|3[012])[.]? *\
+(jan|feb|mar|mrz|apr|mai|may|jun|jul|aug|sep|oct|okt|nov|dec|dez)[a-z]+\>\
+( *(19|20)[0-9][0-9])?'
+
+# 2017-07-05
+# only "month year"
+# examples:
+   color body white   brightred '(jan|feb|mar|mrz|apr|mai|may|jun|jul|aug|sep|oct|okt|nov|dec|dez)[a-z]+\> *(19|20)[0-9][0-9]'
+
+# 2015-12-06
+# dates: Month Day(th) (yyyy)
+# "Jan 1st"  "Feb. 2nd"  "March 3rd 03"
+# "April 6th 1967"       "Dec 6th, 2015"
+# explicit long names of months:
+# '<(jan(uary)?|feb(ruary)?|mar(ch)?|apr(il)?|may|june?|july?|aug(ust)?|sept(ember)?|oct(ober)?|nov(ember)?|dec(ember)?)\>\
+# with short month names:
+#    color body yellow red \
+# '(jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)[a-z]*\
+#  *(0?[1-9]|[12][0-9]|3[01])(st|nd|rd|th)?([, ]*(19|20)?[0-9][0-9])?'
+#
+# 2016-01-16, 2017-07-10
+# dates: Month Day(th) (yyyy)
+# only allow years 1970-2020
+   color body brightyellow red \
+'(jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)[a-z]*\
+ *(0?[1-9]|[12][0-9]|3[01])(st|nd|rd|th)?([, ]*(19[789][0-9]|20[01][0-9]))?'
+# WARNING:
+#  allowing short month names and making both the day and the year optional
+#  leads to false positives with words like "mail" or "augmented".
+#  so you would have to use several color rules with different
+#  combinations, eg "day+month+year" and "day+month" and "month+year".
+
+# Format: "(DD )Monat( JJJJ)"
+# Examples: "6. Apr" "6.April67"  "6. Apr. 67"  "6 April 1967"
+#    color body white red \
+# "(0?[1-9]|[12][0-9]|3[01])[.]? *)\
+# \\<(jan(uar)?|feb(ruar)?|m(Ã¤|ae)rz|apr(il)?|mai|juni?|juli?|aug(ust)?|\
+# sept(ember)?|okt(ober)?|nov(ember)?|dez(ember)?)\\>\
+# ( *(19|20)?[0-9][0-9])?"
+# 2017-06-14 simplify month names
+#  color body white brightmagenta  '(0?[1-9]|[12][0-9]|3[01])[.]? *)(jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)[a-z]+( *(19|20)?[0-9][0-9])?'
+# 2017-06-18 add possible commata between month and day (how silly)
+# examples: "31., July"
+   # color body white brightmagenta  '(0?[1-9]|[12][0-9]|3[01])[.]?[, ]*)(jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)[a-z]+( *(19|20)?[0-9][0-9])?'
+#
+# Format: "DD Month (YYYY)"
+# examples: "23. January 2017"  "23 januar 17"  "5 feb 1989"
+#    color body yellow red \
+# '\<(0?[1-9]|[12][0-9]|3[012]?[.]? *)\
+# \\<(jan(uary)?|feb(ruary)?|march|apr(il)?|may|june?|july?|aug(ust)?|\
+# sept(ember)?|oct(ober)?|nov(ember)?|dec(ember)?)\\>\
+# ( *(19|20)?[0-9][0-9])?'
+# - optional dot after day
+# - simplified month names (forst three letters only)
+# - optional year, optional 19/20 prefix
+#    color body brightyellow brightmagenta '\<(0?[1-9]|[12][0-9]|3[012])[.]? *)(jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)[a-z]*( *(19|20)?[0-9][0-9])?'
+# clashes with "[4. juli 17]:23h" -> make century "(19|20)" mandatory
+     # color body brightyellow brightmagenta '\<(0?[1-9]|[12][0-9]|3[012])[.]? *)(jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)[a-z]*( *(19|20)[0-9][0-9])?'
+
+# 2002-04-13, 2010-01-12, 2010-01-15, 2015-10-26
+# Times on the clock - but without am|pm or "c.t." or "s.t."
+# examples: 9:00 12:07h 12:07:00 23uhr 23.05Uhr "18 h"
+#   color body brightblue  default \
+#"([01]?[0-9]|2[0-3])([.:][0-5][0-9])?([.:][0-5][0-9])? ?(h|Uhr)?"
+# problem: these minutes and seconds are optional as well as
+# the trailing hour indicator - so it might just be a number.
+# this matches too much, and makes it really slow, too.
+# so here it will *require* "h" of "Uhr" at the end:
+# color body brightblue  default "\\<([01]?[0-9]|2[0-3])([.:][0-5][0-9])?([.:][0-5][0-9])? ?(h|uhr)\\>"
+# removing seconds..
+  color body brightcyan  default '\<([01]?[0-9]|2[0-3])([.:][0-5][0-9])? ?(h|uhr)\>'
+
+# 2015-11-25, 2017-02-01
+# time ranges
+# this adds "ab|um|bis"
+# "ab 18:00" "ab 18:00 Uhr" "um 13h"  "bis 23:59:59"
+# color body black yellow '(ab|um|bis) *([01][0-9]|2[0-4])(:[0-5][0-9])?(:[0-5][0-9])?( ?(h|uhr))?"
+# color body black yellow '(ab|um|bis) *([01][0-9]|2[0-4])(:[0-5][0-9])?( *(h|uhr))?"
+  color body black yellow '(ab|am|an|bis|gegen|um) *([01][0-9]|2[0-4])([.:][0-5][0-9])?( *(h|uhr))?"
+# mandatory hour indicator:
+  color body black yellow '(ab|am|an|bis|gegen|um) *([01][0-9]|2[0-4])([.:][0-5][0-9])?( *(h|uhr))"
+# mandatory minutes:
+  color body black yellow '(ab|am|an|bis|gegen|um) *([01][0-9]|2[0-4])([.:][0-5][0-9])( *(h|uhr))?"
+
+# 2016-06-03
+# YYYY-Mon-DD
+# example: 2016-jun-03
+  color body brightyellow blue '20[01][0-9]-(jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)-(0?[1-9]|[12][0-9]|3[01])'
+
+# 2017-05-21
+# "on/to $DATE"
+# examples: "am 6.4." "bis 23. 5." "bis 24. 6. 2017"
+# color body black yellow '(ab|am|an|bis|um) *[0123]?[0-9][.]( ?[0-9]|1[012])[.]( ?20[012][0-9])?'
+# matches: "um 1.0." :-O
+# 0 -> 1
+  color body black yellow '\<(ab|am|an|bis|um) *[0123]?[0-9][.]( ?[1-9]|1[012])[.]( ?20[012][0-9])?'
+
+# 2015-11-26
+# times in "HH:MM" or "HH.MM"
+# example: "17:23"    "23.59"
+# disabled in favor of the preceding RE
+#   color body brightblue  default '\<([01]?[0-9]|2[0-3])[.:][0-5][0-9]\>'
+#
+# TIME RANGES
+# .., 2016-02-03
+# examples: "9.00 - 17:23 h" "14â€“16h"  "17:23"
+#
+# trying to use backreference:
+# color body brightblue  default "\\<(([01]?[0-9]|2[0-3])([.:][0-5][0-9])?) ?- \1 ?(h|uhr)\\>"
+# 2016-02-03 adding long dash as separator
+# 2017-02-01 this adds "ab|um|bis"
+# color body brightcyan  default  '\<(ab|um|bis|von) *\<([01]?[0-9]|2[0-3])(:[0-5][0-9])?( ?[-â€“]? ?([01]?[0-9]|2[0-3])([.:][0-5][0-9])?)? ?(min|h|uhr)?\>'
+# well.. if the dashes for the range are missing then it is *not* a range!
+# with required dashes:
+  color body brightcyan  default  '\<(ab|um|bis|von) *\<([01]?[0-9]|2[0-3])(:[0-5][0-9])? ?[-â€“]? ?([01]?[0-9]|2[0-3])([.:][0-5][0-9])?)( *(min|h|uhr))?\>'
+# 2017-05-22, 2017-06-16, 2017-11-16
+# examples: "ab 22.5.2017"  "bis zum 28.6."  "bis zum 05.09.2017"  "bis zum 30.6.17"
+  color body brightcyan  default  '\<(ab|um|bis ?zum|von) *(0?[1-9]|[12][0-9]|3[01])[.](0?[1-9]|1[12])[.]( *(19|20)?[0-9][0-9])?'
+#
+# and this one requires at least one colon or dot
+# (with a possible suffix of "h", "Uhr", "am" or "pm"):
+# example: "00:00" "12.07pm" "5:23 PM" "23.42" "23:59:59"
+# color body brightred   default '\<([01]?[0-9]|2[0-3])([.:][0-5][0-9])?([.:][0-5][0-9])\>( *(h|uhr|am|pm)?)?\>'
+# 23pm doesnt make sense. silly!
+  color body brightred   default        '\<(0?[1-9]|1[012])([.:][0-5][0-9])?([.:][0-5][0-9])?\>( *(am|pm)?)\>'
+  color body brightred   default '\<(0?[1-9]|1[0-9]|2[0-4])([.:][0-5][0-9])?([.:][0-5][0-9])?\>( *(h|uhr)?)\>'
+#
+# examples: 9:00 12:07h 12:07:00 23uhr 23.05Uhr "12 Uhr c.t."  "16h s.t"
+#   color body brightblue  default \
+#"([01]?[0-9]|2[0-3])([.:][0-5][0-9])([.:][0-5][0-9])? ?(am|pm)?(h|Uhr)?( *[cs][.]t[.])?"
+# make "h" or "Uhr" compulsory:
+#   color body brightblue  default \
+#"([01]?[0-9]|2[0-3])([.:][0-5][0-9])?([.:][0-5][0-9])? ?(am|pm)?(h|Uhr)( *[cs][.]t[.])?"
+#
+# 2013-01-19
+# Times and Time Ranges with full hours
+# required: the 'h' or "uhr" at the end
+# examples: 00h 23h 17-23h  "5 - 23 uhr"
+  color body brightblue  default "[012][0-9]([- ]+[012][0-9])?(h|uhr)"
+# 2017-06-12
+# Times and Time Ranges with full hours *and* minutes
+# examples: "0-24h"  "00:01-23:59"  "5-23:42h"  "17-23:23 uhr"
+#   color body brightmagenta white   "[012][0-9]([.:][0-5][0-9])?[- ]+[012][0-9]([.:][0-5][0-9])?)?( *(h|uhr))?"
+# note: "[- ]+" might also result in spaces only. so switching
+# to    " *[-]+ *" to require at least one minus sign.
+# examples: "0- 24h"  "00:01 - 23:59"  "5 -23:42h"  "17  -  23:23 uhr"
+# color body brightmagenta  white   "[012][0-9]([.:][0-5][0-9])? *[-]+ *[012][0-9]([.:][0-5][0-9])?)?( *(h|uhr))?"
+  # color body brightwhite  magenta   "([01][0-9]|2[0-4])([.:][0-5][0-9])? *[-]+ *([01][0-9]|2[0-4])([.:][0-5][0-9])?)?( *(h|uhr))?"
+# 2017-05-19
+# time ranges with hours and minutes
+# examples:  "17:23 - 23:42 h"
+# color body brightyellow   default '[012]?[0-9]:[0-5][0-9]h? ?- ?[012]?[0-9]:[0-5][0-9] ?h?'
+#
+# 2017-06-13, 2017-07-07
+# "zwischen 5h und 23h"
+# "von 5.23h bis 17:42 uhr"
+  color body black brightgreen    "(ab|von|zwischen) *[012]?[0-9]([.:][0-5][0-9])?(h|uhr)? *(-|bis|und) *[012]?[0-9]([.:][0-5][0-9])?)?( *(h|uhr))?"
+
+# 2017-06-18
+# simple times with "am" and "pm"
+# examples: "3am" "5pm"
+  color body brightred   default '\<(0?[0-9]|1[012])([.:][0-5][0-9])? *(am|pm)?\>'
+
+# 2002-04-10: Time Frames
+# matches: 10:00-12:00  09.30 - 13.30
+#   color body blue green "[012][0-9][.:][0-5][0-9](am|pm)? ?- ?([012][0-9][.:][0-5][0-9](am|pm)?)?"
+
+# 2015-11-28, 2015-12-07, 2017-11-13, 2017-12-20
+# relative days
+# "heute morgen"  "gestern nachmittag"
+  color body brightyellow default '\<(vor)?gestern|heute|(ueber)?morgen|morgen *|(nach|vor)?mittag|abend)?\>'
+
+# 2017-06-14
+# "jeden freitag"  "letzten montag"
+   # color body brightmagenta  default '(diesen|jeden|letzten|nÃ¤chsten|vorherigen) *(montag|dienstag|mittwoch|donnerstag|freitag|sonnabend|samstag|sonntag)'
+# TEST:
+#  color body black brightmagenta  '(diesen|jeden|letzten|nÃ¤chsten|vorherigen)'
+#
+# 2017-07-13
+# $wochentag(morgen|mittag|abend)
+   # color body brightmagenta  default '(montag|dienstag|mittwoch|donnerstag|freitag|sonnabend|samstag|sonntag) *(morgen|(nach)mittag|abend)'
+#
+# 2002-04-13, 2008-11-24, 2015-04-11, 2015-12-05:
+# Week Days - long form:
+# with "s?" at the end to catch eg "donnerstags"
+   color body brightcyan  default '\<(montag|dienstag|mittwoch|donnerstag|freitag|sonnabend|samstag|sonntag)s?\>'
+# 2017-06-14
+# "am 3. dienstag im monat"
+   # color body brightmagenta  default '(am)? *[1-5][.] *(montag|dienstag|mittwoch|donnerstag|freitag|sonnabend|samstag|sonntag)( *(des|im) monats?)?'
+# 2017-06-14, 2017-11-18
+   color body brightgreen    default '\<(abends?|mittags?|morgens|nachmittags?|nachts|vormittags?)\>'
+#
+# Week Days (DE) - only three letters:
+#  color body blue  white '\<(mon|die|mit|don|fre|son|sam|son)\>'
+# Week Days (EN) - only three letters:
+#  color body blue  white '\<(mon|tue|wed|thu|fri|sat|sun)\>'
+#
+# Week Days (DE) - only two   letters:
+#  color body brightyellow blue  '\<(Mo|Di|Mi|Do|Fr|Sa|So)\>'
+   color body brightyellow blue  '(\<Mo\>|\<Di\>|\<Mi\>|\<Do\>|\<Fr\>|\<Sa\>|\<So\>)\>'
+# require uppercase!
+# Week Days (EN) - only two   letters:
+#  color body blue  white '\<(mo|tu|we|th|fr|sa|su)\>'
+#
+# Week Day Ranges (DE):
+# example: mo-fr sa+so fr/so
+   color body blue  white '\<(mo|di|mi|do|fr|so|sa|so)[-+/](mo|di|mi|do|fr|so|sa|so)\>'
+# Week Day Ranges (EN):
+# example: mo-fr sa+su fr/su
+# WARNING: "so" and "we" are also proper words.  kinda annoying..
+#  color body blue  white '\<(mo|tu|we|th|fr|sa|su)[-+/](mo|tu|we|th|fr|sa|su)\>'
+
+# Week Days - long form:
+   color body blue  white '\<(monday|tuesday|wednesday|thursday|friday|saturday|sunday)\>'
+# Week Days - short form:
+#  color body blue  green "\\<(Mon|Die|Mit|Don|Fre|Sam|Son)\\>"
+#  too many false positives as "die" and "mit" are proper german words.
+   color body brightblue  default "\\<(mon|tue|wed|thu|fri|sat|sun)\\>"
+
+## Date: header recognition
+## example: Date: Thu Apr  6 12:07:00 MEST 1967
+#  Date: + weekday + month(short) + day +
+#  time(hh:mm:ss) + timezone + year
+   color body yellow blue \
+"date: *\\<(mon|tue|wed|thu|fri|sat|sun)\\>\
+ ?\\<(jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)\\>\
+ ?([ 0]?[1-9]|[12][0-9]|3[012])\
+ ?([01][0-9]|2[0-4]):[0-5][0-9]:[0-5][0-9]\
+ ?[A-Z]{3,4}\
+ ?(19[789][0-9]|200[012])"
+#
+## Date: Thu,  6 Apr 1967 12:07:00 +0000
+   color body yellow blue \
+"date: *\\<(mon|tue|wed|thu|fri|sat|sun)\\>,\
+ ?([ 0]?[1-9]|[12][0-9]|3[012])\
+ ?\\<(jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)\\>\
+ ?(19[789][0-9]|200[012])\
+ ?([01][0-9]|2[0-4]):[0-5][0-9]:[0-5][0-9]\
+ ?[-+][0-9]{4}"
+#
+# 2002-11-16, 2017-06-22
+# MMM DD HH:MM:SS
+# Nov 16 16:16:16 <- example
+   color body brightyellow blue \
+'\<(jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)([a-z]+)?\>\
+ ?([ 0]?[1-9]|[12][0-9]|3[012])\
+ ?([01][0-9]|2[0-4]):[0-5][0-9]:[0-5][0-9]'
+
+# 2015-11-19, 2017-06-22
+# dates: dd.mm.yy
+# dots required. no spaces in betwen.
+# examples: 01.01.01  23.05.89  06.04.67  19.11.15  22.06.2017
+# color body brightyellow blue '\<(0?[1-9]|[12][0-9]|3[01])[.](0?[1-9]|1[012])[.](19[0-9][0-9]|20[01][0-9])\>'
+# color body brightyellow blue '\<(0?[1-9]|[12][0-9]|3[01])[.](0?[1-9]|1[012])[.](19|20)?[0-9][0-9])\>'
+  color body brightyellow blue '\<(0?[1-9]|[12][0-9]|3[01])[.](0?[1-9]|1[012])[.](19|20)?[0-9][0-9])'
+
+# 2016-11-27
+# dates as "dd.mm.".  dots required, no spaces.
+  color body brightyellow blue '\<(0?[1-9]|[12][0-9]|3[012])[.](0?[1-9]|1[012])[.]'
+# 2017-06-18
+# date ranges as "dd-dd.mm."
+  color body brightyellow brightblue '\<(0?[1-9]|[12][0-9]|3[012])[.]-(0?[1-9]|[12][0-9]|3[012])[.](0?[1-9]|1[012])[.]'
+
+
+# 2015-11-19 "#Day (of) Mon(thname)"
+# example:  "23. of May"  "1st Apr"  "19th of November"
+  color body brightyellow default '\<[0-9][0-9]?[.]?(st|nd|rd|th)?( of)? \<(jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)[a-z]*\>'
+#
+# 2015-11-01 "#Day Monthname #Year"
+# Monthname must start with capital letter.
+# examples:  "1 Apr 2016" "1. APRIL 2016"
+# color body brightyellow default '([0-9][0-9]?-)?[0-9][0-9]?[.]? [A-z][A-Za-z]* (20)?[0-1][0-9]'
+# color body brightyellow default '([0-9][0-9]?-)?[0-9][0-9]?[.]? [A-z][A-Za-z]* 20?[0-1][0-9]'
+# "20" century mandatory:
+  color body brightyellow default '[0-9][0-9]?[.]?(st|nd|rd|th)?( of)? *[A-Z][A-Za-z]* 20[0-1][0-9]'
+#
+# 2015-11-19 "#DayRange Monthname #Year"
+# examples:  "19-23 November 2015"
+  color body brightblue   default '[0-9][0-9]?-?[0-9][0-9]?[.]? [A-Z][A-Za-z]* 20[0-1][0-9]'
+
+## ========================================================================
+## END of DATE&TIME
+## ========================================================================
+
+# 2002-04-13, 2017-04-17
+# Postleitzahlen (aka PLZ) (ZIP codes in Germany)
+# examples: "D-12345" and "D 12345"
+#  color body yellow red "D[- ]?[0-9]\{5\}"
+#
+# Also colorize the following word if it starts with a
+# capital letter, assuming that it is the name of the town:
+   color body yellow red "(D ?- ?)?[0-9]\{5\} *[A-Za-zÃ¤Ã¶Ã¼ÃŸÃ„Ã–Ãœ]+"
+# 2015-11-20 ZIP codes of Berlin (10115--14199), Graz, and Vienna:
+   color body yellow red '1[0-4][0-9][0-9][0-9] *berlin'
+   color body yellow red '8([01][0-9]|2[0-3])0 *graz'
+   color body yellow red '1([01][0-9]|2[0-3])0 *(vienna|wien)'
+# 2015-12-05
+# Berlin ZIP codes. these are all four digit prefixes - followed by any other digit:
+   color body yellow red \
+'(101[17]|1024|103[16]|104[03]|105[58]|1062|107[01]|107[78]|1082|109[69]|120[459]|121[056]|1220|122[047]|123[045]|124[3598]|125[258]|126[1278]|130[58]|131[258]|133[45]|134[036]|135[089]|1362|140[589]|141[0269])[0-9]'
+# here is the regex with *all* Berlin ZIP codes (604 chars) - no exceptions:
+# (101(1[579]|7[89]))|(102(4[3579]))|(103(1[5789]|6[579]))|(104(0[579]|3[579]))|(105(5[13579]|8[579]))|(106(2[3579]))|(107(0[79]|1[13579]))|(107(7[79]|8[13579]))|(108(2[3579]))|(109(6[13579]|9[79]))|(120(4[3579]|5[13579]|99))|(121(0[13479]|5[79]|6[13579]))|(122(0[3479]))|(122(0[3579]|4[79]|7[79]))|(123(0[579]|4[79]|5[13579]))|(124(3[579]|59|8[79]))|(125(2[467]|5[579]|8[79]))|(126(1[9]|2[1379]|79|8[13579]))|(130(5[13579]|8[689]))|(131(2[579]|5[689]|8[79]))|(133(4[79]|5[13579]))|(134(0[3579]|3[579]|6[579]))|(135(0[3579]|8[13579]|9[13579]))|(136(2[79]))|(140(5[023579]|89))|(141(09|29|6[3579]|9[3579]))
+
+#  RTFM!
+#  " man word"
+#  color body white red '\\"man [^ ]+\\"'
+#  color body white red "^ +[$]? *man [^ ]+"
+   color body white red "^ +[$]? *man \\w+"
+
+#  Lists
+#  bulleted list:
+#  * one        o one
+#  * two        o two
+#  * three      o three
+#  dashed list:
+#  - one
+#  - two
+#  - three
+#  color body red          default "^ *[-*] +"
+# this pattern yields many false positives as it
+# spans lines for which there is no syntax language.
+# this is easier with Vim's syntax coloring.
+#
+#  color body brightred    default "^ *[-*] "
+#
+# allow minus (-), long-dash (â€“), star (*), and bullet (â€¢).
+# subtle colors:
+#  color body brightgreen  default "^ *[-â€“*â€¢]+ "
+# standout colors:
+   # color body brightwhite default "^ *[-â€“*â€¢o]+ "
+#
+#  color body brightyellow default "^[ 	]*Â¿ "
+
+# 2016-11-29
+# numbered lists
+# example:
+# (1) foo | 1) foo
+# (2) bar | 2) bar
+  color body brightwhite  default '^[(]?[0-9]+[)] '
+
+#  special IP Host Adresses:
+#  192.x.x.x
+   color body white        blue  "192[.][0-9]{1,3}[.][0-9]{1,3}[.][0-9]{1,3}"
+
+# 2002-04-05:
+# mutt has trouble with this iconv stuff and
+# gives me lots of characters in octal code - "\nnn"
+#  color body red          white "\\\\[0-7][0-7][0-7]"
+# however, this coloring does not work.
+# mutt obviously does not subject these characters
+# a color coding check but simply spews them out.
+
+# 2002-04-13, 2015-11-03, 2015-11-14
+# HTML tags
+#  color body yellow       default "\</?\w+\>" # "\w" is vim regexp!
+   color body brightyellow default  "</?[^ ]+>"
+
+# 2002-04-13:
+# Quoted text in single quotes:
+#  color body yellow       default "'[a-z0-9 ]+'"
+# require that the text starts and ends with a letter:
+#  color body yellow       default "'\w[a-z0-9 ]+[a-z0-9.?!]'"
+#  color body yellow       default "'[a-z][a-z0-9 ]+[a-z0-9.?!]'"
+# will get you false positive on sentences like
+#    it's a hard day's work
+#       ^^^^^^^^^^^^
+# too many false positives, actually!
+#
+#  color body yellow       default '"[a-z][a-z0-9 ]+[a-z0-9.?!]"'
+#  color body yellow       default '"\w[a-z0-9 ]+[a-z0-9.?!]"'
+#  color body yellow       default '"\w[a-z0-9 ]+\w"'
+## color body yellow       default '"\<\w[a-z0-9 ]+\w\>"'
+#
+# 2011-09-14
+# quoting for level 1 and 2:
+  color body brightblue    default '^> [^>]*'
+  color body brightgreen   default '^> > [^>]*'
+
+# announcements to seminars and talks:
+# room numbers, eg "Raum 123"  "SR 049" "Zimmer 123"
+  color body black green "(H(oe|Ã¶)rsaal|Raum|Seminarraum|SR|Zimmer) ?[0-9]+"
+
+# 2003-09-04, 2016-08-08, 2016-08-09
+# programs and their versions numbers
+# mutt-1.5.4, mutt-1-5.23-3, mutt-1.6.2-1
+  color body yellow default "mutt([-_]| *)?[01]\.[0-6]\.[0-9]*([-][0-9]*)?([.](debian|dsc|orig|tar|gz|xz))+"
+# examples: mutt_1.6.2-1.dsc mutt_1.6.2.orig.tar.gz mutt_1.6.2-1.debian.tar.xz
+# slrn 0.9.8.0
+  color body brightyellow default "slrn(-| *)0\.[789]\.[0-8]\.[0-9]"
+
+# 2002-04-14, 2016-02-09, 2016-02-15, 2016-05-02
+# Linux Distributions and their versions
+  color body white red '(linux *)?\<(arch|centos|debian|fedora|gentoo|redhat|(open)?suse|[lx]?ubuntu)\>( *linux)?'
+# 2016-05-13
+# not so well knows linux systems:
+  color body white red '\<(alpine|crux(ex)?|knoppix|mandrake|slackware|tinycore)( *linux)'
+  #  http://www.alpinelinux.org/about/
+  #  https://crux.nu/
+  #  http://tinycorelinux.net/
+  #  http://cruxex.exton.net/
+# "Ubuntu 16.04 LTS"
+  color body yellow red 'ubuntu( *[01][0-9][.](04|10))?( *lts)?'
+# other free OSs:
+  color body white red '(freebsd|netbsd|openbsd|solaris)'
+
+# Stucki's windoze patterns:
+# names of Windows[tm]
+# followed by some version
+# matches: windows-3.11 windoze-95
+# windoof-nt win2k "winzigweich xp"
+  color  body blue yellow '\<win(do(ze|of)|zigweich)[- ]?(3[.]11|95|98|9x|nt|2k|2000|me|xp|7|10)?\>'
+  # color  body black brightmagenta '\<windows[- ]?(3[.]11|95|98|9x|nt|2k|2000|me|xp|7|10)\>'
+  # color  body black brightmagenta 'win(dows?)?(95(se)?|nt|2000|2k|xp)'
+# detecting "xp" as words only:
+# color body red default '\*?\<xp\>\*?'
+#
+# 2017-06-14, 2017-12-05
+# examples: "Mac" "Mac OS" "Mac OS X"
+  color body red default 'mac ?os ?x?'
+
+# CITIES, PLACES
+
+# Europe capitals [2004-03-03]
+# http://www.what-is-the-capital-of.com/europe-capitals.html
+  color body white red \
+'\<(amsterdam|andorra.la.vella|athens|belfast|belgrade|berlin|bern|bratislava|brussels|bucharest|budapest|cardiff|chisinau|copenhagen|dublin|edinburgh|helsinki|kiev|lisbon|ljubljana|london|luxembourg|madrid|minsk|monaco|moscow|oslo|paris|prague|reykjavik|riga|rome|san.marino|sarajevo|skopje|sofia|stockholm|tallinn|tbilisi|the.hague|tirane|vaduz|valletta|vienna|vilnius|warsaw|zagreb)\>'
+
+# 2009-05-19
+# cities mentioned in a newsletter by germanwings
+  color body white red \
+'\<(berlin|belgrade|cologne-bonn|dresden|hamburg|leipzig|london|mallorca|munich|stockholm|stuttgart|vienna|warsaw|zagreb|zurich)\>'
+
+# 2002-11-16, 2006-10-31, 2010-01-12, 2016-07-07, 2016-11-22, 2017-10-29
+# krautland - city names:
+  color body white red \
+'\<(aachen|augsburg|bad.salzuflen|bad.tÃ¶lz|baden-baden|bamberg|bayreuth|bergheim|\
+bergisch.gladbach|berlin|bielefeld|bocholt|bonn|braunschweig|bremen|bremerhaven|\
+chemnitz|cottbus|dÃ¼ren|dÃ¼sseldorf|darmstadt|detmold|dortmund|dresden|duesseldorf|\
+elmshorn|erlangen|eschweiler|esslingen.am.neckar|euskirchen|\
+flensburg|fÃ¼rth|frankfurt(/main|/oder)?|freiburg|fulda|\
+giessen|goerlitz|gÃ¼tersloh|gÃ¼ttingen|garmisch-partenkirchen|\
+halle|hamburg|hannover|heidelberg|heilbronn|herford|hilden|hildesheim|\
+iserlohn|jena|koeln|kÃ¶ln|karlsruhe|kassel|kerpen|kiel|konstanz|krefeld|\
+lÃ¼beck|lÃ¼denscheid|leipzig|leverkusen|lippstadt|ludwigsburg|ludwigshafen|\
+magdeburg|mainz|mannheim|marburg|minden|mÃ¶nchengladbach|mÃ¼nchen|muenchen|mÃ¼nster|\
+nÃ¼rnberg|neumÃ¼nster|neuss|neustadt|norderstedt|oberhausen|offenbach|oldenburg|\
+paderborn|passau|pforzheim|pinneberg|potsdam|pulheim|\
+ratingen|regensburg|remscheid|rheine|rostock|ruhrgebiet|\
+saarbrÃ¼cken|schwerin|siegen|solingen|st..augustin|stuttgart|\
+troisdorf|ulm|viersen|villingen-schwenningen|\
+wÃ¼rzburg|waiblingen|wiesbaden|wuppertal)s?\>'
+
+# krautland's federal states:
+  color body white blue \
+'\<(bayern|baden-w(Ã¼|ue)rttemberg|berlin|bremen|brandenburg|hamburg|hessen|\
+mecklenburg-vorpommern|niedersachsen|nordrhein-westfalen|rheinland-pfalz|\
+saarland|sachsen|sachsen-anhalt|schleswig-holstein|th(Ã¼|ue)ringen)\>'
+
+# berlin suburbs - new form (since 2001)
+  color body green default \
+'\<(charlottenburg-wilmersdorf|friedrichshain-kreuzberg|\
+lichtenberg-hohenschÃ¶nhausen|marzahn-hellersdorf|mitte|\
+neukÃ¶lln|pankow|reinickendorf|spandau|steglitz-zehlendorf|\
+tempelhof-schÃ¶neberg|treptow-kÃ¶penick)\>'
+
+# berlin suburbs - old form (until 2001)
+  color body green default \
+'\<(charlottenburg|friedrichshain|hellersdorf|hohenschÃ¶nhausen|\
+kreuzberg|kÃ¶penick|lichtenberg|marzahn|mitte|neukÃ¶lln|\
+pankow|reinickendorf|schÃ¶neberg|spandau|steglitz|\
+tempelhof|treptow|wilmersdorf|zehlendorf)\>'
+
+# 2016-12-10
+# 'Kieze' - some smaller areas in berlin
+  color body green default '(dahlem|grunewald|moabit|schmargendorf)'
+
+# vienna suburbs 2005-06-04
+#  1.: Innere Stadt
+#  2.: Leopoldstadt
+#  3.: Landstrasse
+#  4.: Wieden
+#  5.: Margareten
+#  6.: Mariahilf
+#  7.: Neubau
+#  8.: Josefstadt
+#  9.: Alsergrund
+# 10.: Favoriten
+# 11.: Simmering
+# 12.: Meidling
+# 13.: Hietzing
+# 14.: Penzing
+# 15.: Rudolfsheim
+# 16.: Ottakring
+# 17.: Hernals
+# 18.: WÃ¤hring
+# 20.: Brigittenau
+# 21.: Floridsdorf
+# 22.: Donaustadt
+# 23.: Liesing
+ color body white red \
+'\<(innere.stadt|leopoldstadt|landstrasse|wieden|margareten|mariahilf|neubau|josefstadt|alsergrund|favoriten|simmering|meidling|hietzing|penzing|rudolfsheim|ottakring|hernals|wÃ¤hring|brigittenau|floridsdorf|donaustadt|liesing)\>'
+
+# 2004-09-13
+# cities in austria
+  color body white red \
+'\<(bregenz|eisenstadt|graz|innsbruck|klagenfurt|linz|salzburg|pÃ¶lten|wien)\>'
+
+# 2017-03-30
+# cities in switzerland
+  color body white red '\<(basel|bern|genf|z(ue|Ã¼)rich)\>'
+
+# 2016-09-16
+# cities with events
+  color body white red '\<(brÃ¼ssel|dornbirn|dresden|eindhoven|essen|gÃ¶teborg|hattingen|oberhausen|prag)\>'
+
+# Capitalized Words
+# color body black white '\<[A-Z]\w+\>'
+
+# 2017-01-25
+# Finding myself in Emails
+  color body brightyellow blue  "(sven ?guckes)"
+  color body brightyellow blue  "(sveng|guckes)"
+# color body brightyellow blue  "(Sven|Guckes)"
+  color body brightyellow blue  "[^ ]+@guckes.net"
+
+# 2002-09-20, 2016-12-10, 2017-07-26
+# quoted-printable characters: =HH where 'H' is a hex digit
+# examples:  "=20" (space)  "=3D" (equal sign)
+# color body yellow blue  "=[0-9A-F][0-9A-F]\>"
+# now with word boundary:
+# color body yellow   blue  "=[0-9A-F][0-9A-F]\>"
+  # color body white magenta  "=[0-9A-F][0-9A-F]"
+#
+# a colon at the end of a line (this preserves a line ending):
+# color body yellow blue  "=$"
+
+## ========================================================================
+## TEST!
+## ========================================================================
+
+# Alternatives in brackets:
+# "[ foo | bar | foo bar | foo-bar | baz ]"
+# color body brightyellow brightred  '\[ [-a-z ]+ (\| [-a-z ]+)+ \]'
+
+# DONNERWETTER -> ~/.mutt/color.donnerwetter
+
+# 2003-12-18
+# vim commands, like ":center" and ":help uganda"
+  color body green default '":[a-z]+ *[a-z]*"'
+
+# 2004-04-29
+# file permissions eg "-rwx-rw-r--"
+  color body green default "[-]([-r][-w][-x]){3}"
+
+# 2004-09-15
+# colorize (quoted) subheader lines.
+# example:
+# > > [old subject]
+# > [new subject]
+# > forget the old subject!
+#
+  color body white red '^[> ]*[.*] *$'
+
+# 2004-11-05
+# color for highbit characters:
+# 2007-05-09:
+# mutt 1.5.15 chokes on the following line:
+# color body yellow red '[Â€-Ã¿]'
+
+# 2005-02-06, 2013-02-26, 2014-09-22, 2016-12-28
+# color for gpg/gpg fingerprints
+# color body red green "\(\([0-9a-f]{4}\)  *\){5}"
+#
+# color body red green "fingerprint: \([0-9A-F]{4}\){5}  \([0-9A-F]{4}\){5}"
+# color body red green              "\([0-9A-F]{4}\){5}  \([0-9A-F]{4}\){5}"
+# allowing for some spaces in between the first and second five blocks:
+# color body red green              "\([0-9A-F]{4} \){5}  ?\( [0-9A-F]{4}\){5}"
+# color body red green "fingerprint: \([0-9A-F]{4} \){5}  ?\( [0-9A-F]{4}\){5}"
+# block of four hex - 10 of them. with one or two spaces in between:
+  color body brightred default "fingerprint: \([0-9A-F]{4} ? ?\){10}"
+# beispiel:
+#  1234 5678 CAFE DEAD BEEF  1234 5678 CAFE DEAD BEEF
+#  12345123451234512345ABCDEABCDEABCDEABCDEABCDEABCDE
+#  11111222223333344444555551111122222333334444455555
+#
+#   Primary key fingerprint: CF51 CB88 7D9A B184 AD50  21F4 DA6B 2836 5A21 B2D0
+#        Subkey fingerprint: 4F7E 9F72 3D19 7D66 7842  AE11 5F04 8E6F 0E4B 4494
+#
+# a possible fingerprint - five or ten groups of four hex each:
+  color body brightred green "(0x *)?\([0-9a-f]{4} ?\){10}"
+  color body brightred green "(0x *)?\([0-9a-f]{4} ?\){5}"
+
+# 2016-12-07
+# gpg: short IDs and long IDs
+# example: "0x 1234 5678 ABCD EF01"
+# color body brightred green "(0x *)?\([0-9a-f]{4} ?\){2}"
+# color body brightred green "(0x *)?\([0-9a-f]{4} ?\){4}"
+# .. these also matched only four-letter-suffixes,
+# eg "ABCD" and (embe)"dded" o_O
+#
+# color body brightwhite   green '(0x *)?([0-9a-f]{4} ?){2}'
+# color body brightyellow  green '(0x *)?([0-9a-f]{4} ?){4}'
+#
+  # color body brightwhite   green        '([0-9a-f]{4} ?){2}'
+  color body brightyellow  green        '([0-9a-f]{4} ?){4}'
+
+# 2015-09-11, 2016-09-04, 2017-09-17
+## # example: "key ID 1234ABCD"
+##   color body red       green 'key ID [0-9A-F]{8}\>
+##   color body black     green 'key ID [0-9A-F]{16}\>
+##   color body black     green 'key ID [0-9A-F]{32}\>
+## # 2016-02-21, 2017-09-17
+## # keys
+##   color body black white        '(public )?key [0-9a-f]{8}'
+##   color body black green        '(public )?key [0-9a-f]{16}'
+##   color body black green        '(public )?key [0-9a-f]{32}'
+##   color body black brightyellow '(public )?key [0-9a-f]{40}'
+## # 2005-02-01, 2016-03-09
+## # color for gpg/pgp key IDs with 0x prefix
+## # examples: 0x0185391B 0xeab97f200185391b
+##   color body yellow red "0x[0-9a-f]{8}"
+##   color body yellow red "0x[0-9a-f]{16}"
+# 2017-09-17
+  color body black white        '(public )?key (ID)? (0x)?[0-9a-f]{8}'
+  color body black green        '(public )?key (ID)? (0x)?[0-9a-f]{16}'
+  color body black green        '(public )?key (ID)? (0x)?[0-9a-f]{32}'
+  color body black brightyellow '(public )?key (ID)? (0x)?[0-9a-f]{40}'
+
+# ...., 2017-06-30, 2017-07-11
+# PGP strings:
+  color body brightyellow  default "-----BEGIN PGP SIGNATURE-----"
+  color body brightyellow  default "-----END PGP SIGNATURE-----"
+
+  color body brightyellow  default "-----END PGP PUBLIC KEY BLOCK-----"
+  color body brightyellow  default "-----BEGIN PGP PUBLIC KEY BLOCK-----"
+
+# 2016-12-11
+# examples:  pubkey seckey  "public key" "secret key"
+  color body brightgreen default 'pub(lic)? *key'
+  color body brightred   default 'sec(ret)? *key'
+  color body brightred   default   'private *key'
+# DE:
+  color body brightgreen default    'geheimer *schlÃ¼ssel'
+  color body brightred   default 'priv(ater)? *schlÃ¼ssel'
+
+# 2013-02-26
+# md5sums numbers - 32 hex
+# echo -n | md5sum
+# d41d8cd98f00b204e9800998ecf8427e  -
+  color body brightred green "\([0-9a-f]{32}\)"
+
+# 2016-12-08
+# sha1sum number - 40 hex
+# echo -n |sha1sum
+# da39a3ee5e6b4b0d3255bfef95601890afd80709  -
+  color body brightred green "\([0-9a-f]{40}\)"
+
+# 2016-12-08
+# sha1sum number - 64 hex
+# echo -n | sha256sum
+# e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855  -
+  color body brightred green "\([0-9a-f]{64}\)"
+
+# 2015-12-09
+# set a special color for the "good signature" text which should
+# come from gpg (or pgp) after the verification of the signature.
+# color body brightmagenta       red "good signature"
+  # color body brightmagenta brightred "good signature" # blinks! eek!
+#
+# "gpg: BAD signature from ..."
+  color body black         brightred "bad signature"
+#
+# 2016-12-11
+  color body black         brightred "this key has expired"
+
+# 2005-06-02 LaTeX commands, eg "\foo{bar}"
+  color body white blue  '\\\<[a-z]+\>\(\{.*\}\)?'
+
+# 2005-08-11
+# UKUUG in swansea
+# color body yellow blue "(wales|swansea|bristol)"
+
+# 2005-09-18
+# CAcert
+# color body white blue "assured .*(.*)"
+
+# 2005-12-23 NOTIFY
+  color body white blue ".* joined your .*"
+  color body white red  ".* unsubscribed from .*"
+
+# 2009-05-04, 2015-11-21, 2016-09-14, 2016-09-30, 2017-04-16
+# twitter tags
+# color body brightgreen default '\*[0-9a-z]+'
+# trying this with a word boundary:
+# color body brightred default '\*\<[0-9a-z]+\>'
+# these work quite well:
+  color body brightgreen default  '#\<[-0-9a-z_]+\>'
+  color body brightgreen default  '@\<[-0-9a-z_]+\>'
+# examples: #vim @foo_bar @a-b-c
+
+# 2009-06-17 linuxwiki.de changes
+# 2015-11-11 also valid in vim patches
+  color body green default '^\+ .*'
+  # some lines are "empty"
+  color body green default '^\+$'
+  #
+  color body green default '^! .*'
+
+# 2010-09-30, 2010-11-22
+# wiki style section headers
+  color body brightyellow default "^= .* =$"
+# color body brightgreen  default "^== .* ==$"
+  color body brightgreen  default "^==.*==$"
+  color body brightgreen  default "^#\+"
+#
+# 2016-09-25
+# example: "## CryptoParty 46 ##"
+  color body brightgreen  default "^##[^#]+##$"
+#
+# 2017-12-09
+# example: "## Notes"
+  color body brightgreen  default "^##[^#]+$"
+
+# 2012-01-23
+# fingerprint of 2048bit key
+# 00:a8:b0:7f:09:c6:7c:54:84:61:a9:26:06:be:58:
+# 78:e8:e0:33:6b:ef:f0:09:a1:18:20:af:30:dd:73:
+  color body brightyellow default '([0-9a-f][0-9a-f]:){15}[0-9a-f][0-9a-f]'
+
+# 2017-03-13
+# MAC addresses
+# example: 12:34:56:ab:cd:ef
+  # color body brightyellow magenta '([0-9a-f][0-9a-f]:){5}[0-9a-f][0-9a-f]'
+
+# 2012-03-11, 2016-01-26
+# "subject lines" - ie lines with only one word,
+# followed by a colon or exclamation mark:
+# example: "deadline!" or "meetup:"
+  color body brightyellow default '^[a-z_]+[:!]$'
+  color body brightyellow default '^[a-z_]+[:!] +'
+#
+# 2017-12-16
+# example: "Configure options:" "Compilation CFLAGS:" "Compile options:"
+  # color body brightmagenta default '^[a-z_]+ [a-z_]+[:!]'
+
+# 2013-02-27
+# example: "( A != B ) && ( B || C )"
+# logical operators in code
+  color body green default '!='
+  color body green default '&&'
+  color body green default '\|\|'
+
+# comments in code
+# example: "/* no comment? */"
+  color body brightblue  default '/\*.*\*/'
+# 2015-12-30
+# example: "^   # this is a comment"
+  color body brightblue  default '^ *# '
+
+# patch number in mails on vim mailing list:
+# example: "Patch 7.4.900" [as of 2015-10-25]
+  color body red         white 'Patch [0-9]\.[0-9]\.[0-9]+'
+
+# 2015-10-27
+# example line in this setup file:
+  color body brightblue default "^# example:"
+
+# 2015-10-30
+# UTF-8 Quotations marks
+# example:  â€žNetzneutralitÃ¤t"  â€œArtist Run Data Centerâ€
+# <â€œ> 8220, Hex 201c, Oktal 20034
+# <â€> 8221, Hex 201d, Oktal 20035
+# <â€ž> 8222, Hex 201e, Oktal 20036
+# color body brightwhite default 'Â¿[^ ]+"'
+# color body brightwhite default 'Â¿.+["Â¿]'
+# color body brightyellow default '[Â¿Â¿"][^"Â¿Â¿]+["Â¿Â¿]'
+#
+# color body brightyellow default '[â€žâ€"].+[â€â€œ"]'
+# ".*" and ".+" are just too greedy :-/
+#
+# color body brightyellow default '[â€žâ€œâ€"][^â€žâ€œâ€"]+[â€â€œ"]'
+  color body brightyellow default '[â€žâ€œâ€"]+[^â€žâ€œâ€"]+[â€â€œ"]'
+# 2016-09-15: the first '+' is apparently required
+# to colorize the initial character set.  weird! o_O
+
+# 2015-10-30
+# example: "*Achtung*:"
+  color body green default '^\*[^:]+:\*'
+
+# 2015-11-01  dash-words
+# example: "up-to-date"
+# color body brightyellow default '[a-zÃ¤Ã¶Ã¼ÃŸ]+(-[a-zÃ¤Ã¶Ã¼ÃŸ]+)+'
+# WARNING:  this may overlap with special words,
+# eg "Werner-Eckert-StraÃŸe"
+# try again with word boundaries:
+# color body brightyellow   default '\<[a-zÃ¤Ã¶Ã¼ÃŸ]+(-[a-zÃ¤Ã¶Ã¼ÃŸ]+)+\>'
+  # color body brightmagenta  default '\<[a-zÃ¤Ã¶Ã¼ÃŸ]+(-[a-zÃ¤Ã¶Ã¼ÃŸ]+)+\>'
+
+# 2015-11-01
+# examples:  "1-5" "23-42" "1967-2067"
+# color body brightred default "[0-9]+-[0-9]+"
+
+# 2015-11-03
+# long option names
+# examples:  "--fast" "--super-speed"
+# color body brightred default "--[a-z][-a-z]+"
+# test for match with magenta:
+  # color body brightmagenta default "--[a-z][-a-z]+"
+
+# 2015-11-06
+# quoted text in single and double arrows
+# color body brightred default  'Â»[^ ]+Â«'
+  color body brightred default  'â€º.+â€¹'
+  color body brightred default  'Â».+Â«'
+
+# 2015-11-16, 2015-12-17, 2017-06-12
+# street names
+# examples:  "Lehrter StraÃŸe 53"  "Detmolder Str. 3"
+#            "Foostrasse 23-42c"  "Foobarweg"  "Werner-Eckert-StraÃŸe2
+# color body black green "[^ ]+straÃŸe"
+# color body black green '\<[^ ]+ *(strasse\>|straÃŸe\>|str|weg)\>( *[0-9]+(-[0-9]+)?[a-z]?)?'
+# 2017-06-14: lowercase "weg" matches "ich bin dann mal weg".
+# so i uppercased "weg" to "Weg". now it matches "auf meinem Weg". argh!
+# color body black green '\<[^ ]+ *(strasse|straÃŸe|str|Weg)\>( *[0-9]+(-[0-9]+)?[a-z]?)?'
+# require te word before to start with a capital letter:
+# color body black green '\<[A-ZÃ„Ã–Ãœ][^ ]+ *(strasse|straÃŸe|str|Weg)\>( *[0-9]+(-[0-9]+)?[a-z]?)?'
+# the 'W' makes the match case sensitive, so "straÃŸe" wont match "StraÃŸe".
+# color body black green '\<[A-ZÃ„Ã–Ãœ][^ ]+ *([Ss]trasse|[Ss]traÃŸe|[Ss]tr|Weg)\>( *[0-9]+(-[0-9]+)?[a-z]?)?'
+# so, make it two rules - one for straÃŸe and one for "weg":
+# color body black green '\<[A-ZÃ„Ã–Ãœ][^ ]+ *(strasse|straÃŸe|str)\>( *[0-9]+(-[0-9]+)?[a-z]?)?'
+  color body black green '\<[A-ZÃ„Ã–Ãœ][^ ]+ *(Weg)\>( *[0-9]+(-[0-9]+)?[a-z]?)?'
+  color body black green '\<[A-ZÃ„Ã–Ãœ][^ ]+weg\>( *[0-9]+(-[0-9]+)?[a-z]?)?'
+# 2017-07-17 expanding addresses to several house numbers.
+# examples: "Schwedter Str. 8/9b"  "FooStr. 23a-42z"
+  color body black green '\<[A-ZÃ„Ã–Ãœ][^ ]+ *(strasse|straÃŸe|str)\>( *[0-9]+([a-z])?)?( *[-/][0-9]+([a-z])?)?)?'
+#
+# "str." does not match with "\>", so an extra rule for that:
+# color body brightred      default         '\<[^ ]+ *str[.]( *[0-9]+([-/][0-9]+)?[a-z]?)?'
+  # color body white          brightmagenta   '\<[^ ]+ *(str[.]|straÃŸe)( *[0-9]+)?([-/][0-9]+)?'
+# WARNING:
+# the pattern "str." also matches "distribution" and "mainstream" as a street name ;-)
+# therefore: making the dot in "str." mandatory again.
+#
+# examples: "KurfÃ¼rstendamm 123" "Kottbusser Damm 23a"
+#           "Foobargasse 1/2/3"  "Museumplatz" "Berliner Allee"
+# the following spaces also require a number and
+# the following letter requires that number.
+  color body green default '[^ ]+ ?(allee|damm|gasse|platz)\>( *([0-9/]+[a-z]?))?'
+#
+# 2017-06-29
+# Postfachadresse
+# example: "Postfach 12 34 56"
+  color body green default 'postfach *[0-9 ]+'
+
+# 2015-11-16
+# meters
+# example:   42.195m (marathon)
+  color body green default "\([0-9]+.\)?[0-9]+m"
+
+# 2015-11-16
+# geo coordinates
+# example: 52.532088, 13.358150
+  color body black green "[0-9][0-9][.][0-9]{6}"
+
+# 2015-11-16, 2015-12-05, 2017-01-24
+# pgp keys
+# example:  "pgp:57f7709"  "pgp: 0x0185391B"
+  color body brightyellow default "(open)pgp:? *\(0x\)?[0-9a-f]{8,16}"
+  color body brightyellow green '(1024|2048|3072|4096|8192)[dr]/[0-9a-f]{8}'
+# just these powers of two: 2^10, 2^11, 2^12 - standard bitlenghts of gpg keys
+  color body brightyellow green '\<(1024|2048|4096)( ?bit)?\>'
+
+# 2016-01-18, 2017-01-31
+# show DSA and RSA keys in different colors
+# example:   1024 bit DSA key 162540FA, created: 2003-03-15 (revoked)
+# example:   2048 bit RSA key 76240F29, created: 2010-03-02
+  color body brightred    green "DSA key [0-9a-f]{8}\>"
+  color body brightyellow green "RSA key [0-9a-f]{8}\>"
+# 2017-01-31 for long IDs:
+  color body brightred    green "DSA key [0-9a-f]{16}\>"
+  color body brightyellow green "RSA key [0-9a-f]{16}\>"
+
+# 2015-11-16, 2015-12-05, 2016-08-26
+# gpg/pgp pub+sub keys
+# example:  "pub  1024R/57F77F09"
+# 2016-08-26 added repetition of "16" for lond key IDs
+  color body brightyellow green "[ps]ub *[0-9]{4}[dr]/[0-9a-f]{8}"
+  color body brightyellow green "[ps]ub *[0-9]{4}[dr]/[0-9a-f]{16}"
+  color body brightyellow green "^uid"
+# 2015-11-25
+# gpg/pgp expiry date of keys (yyyy-mm-dd)
+# example: "[expires: 2015-12-31]"
+# color body white  red  '\[expires: \d\d\d\d-\d\d-\d\d\]'
+  color body white  red  '\[expires: 20[0-9][0-9]-[0-9][0-9]-[0-9][0-9]\]'
+
+# 2015-11-16, 2015-11-23
+# footnotes
+# examples: "[1]" "[02]" "[10]"  "[99]"
+# color body brightred default   "\\[[0-9]\]"
+  color body brightred default    '\[[0-9]?[0-9]\]'
+
+# 2015-11-16, 2017-07-04
+# antispam email addresses
+# examples: "user(at)domain"  "user (at) domain"
+# color body brightblue  default  "\\<[^ ]+\\> (at) \\<[^ ]+\\>"
+# color body brightblue  default  "\<[^ ]+\> (at) \<[^ ]+\>"
+# color body brightblue  default  "[^ ]+ \\(at\\) [^ ]+"
+# color body brightgreen default  '[^ ]+ \(at\) [^ ]+'
+  color body brightgreen default  '[^ ]+ *\(at\) *[^ ]+'
+
+# 2015-11-16, 2017-02-03
+# measurements in gigabyte
+# example: "4GB" "0.5 GB" "4,2 Tbit down"  "2,3 tbit up"
+  color body brightyellow default  '([0-9]+[.,])?[0-9]+ *(kb|mb|gb|tb)(it)?( *(down|up))?'
+# 2017-02-03 the optional digits before comma/dot are NOT caught! o_O
+
+# 2015-11-17
+# words with a genitive suffix ("'s" and "s'"):
+  # color body brightwhite default "\\<[^ ]+['â€™]s\\>"
+  # color body brightwhite default "\\<[^ ]+s['â€™]\\>"
+
+# 2015-11-17,2015-11-19,2015-11-20,2015-11-27,2015-11-28,
+# 2015-12-21,2016-01-13,2016-01-20,2016-02-09,2017-07-22
+# numbers followed by various units
+#
+# electricity: ampere volt watt
+# examples:  42A 100Ah 1234mAh 23Â°C 23dBi 10mg 23.42kg 500-ml 42mÂ² 1234mm 230V 3W 123mW 42Wh 42uF
+# color body brightyellow default '\<([0-9]+.)?[0-9]+[- ]*(a|ah|ampere|mah|dbi|dbm|ma|Â°c?|g|kg|ml|v|volt|mvw|mw|w|wh|watt)\>'
+  color body brightyellow default   '[0-9]+([.,][0-9]+)?[- ]*(a|ah|ampere|mah|dbi|dbm|ma|v|volt|mvw|mw|w|k?wh|watt)\>'
+# 2017-06-08, 2017-07-22
+# ohm and farad
+# examples: 0,15ÂµF+2x2700pF  23uF
+  color body brightyellow default '\<[0-9]+[.,0-9]*[- ]*(Âµ|p|u)?(f|ohm)\>'
+# weight: grams kilograms | degrees celsius
+# examples: 23kg
+  color body brightyellow default   '[0-9]+([.,][0-9]+)? *(Â°c?|k?g)\>'
+# 2016-01-28, 2016-02-28, 2017-07-22
+# tempratures (celsius and fahrenheit)
+# examples: 23,5Â°C
+  color body brightyellow default '\<[0-9]+([.,0-9]+)? *Â°?(C|F)\>'
+# length, area, and volume:
+# examples:  1234mm 42.195km 23meter 42mÂ² 42qm
+  color body brightyellow default '\<([0-9]+.)?[0-9]+[- ]*(cm|km|m?l|m|m?m\^2|mÂ²|metern?|mm|nm|qm)\>'
+  # data:    1024bytes 1kb  23MiB 12GiB  "100 Mbit"  42Mbit/s  42Mbps  23TiB
+  color body brightyellow default '\<([0-9]+.)?[0-9]+[- ]*(bytes|kb|l|mi?b|gi?b(it)?|mb(it)?(/s)?|mbps|tib)\>'
+# duration/time:
+  color body brightyellow default '\<([0-9]+.)?[0-9]+[- ]*(mins?|minute(n|s)|hours|sek(unden)?)\>'
+  # 23min 5stunden 2tage 3wochen 4monate 5jahre
+  color body brightyellow default '\<[0-9]+ *(min|minuten?|stunden|tage|wochen|monate|jahre)\>'
+# frequency:  "2,3 Ghz" "2,4Mhz"
+  color body brightyellow default '\<([0-9]+.)?[0-9]+[- ]*(ghz|khz|mhz|hz)\>'
+# 2015-12-04
+  # small times in milliseconds:
+  # example: "3.14159 ms"
+# color body brightyellow default '\<([0-9]+.)?[0-9]+ *ms\>'
+# 2016-11-23 optional "m"
+  color body brightyellow default '\<([0-9]+.)?[0-9]+ *m?s\>'
+  color body brightyellow default '\<([0-9]+.)?[0-9]+ *total>'
+
+# pieces:
+  color body brightyellow default '[0-9]+ *(stueck|stÃ¼ck)'
+# 2015-11-20 repetition. read "23x" as "23 times":
+  color body brightyellow default '\<[0-9]+x\>'
+
+# 2015-11-17, 2017-07-05
+  color body brightred    white "eintritt (ist)? *frei"
+  color body brightred    white "freier eintritt"
+  color body brightred    white "free of charge"
+  color body black        green "registration required"
+  color body brightyellow default "public event"
+
+# 2015-11-19, 2015-11-20, 2015-12-06, 2015-12-08, 2015-12-09,
+# 2015-12-29, 2016-01-25, 2016-11-29, 2017-01-25, 2017-06-14
+# people in the tech scene:
+  color body brightgreen default '\<(geek|hacker|nerd|maker|tinkerer)s?\>'
+# communities
+# examples:   BeLUG LugMoe upLUG
+  # color body  brightyellow  magenta  'linux ?user ?group'
+  # color body  brightyellow  magenta  '(belug|lugmoe|uplug|vimberlin)'
+# some hackerspaces and makerspaces:
+  color body brightgreen default '\<(hackerspaces?|makerspaces?|(repair|reparatur) ?caf[eÃ©]s?)\>'
+  #
+  color body brightgreen default '\<(0xff|afra|balista|brmlab)\>'
+  color body brightgreen default '\<(c-base|c3d2|cccb|chaos computer club|chaosdorf|chaostreff|chaotikum)s?'
+  color body brightgreen default '\<(devlol|dezentrale|eigenbaukombinat|elok|)\>'
+  color body brightgreen default '\<(fab.lab|fablab.berlin|fablabdd|f2a.space|fnordeingang|freies?.?labor)\>'
+  color body brightgreen default '\<(happylab|h.a.t.e.o.t.u.|in-berlin|individual ?network)\>'
+  color body brightgreen default '\<(krautspace|linuxworks|metalab|nobreakspace|ok ?lab|openlab)'
+  color body brightgreen default '\<(progressbar|realraum|shackspace|stratum0?|sublab|technik.cafe|toppoint)\>'
+# some event types:
+  color body brightgreen default '(barcamp|lightning[- ]?talks?|unconference|linuxtreff)'
+# a few event names
+# 2016-09-16, 2016-12-10, 2017-03-23, 2017-05-12, 2017-05-17, 2017-05-19, 2017-06-11,
+# 2017-06-16, 2017-06-18, 2017-07-02, 2017-07-07, 2017-07-12, 2017-07-20, 2017-07-22, 2017-07-28
+  color body brightgreen default '\<(31c3|32c3|33c3|bundesdatenschau|chemnitzer linux[- ]?tagen?)\>'
+  color body brightgreen default '\<(chaos communication congress|committer ?conf|congress ?everywhere|datenspuren|digitale ?woche? kiel)\>'
+  color body brightgreen default '\<(debconf|easterhegg|fosdem|freedom ?not ?fear|froscon|games ?camp|geekend|grazer ?linux-?tage)\>'
+  color body brightgreen default '\<(hack ?around ?the ?clock|hack ?& ?make|hacken.open.air|hackover|hack ?your ?city|hillhacks)\>'
+  color body brightgreen default '\<(kieler ?linux ?tage|knoppixtage?|linux ?con)\>'
+  color body brightgreen default '\<(linux ?presentation ?day|linux ?days?|linuxtage?)\>'
+  color body brightgreen default '\<(linuxwochen|minidebcamp|minidebconf|nerdnight|nook( ?2017)?|open ?commons)\>'
+  color body brightgreen default '\<(open common kongress|openrheinruhr|open ?tech ?summit|sha ?2017|t-?dose)\>'
+  color body brightgreen default '\<(t(ue|Ã¼)bix|vcfb|vintage computing festival|where ?camp|world usability day)\>'
+# generals names of places:
+  color body brightgreen default '\<(fablab|(hacker|maker) *space)s?\>'
+  color body brightgreen default '(do ?it ?yourself|do ?it ?together)'
+  color body brightgreen default '(offene werkst(Ã¤|ae)tten|reparierinitiative)'
+# cool hardware
+  color body brightgreen default '(3d[- ]?(drucke?[nr]?|filament|printers?|zeug)|cnc ?mills|laser cutters)'
+# names of small maschines:
+  color body brightgreen default '\<(arduino|banana.pi|rasp(berry.)?pi|olimex|iot|reprap)s?\>'
+# operating systems:
+  color body brightgreen default '\<(debian|fedora|linux|mint|nixos|suse|tails|ubuntu)\>'
+  color body brightred   default '\<(macos|windows)\>'
+# the holy command line!
+  color body brightgreen default '\<(kommandozeile|shell)\>'
+# known projects:
+  color body brightgreen default '\<(blender|git|latex|mozilla|open ?street ?map)\>'
+# web browsers:
+  color body brightgreen default '\<(chrome|firefox|internet ?explorer|safari)\>'
+# sites for storing source code:
+  color body brightgreen default '\<(bitbucket|github|sourceforge)\>'
+# terms of freedom:
+  color body brightgreen default '\<((frei?e[rs]?|open) *(access|hardware|science|software|source|space|wissen)?)\>'
+  color body brightgreen default '(coreboot|libreboot)'
+  color body brightgreen default '((hardware|software) ?freedom ? day)'
+# licenses
+  color body brightgreen default 'creative commons'
+  color body brightgreen default 'open (source)? ?\<(data|education|hardware|software)\>'
+# special terms:
+  color body brightgreen default '\<(backdoor|crypto(anarchy|currency|graphy|part(y|ies))?|encryption|fingerprint|passphrase|password|privacy|secret|security)\>'
+# event names:
+  color body brightgreen default '\<(Congress|Camp|ctf|crypto|install)part(y|ies)|jugend ?hackt|repair ?cafe|linuxtreff)\>'
+# crypto:
+  color body brightgreen default '(enigmail|gpg|gnupg|mailvelope|(open)?pgp|openssl|pubring|secring)'
+  color body brightred   default '\<(intellectual property|p2p)\>'
+  color body white red '\<(gnunet|nextcloud|onionshare|owncloud|retroshare|tribler)\>'
+  color body brightgreen default 'bitcoin'
+# some programming languages:
+  color body brightyellow default '\<(c([+][+])?|go|lisp|lua|perl|python|ruby)\>'
+# 2016-06-21 MTAs:
+  color body brightgreen default '(exim|postfix|qmail|sendmail)'
+# 2016-12-31 tools
+  color body brightgreen default '(aspell|ispell|urlview)'
+# 2017-01-27
+  color body brightgreen default '\<(arm|powerpc|sparc64|x86)\>'
+
+# 2015-11-19, 2015-11-20, 2015-11-21
+# header lines of forwarded mails in german and english:
+# weirdness:  some use 5 dashes, most use 8 dashes, some use 10.
+# mostly there is one space after the dashes,
+# but sometimes there are also two spaces -
+# and also had one with zeo spaces.  (wtf??)
+# color body yellow default "-+ Forwarded Message -+".
+# that's why after the dashes ("-+") there
+# *may* be spaces (" *") - and vice versa.
+  color body yellow default '^-+ *ursprÃ¼ngliche (mitteilung|nachricht) *-+'
+  color body yellow default '^-+ *original-nachricht *-+'
+  color body yellow default '^-+ *original message *-+'
+  color body yellow default '^-+ *mail original *-+'
+  #
+  color body yellow default '^-+ *forwarded message *-+'
+  color body yellow default '^-+ *weitergeleitete nachricht *-+'
+  #
+  # 2017-01-31 removed the space after the colon
+  # because a GMX user had used a "A0" there. o_O
+  color body yellow default '^ *\<(an|von|betreff|datum|verschickt|gesendet|antwort an|liste|grund):'
+  color body yellow default '^ *\<(date|from|subject|cc|to|reply-to|newsgroups|organization):'
+# Gesendet: ...
+# An: ...           Liste:
+# Von: ...          Von:
+# Betreff: ...      Betreff:
+# Datum: ...        Grund:
+# Antwort an: ...
+#
+# english:          spanish:          french:
+# To: ...           De:     ...       De:     ...
+# From: ...         Asunto: ...       Ã€:      ...
+# Subject: ...      Para:   ...       EnvoyÃ©: ...
+# Date: ...         Fecha:  ...       Objet:  ...
+# Reply-To: ...
+
+# 2015-11-19
+# umlauts - those weird german characters ;-)
+##color body brightwhite default "[Ã¤Ã¶Ã¼ÃŸ]"
+
+# 2015-12-09, 2016-01-13
+# check that czech! ;)
+  # color body brightwhite default "[Ã¡ÄÄÃ©Ä›Ä•Ã­ÅˆÅ™Å¡Å¥ÃºÅ¯Ã½Å¾]"
+
+# 2015-12-09, 2016-01-15
+# punctuation at the end of the line:
+  color body brightred default '[.â€¦,;:!?]+$'
+# '+' as there could be several.. like dots...
+
+# 2015-12-17
+# punctuation within lines (followed by a space):
+# color body brightyellow default '[.â€¦,;:!?] '
+# unfortunately, this breaks all patterns which
+# contain a dot, such as dates ("6. April 1967").
+
+# 2015-11-19
+# numbering at start of line
+# example:
+# 1. first
+# 2. second
+# 3. third
+  # color body brightwhite default '^[0-9]+[.]'
+
+# 2015-11-19
+# IBAN/SEPA numbers - 20 to 30 digits
+# 30 digits: Jordanien, Kuwait, Mauritius
+# example: DE50430609678205793100 OpenLab Augsburg
+  # color body brightwhite default "DE[0-9]{20,22}"
+#
+# 2017-09-30
+# example:
+# IBAN DE18 2512 0510 6980 1308 81 [Campact e.V.]
+  # color body brightmagenta default "DE[0-9][0-9] [0-9][0-9]{4} [0-9]+"
+#
+# 2015-12-09
+# IBAN/SEPA numbers - in blocks of four digits:
+# example: "DE23 2342 0815 4711 3141 59"
+  # color body brightwhite default "DE[0-9][0-9] ([0-9]{4} ){4} *[0-9]+"
+
+# 2015-11-20, 2015-12-17
+# highlight summaries ("too long; didn't read"):
+# highlight the rest of the kine, too.
+  color body black brightwhite "tl;?dr:.*"
+
+# 2015-11-20, 2015-11-27, 2017-10-05
+# possible domain names:
+# 123.de  foo.com  blah.org  guckes.net
+  color body black brightwhite '\<([-.a-z0-9])+[.](at|com|de|eu|net|org)\>'
+# 2017-01-25 new TLDs
+  # color body brightmagenta default '\<([-.a-z0-9])+[.]works'
+
+# 2015-11-20
+# perl words: foo::bar::baz
+  color body black brightwhite '\<([a-z]+::)+[a-z]+\>'
+
+# 2015-11-20
+# "tor (exit) node(s)"
+  color body black brightwhite 'tor (exit)? nodes?'
+
+# 2015-11-20
+  color body black brightwhite '\<(apache|wordpress)\>'
+
+# 2015-11-20, 2016-01-16, 2017-07-09, 2017-07-26
+# arrows
+# examples: "->" "--->"
+  color body brightyellow default '(<-+|<=+|=+>|-+>)'
+
+# 2015-11-20
+# enumerating with letters
+# example:  (a) (b) (c) ..
+  color body brightyellow default '\([a-z]\)'
+
+# 2015-11-21
+# lines with topic
+# "[let's talk about ...]"
+  color body brightyellow blue '^\[.*\]$'
+
+# 2015-11-21
+# wann/wer/wo - fuer termine.
+# example:
+# wann: morgen
+# wer:  alle
+# wo:   adresse
+  color body black white '^(wann|wer|wo):'
+
+# 2015-11-26, 2016-02-21, 2016-03-01
+# example:   "IPv4"  "IPv6" "ip4" "ip6" "v4" "v6"
+  color body brightyellow blue '\<ipv?(4|6)\>'
+  color body brightyellow blue '\<v(4|6)\>'
+
+# 2015-11-26
+# manuals!
+# example: screen(1)
+  color body brightyellow blue '[a-z]+[(][0-7][)]'
+
+# 2015-11-26, 2016-01-27, 2017-09-12
+# Binnen-I   "Aktivist.innen"  "Kunstler*innen"  "Student_innen"
+  color body brightgreen default '[-a-zÃ¤Ã¶Ã¼ÃŸ]+[._*]innen'
+
+# 2016-01-19
+# das Binnen-I o_O
+  color body white green   'Innen\>'
+
+# 2017-06-18
+# politisch korrekte worte (oder so)
+# examples: "jede*r" "er*sie"
+  color body brightgreen default '[a-zÃ¤Ã¶Ã¼ÃŸ]+[._*][a-zÃ¤Ã¶Ã¼ÃŸ]+'
+
+# 2015-11-26, 2015-11-27, 2016-02-22
+# companies, products, programs
+  # phone companies in DE
+  color body black brightgreen '\<(e-?plus|o2|telef[oÃ³]nica|telekom|vodacom|vodafone)\>'
+  # phone manufacturers
+  color body default brightgreen '\<(blackberry|ericsson|motorola|nokia|iphone|samsung)\>'
+  # laptop brands
+  color body black brightgreen '\<(asus|intel|thinkpad)\>'
+  # this&that
+  color body black brightgreen '\<(akamai|cloudfront|limewire)\>'
+  # well-known companies and services
+  color body black brightgreen '\<(amazon|apple|dell|dropbox|ebay|evernote|facebook|google( ?drive)?|hewlett ?packard|instagram|lenovo|microsoft|netflix|slack|symantec|twitter|youtube|whatsapp|wikipedia)\>'
+# 2016-10-02, 2016-12-28, 2017-01-30
+# messengers
+  color body black brightgreen '\<(chatsecure|facebook ?messenger|google ?hangouts|signal|skype|telegram|threema|whatsapp|wire)\>'
+  color body black brightgreen '\<(bitmessage|protonmail|ricochet|tutanota)\>'
+
+# encryption
+  color body black brightgreen '\<(wep|wpa([12])?|wps)\>'
+
+# 2015-11-27,2015-12-21,2016-01-02,2016-01-17,2016-03-02,
+# 2016-05-02,2016-08-08,2016-12-09,2016-12-11,2017-01-15
+# programs
+# - GNU Tools
+# color body brightgreen default '\\<(cp|dd|grep|iw|ls|mkdir|mv|rm|rmdir|wc)\\>'
+# two-letter commands - now with word boundaries around each one of them.
+# color body brightgreen default  '\<(cp|dd|iw|ls|mv|rm|wc)\>'
+  color body brightgreen default  '(\<cp\>|\<dd\>|\<iw\>|\<ls\>|\<mv\>|\<rm\>|\<wc\>)'
+# color body brightgreen default  '\<(grep|mkdir|rmdir)\>'
+  color body brightgreen default  '(\<grep\>|\<mkdir\>|\<rmdir\>)'
+# - monitoring
+# color body brightgreen default '\\<(htop|mtr|pstree|tree|top)\\>'
+  color body brightgreen default  '\<(htop|iperf|iwlist|mtr|nslookup|ping|pstree|tree|top|tracert|traceroute)\>'
+#
+# - interactive programs
+# 2016-08-10, 2016-09-06, 2016-09-07, 2016-09-23, 2017-02-13, 2017-06-05, 2017-06-11, 2017-07-23
+  color body brightgreen default '\<(awk|ctags|elinks|gcc|g(nu)?pg|irssi|less|notmuch)\>'
+  color body brightgreen default '\<(sed|(open)?ssh(-agent)?|tmux|wget|zsh)\>'
+  color body       green default '\<(bash|chmod|lxqt|rsync|systemd)\>'
+  color body brightred   default '\<neo(mutt|vim)\>'
+  color body brightcyan  default '\<crosspoint|kmail|pine\>'
+# editors
+  color body brightgreen default '\<(eclipse|x?emacs|geanie|gedit|joe|jove|kate|kile|kwrite|lyx|mc(edit)?|nano|nedit|(neo)?vim|vi|xedit)\>'
+# - graphic libraries and window managers:
+  color body brightgreen default '\<(cinnamon|gnome|kde|i3|lxde|mate|openbox|xfce)\>'
+  color body white red '\<(fluxbox|gnome|gtk[0-9]?|i3|icewm|kde|lxde|qt[45]|wayland|xfce|x11)\>'
+#
+# 2016-02-09, 2016-03-01
+# protocols
+  color body brightgreen default '\<(dns|ftp|https?|imaps?|ntp|pops?|voip)\>'
+# 2016-09-23
+# process terms: standard input, output, and error
+  color body brightgreen default '\<std(in|out|err)\>'
+# 2017-05-30
+# modules:
+  color body brightgreen default '(insmod|lsmod|modinfo|modprobe|rmmod)'
+# 2017-05-30
+# music..
+  color body brightgreen default '(alsamixer|cdparanoia|mplayer|pulseaudio)'
+
+# 2016-03-01
+# OSI layers:
+# (1) Physical, (2) Link, (3) Network, (4) Transport,
+# (5) Session,  (6) Presentation, (7) Application.
+  color body brightgreen default '\<layer[- ]?[1-7]\>'
+
+# 2015-12-04
+# projects
+# color body black brightgreen '\<(freifunk|letsencrypt|qubes|tails|tor)\>'
+  color body black brightgreen \
+'\<(freifunk|k9mail|letsencrypt|openkeychain|qubes|tails|thunderbird)\>'
+
+# 2015-11-26
+# extracting german nouns from the message:
+# "grep -o '\<[A-ZÃ„Ã–Ãœ][^ ]*\>' | sort -u | less -r"
+
+# 2015-11-27, 2016-01-20
+# abgekuerzte floskeln | german abbreviated phrases:
+# d.h.    = "das heiÃŸt"
+# e.V.    = "eingetragener Verein"
+# i.e.    = "ita est"
+# i.d.R.  = "in der regel"
+# m.E.    = "meines erachtens"
+# mMn     = "meiner meinung nach"
+# u.U.    = "unter UmstÃ¤nden"
+# z.B.    = "zum Beispiel"
+  # color body brightwhite   default  \
+# '(d[.]h[.]|e[.]v[.]|i[.]d[.]r[.]|m[.]e[.]|m[.]m[.]n[.]|u[.]u[.]|z[.] ?b[.])'
+
+# 2015-11-27
+# ISBNs
+# examples: 978-3-937514-59-8 978-3-941841-32-1
+  color body black white '978[-0-9X]+'
+
+# ----------------------------------------------------------------------
+# PHONE
+# ----------------------------------------------------------------------
+
+# 2015-11-28, 2015-11-30, 2016-01-26
+# cellphone numbers
+# start with "01" then "567" and then digits with possible
+# brackets, dots, dashes+slashes - ending in a digit.
+# require a minimum length of seven characters (digits) after prefix.
+# color body black white '([01][567])[-0-9()/.]{7,}[0-9]'
+# 2017-06-23
+# adding a possible prefix of "+49", and space:
+  # color body black magenta '(\+49)?01[567][-0-9()/. ]{7,}[0-9]'
+# 
+# table:
+# D1: 0160 0170 0171 0175 UMTS 0151
+# D2: 0162 0172 0173 0174 UMTS 01520 01521
+# E+: 0163 0177 0178 0155 UMTS 01570 01577 01575
+# O2:      0176 0179      UMTS 0159
+# 015[1,2[01],5,7[057],9] 016-[023] 017[012345678]
+
+# 2016-01-29, 2017-06-11
+# berlin telephone numbers
+# example: "+49 30 1234.5678-0"
+  color body brightcyan default '([+]49|0049)?0?30[- ]*[-0-9.]+'
+#
+# 2017-06-01
+# example: "+49 (0) 1234.5678-0"
+# color body brightcyan default '([+]49|0049) ?\(0\)[-0-9. ]+'
+# 2017-07-05 add dashes:
+  color body brightcyan default '([+]49|0049)[- ]*\(0\)[-0-9. ]+'
+# 2017-07-12
+# some other numbers in germany
+# example: "+49.123.456.780"
+  # color body brightmagenta default '([+]49|0049)[- .]*[-0-9. ]+'
+
+# ----------------------------------------------------------------------
+
+# 2015-12-04
+# check boxes and trademarks
+# example:  "[x]" "[tm]"
+  color body brightyellow default '\[x\]'
+  color body brightyellow default '\[tm\]'
+
+# 2015-12-04, 2017-06-29, 2017-08-17
+# paragraph signs with numbers (digits+dots)
+# followed by an optional section (absatz):
+# example: "Â§9.5"  "Â§Â§ 23"  "Â§1.2.3 abs. 4"
+# color body brightyellow default   'Â§[0-9.]+( *abs[.]? *[0-9])?'
+  # color body brightwhite magenta 'Â§+ *[0-9.]+( *abs[.]? *[0-9])?'
+
+# 2016-01-19
+# paragraphs of law
+# color body white green   'Â§ ?[0-9]*'
+
+# 2015-12-05
+# dir  in $HOME directory
+  color body brightred    default '~/[^ ]+/'
+# example: ~/.vim/
+# file in $HOME directory
+# example: ~/.vimrc
+  color body brightgreen  default '~/[^ ]+'
+
+# 2015-12-06
+# "Code of Conduct" aka "CoC"
+  color body brightred    default '\<CoC\>'
+
+# 2015-12-06
+# messages from GnuPG:
+# "gpg: "
+  color body brightred    default '^gpg:'
+
+# 2015-11-03
+# words in brackets
+# example: "(foo)"
+# color body brightred default '\([^ ]+\)'
+#
+# 2015-12-09, 2017-06-23
+# words in square brackets
+# example: "[foo]" "(foo)"
+# color body brightgreen default '\[[^ ]+\]'
+# color body brightgreen default '\([^ ]+\)'
+  #
+  color body brightgreen default '\[[^]]+\]'
+  color body brightgreen default '\([^)]+\)'
+# example: "(P)ersonal (I)ntegrated (C)ircuit"
+#
+# 2015-12-17
+# up to five words in brackets
+# color body brightgreen default '\(([^ ]+ ?){,5}\)'
+
+# 2015-12-11
+# GATTACA!
+  color body brightgreen default '[ACGT]\{4,\}'
+
+# 2015-12-15
+# "Koordinaten N 51Â° 07.961â€² E 006Â° 25.103â€²"
+  color body brightgreen default '([ENSW] *[0-9]+Â° *[0-9.]+â€² *)+'
+
+# 2015-12-15, 2015-12-30, 2016-01-08, 2017-02-05
+# filenames
+  # color body brightmagenta default \
+'[-+~_.a-z0-9/]+[.](c|h|o|in|sh|deb|exe|mp4|pl|pdb|pdf|pro|vim|xpm)\>'
+# 2015-11-10
+# MP4 files
+# color body green default "[^ 	]+.mp4"
+#
+# 2017-08-17
+# filenames of picture files
+  color body brightred     default '[-+~_.a-z0-9/]+[.](bmp|gif|jpe?g|png)\>'
+
+# 2015-12-17, 2016-01-20, 2016-01-28, 2016-01-30
+# MAILLIST WIRELESS
+# AirOS, BATMAN, fli4l, gluon, kathleen, eaptls.  iw, ip a.  RX TX RZ VRs. QoS.
+# (a)symmetrisch, layer[1-7], nanobeam, vpn03[abcd]. MikroTiks
+# ethernet, internet-zugang, leitung, mitnutzung, telefonkabel, telefonanlage
+# areas in berlin: erkner, friedrichshagen..
+#
+# Ubiquiti RouterStation Pro
+# https://wiki.openwrt.org/toh/ubiquiti/routerstation.pro
+# http://www.ubnt.com/wiki/index.php?title=RouterStation_Pro 404!
+# https://www.ubnt.com/search/?q=ubiquiti
+#
+# hardware
+# D-Link DIR-505, GL.iNet 6416A, Nexx WT3020h, TP-Link, TL-SG1008PE, TPlink WR1043v2, wr841nd, CPE510
+# bananaPi olsrd[0-9]? raspian RPi RasPis
+  color body brightyellow default '\<(banana ?pi|nano(beam|bridge|station)|raspberry( pi)?( zero)?|ras?pis?)\>'
+  color body brightyellow default '\<(fritz(.box)|gl.inet|huawei|linksys|nexx|nsm5|tp ?link|ubiquiti)\>'
+  color body brightyellow default '\<(cpe510|dlink)\>'
+  color body brightyellow default '\<((tl|tp)(link)?)\>'
+  color body brightyellow default '(wdr|wr|wrt)(841|842|1043|2600|3500|3600|4300|4900)[dn]?( *v[0-9]([.][0-9])?)?'
+# general net topology:
+# open word end to allow for plurals and other word extensions
+  color body brightyellow default \
+'\<(access.?point|backbone|bridge|gateways?|knoten|mesh|nodes?|powerline|router|subnetz|switch|uplink)'
+# systems:
+  color body brightgreen  default '(airos|kathleen|openwrt|olsrd?|raspbian|ubiquity)s?'
+# protocols:
+  color body brightyellow default '802.11[abcgns]+'
+  color body brightyellow default '802.3[af]+'
+# programs:
+  color body brightgreen  default '\<(collectd|cron|dmesg|dnsmasq|iftop|imonc|iwconfig|iwinfo|netmon|ppp|tcpdump|vnstat|wireshark)\>'
+# frequent words:
+  color body brightyellow default '\<(bandbreite|beacon|client|cronjob|download|firmware|freifunk|fresnel(zone)|funkfeuer|interface|traffic|upload|upstream|wireless)\>'
+  color body brightgreen  default '\<(ap|cat5(-kabel)?|dhcp|dsl|gre|ip|lan|mac|mesh|nat(44|66)|openvpn|poe|pptp|qos|ssid|tcp|vpn(03)?[abcd]?|vlan|wan|wifi|wlan)s?\>'
+# standorte:
+  # color body brightwhite default \
+# '(alt.moabit|rollbergkiez|segenskirche|st. simeon kirche|zoofenster|zwingli)'
+  # color body brightwhite default '\<(beuth|christophorus|emma|gszm|rhxb|segen|scherer ?8|tub)\>'
+# kanÃ¤le
+  color body brightgreen default 'kanal *[0-9]+'
+
+# 2015-12-21
+# she-bang!
+  # color body brightmagenta default '#!/bin/sh'
+
+# 2015-12-30
+  color body brightred default 'Sent from a mobile device'
+# 2016-01-02, 2016-06-16
+  color body brightred default 'Sent with my iPhone'
+  color body brightred default 'Sent from my iPhone'
+# 2016-01-03
+  color body brightred default 'Sent from my iPad'
+# 2016-01-24
+  color body brightred default 'Sent from Outlook Mail for Windows 10 phone'
+# 2016-02-26
+  color body brightred default 'Gesendet von meinem BlackBerry 10-Smartphone'
+# 2016-03-07
+  color body brightred default 'Gesendet von iMutt auf meinem iPad Pro'
+# 2016-01-14
+  color body brightred default 'Von meinem Samsung Galaxy Smartphone gesendet.'
+# 2017-06-12
+  color body brightred default 'Von Samsung-Tablet gesendet'
+# 2016-01-16
+  color body brightred default 'Von meinem iPhone gesendet'
+# 2016-03-05
+  color body brightred default 'Von meinem Samsung GerÃ¤t gesendet.'
+# 2016-07-03
+  color body brightred default 'Von meinem iPad gesendet'
+# 2017-06-12
+# "Von (meinem) XYZ gesendet."
+
+# 2016-01-02
+  color body brightyellow  default '(ctrl|ctl|shift)-[]_?@a-z\^]'
+
+# 2016-01-16
+# hash algorithms
+  color body brightred default '(md5|sha(1|224|256|384|512))(sum)?'
+
+# 2016-01-17
+# number ranges with comma between numbers
+# example: 23,42  0815,4711
+  color body brightred default '[0-9]+,[0-9]+'
+# needs word boundaries?
+
+# 2016-01-17
+# code reserved words
+# using background color "green" for faster testing.
+# revert to "default" later.
+  # preprocessor
+  color body white green '#(if|ifdef|else|endif)\>'
+#
+# All of the following words are "too normal".
+# had to comment them.
+#
+  # branches with case and if/then/else/
+# color body white green '\<(break|case|done|fi|if|then|else|endif)\>'
+# too many hits in normal text
+  # loops
+# color body white green '\<(for|goto|return|while)\>'
+# too many hits in normal text
+#
+  # types
+# color body white green '\<(char|char_u|int|long|static|unsigned|void)\>'
+  # testing
+# color body white green '\<(catch|try|endtry)\>'
+  # VimL commands
+# color body white green '\<(close|exe|(end)?func|let)\>'
+
+# 2016-01-17
+# example:  bar++  ++foo
+  color body white green     '[a-z][-_a-z0-9]+\+\+'
+  color body white green '\+\+[a-z][-_a-z0-9]+'
+
+# 2016-01-17
+# time offsets
+# example: "+0100"
+  color body white green   '[+][0-9]{4}'
+
+# 2016-01-17, 2016-01-27
+# words with apostrophe - with "not"
+# example: can't don't
+  # color body brightwhite default "(are|ca|did|do|does|is|should|wo|would)n['â€™]t"
+#
+# words with apostrophe
+# example: i'd i'm it'd it'll you've we're
+  # color body brightwhite default "[a-z]+['â€™](d|ll|m|re|s|ve)\\>"
+#
+# some more to catch, maybe: e'er fo'c'sle ma'am ne'er o'clock o'er y'all
+
+# 2016-01-19
+# Content-Type: text/plain; charset=ISO-8859-1; format=flowed; delsp=yes
+# Content-Transfer-Encoding: base64
+# Content-Type: application/pdf; name="..."
+# Content-Disposition: attachment; filename="..."
+# Content-Transfer-Encoding: base64
+  color body black white   '(base64|text/plain)'
+  color body black white   '(charset=(iso-8859-1|utf-8)?|(file)?name=|format=flowed|delsp)'
+# charset=iso-8859-1
+# charset=UTF-8
+
+# 2016-01-19
+# "to be announced" -> "tba" or "t.b.a"
+  color body white green   '\<(tba|t[.]b[.]a[.]?)\>'
+# just using dots will match in "nichT BrAuchen" ;)
+# and without word borders it is found in "unretTBAr"
+
+# 2016-01-22
+# just a long-dash (8212) surrounded by spaces
+  color body white default ' â€” '
+
+# 2016-01-24
+# some more software..
+  color body white default '(labview|matlab|scilab)'
+
+# 2016-01-25
+# trailing whitespace
+# only slightly visible:
+# color body white default ' +$'
+# *very* visible:
+  # color body white brightwhite ' +$'
+
+# 2016-01-25, 2016-12-12, 2017-06-11, 2017-06-14
+# typos
+  color body white red '\<(maschiene|promt|sammstag|teh)\>'
+
+# 2016-01-25
+# copyright, trademark & co
+  color body brightyellow default '(Â©|â„¢)'
+
+# 2016-01-27,2016-06-22
+# country names in europe
+#
+  color body brightcyan default \
+  '(austria|belgium|bulgaria|croatia|cyprus|czech.republic|denmark|estonia|finland|france|germany|great *britain|greece|hungary|ireland|italy|latvia|lithuania|luxembourg|malta|(the *)?netherlands|poland|portugal|romania|slovakia|slovenia|spain|sweden|switzerland|united *kingdom)'
+# 2016-02-08,2016-06-22
+  color body brightcyan default \
+'(belgien|bulgarien|dÃ¤nemark|deutschland|estland|finnland|frankreich|griechenland|grossbritannien|irland|italien|kraotien|lettland|liechtenstein|litauen|luxemburg|malta|niederlande|(oe|Ã¶)sterreich|norwegen|polen|portugal|rumÃ¤nien|schweden|schweiz|slovakei|slowenien|spanien|tschechien|tschechische.republik|ungarn|zypern)'
+
+# 2016-02-03
+  color body brightyellow default 'Wir freuen uns, Ihnen mitteilen zu kÃ¶nnen'
+
+# PROBLEM
+# /foo/bar/baz - an alternative or dir+file?
+
+# 2016-02-18
+## color body black brightwhite '^ *_.*_*$'
+## color body black brightwhite '^ *[*].*[*]*$'
+
+# 2016-02-20, 2017-03-09
+# event - and their "call for whatever"
+  color body black brightwhite 'call for (lecture|maker|paper|talk|workshop)s?'
+
+# 2016-02-21, 2017-06-14
+# "23" and "42"
+# color body brightyellow blue  '(\<23|42)\>'
+# color body brightyellow blue  '(\<23\>|\<42\>)'
+
+# 2016-02-21, 2016-02-29
+# time measurements
+# example:
+# real    0m42.235s
+# user    0m52.719s
+# sys     0m2.342s
+  color body black white '[0-9]m[0-9]+[.][0-9.]+s'
+
+# 2016-02-21
+# timings
+# seq=0 ttl=49 time=119.672
+  color body black white '(seq|ttl|time)=[0-9.]+'
+
+# 2016-02-21
+# superscripts and rationals
+  color body brightyellow default '[Â¹Â²Â³Â¼Â½]'
+
+# 2016-02-24
+# RFCs
+# example: RFC822  RFC 2822
+  color body brightgreen  default 'rfc ?[0-9]+'
+
+# 2016-03-02
+  color body brightgreen  default '\<(firewire|sata|usb)\>'
+  color body brightgreen  default '\<howto\>'
+
+# 2016-03-09
+# "quoted" lines:
+  color body brightgreen  default '^â”ƒ .*'
+
+# 2016-03-18
+# Usenet Newsgroup names
+# examples: news:gmane.mail.mutt.devel news:gmane.mail.mutt.user
+  color body brightgreen  default 'news:[a-z.]+\>'
+
+# 2016-04-02
+# GLT absage/zusage
+  # color body brightyellow magenta 'diesmal leider nicht'
+  color body brightyellow blue    'in das Programm.*geschafft hat'
+
+# 2016-04-08
+# umlauts
+# Ã¤ = ÃƒÂ¤
+# Ã¶ = ÃƒÂ¶
+# Ã¼ = ÃƒÂ¼
+  color body brightyellow blue    '(ÃƒÂ¤|ÃƒÂ¶|ÃƒÂ¼)'
+
+# 2016-05-02 TeX+LaTeX
+  color body brightyellow default '(La)?TeX'
+
+# 2016-06-03
+# kilobyte numbers
+# example: 0.1K 2.3K 42K
+# color body brightyellow blue  '[0-9]+\.[0-9]+K'
+  color body brightyellow blue  '[0-9]+\.[0-9]K'
+
+# 2016-06-03
+# "Re:"
+  color body brightred    default 'Re:'
+
+# 2016-06-28, 2017-05-24
+  color body brightred    default   'seite *[0-9]+'
+# color body brightred    default    's[.] *[0-9]+'
+  color body brightred    default  '\<s[.] *[0-9]+'
+
+# 2016-08-14, 2016-12-06
+# compile options
+# examples: +CRYPT_BACKEND_CLASSIC_PGP -SUN_ATTACHMENT
+  color body green        default '\+[A-Z_]+\>'
+  color body red          default  '-[A-Z_]+\>'
+#
+# 2017-06-30
+# Configure options
+# examples: '--prefix=/usr' '--enable-pop' '--enable-sidebar'
+# '--enable-nntp' '--enable-dotlock' '--enable-notmuch'
+  # color body magenta      default '--[-a-z]+'
+# examples:  +attach_headers_color +bkgdset +color +compose_to_sender +compress +cond_date
+  color body brightred    default '[-][_a-z]+'
+  color body green        default '[+][_a-z]+'
+
+# 2016-08-14
+# "prefix" in configure options
+  # color body magenta   default     '\\\$\{prefix\}'
+# example: '--includedir=\${prefix}/include'
+
+# 2016-08-18
+# git hex numbers
+  color body brightyellow blue  '\<[0-9a-f]{7}\>'
+
+# 2016-08-24, 2017-05-21, 2017-09-30
+# emphasized words
+# example:  *this* **that**
+  color body brightyellow default    '[*][-_a-z0-9]+[*]'
+  color body brightred    default '[*][*][-_a-z0-9]+[*][*]'
+
+# 2016-01-19
+# "headers"
+# example: "**VorlÃ¤ufige Termine**"
+# color body white green   '^[*][*].*[*][*] *$'
+# '.*' is *too* greedy!
+# using "[^*]*" now:
+  color body white green   '^[*][*][^*]*[*][*] *$'
+
+# 2016-10-06, 2017-06-14, 2017-07-04, 2017-09-30
+# emphasized words - two words
+# example:  "*firstname lastname*"  "*1. Oktober*"
+# color body yellow default '[*][-_.a-z0-9]+ +[-_.a-z0-9]+[*]'
+# color body yellow default '[*][^*]+ +[^*]+[*]'
+# color body yellow default '[*]\<[^*]+ +[^*]+\>[*]'
+# disallow spaces,too:
+  color body yellow default '[*]\<[^* ]+ +[^* ]+\>[*]'
+#
+# 2017-07-04
+# doublestar environment
+# example: "**important text**"
+  color body brightyellow default '[*][*][^*]+[*][*]'
+
+# VERSIONS
+
+# 2016-01-02
+# vim commands
+# examples: ":reg" ":version"
+  color body brightyellow  default ':[a-z]+\>'
+
+# 2016-08-24, 2017-02-01
+# library names - possible followed by version numbers
+# examples: libgnutls26 libidn11 libncursesw5
+  # color body magenta default 'lib[-a-z0-9]+[0-9]'
+
+# 2017-02-01
+# "program-version"
+# examples: "libressl-2.5.0" "openssl-1.1.0c" "firefox 45.6.0"
+# color body brightmagenta default '\<[a-z][-a-z0-9]+[- ][0-9]([-0-9.]*[a-z]?)?'
+# 2017-03-31 too many false positives
+# 2017-06-25 try again only with compound names,
+# ie without spaces between program and version:
+  # color body brightmagenta default '\<[a-z][a-z0-9]+[-/]([0-9][.]+){2}[0-9]+([-][0-9])?'
+# examples:  "mutt/1.7.0-4" "mutt-1.8.0-1"
+
+# 2017-06-25
+# version numbers . without program names
+# examples:  "0.0.0"  "1.2.3"  "42.23.5"   "1.7.0-4" "1.8.0-1"
+  # color body brightmagenta white   '([0-9][.]+){2}[0-9]+([-][0-9])?'
+
+# 2017-06-26
+# examples:  3.3.8-6+deb8u4  1.12.1+dfsg-19+deb8u2  5.9+20140913-1+b1
+#            2.1.27~101-g0780600+dfsg-3
+# color body brightmagenta yellow  '([0-9][.]+){2}[0-9]+([-+][0-9a-z]+)+'
+  # color body brightmagenta default   '[0-9]([.][0-9])+[0-9]*([-+~.][0-9a-z]+)+'
+
+# 2016-08-26, 2016-09-10, 2016-09-11
+# popular drinks
+  # color body magenta default '\<(club[- ]?mate|coffee|tea)\>'
+
+# 2016-09-01, 2016-11-22, 2016-11-24, 2017-02-07
+# cryptoparty!
+# color body magenta default 'cryp[^ ]+'
+  # color body brightmagenta default 'crypto *(advent|engel|party|parties)'
+
+# 2016-09-02
+  color body brightred      default '^[^ ]+[.]diff'
+  # color body magenta        default '^[^ ]+[.]patch'
+  color body brightyellow   default  '[^ ]+[.]tar[.]gz'
+#
+  color body       yellow   default  '[^ ]+[.]tar[.]xz'
+  color body       green    default  '[^ ]+[.]dsc'
+# 2017-12-16
+  color body brightblue     default  '[^ ]+[.]buildinfo'
+# examples:
+# mutt_1.7.0-1.dsc
+# mutt_1.7.0.orig.tar.gz
+# mutt_1.7.0-1.debian.tar.xz
+
+# 2016-09-02  TODO add colors for "ii" and "pn"
+# Versions of packages mutt is related to:
+# ii  mutt                   1.5.20-9+squeeze1 text-based mailreader supporting M
+# pn  mutt-dbg               <none>            (no description available)
+# pn  mutt-patched           <none>            (no description available)
+
+# 2016-09-02
+  color body  brightred     default  \
+  '\<(buzz|rex|bo|hamm|slink|potato|woody|sarge|etch|lenny|squeeze|wheezy|jessie)\>'
+  color body  brightred     default  \
+  '\<(experimental|oldstable|stable|testing|unreleased|unstable|unstable-debug)\>'
+# architectures:
+  color body  brightred     default  '\<(i386|amd64|arm64|m68k)\>'
+
+# 2016-09-23
+# hashtags!
+# examples:   #freesoftware #opensource #vim
+  # color body  brightyellow  magenta  '#\<[a-z0-9]+\>'
+
+# 2016-09-27
+# LPD-DE:     YEAR.1 and YEAR.2
+# examples:   2016.2 2017.1
+# color body  brightyellow  magenta  '201[0-9][.][12]'
+# ^- matches: "Gluon v2017.1.1"
+# lesseon learned - yet again: use word boundaries!
+  # color body  brightyellow  magenta  '\<201[0-9][.][12]\>'
+
+# 2016-10-25, 2017-07-07, 2017-10-05
+# examples: "cyber, cybeeeerrrr!"  cyberangriff cyberkriminalitÃ¤t
+  # color body  brightyellow  magenta  'cybe+r+'
+  color body         black  magenta  'cyber[a-z]+'
+  color body         black  magenta  'cyber ?(security)'
+
+# 2016-11-01
+# sed commands
+  # color body  brightyellow  magenta  '\{[bdDgGhnHNpqx;!=]+\}'
+
+# 2016-11-15
+# 33C3 cfp admission/rejections
+  color body black brightyellow "your submission did not make it"
+
+# 2016-11-20
+# number at the end of the line
+  # color body magenta default '[0-9][.][0-9]+\([0-9]+|[^ ]+\)?-[0-9]+$'
+
+# 2016-11-22, 2017-04-12, 2017-06-22
+# simple version numbers
+# example: 0.8.15 1.2.3 4.7.11 "GnuPG v1.4.10"  v.1.2.3  "(Gluon) v2017.1.1"
+# color body brightmagenta default '\<v[.]?[0-9][0-9]?[.][0-9][.][0-9]+'
+# make every "digit" a "number":
+  # color body brightmagenta default '\<v[.]?[0-9]+[.][0-9]+[.][0-9]+'
+
+# 2016-11-22
+# LXDE project: program names
+  # color body brightyellow magenta 'lx(app|button|clipboard|input|launcher|lock|panel|polkit|session|shortcut|term)'
+
+# 2016-11-22
+# geo coordinates for berlin
+# example: 52.52 13.37
+  # color body brightyellow magenta '(13|52)[.][0-9]+'
+
+# 2016-11-23
+# "border lines"
+# at least 29 hashes:
+  # color body brightyellow magenta '#{29,}'
+# 2017-07-05
+# "â€” â€” â€” â€” â€” â€” â€” â€” â€”"
+# color body brightyellow magenta '\(â€” \){5,}'
+# ^- this doesnt work.  hmm..
+# just as a string - works!:
+# color body brightmagenta white  "â€” â€” â€” â€” â€” â€” â€” â€” â€”"
+# this works, too:
+  # color body brightyellow magenta '^[â€” ]{5,}$'
+
+# 2016-11-23
+# dates in (NN/)mon/201x
+# examples: "23/Nov/2016"  "Jun/2017"
+  color body brightwhite red "([0-3][0-9]/)?(jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)/201[0-9]"
+
+# 2016-11-23
+# possible error http/s with only one following slash
+  color body white red 'https?:/[^/]'
+
+# 2016-11-25, 2016-12-12
+# examples: "32c3 "33C3" "34c3"
+  # color body white magenta '3[0-4]c3'
+# examples: "tl,dr" "TL;DR"
+  # color body magenta white 'tl.dr'
+
+# 2016-11-25
+# ping hops
+# example:
+# 5  * * *
+# 6  * * *
+# 7  * * *
+  # color body brightyellow magenta '[0-9]+ *[*] [*] [*]'
+
+# 2016-11-26
+# gpg output of checking the trustDB
+# example:
+# "gpg: depth: 2  valid: 860  signed: 1190  trust: 643-, 178q, 0n, 35m, 4f, 0u"
+  # color body brightyellow magenta  'trust: *[0-9]+-, [0-9]+q, [0-9]+n, [0-9]+m, [0-9]+f, [0-9]+u'
+  color body brightyellow blue     'depth: *[0-9]+'
+  color body brightyellow red      'valid: *[0-9]+'
+  color body brightyellow yellow  'signed: *[0-9]+'
+
+# 2016-11-27
+# example:  <--- this is! ;-)
+  color body green default  '^# examples?:'
+
+# 2016-11-28, 2017-01-10, 2017-09-17
+# services
+  color body green default  '(hkp|web|mail) *server'
+  color body green default  'web(seite|site|server|space)'
+  color body green default  '(batman|datenbank|webmail)'
+# 2015-12-04
+  color body brightgreen default '[-a-z0-9]+[.](funk|olsr)'
+
+# 2016-11-28
+  color body green default  '(bus|straÃŸenbahn|tram) *m?[0-9]+'
+  color body green default  '\<u[1-9]\>'
+
+# 2016-11-28
+  color body brightyellow default 'free *and *open ?source'
+
+# 2016-11-29
+# typos!
+  color body brightred    default '(maschiene|vorraus)'
+
+# 2016-12-05,2016-12-11
+# ordinals:
+# example:  1st 2nd 3rd 4th 5th 6th 7th 8th 9th
+# color body brightred    default '(1st|2nd|3rd|[4-9]th)'
+#
+# example:  1st 2nd 23rd 42nd 67th 99th
+  color body brightred    default '([2-9]?(1st|2nd|3rd)|[1-9]?[4-9]th)'
+
+# 2016-12-05
+# monitor pixel sizes
+# 640x480, 1024x768, 1600x1200; 1080
+  color body brightred    default '(480|640|768|1024|1080|1200|1600|1920)'
+
+# 2016-12-07
+# country codes
+# example: "DE" "FR"
+  color body brightred default '\<(DE|EU|FR|UK)\>'
+
+# 2016-12-07
+# examples:  "usb2" "usb 3.0"
+  color body brightred default '\<usb ?(2|3)(.0)?'
+
+# 2016-12-08
+# years from 1950 to 2019
+  color body black yellow    '\<(19[5-9][0-9]|2[01][0-9])\>'
+
+# 2016-12-08
+# approval indicated by "plus 1" aka "me, too"
+  color body black yellow    '\+1'
+
+# 2016-12-09
+# https://de.wikipedia.org/wiki/Umsatzsteuer-Identifikationsnummer#Aufbau_der_Identifikationsnummer
+# "USt-IdNr." Umsatzsteuer-Identifikationsnummer
+# DE999999999   Block mit 9 Ziffern
+# example:  123/456/12345
+  color body black yellow    '[0-9]{3}/[0-9]{3}/[0-9]{5,}'
+
+# 2016-12-09
+# Vereinsregisternummern
+# example: "VR 201371" (OpenLab Augsburg)
+  color body black yellow    'VR [0-9]+'
+
+# 2016-12-09
+# phone numbers in germany
+# 0160 0170 0171 0175 0151
+# 0162 0172 0173 0174 01520 01521
+# 0163 0177 0178 0155 01570 01577 01575
+#      0176 0179      0159
+  color body brightgreen default '0(15[12579]|16[023]|17[01236789])[- ][0-9]+'
+
+# 2016-12-09, 2017-02-14
+# PGP DATA - 64 characters in a line,
+# 64th byte might be an equal sign:
+  color body brightyellow red    '^[a-zA-Z0-9+\/]{64}$'
+# line ends with at least one equal-sign:
+  color body brightyellow red    '^[a-zA-Z0-9+\/]{1,63}=+$'
+# the has at the end
+  color body brightgreen  default  '^=[a-zA-Z0-9+\/]{4}$'
+
+# 2016-12-10, 2016-12-22, 2017-01-06
+# irssi commands
+# commands during operation:
+  color body brightyellow blue \
+'/(connect|(un)?ignore|join|lastlog|msg|names|nick|query|(rm)?recon|save|set|whois|window)'
+# commands for setup:
+  color body brightyellow blue \
+'/(alias|bind|help|hilight|nick|notify|save|script|server)'
+#
+# Irssi commands:
+# accept     die         knock    notice    sconnect   unload
+# action     disconnect  knockout notify    script     unnotify
+# admin      echo        lastlog  op        scrollback unquery
+# alias      eval        layout   oper      server     unsilence
+# away       exec        links    part      servlist   upgrade
+# ban        flushbuffer list     ping      set        uptime
+# beep       foreach     load     query     sethost    userhost
+# bind       format      log      quit      silence    ver
+# cat        hash        lusers   quote     squery     version
+# cd         help        map      rawlog    squit      voice
+# channel    hilight     me       recode    stats      wait
+# clear      ignore      mircdcc  reconnect statusbar  wall
+# completion info        mode     redraw    time       wallops
+# connect    invite      motd     rehash    toggle     who
+# ctcp       ircnet      msg      reload    topic      whois
+# cycle      ison        names    resize    trace      whowas
+# dcc        join        nctcp    restart   ts         window
+# dehilight  kick        netsplit rmreconns unalias
+# deop       kickban     network  rmrejoins unban
+# devoice    kill        nick     save      unignore
+
+# 2016-12-12
+# gdb make 
+  color body brightyellow blue '(gnu *)?hurd'
+
+# 2016-12-12
+  color body brightyellow blue '\<cfp\>'
+
+# 2016-12-12
+# markdown files
+# example: "README.md"
+  color body brightyellow blue '\<[^ ]+[.]md\>'
+
+# 2016-12-14
+# calendar and time management tools
+  color body white        blue '\<(doodle|dudle)\>'
+
+# 2016-12-14
+# examples: "die 60er jahre" "ein 16er holzbohrer"
+  color body white        blue '[0-9]+er'
+
+# 2016-12-22
+# Operating Systems for smartphones
+  color body white        blue '\<(android|cyanogen|ios)\>'
+
+# 2016-12-22
+# HTML o_O
+  color body white        blue '&([aou]uml|amp);'
+
+# 2016-12-22
+# -- Commit Summary --
+# -- File Changes --
+# -- Patch Links --
+  color body black        white '-- (commit summary|file changes|patch links) --'
+
+# 2016-12-23
+  color body black        white '\<(sasl|ssl)\>'
+
+# freifunk (aka FF): influxb, graphite, grafana, pfsense,
+  color body black        white '\<FF\>'
+
+# 2016-12-23
+# ping times.
+# numbers with 1/2/3 digits, followed by one decimal
+# examples: "4.2" "23.42" "123.4"
+  color body yellow      default '[0-9]{1}[.][0-9]'
+  color body red         default '[0-9]{2}[.][0-9]'
+  # color body magenta     default '[0-9]{3}[.][0-9]'
+
+# 2016-12-27
+# device names
+# examples: "/dev/sda1" "/dev/md2"
+  # color body magenta     default '\<(/dev/)?(sd[abcd]|md[012])\>'
+
+# 2016-12-27, 2017-06-12
+# activists
+# "BÃ¼ndnis fÃ¼r PrivatsphÃ¤re" (Leipzig)
+# "digital courage"
+# "Digitale Gesellschaft"
+# "Freiheit statt Angst"
+# "la quadrature du net"
+# "Open Knowledge Foundation"
+  # color body magenta     default \
+  # '(bÃ¼ndnis fÃ¼r privatsphÃ¤re|freiheit ?statt ?angst|digital ?courage|digitale ?gesellschaft|free ?software ?foundation( ?europe)?|la ?quadrature ?du ?net|open ?knowledge ?foundation( *deutschland)?)'
+
+# 2016-12-27
+# the alternative social networks
+  # color body magenta     default '(diasproa|friendica|gnusocial)'
+
+# 2016-12-28, 2016-12-30
+  # color body magenta     default '\<(cat|tac|sort|uniq|head|tail|ifconfig|iptables|uptime)\>'
+
+# 2016-12-30
+# kernel modules: "ip*"
+  # color body brightmagenta default \
+# '(ip6table_filter|ip6table_mangle|ip6table_raw|ip6_tables|ip6t_REJECT|ipip|iptable_filter|iptable_mangle|iptable_nat|iptable_raw|ip_tables|ipt_MASQUERADE|ipt_REJECT|ip_tunnel|ipv6)'
+# kernel modules.  "nf_*"
+  color body brightred     default \
+'(nf_conntrack|nf_conntrack_ftp|nf_conntrack_ipv4|nf_conntrack_ipv6|nf_conntrack_rtcache|nf_defrag_ipv4|nf_defrag_ipv6|nf_log_common|nf_log_ipv4|nf_log_ipv6|nf_nat|nf_nat_ftp|nf_nat_ipv4|nf_nat_masquerade_ipv4|nf_reject_ipv4|nf_reject_ipv6)'
+# kernel modules.  "xt_*"
+  color body brightyellow  default '\<(xt_comment|xt_conntrack|xt_CT|xt_id|xt_limit|xt_LOG)\>'
+  color body brightyellow  default '\<(xt_mac|xt_mark|xt_multiport|xt_nat|xt_REDIRECT)\>'
+  color body brightyellow  default '\<(xt_state|xt_TCPMSS|xt_tcpudp|xt_time|zram|zsmalloc)\>'
+  # color body magenta       default '\<(arc4|b43|b43legacy|cfg80211|compat)\>'
+  # color body magenta       default '\<(crypto_blkcipher|gpio_button_hotplug|leds_gpio)\>'
+  # color body magenta       default '\<(lz4_compress|lz4_decompress|lzo_compress|lzo_decompress)\>'
+  # color body magenta       default '\<(mac80211|tunnel4|x_tables|zram|zsmalloc)\>'
+
+# words:
+# client, internet, port, server, wiki
+# chromebook, notebook, laptop, desktop
+# root, windows, debug
+# konsole, terminal
+# raspberrypi
+# devops, opsec
+# hacking with care - HwC
+# search engines: ixquick
+
+# 2017-01-03, 2017-01-20, 2017-01-31, 2017-03-09
+# events at the metalab - and some others
+  # color body brightmagenta default \
+  # '(geekend|hackathon|key ?signing ?party|linux ?install ?party|metaday|missing *maps( ?mapathon)|netzpolitischer ?abend|show[+&]tell)'
+
+# 2017-01-10
+  # color body brightmagenta default 'telnet'
+
+# 2017-01-12, 2017-07-31
+# words with underscores inside
+# example: sasl_disconnect_on_failure
+# color body brightmagenta default '[a-z]+(_[a-z]+)+'
+  # color body brightmagenta default '[a-z0-9]+(_[a-z0-9]+)+'
+
+# 2017-01-12
+# "options", ie dash+letter
+# examples: -h -l -v -! -?
+  # color body brightmagenta default '\<-[a-z!?]\>'
+
+# 2017-01-13, 2017-05-30, 2017-06-09
+  # color body brightmagenta default '\<(gateway|iface|inet|netmask|static)\>'
+  # color body brightmagenta default '\<(br0|eth[01]|lo|localhost|loopback|wlan[01])\>'
+
+# 2017-01-15
+  color body brightyellow default \
+  '(Fenster|Marker|Puffer|Reiter|Register|Session|Suchmuster|Tabs?|Textobjekte?|VimInfo)'
+
+# 2017-01-17
+  color body brightyellow default '\<VM\>'
+
+# 2017-01-18
+  color body       white  red   '\<DM\>'
+
+# 2017-01-23
+  color body       green  default \
+'(/bin|/boot|/dev|/etc|/export|/home|/import|/lib|/lib64|/lost+found|/mnt|/nobackup|/opt|/proc|/restore|/root|/run|/sbin|/srv|/sys|/tmp|/usr|/var)'
+
+# 2017-01-24
+# some project names
+  color body brightyellow  default '(prototypefund|snap!|turtlestitch)'
+
+# 2017-01-24
+# algorithms
+  # color body brightmagenta default '(ecdsa|ed25519)'
+
+# 2017-01-25
+# colorizing the "arms" of "Â¯\_(ãƒ„)_/Â¯"
+  color body brightred     default '(\\_|_/)'
+
+# 2017-01-25
+# hex strings with dashes - at least 32 characters
+  color body brightblue    default '\<[-0-9a-f]{32,}\>'
+
+# 2017-01-25
+# north+south east+west coordinates
+# example: "N 60.37604Â° E 5.33339Â°"
+  color body brightblue    default '[NSEW] [0-9]*[.][0-9]*Â°?'
+
+# 2017-01-26
+# some windows tools
+  # color body brightmagenta default '(nutty|putty)'
+
+# 2017-01-26
+# library names
+  color body brightgreen   default '(libuv|gnulib)'
+
+# 2017-01-26
+# projects: CmS = Chaos macht Schule
+  # color body brightyellow  magenta '\<CmS\>'
+
+# 2017-01-29, 2017-02-04
+  # color body brightyellow  magenta '\<(coverity|doxygen|travis|ubsan|valgrind)\>'
+
+# 2017-01-29, 2017-01-31
+# neomutt waffle
+# color body brightmagenta default \
+# '\<(bug|cc|date|disposition|enc|encoding|from|high|id|is|label|low|mailto|milestone|needs|no|organization|references|sender|state|status|subject|tag|to|type|version)\>:
+# deleted "from", "in" and "to", "p", and "x" - too common!
+# color body brightyellow  default \
+# '\<(assignee|blue|cc|closed|content|date|discuss|discussion|easy|enhancement|feature|help|issue|mail|members|message|mime|ml|neomutt|open|organization|priority|progress|question|ready|received|references|regression|reply|review|sender|subject|user)\>'
+
+# 2017-01-31
+# alphanum:alphanum
+# example: foo_bar
+# matches: "more info [at:https]://..."
+  # color body brightyellow magenta '\<[a-z0-9]+:[a-z0-9]+\>'
+
+# 2017-02-01, 2017-06-12
+  color body brightred    default \
+  '\<(local|dev|wlan0-1|table|proto|kernel|scope|host|src|metric|link|onlink|none|unspec|initrd)\>'
+
+# 2017-02-01
+  color body brightred    default '--- .* ping statistics ---'
+
+# 2017-02-01
+# names of DLLs
+  color body brightred    default '\<[a-z0-9]+[.]dll\>'
+
+# 2017-02-01
+# Vim Option Names
+  color body brightgreen  default '\<(cursorbind|cursorline|cursorcolumn|esckeys|fileformats?|formatprg)\>'
+  color body brightgreen  default '\<(cuc|cul)\>'
+# Vim Character Names
+  # color body brightwhite  default '\<CR\>'
+# Vim Events
+  color body brightgreen  default '\<(bufreadpre)\>'
+# Vim Functions
+  color body brightyellow default '\<([a-z_]+[(][)])'
+
+# 2017-02-04
+# ablehnung von den chemnitzer linux-tagen
+  # color body brightmagenta default \
+  # 'konnten leider nicht mit ins Programm aufgenommen werden'
+
+# 2017-03-04
+# example:  set foo=$(date)
+  # color body magenta white '\$\(.*\)'
+
+# 2017-03-05
+  # color body white magenta '(lat|lon): ?[0-9]+\.[0-9]+'
+
+# 2017-03-05, 2017-03-13, 2017-05-19, 2017-05-22
+# approximate time (in german)
+# examples: "gegen 17uhr" "um 23 uhr"
+# color body brightyellow magenta '(am|gegen|um) *([12]?[0-9])( *uhr)?'
+# enforcing hour indication:
+  # color body brightyellow magenta '(am|bis( zum)?|ca|gegen|nach|um) *[12]?[0-9] *(h|uhr)\>'
+# with minutes, but optional hour indication:
+  # color body brightyellow magenta '(am|bis( zum)?|ca|gegen|nach|um) *[12]?[0-9]:[0-5][0-9] *(h|uhr)?\>'
+
+# 2017-03-09
+# "at" and "dot" in "anti-spam" addresses
+# example:  "user(at)domain{dot}.tld"
+  # color body brightyellow magenta '[{(<](at|dot)[})>]'
+
+# 2017-03-23, 2017-07-07
+  color body brightgreen    default 'maker? ?faire'
+  # color body brightyellow magenta 'maker? ?faire ?(berlin|dortmund|friedrichshafen|hann?over|munich|mÃ¼nchen|newcastle|vienna|wien)'
+
+# 2017-03-23, 2017-06-20
+# time ranges im AM and PM
+# "MM AM - NN AM"
+# examples: "7 - 9 pm"  "5am-11pm"
+  color body brightyellow default '([012]?[0-9] ?(am|pm)? ?- ? [012]?[0-9] ?(am|pm))'
+
+# 2017-04-15, 2017-06-29
+# time ranges with full hours
+# examples:  "17 - 19 h"  "5- 23 uhr"
+  color body brightyellow default '[012]?[0-9]h? ?- ?[012]?[0-9] ?(h|uhr)?'
+
+# 2017-04-19
+# example: a6f1176fb6e2..f914fa8e70f4
+  color body brightgreen  default '[0-9a-f]{12}[.][.][0-9a-f]{12}'
+
+# 2017-04-19
+# nano keys
+# example:  ^Home ^End ^Down ^Up
+  color body brightgreen  default '\^(down|end|home|up)'
+
+# 2017-04-21
+# example: "+1 123 456 789" "+49-179-3966141"
+  # color body brightmagenta default '[+][0-9][0-9]?[- 0-9]+'
+
+# 2017-05-21
+# date and time ranges
+# example: "1.+2.01.2018" "6. - 8.4.2018"
+# D1.[-+/]D2.MM.YYYY: "Zeit: November Fr+Sa, 3.+4.11.2017"
+##color body brightwhite  red '([1-9]|[12][0-9]|3[01])[.]? ?- ?([1-9]|[12][0-9]|3[01])[.] ?(0?[1-9]|1[12])[.]( ?19|20)[0-9][0-9]'
+
+# 2017-05-24, 2017-05-30, 2017-06-23
+# time ranges "M bis N sekunden|minuten|stunden|tage|wochen|monate|jahre"
+# examples: "1-2 tage" "3-5 wochen"  "2 bis vier monate" "1 bis 2 jahre"
+# examples: "1 day"  "2days" "3  minutes"
+# DE:
+  color body brightcyan   default "([0-9]+ *([-]|bis) *)?[0-9]+ *(sekunden|minuten|stunden|tage?|wochen|monate?|jahre?)"
+# EN:
+  color body brightcyan   default "([0-9]+ *([-]|until) *)?[0-9]+ *(seconds?|minutes?|hours?|days?|weeks?|months?|years?)"
+
+# 2017-06-11
+# "anzahl zeit"
+# example: "1 jahr"
+  color body brightcyan   default "[0-9]+ *(sekunden?|minuten?|stunden?|tage?|wochen?|monate?|jahre?n?)"
+
+# 2017-05-26
+# architectures
+  color body brightyellow cyan 'x86_64'
+
+# 2017-05-29
+# nmap output
+  color body brightgreen default "host is up"
+  color body       black red     "host down"
+
+# 2017-05-30
+# function key names
+# examples: F1 .. F12 and Fn
+  color body       blue  default   '\<f([1-9]|1[012]|n)\>'
+
+# 2017-06-04, 2017-06-16
+# client and server
+  color body       green default   '\<clients?\>'
+  color body brightred   default   '\<servers?\>'
+
+# 2017-06-09
+# top level domains
+# examples: .africa .click .college .design .health .info
+#   .link .lol .online .press .pro .rent .store .tech .top .uk
+#   .bio .green organic
+# two letters after the first dot required
+  color body brightred default '[.]\<[a-z]{2,}\>'
+# what did i do here?:
+# color body brightred default '[.]\<[a-z]{2,}[a-z]{2,}\>'
+
+# 2017-06-10
+# "circa number"
+# examples: "~23"
+  # color body brightmagenta default '(~|ca|circa) *[0-9]+\>'
+
+# 2017-06-11
+# "$nummer $menge"
+# examples: "10 millionen"
+  # color body brightmagenta default '[0-9]+ *(hundert|tausend|millionen)'
+
+# 2017-06-11
+# CamelCase words
+# example: "KuZe" "CamelCase"
+  # color body brightmagenta default '([A-Z][a-z]+){2,}'
+
+# 2017-06-11
+# RAIDs
+  # color body brightmagenta default 'raid *[1-6]'
+
+# 2017-06-13
+# "Nh"
+# examples: "23h"
+  # color body brightmagenta default '\<[0-9]+h\>'
+
+# 2017-06-14
+# special email on rohrpost
+# "----< this"
+# "--< that"
+  color body blue default '^-+<'
+
+# 2017-06-14
+# german crypto talk
+  color body blue default '\<(ent|ver)schlÃ¼sseln\>'
+
+# 2017-06-16
+# examples: "23+"
+  color body brightyellow default '\<[0-9]+\+'
+
+# 2017-06-16
+# examples: "v1.2.3"  "version 1.2.3"
+# color body brightyellow default 'v?[0-9.]+'
+  color body brightyellow default '\<v(ersion)??[0-9][.][0-9.]+'
+
+# 2017-06-16
+# examples:
+# "- added new feature"
+# "- changed old feature"
+# "- fix broken feature"
+# "- improved some feature"
+# "- typos fixed"
+  color body brightyellow default '^- add[a-z]*'
+  color body brightyellow default '^- fix[a-z]*'
+  color body brightyellow default '^- imp[a-z]*'
+  color body brightyellow default '^- cha[a-z]*'
+  color body brightyellow default '^- typ[a-z]*'
+
+# 2017-06-20
+# punctuation surrounded by spaces
+  color body black        white   ' [,.!?] '
+
+# 2017-06-21, 2017-06-29
+# "anfang /mitte / ende $monat"
+  color body black        white   '(anfang|mitte|ende) *(jan|feb|mar|mrz|apr|mai|may|jun|jul|aug|sep|oct|okt|nov|dec|dez)[a-z]*\>'
+# 2017-07-04
+# "anfang /mitte / ende $jahreszeit"
+  color body black        white   '(anfang|mitte|ende) *(fr(ue|Ã¼)hling|sommer|herbst|winter)'
+# 2017-07-05, 2017-11-18
+# with optional start/middle/end and optional year
+# examples: "autumn 2017" "spring 2018"
+  color body black        white   '((start|middle|end) *of *)?\<(spring|summer|autumn|winter)\>( (19|20)[0-9][0-9])?'
+# 2017-11-18: added word boundaries
+
+# 2017-06-21
+# checkboxes with square brackets
+  color body black        white   '\[ +\]'
+
+# 2017-06-25
+# extra headers, starting with "X-".
+# examples: "X-Editor" "X-Mailer:" "X-Location:"
+  color body black        white   '^X-[-a-zA-Z0-9]:'
+
+# 2017-07-02
+# farben!
+# example: schwarz weiÃŸ gelb rot blau grÃ¼n braun magenta
+# lesson learnt (yet again): do not forget the word delimiters!
+# otherwise you get matches on "bROT" and "fRED". ;-)
+  color body       black     white   "\<schwarz\>"
+  color body       white     default "\<(weiÃŸ|white)\>"
+  color body brightyellow    default "\<(gelb|yellow)\>"
+  color body       red       default "\<(rot|red)\>"
+  color body       blue      default "\<(blau|blue)\>"
+  color body       cyan      default "\<(hell|himmel)blau\>"
+  color body       green     default "\<grÃ¼n\>"
+  color body brightgreen     default "\<hellgrÃ¼n\>"
+  color body       yellow    default "\<(braun|brown)\>"
+  # color body       magenta   default "\<(lila|magenta)\>"
+
+# 2017-07-02
+# nullachtfÃ¼nfzehn
+# examples: 08-15 08/15
+  # color body    brightmagenta default "08[-/]15"
+
+# 2017-07-05
+# sciences
+  color body brightred default '(biology|chemistry|engineering|mathematics|medicine|physics|philosophy|psychology)'
+# ethics history theology
+
+# 2017-07-05
+# words in lower-quote and upper-quote
+# example: "â€šSprechsaal'"
+# lower-quote is <â€š> 8218, Hex 201a, Octal 20032
+  # color body brightmagenta default "[â€š][a-z]+[']"
+
+# 2017-07-07
+# "Yes" and "No"
+  color body brightgreen  default  '\<Yes\>'
+  color body brightred    default  '\<No\>'
+
+# 2017-07-07
+# special words at events:
+  color body white        brightgreen  'social event'
+
+# 2017-07-07
+# ordinals
+  color body brightred    default    '(11|12|13)th'
+  color body brightred    default    '1st|2nd|3rd'
+
+# 2017-07-07
+# some track names at events
+  color body black        green     '(software engineering|cloud technologies|system administration)'
+
+# 2017-07-07
+  color body white        blue      '(udk|fu|hu|tu) *berlin'
+
+# 2017-07-07
+# License(s)
+  color body white        blue      '(gnu *)general *public *license'
+
+# 2017-07-09
+# fractions
+# example:  "23/42"
+  # color body    white magenta       '\<[0-9]+/[0-9]+\>'
+
+# 2017-07-09
+# example:  "1&1"  "c&a"
+  # color body    white magenta       '\<[^ ]+&[^ ]+\>'
+
+# 2017-07-09
+# t-shirt sizes
+  color body  brightred default '\<(XS|S|M|L|XL|XXL|XXXL)\>'
+
+# 2017-07-09
+# gpg tools
+  color body  black   yellow '^Comment: .*"
+  color body  black   yellow '^Version: .*"
+# color body black brightyellow "Version: GnuPG v1.0.[67] \(GNU/Linux\)"
+# color body black brightyellow "Version: GnuPG v1.2.[67] \(GNU/Linux\)"
+
+# Version: GnuPG v1.4.1 (GNU/Linux)
+# Version: GnuPG v1.4.5 (GNU/Linux)
+# Version: GnuPG v1.4.6 (GNU/Linux)
+# Version: GnuPG v1.4.7 (MingW32)
+# Version: GnuPG v1.4.8 (FreeBSD)
+# Version: GnuPG v1.4.9 (GNU/Linux)
+# Version: GnuPG v1.4.9 (FreeBSD)
+# Version: GnuPG v1.4.10 (FreeBSD)
+# Version: GnuPG v1.4.10 (GNU/Linux)
+# Version: GnuPG v1.4.11 (GNU/Linux)
+# Version: GnuPG v1.4.12 (GNU/Linux)
+# Version: GnuPG v1.4.13 (SunOS)
+# Version: GnuPG v1.4.14 (GNU/Linux)
+# Version: GnuPG v1.4.15 (GNU/Linux)
+# Version: GnuPG v2.0.9 (Darwin)
+# Version: GnuPG v2.0.9 (GNU/Linux)
+# Version: GnuPG v2.0.12 (GNU/Linux)
+# Version: GnuPG v2.0.13 (GNU/Linux)
+# Version: GnuPG v2.0.16 (GNU/Linux)
+# Version: GnuPG v2.0.17 (GNU/Linux)
+# Version: GnuPG v2.0.18 (GNU/Linux)
+# Version: GnuPG v2.0.18 (NetBSD)
+# Version: GnuPG/MacGPG2 v2.0.12 (Darwin)
+# Version: GnuPG/MacGPG2 v2.0.14 (Darwin)
+# Version: GnuPG/MacGPG2 v2.0.18 (Darwin)
+# Version: GnuPG/MacGPG2 v2.0.19 (Darwin)
+# Version: GnuPG v2.0.15 (GNU/Linux)
+# Version: GnuPG v2.0.19 (GNU/Linux)
+# Version: GnuPG v2.0.20 (MingW32)
+# Version: GnuPG v2.0.22 (GNU/Linux)
+# Version: GnuPG v2.0.22 (MingW32)
+# Version: GnuPG v1
+# Version: GnuPG v2
+#
+# Version: GnuPG/MacGPG2 v2.0.17 (Darwin)
+# Comment: GPGTools - http://gpgtools.org
+#
+# Version: GnuPG v1.4.12 (GNU/Linux)
+# Comment: Using GnuPG with Icedove - http://www.enigmail.net/
+#
+# Version: GnuPG v1.4.9 (Darwin)
+# Comment: Using GnuPG with Mozilla - http://enigmail.mozdev.org/
+#
+# Version: GnuPG v1.4.15 (GNU/Linux)
+# Comment: Using GnuPG with Icedove - http://www.enigmail.net/
+#
+# Version: GnuPG v2.0.22 (GNU/Linux)
+# Comment: Using GnuPG with Thunderbird - http://www.enigmail.net/
+#
+# -----BEGIN PGP SIGNED MESSAGE-----
+# Hash: SHA512
+#
+# -----BEGIN PGP SIGNATURE-----
+# Comment: GnuPT 2.8.2
+# Version: BCPG v1.46
+#
+# Version: GnuPG v2.0.14 (GNU/Linux)
+# Comment: Using GnuPG with Fedora - http://enigmail.mozdev.org/
+#
+# Comment: I welcome encrypted mail.  <- Richard Russon
+#
+# special lines:
+# [-- BEGIN PGP SIGNED MESSAGE --]
+# [-- END PGP SIGNED MESSAGE --]
+
+# 2017-07-12
+# somecolors for CSS
+# examples:  "23px"  "42px"
+  color body  yellow default '[0-9]+px'
+  color body  blue   default '!important'
+  color body  green  default '\<(auto|block|inline|justify|visible)\>'
+# some entities
+  color body  black  white   '&(#39|euro|ndash|rsquo);'
+
+# 2017-07-12
+# post scriptum
+  color body  black  white   'p[.] *s[.]'
+
+# 2017-07-13
+  color body black green   '(bruegge|rodenbach|roeselare|ypern|kortrijk|ghent|watou|st.bernhard|westvleteren)'
+  color body black white   'trappist(en)?'
+  color body green default '[0-9] *std[.]?'
+
+# 2017-07-14
+# wireless list, olsrd
+  color body blue  default '(etx|lq|nlq|snr)'
+
+# 2017-07-15
+# cities in austria
+  color body red default '\<(amstetten|ansfelden|baden|bad|ischl|bludenz|bregenz)\>'
+  color body red default '\<(dornbirn|feldkirch|gmunden|graz|hallein|hall|hohenems)\>'
+  color body red default '\<(innsbruck|judenburg|kapfenberg|klagenfurt|klosterneuburg)\>'
+  color body red default '\<(knittelfeld|krems|kufstein|leoben|leonding|linz|lustenau)\>'
+  color body red default '\<(mÃ¶dling|perchtoldsdorf|salzburg|schwechat|steyr|stockerau)\>'
+  color body red default '\<(st..pÃ¶lten|ternitz|traiskirchen|traun|trofaiach|villach)\>'
+  color body red default '\<(wels|wien|wiener.neustadt|wolfsberg)\>'
+
+# 2017-07-17
+# hex numbers with "0x" prefix
+# examples: 0xc0ffee 0xdeadbeef
+  # color body brightmagenta default '0x[0-9a-f]+\>'
+
+# 2017-07-17
+# examples:  "==12345=="
+  # color body white magenta '^==[1-9]{4,6}=='
+
+# 2017-07-17
+# examples: "ein jahr"  "zwÃ¶lf jahre"
+  color body brightcyan default '(ein|zwei|drei|vier|fÃ¼nf|sechs|sieben|acht|neun|zehn|elf|zwÃ¶lf) *jahre?'
+
+# 2017-07-17
+# speech synthesis programs
+  color body brightcyan default '\<(espeak|festival|mbrola)\>'
+
+# 2017-07-23
+  color body brightcyan default '\<(c\+\+|c\#|css|html|java(script)|python|ruby|tex)\>'
+
+# 2017-07-23
+# git commands
+  color body brightcyan default '\<git *(add|bisect|branch|checkout|clone|commit|diff|fetch|grep|init|log|merge|mv|pull|push|rebase|reset|rm|show|status|tag)'
+
+# 2017-07-23
+# mailing list software:
+  color body brightcyan default '(ezmlm|listserv|mailman|majordomo|sympa)'
+# archivers for mailman:
+  color body brightcyan default '(hyperkitty|pipermail)'
+
+# 2017-07-23
+  color body brightcyan default '(gmail(.com)?|gmx(.de)?|web.de)'
+
+# 2017-07-26
+# bitcoin addresses
+# alphanumeric, starts with "1" or "3", and has length 27 to 34.
+  color body brightcyan default '\<[13][a-z0-9]{26,33}\>'
+
+# 2017-08-02
+# commented lines which start with '%' (eg with slrn)
+  color body blue default '^ *% .*'
+
+# 2017-09-25
+# timeframes
+# example:  "00:00:23,123"
+  color body blue default '[0-9][0-9]:[0-9][0-9]:[0-9][0-9],[0-9][0-9][0-9]'
+
+# 2017-09-29
+# event name
+  color body brightblue default 'free ?code ?camp'
+
+# 2017-09-29
+  color body brightblue default 'internet ?of ?things'
+  color body brightblue default '\<iot\>'
+
+# 2017-09-29
+# example: "p.o.box 12 34 56"
+  color body brightblue default 'p[.] ?o[.] ?box ?[0-9 ]+[0-9]'
+  color body brightblue default 'P[.] ?O[.] ?Box ?[0-9 ]+[0-9]'
+
+# 2017-11-14
+# ordinals
+# examples: 1st 2nd 3rd .. 23rd 42nd 67th
+  color body brightgreen default '\<[0-9]+(st|nd|rd|th)\>'
+
+# 2017-11-25
+# people
+  color body black white "edward *snowden"
+
+# 2017-12-02
+# example: "ZVR Nummer: 63 56 16 285"
+  color body white red 'zvr ?(nummer)?:? [0-9 ]+'
+
+# 2017-12-05
+# news outlets
+  color body brightyellow black '(heise(.de)?|linux ?magazin|pro ?linux)'
+
+# 2017-12-09
+# example: %%Email%%
+  color body white red '%%[^ ]+%%'
+
+# 2017-12-25,2018-01-11
+# common german word suffixes:
+# color body brightwhite default '[A-Z][^ ]*(ion|ung|en)\>'
+# (chen|e|ei|el|en|er|erchen|erei|(e)rich|heit|ien|igkeit|in|keit|land|lein|ler|ling|ner|nis|sal|schaft|sel|tum|ung)
+# added: em,nz,ort,sch,um
+  # color body brightwhite default \
+  # '[A-Z][^ ]*(chen|e|ei|el|em|en|er|erchen|erei|rich|heit|ien|igkeit|in|keit|)\>'
+  # color body brightwhite default \
+  # '[A-Z][^ ]*(land|lein|ler|ling|ner|nis|nz|ort|sal|sch|schaft|sel|tum|tz|um|ung)\>'
+
+# 2018-01-08
+# HexBytes
+  color body brightyellow default '\<0x[0-9a-f ]+\>'
+
+# NEW before this line
+
+# 2017-06-18
+# DONE: ordinals.  "12th"
+#
+# TODO: "26th to 28th of August"
+# TODO: "from May 16th to 20th"
+# TODO: "7./8. Oktober 2017"
+# TODO: "2.-15. Oktober 2017"
+# TODO: "3.+4.11.2017"
+# TODO: "23. & 24. Juni"
+# TODO: "23. - 24. Juni"
+# TODO: "Sept. 12-26, 2017"
+#
+# TODO: "Mid- October to Mid December"
+#
+# TODO: "gpg: Signature made Sat Jun 24 20:11:53 2017 CEST"
+# TODO: "Registergericht MÃ¼nchen HRB 126 104, USt-IdNr. DE 201 88 33 28"
+# TODO: "2017-07-22T12:10:51Z"
+#
+# TODO: "fÃ¼r $GELD bis $GELD"
+# TODO: "ca. 50 bis 100EUR"
+#
+# TODO: "am $WOCHENTAG"
+# TODO: "$WOCHENTAG morgen|(nach)mittag|abend"
+# TODO: "ab 11uhr"
+# TODO: 
+# artificial intelligence, autonomous cars, big data,
+# brain-computer interfaces, intelligent networks, neurorobotics.
+
+# definition for "HH:MM" seems to take away
+# the text for "ab/bis HH:MM".
+# possible solution:  comment out "HH:MM" and simply
+# use "ab/bis HH:MM" and making "ab/bis" optional.
+
+# vim: set fenc=utf-8 ft=muttrc tw=200: THPXRF EOF

@@ -45,6 +45,10 @@ color index         green      default         "~v~(~F~N)" # Collapsed thread wi
 color hdrdefault    cyan       default
 color header        cyan       default         "^(From)"
 color header        cyan       default         "^(Subject)"
+color header	color132    color233    '^date:'
+color header	color153    color233    '^(to|cc|bcc):'
+color header    color31     color233    '^user-agent:'
+color header	color29     color233    '^reply-to:'
 
 # message body --------------------------------------------------
 color quoted        blue       default
@@ -66,3 +70,14 @@ color index_size green default
 # color body red default [\-\.+_a-zA-Z0-9]+@[\-\.a-zA-Z0-9]+
 # color body brightblue default (https?|ftp)://[\-\.,/%~_:?&=\#a-zA-Z0-9]+
 # color body blue default (https?|ftp)://[\-\.,/%~_:?&=\#a-zA-Z0-9]+
+
+
+color quoted1       color66      color232
+color quoted2       color32      color232
+color quoted3       color30      color232
+color quoted4       color99      color232
+color quoted5       color36      color232
+color quoted6       color114     color232
+color quoted7       color109     color232
+color quoted8       color41      color232
+color quoted9       color138     color232

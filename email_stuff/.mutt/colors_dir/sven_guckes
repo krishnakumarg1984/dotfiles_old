@@ -1,0 +1,3 @@
+# source ~/dotfiles/email_stuff/.mutt/colors_dir/sven_guckes_header
+source ~/dotfiles/email_stuff/.mutt/colors_dir/sven_guckes_agents
+source ~/dotfiles/email_stuff/.mutt/colors_dir/sven_guckes_index

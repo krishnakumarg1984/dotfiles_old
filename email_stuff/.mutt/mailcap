@@ -2,13 +2,18 @@
 #
 # this uses the view_attachment script found in ~/dotfiles/email_stuff/.mutt/view_attachment.sh
 #
+text/plain; tmux split-window -v view %s && sleep 1
+text/plain; cat %s ; copiousoutput
+text/plain; gnome-terminal -- vim %s & sleep 2; copiousoutput
+
+#
 text/calendar; mutt-ics; copiousoutput
 application/ics; mutt-ics; copiousoutput 
 video/*; mplayer '%s'; test=test -n "$DISPLAY"
 # MS Excel
 # this will use the default xls spreadsheet handler from open
-application/excel; mutt_bgrun qvpview %s; test=RunningX
 application/excel; excel2text %s; copiousoutput
+application/excel; mutt_bgrun qvpview %s; test=RunningX
 application/msexcel; mutt_bgrun qvpview %s; test=RunningX
 application/msexcel; excel2text %s; copiousoutput
 application/vnd.ms-excel; mutt_bgrun qvpview %s; test=RunningX
@@ -31,6 +36,7 @@ application/vnd.ms-excel; libreoffice %s &>/dev/null
 # use textedit to open .doc files as it's more light-weight
 application/msword; mutt_bgrun qvpview %s; test=RunningX
 application/msword; word2text %s; copiousoutput
+application/ms-word; catdoc %s; copiousoutput
 application/vnd.msword; mutt_bgrun qvpview %s; test=RunningX
 application/vnd.msword; word2text %s; copiousoutput
 application/msword; libreoffice %s &>/dev/null
@@ -81,27 +87,32 @@ application/x-mspowerpoint; ppt2text %s; copiousoutput
 application/ppt; mutt_bgrun qvpview %s; test=RunningX
 application/ppt; ppt2text %s; copiousoutput
 
+application/postscript;ps2ascii %s  2>/dev/null; copiousoutput
 application/postscript; dotfiles/email_stuff/.mutt_bgrun ghostview %s; test=RunningX
 application/postscript; mutt_bgrun ghostview %s; test=RunningX
 
-application/rtf; dotfiles/email_stuff/.mutt_bgrun qvpview %s; test=RunningX
+application/rtf; catdoc %s; copiousoutput
 application/rtf; rtf2text %s; copiousoutput
+application/rtf; dotfiles/email_stuff/.mutt_bgrun qvpview %s; test=RunningX
+application/ms-rtf;rtfreader %s; copiousoutput
+application/rtf;rtfreader %s; copiousoutput
 
 # application/ms-tnef; tnef -w %s
+application/ms-tnef; tnef2txt %s; copiousoutput
 
 # text/m; less %s
 # text/*; cat; copiousoutput; edit=$VISUAL %s
-text/* ; nvim -Rc Goyo '%s' ; edit=nvim -c Goyo '%s' ; compose=nvim -c Goyo '%s' ; needsterminal
+	text/* ; nvim -Rc Goyo '%s' ; edit=nvim -c Goyo '%s' ; compose=nvim -c Goyo '%s' ; needsterminal
 
-image/JPG; feh -F -Z %s &>/dev/null
-image/jpeg; feh -F -Z %s &>/dev/null
-image/gif; feh -F -Z %s &>/dev/null
-image/png; feh -F -Z %s &>/dev/null
-image/*; ~/.config/dotfiles/email_stuff/.mutt/muttimage.sh %s ; copiousoutput
-image/*; dotfiles/email_stuff/.mutt_bgrun xv %s; test=RunningX
-image/*; ~/dotfiles/email_stuff/.mutt/muttimage.sh %s ; copiousoutput
+	image/JPG; feh -F -Z %s &>/dev/null
+	image/jpeg; feh -F -Z %s &>/dev/null
+	image/gif; feh -F -Z %s &>/dev/null
+	image/png; feh -F -Z %s &>/dev/null
+	image/*; ~/.config/dotfiles/email_stuff/.mutt/muttimage.sh %s ; copiousoutput
+	image/*; dotfiles/email_stuff/.mutt_bgrun xv %s; test=RunningX
+	image/*; ~/dotfiles/email_stuff/.mutt/muttimage.sh %s ; copiousoutput
 
-message/rfc822; cat; copiousoutput; edit=$VISUAL %s
+	message/rfc822; cat; copiousoutput; edit=$VISUAL %s
 
 # Unidentified.
 application/octet-stream; mutt.octet.filter -x %s; test=RunningX
@@ -111,3 +122,35 @@ application/octet-stream; ~/dotfiles/email_stuff/.mutt/view_attachment.sh %s "-"
 application/octet-stream; mutt_octet_view -x %s; test=RunningX
 application/octet-stream; mutt_octet_view -v %s
 application/octet-stream; mutt_octet_view %s; copiousoutput
+
+text/x-vcard; mutt.vcard.filter; copiousoutput
+text/lyx; lyx %s
+text/x-lyx; lyx2txt %s 2>/dev/null; copiousoutput
+
+application/x-tar; tar -tf - ; copiousoutput;
+application/x-tar-gz; gunzip -c %s | tar -tf - ; copiousoutput
+audio/basic;play %s
+audio/midi;playmidi %s
+audio/mp3;freeamp %s
+audio/mpeg;freeamp %s
+audio/wav;play %s
+audio/x-wav; play %s
+audio/x-basic;play %s
+audio/x-midi;playmidi %s
+audio/x-mp3;freeamp %s
+audio/x-mpeg;freeamp %s
+audio/x-mpegurl;freeamp %s
+image/*;display %s 2>&1 >/dev/null
+image/png;display %s 2>&1 >/dev/null
+image/tiff;display %s 2>&1 >/dev/null
+image/x-png;display %s 2>&1 >/dev/null
+image/x-portable-anymap;display %s 2>&1 >/dev/null
+image/x-portable-bitmap;display %s 2>&1 >/dev/null
+image/x-portable-graymap;display %s 2>&1 >/dev/null
+image/x-portable-pixmap;display %s 2>&1 >/dev/null
+image/x-xpixmap;display %s 2>&1 >/dev/null
+image/x-xwindowdump;display %s 2>&1 >/dev/null
+text/sgml; sgml2txt %s; copiousoutput
+video/mpeg;xine -s %s 2>&1 >/dev/null
+video/quicktime;xanim +Ae +Zpe +Ae +Ss2 %s 2>&1 > /dev/null
+video/x-msvideo;xine -s %s 2>&1 >/dev/null

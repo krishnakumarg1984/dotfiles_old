@@ -204,6 +204,7 @@ Plug 'wellle/targets.vim' "To change the text in the next pair of parentheses, u
 Plug 'chrisbra/Colorizer',{'for':['muttrc']}
 Plug 'kopischke/vim-fetch'
 Plug 'christoomey/vim-tmux-navigator'
+Plug 'JamieJQuinn/vim-madoko',{'for':['madoko']}
 
 if has('nvim')
 	Plug 'w0rp/ale',{ 'on': 'ALEEnable', 'for': ['dot', 'sh','matlab','python','tex'] }
