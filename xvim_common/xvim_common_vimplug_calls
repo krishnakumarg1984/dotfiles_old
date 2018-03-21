@@ -1,0 +1,11 @@
+Plug 'christoomey/vim-tmux-navigator'
+" Plug 'janko-m/vim-test'
+Plug 'junegunn/fzf',{'dir': '~/.fzf', 'do': '.install --all'}
+Plug 'junegunn/fzf.vim'
+Plug 'leafgarland/typescript-vim',{'for': 'typescript'}
+Plug 'mhinz/vim-grepper'
+Plug 'sgur/vim-editorconfig'
+Plug 'tpope/vim-dispatch'
+Plug 'tpope/vim-obsession'
+Plug 'tpope/vim-unimpaired'
+Plug 'w0rp/ale'

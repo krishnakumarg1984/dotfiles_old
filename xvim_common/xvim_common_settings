@@ -1,0 +1,9 @@
+nnoremap <c-h> <c-w>h
+nnoremap <c-j> <c-w>j
+nnoremap <c-k> <c-w>k
+nnoremap <c-l> <c-w>l
+
+augroup disabletempundo
+  autocmd!
+  autocmd BufWritePre /tmp/* setlocal noundofile
+augroup END

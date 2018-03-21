@@ -98,5 +98,12 @@ export SCM_CHECK=true
 source "$BASH_IT"/bash_it.sh
 
 source ~/nvim-aliases.sh
+source ~/alias-nvim-nvr.sh
 
 export FZF_DEFAULT_COMMAND='rg --files'
+
+if [ -n "$NVIM_LISTEN_ADDRESS" ]; then
+  export PS1="» "
+else
+  export PS1="\$ "
+fi
