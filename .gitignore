@@ -1,0 +1,4 @@
+.undodir/*
+tags
+Session.vim
+nvim/.config/nvim/.netrwhist
