@@ -42,17 +42,18 @@ set smartcase   " Do case-sensitive search if pattern contains upper case letter
 set suffixesadd=.py,.m,.mat,.gv,.tex      "Find will work harder for these filetypes
 set synmaxcol=300   "Boost performance in rendering long lines
 set tabpagemax=15      " Maximum number of tab pages to be opened by the |-p| command line argument or the ":tab all" command. |tabpage|
-set timeout       " time out on mappings and keycodes (stronger of the two conditions)
-set timeoutlen=500
 set title
 set titleold=
 set ttimeoutlen=0 " A non-negative number here will make the delay to be timeoutlen
+set timeout       " time out on mappings and keycodes (stronger of the two conditions)
+set timeoutlen=1000
 set undofile
 set updatecount=0               " After typing this many characters the swap file will be written to disk.  When zero, no swap file will be created at all (see chapter on recovery |crash-recovery|).  "
 set updatetime=250              " milliseconds elapsed before which swap file will be written to disk (250 ms is recommende by gitgutter plugin)
 set viewoptions=cursor,folds,slash,unix
 set winminheight=0              " Windows can be 0 line high
-set clipboard+=unnamed,unnamedplus
+" set clipboard+=unnamedplus
+set completeopt+=noinsert
 
 set wildmenu
 set wildchar=<TAB> " Character for CLI expansion (TAB-completion)
@@ -117,10 +118,6 @@ highlight Comment cterm=italic
 hi link HelpBar Normal
 hi link HelpStar Normal
 
-if exists('&inccommand')
-    set inccommand=split
-endif
-
 autocmd InsertEnter * :set norelativenumber
 autocmd InsertLeave * :set relativenumber
 
@@ -148,8 +145,6 @@ augroup cline
     autocmd WinEnter,InsertLeave * set cursorline
 augroup END
 
-colorscheme gruvbox
-set background=dark
 
 highlight OverLength ctermfg=0 ctermbg=3
 match OverLength /\%121v/
@@ -160,7 +155,16 @@ if (has("termguicolors"))
     set t_8f=[38;2;%lu;%lu;%lum
     set t_8b=[48;2;%lu;%lu;%lum
     set termguicolors
+else
+    set t_Co=256
 endif
+
+" let ayucolor="dark"
+" set background=dark
+" colorscheme palenight
+colorscheme alduin
+" colorscheme minimalist
+" colorscheme tender
 
 nnoremap : ;
 nnoremap ; :
@@ -181,7 +185,7 @@ source ~/ft_settings.vim
 
 " nmap <leader>l :set list!<CR>
 
-augroup disabletempundo
+augroup disableTempUndo
   autocmd!
   autocmd BufWritePre /tmp/* setlocal noundofile
 augroup END
@@ -260,7 +264,7 @@ xnoremap > >gv
 xnoremap < <gvoremap w!! w !sudo tee > /dev/null %
 
 set lazyredraw
-set shortmess+=atI
+set shortmess+=atIc
 
 vnoremap y myy`y
 vnoremap Y myY`y
@@ -271,3 +275,6 @@ augroup reload_vimrc
     au FocusLost * :wa
 augroup END
 
+autocmd CompleteDone * silent! pclose!
+
+inoremap <c-c> <ESC>

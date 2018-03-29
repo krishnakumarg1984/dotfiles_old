@@ -13,7 +13,7 @@ augroup ft_latex
     autocmd FileType tex setlocal textwidth=100
     autocmd FileType tex setlocal spell
     autocmd FileType tex setlocal spelllang=en_gb
-    autocmd FileType tex setlocal formatoptions=at
+    " autocmd FileType tex setlocal formatoptions=at
     autocmd FileType tex setlocal keywordprg=texdoc
     augroup END
 
@@ -362,3 +362,7 @@ augroup END
 autocmd FileType matlab setlocal commentstring=%\ %s
 
 
+if has("autocmd")
+  let pandoc_pipeline  = "pandoc --from=html --to=html"
+  autocmd FileType html let &l:formatprg=pandoc_pipeline
+endif
