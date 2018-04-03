@@ -20,7 +20,7 @@ endif
 
 source ~/xvim_common_settings.vim
 source ~/xvim_common_plugin_mappings.vim
-:set guicursor=n-v-c:block-Cursor/lCursor-blinkon0,i-ci:ver25-Cursor/lCursor,r-cr:hor20-Cursor/lCursor
+" set guicursor=n-v-c:block-Cursor/lCursor-blinkon0,i-ci:ver25-Cursor/lCursor,r-cr:hor20-Cursor/lCursor
 
 if has('nvim')
     tnoremap <Esc> <C-\><C-n>

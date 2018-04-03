@@ -39,7 +39,7 @@ colors() {
 
 complete -cf sudo
 
-export PATH="~/.local/bin:$PATH"
+# export PATH="~/.local/bin:$PATH"
 # added by Anaconda2 installer
 export PATH="/home/kg314/anaconda2/bin:$PATH"
 export BROWSER=/usr/bin/chromium
@@ -107,3 +107,13 @@ if [ -n "$NVIM_LISTEN_ADDRESS" ]; then
 else
   export PS1="\$ "
 fi
+
+export MANPAGER="nvim -c 'set ft=man' -"
+
+export PATH="/usr/local/texlive/2018/bin/x86_64-linux:$PATH"
+export MANPATH="/usr/local/texlive/2018/texmf-dist/doc/man:$MANPATH"
+export INFOPATH="/usr/local/texlive/2018/texmf-dist/doc/info:$INFOPATH"
+export PDFVIEWER_texdoc='zathura'
+export PDFVIEWER='zathura'
+
+export PATH="/usr/local/latexmk:$PATH"
