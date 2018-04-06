@@ -84,7 +84,7 @@ set viewoptions=cursor,folds,slash,unix
 set wildchar=<TAB> " Character for CLI expansion (TAB-completion)
 set wildmenu
 set wildmode=list:longest,list:full
-set winminheight=0              " Windows can be 0 line high
+" set winminheight=4              " Windows can be 0 line high
 set virtualedit=block
 silent! set shortmess+=F
 silent! set shortmess+=cI
@@ -320,7 +320,7 @@ let g:netrw_keepdir      = 0
 
 command! -nargs=* Wrap set wrap linebreak nolist
 
-autocmd BufEnter * if expand("%:p:h") !~ '^/tmp' | silent! lcd %:p:h | endif
+" autocmd BufEnter * if expand("%:p:h") !~ '^/tmp' | silent! lcd %:p:h | endif
 
 if exists('$TMUX')
     let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"

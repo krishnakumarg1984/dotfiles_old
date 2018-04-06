@@ -1,14 +1,18 @@
 " Plug 'SirVer/ultisnips'
 " Plug 'blueyed/vim-diminactive'
+" Plug 'dbmrq/vim-ditto'
 " Plug 'godlygeek/tabular',{'for':['tex','matlab','markdown','muttrc']}
 " Plug 'janko-m/vim-test'
 " Plug 'junegunn/vim-slash'
 " Plug 'mbbill/undotree'
+" Plug 'poppyschmo/vim-latexrefman',{'for':'tex'}
 " Plug 'simnalamburt/vim-mundo'
+" Plug 'tpope/vim-commentary',{'for':['tex','matlab','sh','dot','markdown','vim','muttrc']} "gcc, gc3j, gc}, gcip, gcu
 " Plug 'tpope/vim-obsession'
 " Plug 'tpope/vim-surround'
 " Plug 'unblevable/quick-scope' " for f, F, t and T
 Plug 'JamieJQuinn/vim-madoko',{'for':['madoko']}
+Plug 'KabbAmine/zeavim.vim'
 Plug 'Konfekt/FastFold'
 Plug 'Shougo/neosnippet'
 Plug 'Shougo/neosnippet-snippets'
@@ -22,7 +26,6 @@ Plug 'critiqjo/husk-x.vim' " for command line mode (readline bindings)
 Plug 'daeyun/vim-matlab', { 'do': 'UpdateRemotePlugins' }
 Plug 'danilo-augusto/vim-afterglow'
 Plug 'dbmrq/vim-dialect'
-Plug 'dbmrq/vim-ditto'
 Plug 'dhruvasagar/vim-table-mode'
 Plug 'drewtempelmeyer/palenight.vim'
 Plug 'flazz/vim-colorschemes'
@@ -37,7 +40,6 @@ Plug 'junegunn/goyo.vim',{'for':['tex','text','txt','markdown']} " :Goyo to togg
 Plug 'junegunn/limelight.vim'
 Plug 'junegunn/vim-easy-align'
 Plug 'junegunn/vim-peekaboo'
-Plug 'KabbAmine/zeavim.vim'
 Plug 'kana/vim-textobj-user'
 Plug 'kshenoy/vim-signature' "place, toggle and display marks. Navigate forward/backward by position/alphabetical order. Any arbitrary sign for marks is possible
 Plug 'leafgarland/typescript-vim',{'for': 'typescript'}
@@ -50,7 +52,6 @@ Plug 'machakann/vim-sandwich'
 Plug 'mhinz/vim-grepper'
 Plug 'nelstrom/vim-visual-star-search'
 Plug 'ntpeters/vim-better-whitespace'
-" Plug 'poppyschmo/vim-latexrefman',{'for':'tex'}
 Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
 Plug 'raphamorim/lucario'
 Plug 'reedes/vim-litecorrect'
@@ -59,7 +60,7 @@ Plug 'reedes/vim-textobj-sentence'
 Plug 'reedes/vim-wordy',{'for':['tex','text','markdown']}
 Plug 'rhysd/vim-grammarous'
 Plug 'romainl/vim-cool'
-" Plug 'romainl/vim-qf'
+Plug 'romainl/vim-qf'
 Plug 'roman/golden-ratio'
 Plug 'ron89/thesaurus_query.vim'
 Plug 'sgur/vim-editorconfig'
@@ -70,7 +71,6 @@ Plug 'thaerkh/vim-workspace'
 Plug 'tomasiser/vim-code-dark'
 Plug 'tommcdo/vim-exchange'
 Plug 'tpope/vim-abolish'
-" Plug 'tpope/vim-commentary',{'for':['tex','matlab','sh','dot','markdown','vim','muttrc']} "gcc, gc3j, gc}, gcip, gcu
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-eunuch'

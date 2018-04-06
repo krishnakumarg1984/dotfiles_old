@@ -108,10 +108,10 @@ set recolor-darkcolor  "#FFFFFF"
 set recolor-lightcolor "#333333"
 set statusbar-bg "#C2BFA5"
 set statusbar-fg "#000000"
-set tabbar-bg \#191919
-set tabbar-fg \#98a7b6
-set tabbar-focus-bg \#232323
-set tabbar-focus-fg \#a488d9
+# set tabbar-bg \#191919
+# set tabbar-fg \#98a7b6
+# set tabbar-focus-bg \#232323
+# set tabbar-focus-fg \#a488d9
 
 map + zoom in
 map - zoom out

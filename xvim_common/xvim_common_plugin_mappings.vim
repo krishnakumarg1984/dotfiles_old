@@ -298,28 +298,49 @@ let g:vimtex_format_enabled = 1
 " let g:vimtex_imaps_leader = '\|'
 let g:vimtex_index_split_pos = 'full'
 let g:vimtex_quickfix_method='pplatex'
-let g:vimtex_quickfix_open_on_warning = 1
+" let g:vimtex_quickfix_method='pulp'
+let g:vimtex_quickfix_open_on_warning = 0
 let g:vimtex_toc_fold = 1
 let g:vimtex_toc_hotkeys = {'enabled' : 1}
 let g:vimtex_view_automatic = 0
-let g:vimtex_view_forward_search_on_start = 0
+let g:vimtex_view_forward_search_on_start = 1
 let g:vimtex_view_method = 'zathura'
 let g:vimtex_view_use_temp_files=1
 
+let g:vimtex_quickfix_latexlog = {
+      \ 'default' : 1,
+      \ 'general' : 1,
+      \ 'references' : 1,
+      \ 'overfull' : 0,
+      \ 'underfull' : 0,
+      \ 'font' : 1,
+      \ 'packages' : {
+      \   'default' : 1,
+      \   'natbib' : 1,
+      \   'biblatex' : 1,
+      \   'babel' : 1,
+      \   'hyperref' : 1,
+      \   'scrreprt' : 1,
+      \   'fixltx2e' : 1,
+      \   'titlesec' : 1,
+      \ },
+      \}
+
 augroup vimtex
-    autocmd!
-    autocmd BufWritePost *.tex call vimtex#labels#refresh()
-    autocmd BufWritePost *.tex call vimtex#toc#refresh()
+autocmd!
+autocmd BufWritePost *.tex call vimtex#labels#refresh()
+autocmd BufWritePost *.tex call vimtex#toc#refresh()
 augroup END
 " autocmd BufReadPre *.tex let b:vimtex_main = 'thesis.tex'
 autocmd! User VimtexEventInitPost Limelight 0.4
 autocmd! User VimtexEventQuit Limelight!
+autocmd! User VimtexEventQuit !~/dotfiles/latexclean/latexclean.sh
 
-augroup vimtex_event_1
-    au!
-    au User VimtexEventQuit     call vimtex#compiler#clean(0)
-    au User VimtexEventInitPost call vimtex#compiler#compile()
-augroup END
+" augroup vimtex_event_1
+"     au!
+"     " au User VimtexEventQuit     call vimtex#compiler#clean(0)
+"     " au User VimtexEventInitPost call vimtex#compiler#compile()
+" augroup END
 
 " Close viewers on quit
 function! CloseViewers()
@@ -411,21 +432,21 @@ let g:tq_online_backends_timeout = 0.4
 
 " Use autocmds to check your text automatically and keep the highlighting
 " " up to date (easier):
-au FileType markdown,text,tex DittoOn  " Turn on Ditto's autocmds
-nmap <leader>di <Plug>ToggleDitto      " Turn Ditto on and off
+" au FileType markdown,text,tex DittoOn  " Turn on Ditto's autocmds
+" nmap <leader>di <Plug>ToggleDitto      " Turn Ditto on and off
 
 " If you don't want the autocmds, you can also use an operator to check
 " specific parts of your text:
 " vmap <leader>d <Plug>Ditto         " Call Ditto on visual selection
 " nmap <leader>d <Plug>Ditto         " Call Ditto on operator movement
 
-nmap =d <Plug>DittoNext                " Jump to the next word
-nmap -d <Plug>DittoPrev                " Jump to the previous word
-nmap +d <Plug>DittoGood                " Ignore the word under the cursor
-nmap _d <Plug>DittoBad                 " Stop ignoring the word under the cursor
-nmap ]d <Plug>DittoMore                " Show the next matches
-nmap [d <Plug>DittoLess                " Show the previous matches
-au CursorHold,CursorHoldI * DittoUpdate
+" nmap =d <Plug>DittoNext                " Jump to the next word
+" nmap -d <Plug>DittoPrev                " Jump to the previous word
+" nmap +d <Plug>DittoGood                " Ignore the word under the cursor
+" nmap _d <Plug>DittoBad                 " Stop ignoring the word under the cursor
+" nmap ]d <Plug>DittoMore                " Show the next matches
+" nmap [d <Plug>DittoLess                " Show the previous matches
+" au CursorHold,CursorHoldI * DittoUpdate
 
 augroup textobj_sentence
   autocmd!
@@ -465,3 +486,20 @@ let g:ale_open_list = 0
 let g:ale_keep_list_window_open = 0
 let g:ale_list_window_size = 4
 
+let g:qf_auto_open_quickfix = 0
+" let g:golden_ratio_exclude_nonmodifiable = 1
+
+" au FileType qf call AdjustWindowHeight(3, 10)
+" function! AdjustWindowHeight(minheight, maxheight)
+"     let l = 1
+"     let n_lines = 0
+"     let w_width = winwidth(0)
+"     while l <= line('$')
+"         " number to float for division
+"         let l_len = strlen(getline(l)) + 0.0
+"         let line_width = l_len/w_width
+"         let n_lines += float2nr(ceil(line_width))
+"         let l += 1
+"     endw
+"     exe max([min([n_lines, a:maxheight]), a:minheight]) . "wincmd _"
+" endfunction

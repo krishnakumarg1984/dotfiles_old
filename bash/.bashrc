@@ -117,3 +117,8 @@ export PDFVIEWER_texdoc='zathura'
 export PDFVIEWER='zathura'
 
 export PATH="/usr/local/latexmk:$PATH"
+
+glog ()
+{
+    git log --all --pretty='format:%d %Cgreen%h%Creset %an - %s' --graph
+}
