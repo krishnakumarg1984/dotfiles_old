@@ -1,0 +1,112 @@
+ " set nocompatible
+ " let &rtp  = '~/.local/share/nvim/plugged/vimtex,' . &rtp
+ " let &rtp .= ',~/.local/share/nvim/plugged/vimtex/after'
+
+ " Load other plugins, if necessary
+ " let &rtp = '~/path/to/other/plugin,' . &rtp
+
+ " filetype plugin indent on
+ " syntax enable
+
+let g:tex_stylish = 1
+let g:tex_conceal = ''
+let g:tex_flavor = 'latex'
+let g:tex_isk='48-57,a-z,A-Z,192-255,:'
+
+let g:vimtex_complete_close_braces = 1
+" let g:vimtex_complete_img_use_tail = 1
+let g:vimtex_fold_enabled = 1
+let g:vimtex_format_enabled = 1
+" let g:vimtex_imaps_leader = '\|'
+let g:vimtex_index_split_pos = 'full'
+let g:vimtex_quickfix_method='pplatex'
+" let g:vimtex_quickfix_method='pulp'
+let g:vimtex_quickfix_open_on_warning = 0
+let g:vimtex_toc_fold = 1
+let g:vimtex_toc_hotkeys = {'enabled' : 1}
+let g:vimtex_view_automatic = 0
+let g:vimtex_view_forward_search_on_start = 1
+let g:vimtex_view_method = 'zathura'
+let g:vimtex_view_use_temp_files=1
+
+let g:vimtex_quickfix_latexlog = {
+            \ 'default' : 1,
+            \ 'general' : 1,
+            \ 'references' : 1,
+            \ 'overfull' : 0,
+            \ 'underfull' : 0,
+            \ 'font' : 1,
+            \ 'packages' : {
+            \   'default' : 1,
+            \   'natbib' : 1,
+            \   'biblatex' : 1,
+            \   'babel' : 1,
+            \   'hyperref' : 1,
+            \   'scrreprt' : 1,
+            \   'fixltx2e' : 1,
+            \   'titlesec' : 1,
+            \ },
+            \}
+
+augroup vimtex
+    autocmd!
+    autocmd BufWritePost *.tex call vimtex#labels#refresh()
+    autocmd BufWritePost *.tex call vimtex#toc#refresh()
+augroup END
+" autocmd BufReadPre *.tex let b:vimtex_main = 'thesis.tex'
+autocmd! User VimtexEventInitPost Limelight 0.4
+autocmd! User VimtexEventQuit Limelight!
+
+augroup vimtex_event_1
+    au!
+    " au User VimtexEventQuit     call vimtex#compiler#clean(0)
+    " au User VimtexEventInitPost call vimtex#compiler#compile()
+augroup END
+
+" Close viewers on quit
+function! CloseViewers()
+    if executable('xdotool') && exists('b:vimtex')
+                \ && exists('b:vimtex.viewer') && b:vimtex.viewer.xwin_id > 0
+        call system('xdotool windowclose '. b:vimtex.viewer.xwin_id)
+    endif
+endfunction
+
+augroup vimtex_event_2
+    au!
+    au User VimtexEventQuit call CloseViewers()
+augroup END
+
+if has('nvim')
+	let g:vimtex_compiler_progname = 'nvr'
+endif
+
+let g:vimtex_compiler_latexmk = {
+            \ 'build_dir' : '',
+            \ 'options' : [
+            \   '-pdf',
+            \   '-verbose',
+            \   '-file-line-error',
+            \   '-synctex=1',
+            \   '-interaction=nonstopmode',
+            \   '-shell-escape',
+            \   '-bibtex',
+            \ ],
+            \}
+
+let g:vimtex_delim_toggle_mod_list = [
+            \ ['\left', '\right'],
+            \ ['\mleft', '\mright'],
+            \ ['\bigl', '\bigr'],
+            \ ['\Bigl', '\Bigr'],
+            \ ['\biggl', '\biggr'],
+            \ ['\Biggl', '\Biggr'],
+            \]
+
+let g:vimtex_doc_handlers = ['MyHandler']
+function! MyHandler(context)
+    call vimtex#doc#make_selection(a:context)
+    if !empty(a:context.selected)
+        execute '!texdoc' a:context.selected '&'
+    endif
+    return 1
+endfunction

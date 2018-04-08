@@ -132,6 +132,8 @@ highlight Comment cterm=italic
 hi link HelpBar Normal
 hi link HelpStar Normal
 
+autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
+
 autocmd InsertEnter * :set norelativenumber
 autocmd InsertLeave * :set relativenumber
 
@@ -151,27 +153,31 @@ if &shell =~# 'fish$'
     set shell=/usr/bin/sh
 endif
 
-" Only show cursorline in the current window and in normal mode.
-augroup cline
-    autocmd!
+" " Only show cursorline in the current window and in normal mode.
+" augroup cline
+"     autocmd!
+"     autocmd WinLeave,InsertEnter * setlocal nocursorline
+"     autocmd WinEnter,InsertLeave * setlocal cursorline
+" augroup END
 
-    autocmd WinLeave,InsertEnter * setlocal nocursorline
-    autocmd WinEnter,InsertLeave * setlocal cursorline
+augroup completedone
+    autocmd!
     autocmd CompleteDone * silent! pclose!
 augroup END
-
 
 highlight OverLength ctermfg=0 ctermbg=3
 match OverLength /\%121v/
 
 
-if (has("termguicolors"))
-    set t_8f=[38;2;%lu;%lu;%lum
-    set t_8b=[48;2;%lu;%lu;%lum
-    set termguicolors
-else
-    set t_Co=256
-endif
+" if (has("termguicolors"))
+"     " set t_8f=[38;2;%lu;%lu;%lum
+"     " set t_8b=[48;2;%lu;%lu;%lum
+"     set termguicolors
+" else
+"     set t_Co=256
+" endif
+
+set t_Co=256
 
 " let ayucolor="dark"
 set background=dark
@@ -281,8 +287,8 @@ nnoremap <silent> zj :silent! normal! zc<cr>zjzvzz
 nnoremap <silent> zk :silent! normal! zc<cr>zkzvzz[z
 "
 " " Backspace and return for improved navigation
-nnoremap        <bs> <c-o>zvzz
-nnoremap <expr> <cr> empty(&buftype) ? '<c-]>zvzz' : '<cr>'
+" nnoremap        <bs> <c-o>zvzz
+" nnoremap <expr> <cr> empty(&buftype) ? '<c-]>zvzz' : '<cr>'
 
 
 "" Abbreviations
@@ -300,7 +306,6 @@ cnoreabbrev Q q
 cnoreabbrev Qall qall
 
 source ~/ft_settings.vim
-
 
 augroup disableTempUndo
     autocmd!
@@ -390,3 +395,5 @@ let g:loaded_spellfile_plugin = 1
 let g:loaded_tarPlugin = 1
 let g:loaded_vimballPlugin = 1
 let g:loaded_zipPlugin = 1
+
+au FocusGained,BufEnter * :checktime

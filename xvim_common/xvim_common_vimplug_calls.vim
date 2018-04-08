@@ -1,4 +1,5 @@
 " Plug 'SirVer/ultisnips'
+"Plug 'sheerun/vim-polyglot'
 " Plug 'blueyed/vim-diminactive'
 " Plug 'dbmrq/vim-ditto'
 " Plug 'godlygeek/tabular',{'for':['tex','matlab','markdown','muttrc']}
@@ -11,6 +12,10 @@
 " Plug 'tpope/vim-obsession'
 " Plug 'tpope/vim-surround'
 " Plug 'unblevable/quick-scope' " for f, F, t and T
+
+Plug 'lervag/vimtex',{'for':'tex'}
+Plug 'tpope/vim-commentary'
+
 Plug 'JamieJQuinn/vim-madoko',{'for':['madoko']}
 Plug 'KabbAmine/zeavim.vim'
 Plug 'Konfekt/FastFold'
@@ -44,11 +49,11 @@ Plug 'kana/vim-textobj-user'
 Plug 'kshenoy/vim-signature' "place, toggle and display marks. Navigate forward/backward by position/alphabetical order. Any arbitrary sign for marks is possible
 Plug 'leafgarland/typescript-vim',{'for': 'typescript'}
 Plug 'lervag/file-line'
-Plug 'lervag/vimtex',{'for':'tex'}
 Plug 'lfilho/cosco.vim'
 Plug 'machakann/vim-columnmove'
 Plug 'machakann/vim-highlightedyank'
 Plug 'machakann/vim-sandwich'
+
 Plug 'mhinz/vim-grepper'
 Plug 'nelstrom/vim-visual-star-search'
 Plug 'ntpeters/vim-better-whitespace'
@@ -58,20 +63,21 @@ Plug 'reedes/vim-litecorrect'
 Plug 'reedes/vim-textobj-quote'
 Plug 'reedes/vim-textobj-sentence'
 Plug 'reedes/vim-wordy',{'for':['tex','text','markdown']}
+
 Plug 'rhysd/vim-grammarous'
 Plug 'romainl/vim-cool'
 Plug 'romainl/vim-qf'
 Plug 'roman/golden-ratio'
 Plug 'ron89/thesaurus_query.vim'
+
 Plug 'sgur/vim-editorconfig'
-Plug 'sheerun/vim-polyglot'
 Plug 'sjl/gundo.vim'
 Plug 'thaerkh/vim-indentguides',{'for':['tex','markdown','vim']}
 Plug 'thaerkh/vim-workspace'
+
 Plug 'tomasiser/vim-code-dark'
 Plug 'tommcdo/vim-exchange'
 Plug 'tpope/vim-abolish'
-Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-fugitive'
@@ -87,26 +93,26 @@ Plug 'wannesm/wmgraphviz.vim',{'for':['dot','gv']}
 Plug 'wellle/targets.vim' "To change the text in the next pair of parentheses, use the cin) command,To delete the item in a comma separated list under the cursor, use da, last pair seems very useful, i(,i),ib,i{,i},i[,i],i<,i>,it, with count, same with 'a'. n and l options, quotes, even back-ticks
 
 if executable('ctags')
-    Plug 'ludovicchabant/vim-gutentags' "Gutentags is a plugin that takes care of the much needed management of tags files in Vim. It will (re)generate tag files as you work while staying completely out of your way. It will even do its best to keep those tag files out of your way too. It has no dependencies and just works.
+    	Plug 'ludovicchabant/vim-gutentags' "Gutentags is a plugin that takes care of the much needed management of tags files in Vim. It will (re)generate tag files as you work while staying completely out of your way. It will even do its best to keep those tag files out of your way too. It has no dependencies and just works.
 endif
 
 " Plug 'ryanoasis/vim-devicons'
 
 
 if has('nvim')
-    Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-    " Plug 'Shougo/context_filetype.vim'
-    Plug 'Shougo/neco-vim'
-    Plug 'Shougo/neco-syntax'
-    Plug 'fszymanski/deoplete-abook'
-    Plug 'fszymanski/deoplete-emoji'
-    Plug 'lionawurscht/deoplete-biblatex'
-    Plug 'Shougo/neoinclude.vim'
-    " Plug 'roxma/nvim-completion-manager'
-    " Plug 'fgrsnau/ncm-otherbuf'
+    	Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+    	" Plug 'Shougo/context_filetype.vim'
+    	Plug 'Shougo/neco-vim'
+    	Plug 'Shougo/neco-syntax'
+    	Plug 'fszymanski/deoplete-abook'
+    	Plug 'fszymanski/deoplete-emoji'
+    	Plug 'lionawurscht/deoplete-biblatex'
+    	Plug 'Shougo/neoinclude.vim'
+    	" Plug 'roxma/nvim-completion-manager'
+    	" Plug 'fgrsnau/ncm-otherbuf'
 else
-    Plug 'Shougo/deoplete.nvim'
-    Plug 'roxma/nvim-yarp'
-    Plug 'roxma/vim-hug-neovim-rpc'
-    Plug 'nhooyr/neoman.vim'
+    	Plug 'Shougo/deoplete.nvim'
+    	Plug 'roxma/nvim-yarp'
+    	Plug 'roxma/vim-hug-neovim-rpc'
+    	Plug 'nhooyr/neoman.vim'
 endif

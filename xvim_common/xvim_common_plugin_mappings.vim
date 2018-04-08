@@ -172,30 +172,10 @@ let g:sandwich#recipes = deepcopy(g:sandwich#default_recipes)
 runtime macros/sandwich/keymap/surround.vim
 let g:columnmove_strict_wbege = 0
 
-" Configure deoplete so that it uses tabs
-inoremap <silent><expr><Tab> pumvisible() ? "\<C-n>"
-            \ : (<SID>is_whitespace() ? "\<Tab>" : deoplete#mappings#manual_complete())
-inoremap <expr><S-Tab>  pumvisible() ? "\<C-p>" : "\<C-h>"
-
-
 " Configure deoplete to work with LaTeX
 if !exists('g:deoplete#omni#input_patterns')
     let g:deoplete#omni#input_patterns = {}
 endif
-" let g:deoplete#omni#input_patterns.tex = '\\(?:'
-"       \ .  '\w*cite\w*(?:\s*\[[^]]*\]){0,2}\s*{[^}]*'
-"       \ . '|\w*ref(?:\s*\{[^}]*|range\s*\{[^,}]*(?:}{)?)'
-"       \ . '|hyperref\s*\[[^]]*'
-"       \ . '|includegraphics\*?(?:\s*\[[^]]*\]){0,2}\s*\{[^}]*'
-"       \ . '|(?:include(?:only)?|input)\s*\{[^}]*'
-"       \ . '|\w*(gls|Gls|GLS)(pl)?\w*(\s*\[[^]]*\]){0,2}\s*\{[^}]*'
-"       \ . '|includepdf(\s*\[[^]]*\])?\s*\{[^}]*'
-"       \ . '|includestandalone(\s*\[[^]]*\])?\s*\{[^}]*'
-"       \ . '|usepackage(\s*\[[^]]*\])?\s*\{[^}]*'
-"       \ . '|documentclass(\s*\[[^]]*\])?\s*\{[^}]*'
-"       \ . '|\w*'
-"       \ .')'
-
 
 let g:deoplete#omni#input_patterns.tex = '\\(?:'
             \ . '\w*cite\w*(?:\s*\[[^]]*\]){0,2}\s*'
@@ -217,20 +197,43 @@ let g:deoplete#omni#input_patterns.tex = '\\(?:'
             \ . ')'
 
 autocmd InsertEnter * call deoplete#enable()
+" let g:deoplete#auto_complete_delay = 40
+" let g:deoplete#auto_refresh_delay = 40
+" call deoplete#custom#set('buffer', 'rank', 9999)
+" call deoplete#custom#set('_', 'sorters', ['sorter_word'])
+" call deoplete#custom#set('neosnippet', 'rank', 9999)
+
+" function! s:neosnippet_complete()
+"   if pumvisible()
+"     return "\<c-n>"
+"   else
+"     if neosnippet#expandable_or_jumpable()
+"       return "\<Plug>(neosnippet_expand_or_jump)"
+"     endif
+"     return "\<tab>"
+"   endif
+" endfunction
+
+" imap <expr><TAB> <SID>neosnippet_complete()
+" inoremap <silent><expr><CR>  pumvisible() ? "\<C-y>" : "\<CR>"
+
+" " <CR>: close popup and save indent.
+" inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+" function! s:my_cr_function()
+"     return deoplete#mappings#smart_close_popup() . "\<CR>"
+" endfunction
+
+imap <expr><TAB>
+            \ neosnippet#expandable_or_jumpable() ?
+            \    "\<Plug>(neosnippet_expand_or_jump)" :
+            \    pumvisible() ? "\<C-n>" : "\<TAB>"
+autocmd CompleteDone * pclose!
+
 
 " For conceal markers.
 if has('conceal')
     set conceallevel=2 concealcursor=niv
 endif
-
-" deoplete + neosnippet + autopairs changes
-let g:AutoPairsMapCR=0
-let g:deoplete#auto_complete_start_length = 1
-let g:deoplete#enable_smart_case = 1
-imap <expr><TAB> pumvisible() ? "\<C-n>" : (neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>")
-imap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<S-TAB>"
-imap <expr><CR> pumvisible() ? deoplete#mappings#close_popup() : "\<CR>\<Plug>AutoPairsReturn"
-
 
 if has('timers')
     " Blink 2 times with 50ms interval
@@ -284,111 +287,6 @@ let g:gutentags_file_list_command = {
             \   '.hg': 'hg files',
             \ },
             \}
-
-
-let g:tex_stylish = 1
-let g:tex_conceal = ''
-let g:tex_flavor = 'latex'
-let g:tex_isk='48-57,a-z,A-Z,192-255,:'
-
-let g:vimtex_complete_close_braces = 1
-" let g:vimtex_complete_img_use_tail = 1
-let g:vimtex_fold_enabled = 1
-let g:vimtex_format_enabled = 1
-" let g:vimtex_imaps_leader = '\|'
-let g:vimtex_index_split_pos = 'full'
-let g:vimtex_quickfix_method='pplatex'
-" let g:vimtex_quickfix_method='pulp'
-let g:vimtex_quickfix_open_on_warning = 0
-let g:vimtex_toc_fold = 1
-let g:vimtex_toc_hotkeys = {'enabled' : 1}
-let g:vimtex_view_automatic = 0
-let g:vimtex_view_forward_search_on_start = 1
-let g:vimtex_view_method = 'zathura'
-let g:vimtex_view_use_temp_files=1
-
-let g:vimtex_quickfix_latexlog = {
-      \ 'default' : 1,
-      \ 'general' : 1,
-      \ 'references' : 1,
-      \ 'overfull' : 0,
-      \ 'underfull' : 0,
-      \ 'font' : 1,
-      \ 'packages' : {
-      \   'default' : 1,
-      \   'natbib' : 1,
-      \   'biblatex' : 1,
-      \   'babel' : 1,
-      \   'hyperref' : 1,
-      \   'scrreprt' : 1,
-      \   'fixltx2e' : 1,
-      \   'titlesec' : 1,
-      \ },
-      \}
-
-augroup vimtex
-autocmd!
-autocmd BufWritePost *.tex call vimtex#labels#refresh()
-autocmd BufWritePost *.tex call vimtex#toc#refresh()
-augroup END
-" autocmd BufReadPre *.tex let b:vimtex_main = 'thesis.tex'
-autocmd! User VimtexEventInitPost Limelight 0.4
-autocmd! User VimtexEventQuit Limelight!
-autocmd! User VimtexEventQuit !~/dotfiles/latexclean/latexclean.sh
-
-" augroup vimtex_event_1
-"     au!
-"     " au User VimtexEventQuit     call vimtex#compiler#clean(0)
-"     " au User VimtexEventInitPost call vimtex#compiler#compile()
-" augroup END
-
-" Close viewers on quit
-function! CloseViewers()
-    if executable('xdotool') && exists('b:vimtex')
-                \ && exists('b:vimtex.viewer') && b:vimtex.viewer.xwin_id > 0
-        call system('xdotool windowclose '. b:vimtex.viewer.xwin_id)
-    endif
-endfunction
-
-augroup vimtex_event_2
-    au!
-    au User VimtexEventQuit call CloseViewers()
-augroup END
-
-if has('nvim')
-	let g:vimtex_compiler_progname = 'nvr'
-endif
-
-let g:vimtex_compiler_latexmk = {
-            \ 'build_dir' : '',
-            \ 'options' : [
-            \   '-pdf',
-            \   '-verbose',
-            \   '-file-line-error',
-            \   '-synctex=1',
-            \   '-interaction=nonstopmode',
-            \   '-shell-escape',
-            \   '-bibtex',
-            \ ],
-            \}
-
-let g:vimtex_delim_toggle_mod_list = [
-            \ ['\left', '\right'],
-            \ ['\mleft', '\mright'],
-            \ ['\bigl', '\bigr'],
-            \ ['\Bigl', '\Bigr'],
-            \ ['\biggl', '\biggr'],
-            \ ['\Biggl', '\Biggr'],
-            \]
-
-let g:vimtex_doc_handlers = ['MyHandler']
-function! MyHandler(context)
-    call vimtex#doc#make_selection(a:context)
-    if !empty(a:context.selected)
-        execute '!texdoc' a:context.selected '&'
-    endif
-    return 1
-endfunction
 
 
 if !executable('zeal') || exists('g:loaded_zeal') | finish | endif
