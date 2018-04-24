@@ -23,8 +23,8 @@ set fileformats=unix,dos,mac
 set fillchars=vert:│,fold:\ ,diff:⣿
 set isfname-={,}
 set foldenable
-set foldcolumn=4
-set foldlevelstart=0
+" set foldcolumn=4
+set foldlevelstart=99
 set formatoptions+=ronl1j
 set formatlistpat+=\\\|^\\s*(\\(\\d\\+\\\|[a-z]\\))\\s\\+
 set formatlistpat+=\\\|^\\s*\\(\\d\\+\\\|[a-z]\\)[:).]\\s\\+
@@ -70,7 +70,7 @@ set splitright                  " Splitting a window will put the new windowrigh
 set suffixesadd=.py,.m,.mat,.gv,.tex      "Find will work harder for these filetypes
 set synmaxcol=300   "Boost performance in rendering long lines
 set tabpagemax=15      " Maximum number of tab pages to be opened by the |-p| command line argument or the ":tab all" command. |tabpage|
-set tags=tags;~,.tags;~
+set tags=tags;,.tags;
 set timeout       " time out on mappings and keycodes (stronger of the two conditions)
 set timeoutlen=1000
 set title
@@ -83,7 +83,7 @@ set updatetime=250              " milliseconds elapsed before which swap file wi
 set viewoptions=cursor,folds,slash,unix
 set wildchar=<TAB> " Character for CLI expansion (TAB-completion)
 set wildmenu
-set wildmode=list:longest,list:full
+set wildmode=longest,list:full
 " set winminheight=4              " Windows can be 0 line high
 set virtualedit=block
 silent! set shortmess+=F
@@ -169,7 +169,7 @@ highlight OverLength ctermfg=0 ctermbg=3
 match OverLength /\%121v/
 
 
-" if (has("termguicolors"))
+" if (has("termguicolors"))|| has('termguicolors')
 "     " set t_8f=[38;2;%lu;%lu;%lum
 "     " set t_8b=[48;2;%lu;%lu;%lum
 "     set termguicolors
@@ -178,6 +178,7 @@ match OverLength /\%121v/
 " endif
 
 set t_Co=256
+" set termguicolors
 
 " let ayucolor="dark"
 set background=dark
@@ -185,7 +186,14 @@ set background=dark
 " colorscheme alduin
 " colorscheme minimalist
 " colorscheme tender
-colorscheme gruvbox
+" colorscheme gruvbox
+" colorscheme challenger_deep
+" colorscheme dracula
+" colorscheme onedark
+" colorscheme badwolf
+colorscheme railscasts
+
+" nnoremap gqip mmgqip`m
 
 nnoremap J      mzJ`z
 nnoremap dp     dp]c

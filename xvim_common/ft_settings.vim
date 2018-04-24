@@ -9,14 +9,17 @@ augroup END
 augroup ft_latex
     autocmd!
     au BufRead,BufNewFile *.tex set filetype=tex
-    autocmd FileType tex setlocal formatprg=par\ -w100rjqge
-    autocmd FileType tex setlocal textwidth=100
+    autocmd FileType tex setlocal textwidth=80
+    " autocmd FileType tex setlocal formatprg=par\ -jw80
+    autocmd FileType tex vmap <A-q> !par -jw80<CR>
+    autocmd FileType tex map <A-q> {v}!par -jw80<CR>
+    autocmd FileType tex setlocal formatoptions-=t
     autocmd FileType tex setlocal spell
     autocmd FileType tex setlocal spelllang=en_gb
     " autocmd FileType tex setlocal formatoptions=at
     autocmd FileType tex setlocal keywordprg=texdoc
     autocmd FileType bib setlocal foldmethod=syntax
-    " au BufReadPost,BufNewFile *.tex Limelight 0.4
+    " au BufReadPost,BufNewFile *.tex Limelight 0.7
 augroup END
 
 autocmd FileType dot setlocal commentstring=//\ %s
@@ -52,12 +55,17 @@ augroup ft_vim
     " autocmd FileType vim setlocal list!
     autocmd FileType help setlocal textwidth=80
     autocmd FileType help setlocal number
+    autocmd FileType help setlocal relativenumber
     " Press Enter to follow a help tag
     autocmd FileType help nnoremap <buffer><CR> <c-]>
     " Press Backspace to go back to the location of the previous tag
     autocmd FileType help nnoremap <buffer><BS> <c-T>
     " Press q to exit the help
     autocmd FileType help nnoremap <buffer>q :q<CR>
+    autocmd FileType help setlocal foldmethod=marker
+    autocmd FileType help setlocal foldenable
+    autocmd FileType help setlocal foldlevel=0
+    autocmd FileType help setlocal foldlevelstart=0
     autocmd BufWinEnter *.txt if &ft == 'help' | wincmd L | endif
 augroup END
 
@@ -248,9 +256,9 @@ augroup ft_gitcommit
     autocmd!
 
     autocmd FileType gitcommit setlocal spell
-    autocmd FileType gitcommit setlocal textwidth=70
-    autocmd BufRead,BufNewFile gitcommit setlocal textwidth=70
-    " au FileType gitcommit 1 | startinsert
+    autocmd FileType gitcommit setlocal textwidth=72
+    autocmd BufRead,BufNewFile gitcommit setlocal textwidth=72
+    autocmd FileType gitcommit 1 | startinsert
 augroup END
 
 augroup ft_crontab

@@ -1,4 +1,8 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =2
+let g:netrw_dirhist_cnt =6
 let g:netrw_dirhist_1='/home/kg314/dotfiles'
 let g:netrw_dirhist_2='/home/kg314/dotfiles/latexclean'
+let g:netrw_dirhist_3='/home/kg314/Documents/phd_thesis_github/1_introduction'
+let g:netrw_dirhist_4='/home/kg314/Documents/phd_thesis_github/4'
+let g:netrw_dirhist_5='/home/kg314/Documents/phd_thesis_github'
+let g:netrw_dirhist_6='/home/kg314/Documents/phd_thesis_github/sty'

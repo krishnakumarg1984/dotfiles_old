@@ -78,7 +78,6 @@ nnoremap <leader>gu :GundoToggle<CR>
 " nnoremap <leader>gu :UndotreeToggle<CR>
 
 let g:palenight_terminal_italics=1
-let g:airline_theme='onedark'
 
 xnoremap iz :<c-u>FastFoldUpdate<cr><esc>:<c-u>normal! ]zv[z<cr>
 xnoremap az :<c-u>FastFoldUpdate<cr><esc>:<c-u>normal! ]zV[z<cr>
@@ -240,41 +239,42 @@ if has('timers')
     noremap <expr> <plug>(slash-after) 'zz'.slash#blink(2, 50)
 endif
 
-" vim-airline
-if !exists('g:airline_symbols')
-    let g:airline_symbols = {}
-endif
+" " vim-airline
+" if !exists('g:airline_symbols')
+"     let g:airline_symbols = {}
+" endif
 
-if !exists('g:airline_powerline_fonts')
-    let g:airline#extensions#tabline#left_sep = ' '
-    let g:airline#extensions#tabline#left_alt_sep = '|'
-    let g:airline_left_sep          = '▶'
-    let g:airline_left_alt_sep      = '»'
-    let g:airline_right_sep         = '◀'
-    let g:airline_right_alt_sep     = '«'
-    let g:airline#extensions#branch#prefix     = '⤴' "➔, ➥, ⎇
-    let g:airline#extensions#readonly#symbol   = '⊘'
-    let g:airline#extensions#linecolumn#prefix = '¶'
-    let g:airline#extensions#paste#symbol      = 'ρ'
-    let g:airline_symbols.linenr    = '␊'
-    let g:airline_symbols.branch    = '⎇'
-    let g:airline_symbols.paste     = 'ρ'
-    let g:airline_symbols.paste     = 'Þ'
-    let g:airline_symbols.paste     = '∥'
-    let g:airline_symbols.whitespace = 'Ξ'
-else
-    let g:airline#extensions#tabline#left_sep = '暭'
-    let g:airline#extensions#tabline#left_alt_sep = '噍'
+" if !exists('g:airline_powerline_fonts')
+"     let g:airline#extensions#tabline#left_sep = ' '
+"     let g:airline#extensions#tabline#left_alt_sep = '|'
+"     let g:airline_left_sep          = '▶'
+"     let g:airline_left_alt_sep      = '»'
+"     let g:airline_right_sep         = '◀'
+"     let g:airline_right_alt_sep     = '«'
+"     let g:airline#extensions#branch#prefix     = '⤴' "➔, ➥, ⎇
+"     let g:airline#extensions#readonly#symbol   = '⊘'
+"     let g:airline#extensions#linecolumn#prefix = '¶'
+"     let g:airline#extensions#paste#symbol      = 'ρ'
+"     let g:airline_symbols.linenr    = '␊'
+"     let g:airline_symbols.branch    = '⎇'
+"     let g:airline_symbols.paste     = 'ρ'
+"     let g:airline_symbols.paste     = 'Þ'
+"     let g:airline_symbols.paste     = '∥'
+"     let g:airline_symbols.whitespace = 'Ξ'
+" endif
 
-    " powerline symbols
-    let g:airline_left_sep = '暭'
-    let g:airline_left_alt_sep = '噍'
-    let g:airline_right_sep = '噏'
-    let g:airline_right_alt_sep = '磱'
-    let g:airline_symbols.branch = '䳭'
-    let g:airline_symbols.readonly = '琗'
-    let g:airline_symbols.linenr = '启'
-endif
+" let g:airline#extensions#tabline#left_sep = '暭'
+" let g:airline#extensions#tabline#left_alt_sep = '噍'
+
+" " powerline symbols
+" let g:airline_left_sep = '暭'
+" let g:airline_left_alt_sep = '噍'
+" let g:airline_right_sep = '噏'
+" let g:airline_right_alt_sep = '磱'
+" let g:airline_symbols.branch = '䳭'
+" let g:airline_symbols.readonly = '琗'
+" let g:airline_symbols.linenr = '启'
+" endif
 
 "" Open current line on GitHub
 nnoremap <Leader>o :.Gbrowse<CR>
@@ -303,14 +303,14 @@ let s:dict = {
             \ 'zsh' : 'bash',
             \}
 
-" augroup zeal
-"     autocmd!
-"     for [s:ft, s:kwrd] in items(s:dict)
-"         execute 'autocmd! FileType' s:ft
-"                     \ 'nnoremap <silent><buffer> <leader>zz'
-"                     \ ':silent !zeal ' . s:kwrd . ':<cword> 2>&1 >/dev/null &<cr>'
-"     endfor
-" augroup END
+augroup zeal
+    autocmd!
+    for [s:ft, s:kwrd] in items(s:dict)
+        execute 'autocmd! FileType' s:ft
+                    \ 'nnoremap <silent><buffer> <leader>z'
+                    \ ':silent !zeal ' . s:kwrd . ':<cword> 2>&1 >/dev/null &<cr>'
+    endfor
+augroup END
 
 let g:grammarous#default_comments_only_filetypes = {
             \ '*' : 1, 'help' : 0, 'markdown' : 0, 'latex' : 0, 'text' : 0, 'pandoc' : 0,
@@ -322,9 +322,11 @@ let g:rsi_no_meta = 1
 
 let g:tq_online_backends_timeout = 0.4
 
-" autocmd! User GoyoEnter Limelight
-" autocmd! User GoyoLeave Limelight!
-"
+let g:goyo_linenr = 1
+
+autocmd! User GoyoEnter Limelight 0.8
+autocmd! User GoyoLeave Limelight!
+
 " nmap <Leader>L <Plug>(Limelight)
 " xmap <Leader>L <Plug>(Limelight)
 
@@ -364,14 +366,19 @@ augroup textobj_quote
   autocmd FileType tex call textobj#quote#init({'educate': 0})
 augroup END
 
-augroup litecorrect
-  autocmd!
-  autocmd FileType markdown,mkd call litecorrect#init()
-  autocmd FileType textile call litecorrect#init()
-  autocmd FileType text call litecorrect#init()
-  autocmd FileType tex call litecorrect#init()
-  autocmd FileType latex call litecorrect#init()
-augroup END
+" augroup litecorrect
+"   autocmd!
+"   autocmd FileType markdown,mkd call litecorrect#init()
+"   autocmd FileType textile call litecorrect#init()
+"   autocmd FileType text call litecorrect#init()
+"   autocmd FileType tex call litecorrect#init()
+"   autocmd FileType latex call litecorrect#init()
+" augroup END
+
+" augroup ILoveCorrections
+"     autocmd!
+"     autocmd BufNewFile,BufReadPost *.tex EnableAutocorrect
+" augroup END
 
 let g:airline#extensions#ale#enabled = 1
 " Write this in your vimrc file
@@ -401,3 +408,4 @@ let g:qf_auto_open_quickfix = 0
 "     endw
 "     exe max([min([n_lines, a:maxheight]), a:minheight]) . "wincmd _"
 " endfunction
+

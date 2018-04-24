@@ -1,5 +1,5 @@
 " Plug 'SirVer/ultisnips'
-"Plug 'sheerun/vim-polyglot'
+" Plug 'sheerun/vim-polyglot'
 " Plug 'blueyed/vim-diminactive'
 " Plug 'dbmrq/vim-ditto'
 " Plug 'godlygeek/tabular',{'for':['tex','matlab','markdown','muttrc']}
@@ -12,6 +12,12 @@
 " Plug 'tpope/vim-obsession'
 " Plug 'tpope/vim-surround'
 " Plug 'unblevable/quick-scope' " for f, F, t and T
+" Plug 'challenger-deep-theme/vim', { 'as': 'challenger-deep' }
+" Plug 'fenetikm/falcon'
+" Plug 'sedm0784/vim-you-autocorrect',{'for': ['tex','text','markdown']}
+" Plug 'reedes/vim-litecorrect'
+" Plug 'airblade/vim-gitgutter'
+" Plug 'zhamlin/tiler.vim'
 
 Plug 'lervag/vimtex',{'for':'tex'}
 Plug 'tpope/vim-commentary'
@@ -19,9 +25,9 @@ Plug 'tpope/vim-commentary'
 Plug 'JamieJQuinn/vim-madoko',{'for':['madoko']}
 Plug 'KabbAmine/zeavim.vim'
 Plug 'Konfekt/FastFold'
+Plug 'Shougo/context_filetype.vim'
 Plug 'Shougo/neosnippet'
 Plug 'Shougo/neosnippet-snippets'
-Plug 'airblade/vim-gitgutter'
 Plug 'ajgrf/parchment'
 Plug 'andymass/vim-matchup'
 Plug 'ayu-theme/ayu-vim'
@@ -53,28 +59,23 @@ Plug 'lfilho/cosco.vim'
 Plug 'machakann/vim-columnmove'
 Plug 'machakann/vim-highlightedyank'
 Plug 'machakann/vim-sandwich'
-
 Plug 'mhinz/vim-grepper'
 Plug 'nelstrom/vim-visual-star-search'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
 Plug 'raphamorim/lucario'
-Plug 'reedes/vim-litecorrect'
 Plug 'reedes/vim-textobj-quote'
 Plug 'reedes/vim-textobj-sentence'
 Plug 'reedes/vim-wordy',{'for':['tex','text','markdown']}
-
 Plug 'rhysd/vim-grammarous'
 Plug 'romainl/vim-cool'
 Plug 'romainl/vim-qf'
 Plug 'roman/golden-ratio'
 Plug 'ron89/thesaurus_query.vim'
-
 Plug 'sgur/vim-editorconfig'
 Plug 'sjl/gundo.vim'
-Plug 'thaerkh/vim-indentguides',{'for':['tex','markdown','vim']}
+" Plug 'thaerkh/vim-indentguides',{'for':['tex','markdown','vim']}
 Plug 'thaerkh/vim-workspace'
-
 Plug 'tomasiser/vim-code-dark'
 Plug 'tommcdo/vim-exchange'
 Plug 'tpope/vim-abolish'

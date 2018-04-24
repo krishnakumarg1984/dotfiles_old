@@ -100,7 +100,54 @@ source "$BASH_IT"/bash_it.sh
 source ~/nvim-aliases.sh
 source ~/alias-nvim-nvr.sh
 
-export FZF_DEFAULT_COMMAND='rg --files'
+alias diff='diff --color=auto'
+alias grep='grep --color=auto'
+alias du='du -c -h'
+alias mkdir='mkdir -p -v'
+alias nano='nano -w'
+alias ping='ping -c 5'
+alias dmesg='dmesg -HL'
+
+## ls
+alias ls='ls -hF --color=auto'
+alias lr='ls -R'                    # recursive ls
+alias ll='ls -l'
+alias la='ll -A'
+alias lx='ll -BX'                   # sort by extension
+# alias lz='ll -rS'                   # sort by size
+alias lt='ll -rt'                   # sort by date
+alias lm='la | more'
+
+
+## Safety features
+alias cp='cp -i'
+alias mv='mv -i'
+# alias rm='rm -I'                    # 'rm -i' prompts for every file
+# safer alternative w/ timeout, not stored in history
+alias rm=' timeout 3 rm -Iv --one-file-system'
+alias ln='ln -i'
+alias chown='chown --preserve-root'
+alias chmod='chmod --preserve-root'
+alias chgrp='chgrp --preserve-root'
+alias cls=' echo -ne "\033c"'       # clear screen for real (it does not work in Terminology)
+
+## Make Bash error tolerant
+alias :q=' exit'
+alias :Q=' exit'
+alias :x=' exit'
+alias cd..='cd ..'
+
+export LESSOPEN="| /usr/bin/source-highlight-esc.sh %s"
+export LESS='-R '
+# export LESS=-R
+# export LESS_TERMCAP_mb=$'\E[1;31m'     # begin bold
+# export LESS_TERMCAP_md=$'\E[1;36m'     # begin blink
+# export LESS_TERMCAP_me=$'\E[0m'        # reset bold/blink
+# export LESS_TERMCAP_so=$'\E[01;44;33m' # begin reverse video
+# export LESS_TERMCAP_se=$'\E[0m'        # reset reverse video
+# export LESS_TERMCAP_us=$'\E[1;32m'     # begin underline
+# export LESS_TERMCAP_ue=$'\E[0m'        # reset underline
+
 
 if [ -n "$NVIM_LISTEN_ADDRESS" ]; then
   export PS1="» "
@@ -123,9 +170,16 @@ glog ()
     git log --all --pretty='format:%d %Cgreen%h%Creset %an - %s' --graph
 }
 
-export FZF_DEFAULT_OPTS="--height 40% --preview='head -$LINES {}'"
+# export FZF_DEFAULT_COMMAND='rg --files'
+export FZF_DEFAULT_COMMAND='fd --type file --color=always --follow --hidden --exclude .git'
+export FZF_DEFAULT_OPTS="--ansi --height 50% --preview='head -$LINES {}'"
+# export FZF_DEFAULT_OPTS="--ansi --height 50% --preview='[[ $(file --mime {}) =~ binary ]] && echo {} is a binary file || (highlight -O ansi -l {} || coderay {} || rougify {} || cat {}) 2> /dev/null | head -500'"
+# export FZF_DEFAULT_OPTS="--ansi"
 
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+export FZF_CTRL_T_OPTS="--preview '(highlight -O ansi -l {} 2> /dev/null || cat {} || tree -C {}) 2> /dev/null | head -200'"
+
+source /usr/share/fzf/completion.bash && source /usr/share/fzf/key-bindings.bash
 
 
 # re-wrote the script above
@@ -151,3 +205,26 @@ else
         bind '"\e^":'
 fi
 }
+
+
+export GIT_EDITOR='vim +startinsert!'
+
+
+if [ "$TERM" = "linux" ]; then
+    _SEDCMD='s/.*\*color\([0-9]\{1,\}\).*#\([0-9a-fA-F]\{6\}\).*/\1 \2/p'
+    for i in $(sed -n "$_SEDCMD" $HOME/.Xresources | awk '$1 < 16 {printf "\\e]P%X%s", $1, $2}'); do
+        echo -en "$i"
+    done
+    clear
+fi
+
+# export HISTCONTROL=erasedups
+export HISTCONTROL=ignoredups
+
+bind '"\eh": "\C-a\eb\ed\C-y\e#man \C-y\C-m\C-p\C-p\C-a\C-d\C-e"'
+
+# source /usr/share/doc/pkgfile/command-not-found.bash
+# source /usr/share/doc/find-the-command/ftc.bash
+
+alias lipsum="wget -q -O- http://lipsum.com/feed/html | tidy -q -numeric -asxhtml --show-warnings no - | xmlstarlet sel -N xhtml='http://www.w3.org/1999/xhtml' -t --copy-of \"//xhtml:div[@id='lipsum']/*/text()\" -n -b - | xclip -selection clipboard"
+
