@@ -1,5 +1,5 @@
 command! PU PlugUpdate | PlugUpgrade
-nnoremap <C-p> :<C-u>FZF<CR>
+" nnoremap <C-p> :<C-u>FZF<CR>
 
 
 " For JavaScript files, use `eslint` (and only eslint)
@@ -21,6 +21,11 @@ let g:ale_echo_msg_error_str = 'E'
 let g:ale_echo_msg_warning_str = 'W'
 let g:ale_echo_msg_format = '[%linter%] [%severity%] %s'
 let g:ale_statusline_format = ['Errors: %d', 'Warnings: %d', '']
+
+let g:ale_linters = {
+            \   'tex': ['chktex','lacheck'],
+            \   'latex': ['chktex','lacheck'],
+            \}
 
 
 let g:grepper       = {}

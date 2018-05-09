@@ -15,18 +15,18 @@ let g:tex_isk='48-57,a-z,A-Z,192-255,:'
 
 " let g:vimtex_index_mode=4
 
-let g:vimtex_view_method = 'zathura'
-let g:vimtex_view_use_temp_files=1
-let g:vimtex_view_forward_search_on_start = 1
-
 " let g:vimtex_index_split_pos = 'full'
 " let g:vimtex_imaps_leader = '\|'
 " let g:vimtex_complete_img_use_tail = 1
 " let g:vimtex_quickfix_method='pulp'
 
-" let g:vimtex_view_general_viewer = 'okular'
-" let g:vimtex_view_general_options = '--unique file:@pdf\#src:@line@tex'
-" let g:vimtex_view_general_options_latexmk = '--unique'
+" let g:vimtex_view_method = 'zathura'
+" let g:vimtex_view_use_temp_files=1
+" let g:vimtex_view_forward_search_on_start = 1
+
+let g:vimtex_view_general_viewer = 'okular'
+let g:vimtex_view_general_options = '--unique file:@pdf\#src:@line@tex'
+let g:vimtex_view_general_options_latexmk = '--unique'
 
 let g:vimtex_complete_close_braces = 1
 let g:vimtex_index_resize = 1
@@ -53,32 +53,41 @@ augroup END
 augroup vimtex_event_1
 	au!
 	au User VimtexEventQuit     call vimtex#compiler#clean(0)
-	au User VimtexEventInitPost call vimtex#compiler#compile()
+	" au User VimtexEventInitPost call vimtex#compiler#compile()
 augroup END
 
-" Close viewers on quit
-function! CloseViewers()
-	if executable('xdotool') && exists('b:vimtex')
-				\ && exists('b:vimtex.viewer') && b:vimtex.viewer.xwin_id > 0
-		call system('xdotool windowclose '. b:vimtex.viewer.xwin_id)
-	endif
-endfunction
+" " Close viewers on quit
+" function! CloseViewers()
+" 	if executable('xdotool') && exists('b:vimtex')
+" 				\ && exists('b:vimtex.viewer') && b:vimtex.viewer.xwin_id > 0
+" 		call system('xdotool windowclose '. b:vimtex.viewer.xwin_id)
+" 	endif
+" endfunction
 
-augroup vimtex_event_2
-	au!
-	au User VimtexEventQuit call CloseViewers()
-augroup END
+" augroup vimtex_event_2
+" 	au!
+" 	au User VimtexEventQuit call CloseViewers()
+" augroup END
 
 if has('nvim')
 	let g:vimtex_compiler_progname = 'nvr'
 endif
 
-let g:vimtex_compiler_latexmk = {
-			\ 'options' : [
-			\   '-shell-escape',
-			\   '-bibtex',
-			\ ],
-			\}
+" let g:vimtex_compiler_latexmk = {
+" 			\ 'options' : [
+" 			\   '-pdf',
+" 			\   '-verbose',
+" 			\   '-shell-escape',
+" 			\   '-bibtex',
+" 			\   '-file-line-error',
+" 			\   '-synctex=1',
+" 			\   '-interaction=nonstopmode',
+" 			\ ],
+" 			\}
+
+" let g:vimtex_compiler_latexmk = {
+"     \ 'options' : '-pdf -verbose -bibtex -file-line-error -synctex=1 --interaction=nonstopmode',
+"     \}
 
 " let g:vimtex_delim_toggle_mod_list = [
 " 			\ ['\left', '\right'],
@@ -97,3 +106,5 @@ function! MyHandler(context)
 	endif
 	return 1
 endfunction
+
+let g:vimtex_indent_on_ampersands = 1

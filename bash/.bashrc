@@ -157,9 +157,9 @@ fi
 
 export MANPAGER="nvim -c 'set ft=man' -"
 
-export PATH="/usr/local/texlive/2018/bin/x86_64-linux:$PATH"
-export MANPATH="/usr/local/texlive/2018/texmf-dist/doc/man:$MANPATH"
-export INFOPATH="/usr/local/texlive/2018/texmf-dist/doc/info:$INFOPATH"
+# export PATH="/usr/local/texlive/2018/bin/x86_64-linux:$PATH"
+# export MANPATH="/usr/local/texlive/2018/texmf-dist/doc/man:$MANPATH"
+# export INFOPATH="/usr/local/texlive/2018/texmf-dist/doc/info:$INFOPATH"
 export PDFVIEWER_texdoc='zathura'
 export PDFVIEWER='zathura'
 
@@ -218,8 +218,9 @@ if [ "$TERM" = "linux" ]; then
     clear
 fi
 
-# export HISTCONTROL=erasedups
-export HISTCONTROL=ignoredups
+export HISTCONTROL=ignoreboth:erasedups
+shopt -s histappend
+PROMPT_COMMAND="history -n; history -w; history -c; history -r; $PROMPT_COMMAND"
 
 bind '"\eh": "\C-a\eb\ed\C-y\e#man \C-y\C-m\C-p\C-p\C-a\C-d\C-e"'
 
@@ -228,3 +229,8 @@ bind '"\eh": "\C-a\eb\ed\C-y\e#man \C-y\C-m\C-p\C-p\C-a\C-d\C-e"'
 
 alias lipsum="wget -q -O- http://lipsum.com/feed/html | tidy -q -numeric -asxhtml --show-warnings no - | xmlstarlet sel -N xhtml='http://www.w3.org/1999/xhtml' -t --copy-of \"//xhtml:div[@id='lipsum']/*/text()\" -n -b - | xclip -selection clipboard"
 
+alias mc='tmux split -h lf; lf'
+
+if [ -f ~/.git-completion.bash ]; then
+    source ~/.git-completion.bash
+fi
