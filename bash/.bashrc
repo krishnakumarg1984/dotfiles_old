@@ -207,7 +207,7 @@ fi
 }
 
 
-export GIT_EDITOR='vim +startinsert!'
+# export GIT_EDITOR='vim +startinsert!'
 
 
 if [ "$TERM" = "linux" ]; then

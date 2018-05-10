@@ -74,10 +74,10 @@ let g:diminactive_filetype_blacklist = ['startify']
 let g:diminactive_buftype_blacklist = ['nofile', 'nowrite', 'acwrite', 'quickfix', 'help']
 
 " Start interactive EasyAlign in visual mode (e.g. vipga)
-xmap ga <Plug>(EasyAlign)
+xmap <leader>ga <Plug>(EasyAlign)
 
 " Start interactive EasyAlign for a motion/text object (e.g. gaip)
-nmap ga <Plug>(EasyAlign)
+nmap <leader>ga <Plug>(EasyAlign)
 
 nnoremap <leader>gu :GundoToggle<CR>
 " nnoremap <leader>gu :UndotreeToggle<CR>
@@ -244,6 +244,8 @@ if has('timers')
     noremap <expr> <plug>(slash-after) 'zz'.slash#blink(2, 50)
 endif
 
+
+" let g:airline_theme = "hybrid"
 " " vim-airline
 " if !exists('g:airline_symbols')
 "     let g:airline_symbols = {}
@@ -414,3 +416,37 @@ let g:qf_auto_open_quickfix = 0
 "     exe max([min([n_lines, a:maxheight]), a:minheight]) . "wincmd _"
 " endfunction
 
+" lightline config
+let g:lightline = {
+            \ 'active': {
+            \   'left': [ [ 'mode', 'paste' ],
+            \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ],
+            \   'right': [  [ 'lineinfo', 'llwc' ],
+            \               [ 'percent' ],
+            \               [ 'filetype'  ] ]
+            \ },
+            \ 'inactive': {
+            \   'left': [['filename'], ['modified']],
+            \   'right':[ [ 'lineinfo', 'llwc' ],
+            \       [ 'percent' ] ]
+            \ },
+            \ 'component_function': {
+            \   'gitbranch': 'fugitive#head',
+            \   'llwc': 'WC'
+            \ },
+            \ }
+
+" WCupdate returns the texcount word count of the current file
+function! WCupdate()
+	return &filetype ==# 'tex' ? "words:" . system("texcount -sum -1 " . expand('%')) : ''
+endfunction
+
+" the buffer's word count defaults to the emptystring
+au BufNew,BufEnter * let b:wc = ''
+" the word count is updated for tex files when opened or saved.
+au BufWritePost,BufRead,FileWritePost,FileAppendPost,FilterWritePost,BufEnter *.tex let b:wc = substitute(WCupdate(),'\n$','','')
+
+" returns the word count
+function! WC()
+	return b:wc
+endfunction

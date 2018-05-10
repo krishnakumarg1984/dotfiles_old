@@ -182,16 +182,22 @@ set t_Co=256
 
 " let ayucolor="dark"
 set background=dark
-" colorscheme palenight
+
 " colorscheme alduin
-" colorscheme minimalist
-" colorscheme tender
-" colorscheme gruvbox
+" colorscheme badwolf
 " colorscheme challenger_deep
 " colorscheme dracula
+" colorscheme gruvbox
+" colorscheme lucius
+" colorscheme meta5
+" colorscheme minimalist
+" colorscheme molokai_dark
 " colorscheme onedark
-" colorscheme badwolf
-colorscheme railscasts
+" colorscheme palenight
+" colorscheme Papercolor
+" colorscheme railscasts
+" colorscheme tender
+colorscheme hybrid_material
 
 " nnoremap gqip mmgqip`m
 
@@ -405,3 +411,11 @@ let g:loaded_vimballPlugin = 1
 let g:loaded_zipPlugin = 1
 
 au FocusGained,BufEnter * :checktime
+
+if &diff
+    colorscheme gruvbox
+    let g:golden_ratio_autocommand = 0
+endif
+
+au FilterWritePre * if &diff | colorscheme gruvbox | endif
+

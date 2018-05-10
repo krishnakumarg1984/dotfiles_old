@@ -1,11 +1,3 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =9
-let g:netrw_dirhist_1='/home/kg314/dotfiles'
-let g:netrw_dirhist_2='/home/kg314/dotfiles/latexclean'
-let g:netrw_dirhist_3='/home/kg314/Documents/phd_thesis_github/1_introduction'
-let g:netrw_dirhist_4='/home/kg314/Documents/phd_thesis_github/4'
-let g:netrw_dirhist_5='/home/kg314/Documents/phd_thesis_github'
-let g:netrw_dirhist_6='/home/kg314/Documents/phd_thesis_github/sty'
-let g:netrw_dirhist_7='/home/kg314/Documents/MATLAB/BOLD_Toolbox/BOLD_src/final_results_optimal_layer/PHEV_results/binary_search'
-let g:netrw_dirhist_8='/home/kg314/paper_draft_layer_opt/hierarchical_original_layout_before_submission/figures_for_paper/deprecated_initial_submission_figures/tex_versions'
-let g:netrw_dirhist_9='/home/kg314/paper_draft_layer_opt/hierarchical_original_layout_before_submission/tables_for_paper'
+let g:netrw_dirhist_cnt =1
+let g:netrw_dirhist_1='/home/kg314/Documents/phd_thesis/.git'

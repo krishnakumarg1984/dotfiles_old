@@ -255,10 +255,13 @@ augroup END
 augroup ft_gitcommit
     autocmd!
 
+    " autocmd BufEnter,BufRead,BufNewFile gitcommit setlocal modifiable
+    " autocmd BufEnter,BufRead,BufNewFile gitcommit setlocal nomodeline
+    " autocmd FileType gitcommit 1 | startinsert
+    " autocmd FileType gitcommit setlocal modifiable
+    autocmd BufEnter,BufRead,BufNewFile gitcommit setlocal textwidth=72
     autocmd FileType gitcommit setlocal spell
     autocmd FileType gitcommit setlocal textwidth=72
-    autocmd BufRead,BufNewFile gitcommit setlocal textwidth=72
-    autocmd FileType gitcommit 1 | startinsert
 augroup END
 
 augroup ft_crontab
