@@ -108,3 +108,5 @@ function! MyHandler(context)
 endfunction
 
 let g:vimtex_indent_on_ampersands = 1
+
+nmap <leader>ac <Plug>(vimtex-cmd-create)

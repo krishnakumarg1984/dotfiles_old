@@ -234,3 +234,6 @@ alias mc='tmux split -h lf; lf'
 if [ -f ~/.git-completion.bash ]; then
     source ~/.git-completion.bash
 fi
+
+# added by travis gem
+[ -f /home/kg314/.travis/travis.sh ] && source /home/kg314/.travis/travis.sh

@@ -1,4 +1,5 @@
 " Plug 'airblade/vim-gitgutter'
+" Plug 'ajgrf/parchment'
 " Plug 'blueyed/vim-diminactive'
 " Plug 'challenger-deep-theme/vim', { 'as': 'challenger-deep' }
 " Plug 'dbmrq/vim-ditto'
@@ -26,7 +27,6 @@
 " Plug 'vim-airline/vim-airline-themes'
 " Plug 'zhamlin/tiler.vim'
 
-Plug 'ajgrf/parchment'
 Plug 'andymass/vim-matchup'
 Plug 'ayu-theme/ayu-vim'
 Plug 'christoomey/vim-tmux-navigator'
