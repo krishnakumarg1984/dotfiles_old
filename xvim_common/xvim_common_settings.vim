@@ -200,6 +200,11 @@ set background=dark
 colorscheme hybrid_material
 
 " nnoremap gqip mmgqip`m
+" Convert line to "Title Case" (capitalize first letter of each word)
+" nnoremap <leader>,t :silent s/\<\(\w\)\(\S*\)/\u\1\L\2/g<cr>
+
+nnoremap <Leader>x /\<<C-R>=expand('<cword>')<CR>\>\C<CR>``cgn
+nnoremap <Leader>X ?\<<C-R>=expand('<cword>')<CR>\>\C<CR>``cgN
 
 nnoremap J      mzJ`z
 nnoremap dp     dp]c
@@ -308,16 +313,17 @@ nnoremap <silent> zk :silent! normal! zc<cr>zkzvzz[z
 "" Abbreviations
 "*****************************************************************************
 "" no one is really happy until you have this shortcuts
-cnoreabbrev W! w!
-cnoreabbrev Q! q!
-cnoreabbrev Qall! qall!
-cnoreabbrev Wq wq
-cnoreabbrev Wa wa
-cnoreabbrev wQ wq
-cnoreabbrev WQ wq
-cnoreabbrev W w
-cnoreabbrev Q q
-cnoreabbrev Qall qall
+" cnoreabbrev W! w!
+" cnoreabbrev Q! q!
+" cnoreabbrev Qall! qall!
+" cnoreabbrev Wq wq
+" cnoreabbrev Wa wa
+" cnoreabbrev wQ wq
+" cnoreabbrev WQ wq
+" cnoreabbrev W w
+" cnoreabbrev Q q
+" cnoreabbrev Qall qall
+cnoreabbrev <expr> w getcmdtype() == ":" && getcmdline() == 'w' ? 'up' : 'w'
 
 source ~/ft_settings.vim
 
@@ -419,3 +425,5 @@ endif
 
 au FilterWritePre * if &diff | colorscheme gruvbox | endif
 
+imap <C-h> <BS>
+cmap <C-h> <BS>

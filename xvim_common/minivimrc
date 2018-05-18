@@ -73,17 +73,17 @@ if has('nvim')
 	let g:vimtex_compiler_progname = 'nvr'
 endif
 
-" let g:vimtex_compiler_latexmk = {
-" 			\ 'options' : [
-" 			\   '-pdf',
-" 			\   '-verbose',
-" 			\   '-shell-escape',
-" 			\   '-bibtex',
-" 			\   '-file-line-error',
-" 			\   '-synctex=1',
-" 			\   '-interaction=nonstopmode',
-" 			\ ],
-" 			\}
+let g:vimtex_compiler_latexmk = {
+			\ 'options' : [
+			\   '-pdf',
+			\   '-verbose',
+			\   '-shell-escape',
+			\   '-bibtex',
+			\   '-file-line-error',
+			\   '-synctex=1',
+			\   '-interaction=nonstopmode',
+			\ ],
+			\}
 
 " let g:vimtex_compiler_latexmk = {
 "     \ 'options' : '-pdf -verbose -bibtex -file-line-error -synctex=1 --interaction=nonstopmode',
@@ -110,3 +110,4 @@ endfunction
 let g:vimtex_indent_on_ampersands = 1
 
 nmap <leader>ac <Plug>(vimtex-cmd-create)
+xmap <leader>ac <Plug>(vimtex-cmd-create)

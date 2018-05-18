@@ -19,6 +19,7 @@ augroup ft_latex
     " autocmd FileType tex setlocal formatoptions=at
     autocmd FileType tex setlocal keywordprg=texdoc
     autocmd FileType bib setlocal foldmethod=syntax
+    autocmd FileType tex set colorcolumn=+1        " highlight column after 'textwidth'
     " au BufReadPost,BufNewFile *.tex Limelight 0.7
 augroup END
 
@@ -54,8 +55,8 @@ augroup ft_vim
     autocmd FileType vim setlocal foldmethod=marker
     " autocmd FileType vim setlocal list!
     autocmd FileType help setlocal textwidth=80
-    autocmd FileType help setlocal number
-    autocmd FileType help setlocal relativenumber
+    autocmd FileType help set number
+    autocmd FileType help set relativenumber
     " Press Enter to follow a help tag
     autocmd FileType help nnoremap <buffer><CR> <c-]>
     " Press Backspace to go back to the location of the previous tag
@@ -373,7 +374,20 @@ augroup PandocSettings
     autocmd FileType pandoc setlocal formatoptions-=o
 augroup END
 
-autocmd FileType matlab setlocal commentstring=%\ %s
+augroup ft_matlab
+    autocmd!
+    au BufRead,BufNewFile *.m set filetype=matlab
+    autocmd FileType matlab setlocal textwidth=80
+    autocmd FileType matlab setlocal formatprg=fmt\ -w80
+    autocmd FileType matlab setlocal formatoptions=croql
+    autocmd FileType bib setlocal foldmethod=syntax
+    autocmd FileType matlab setlocal commentstring=%\ %s
+    autocmd BufEnter *.m set background=dark
+    autocmd BufEnter *.m colorscheme gruvbox
+    autocmd FileType matlab set colorcolumn=81        " highlight column after 'textwidth'
+    " :set colorcolumn=+1,+2,+3  " highlight three columns after 'textwidth'
+    " :highlight ColorColumn ctermbg=lightgrey guibg=lightgrey
+augroup END
 
 
 if has("autocmd")

@@ -417,36 +417,39 @@ let g:qf_auto_open_quickfix = 0
 " endfunction
 
 " lightline config
-let g:lightline = {
-            \ 'active': {
-            \   'left': [ [ 'mode', 'paste' ],
-            \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ],
-            \   'right': [  [ 'lineinfo', 'llwc' ],
-            \               [ 'percent' ],
-            \               [ 'filetype'  ] ]
-            \ },
-            \ 'inactive': {
-            \   'left': [['filename'], ['modified']],
-            \   'right':[ [ 'lineinfo', 'llwc' ],
-            \       [ 'percent' ] ]
-            \ },
-            \ 'component_function': {
-            \   'gitbranch': 'fugitive#head',
-            \   'llwc': 'WC'
-            \ },
-            \ }
+" let g:lightline = {
+"             \ 'active': {
+"             \   'left': [ [ 'mode', 'paste' ],
+"             \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ],
+"             \   'right': [  [ 'lineinfo', 'llwc' ],
+"             \               [ 'percent' ],
+"             \               [ 'filetype'  ] ]
+"             \ },
+"             \ 'inactive': {
+"             \   'left': [['filename'], ['modified']],
+"             \   'right':[ [ 'lineinfo', 'llwc' ],
+"             \       [ 'percent' ] ]
+"             \ },
+"             \ 'component_function': {
+"             \   'gitbranch': 'fugitive#head',
+"             \   'llwc': 'WC'
+"             \ },
+"             \ }
 
-" WCupdate returns the texcount word count of the current file
-function! WCupdate()
-	return &filetype ==# 'tex' ? "words:" . system("texcount -sum -1 " . expand('%')) : ''
-endfunction
+" " WCupdate returns the texcount word count of the current file
+" function! WCupdate()
+" 	return &filetype ==# 'tex' ? "words:" . system("texcount -sum -1 " . expand('%')) : ''
+" endfunction
 
-" the buffer's word count defaults to the emptystring
-au BufNew,BufEnter * let b:wc = ''
-" the word count is updated for tex files when opened or saved.
-au BufWritePost,BufRead,FileWritePost,FileAppendPost,FilterWritePost,BufEnter *.tex let b:wc = substitute(WCupdate(),'\n$','','')
+" " the buffer's word count defaults to the emptystring
+" au BufNew,BufEnter * let b:wc = ''
+" " the word count is updated for tex files when opened or saved.
+" au BufWritePost,BufRead,FileWritePost,FileAppendPost,FilterWritePost,BufEnter *.tex let b:wc = substitute(WCupdate(),'\n$','','')
 
-" returns the word count
-function! WC()
-	return b:wc
-endfunction
+" " returns the word count
+" function! WC()
+" 	return b:wc
+" endfunction
+
+let g:licenses_copyright_holders_name = 'Gopalakrishnan, Krishnakumar <krishnak@vt.edu>'
+let g:licenses_authors_name = 'Gopalakrishnan, Krishnakumar <krishnak@vt.edu>'

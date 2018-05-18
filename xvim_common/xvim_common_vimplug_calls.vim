@@ -1,11 +1,15 @@
 " Plug 'airblade/vim-gitgutter'
 " Plug 'ajgrf/parchment'
+" Plug 'ayu-theme/ayu-vim'
 " Plug 'blueyed/vim-diminactive'
 " Plug 'challenger-deep-theme/vim', { 'as': 'challenger-deep' }
+" Plug 'christoomey/vim-tmux-navigator'
+" Plug 'danilo-augusto/vim-afterglow'
 " Plug 'dbmrq/vim-ditto'
+" Plug 'drewtempelmeyer/palenight.vim'
 " Plug 'fenetikm/falcon'
 " Plug 'fgrsnau/ncm-otherbuf'
-" Plug 'godlygeek/tabular',{'for':['tex','matlab','markdown','muttrc']}
+" Plug 'itchyny/lightline.vim'
 " Plug 'janko-m/vim-test'
 " Plug 'junegunn/vim-slash'
 " Plug 'mbbill/undotree'
@@ -23,32 +27,27 @@
 " Plug 'tpope/vim-obsession'
 " Plug 'tpope/vim-surround'
 " Plug 'unblevable/quick-scope' " for f, F, t and T
-" Plug 'vim-airline/vim-airline'
-" Plug 'vim-airline/vim-airline-themes'
 " Plug 'zhamlin/tiler.vim'
+" Plug 'gregsexton/gitv', { 'on' : 'Gitv' }
 
-Plug 'andymass/vim-matchup'
-Plug 'ayu-theme/ayu-vim'
-Plug 'christoomey/vim-tmux-navigator'
+Plug 'andymass/vim-matchup' " %, a%, i%, ]%, g%, [%
+Plug 'antoyo/vim-licenses'
 Plug 'cohama/lexima.vim'
 Plug 'critiqjo/husk-x.vim' " for command line mode (readline bindings)
 Plug 'daeyun/vim-matlab', { 'do': 'UpdateRemotePlugins' }
-Plug 'danilo-augusto/vim-afterglow'
 Plug 'dbmrq/vim-dialect'
 Plug 'dhruvasagar/vim-table-mode'
-Plug 'drewtempelmeyer/palenight.vim'
 Plug 'flazz/vim-colorschemes'
 Plug 'frioux/vim-regedit'
+Plug 'godlygeek/tabular',{'for':['matlab']}
 Plug 'google/vim-searchindex'
-Plug 'gregsexton/gitv', { 'on' : 'Gitv' }
 Plug 'honza/vim-snippets'
-Plug 'itchyny/lightline.vim'
 Plug 'jacoborus/tender.vim'
 Plug 'JamieJQuinn/vim-madoko',{'for':['madoko']}
 Plug 'joom/latex-unicoder.vim',{'for':['latex','tex']}
 Plug 'junegunn/fzf',{'dir': '~/.fzf', 'do': '.install --all'}
 Plug 'junegunn/fzf.vim'
-Plug 'junegunn/goyo.vim',{'for':['tex','text','txt','markdown']} " :Goyo to toggle
+Plug 'junegunn/goyo.vim',{'for':['tex','text','matlab','txt','markdown']} " :Goyo to toggle
 Plug 'junegunn/limelight.vim'
 Plug 'junegunn/vim-easy-align'
 Plug 'junegunn/vim-peekaboo'
@@ -95,6 +94,8 @@ Plug 'tpope/vim-speeddating'
 Plug 'tpope/vim-unimpaired'
 Plug 'tyru/capture.vim', { 'on' : 'Capture' }
 Plug 'ujihisa/neco-look'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 Plug 'w0rp/ale'
 Plug 'wannesm/wmgraphviz.vim',{'for':['dot','gv']}
 Plug 'wellle/targets.vim' "To change the text in the next pair of parentheses, use the cin) command,To delete the item in a comma separated list under the cursor, use da, last pair seems very useful, i(,i),ib,i{,i},i[,i],i<,i>,it, with count, same with 'a'. n and l options, quotes, even back-ticks
