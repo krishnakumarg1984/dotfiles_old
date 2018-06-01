@@ -20,6 +20,10 @@ augroup ft_latex
     autocmd FileType tex setlocal keywordprg=texdoc
     autocmd FileType bib setlocal foldmethod=syntax
     autocmd FileType tex set colorcolumn=+1        " highlight column after 'textwidth'
+    " autocmd BufWritePost * !rsync --checksum .git/gitHeadInfo.gin .
+    autocmd BufReadPost,BufNewFile *.tex silent! execute "!rsync --checksum .git/gitHeadInfo.gin gitHeadLocal.gin  >/dev/null 2>&1" | redraw!
+    autocmd BufWritePre *.tex silent! execute "!rsync --checksum .git/gitHeadInfo.gin gitHeadLocal.gin  >/dev/null 2>&1" | redraw!
+    " support for gitinfo2 package
     " au BufReadPost,BufNewFile *.tex Limelight 0.7
 augroup END
 

@@ -29,7 +29,7 @@ let g:ale_linters = {
 
 
 let g:grepper       = {}
-let g:grepper.tools = ['grep', 'git', 'rg']
+let g:grepper.tools = ['git', 'rg', 'grep']
 
 " Search for the current word
 nnoremap <Leader>* :Grepper -cword -noprompt<CR>
@@ -201,37 +201,57 @@ let g:deoplete#omni#input_patterns.tex = '\\(?:'
             \ . ')'
 
 autocmd InsertEnter * call deoplete#enable()
+" let g:deoplete#enable_smart_case = 1
 " let g:deoplete#auto_complete_delay = 40
 " let g:deoplete#auto_refresh_delay = 40
 " call deoplete#custom#set('buffer', 'rank', 9999)
 " call deoplete#custom#set('_', 'sorters', ['sorter_word'])
 " call deoplete#custom#set('neosnippet', 'rank', 9999)
 
-" function! s:neosnippet_complete()
-"   if pumvisible()
-"     return "\<c-n>"
-"   else
-"     if neosnippet#expandable_or_jumpable()
-"       return "\<Plug>(neosnippet_expand_or_jump)"
-"     endif
-"     return "\<tab>"
-"   endif
-" endfunction
+call deoplete#custom#option({
+            \ 'auto_complete_delay': 40,
+            \ 'auto_refresh_delay': 40,
+            \ 'smart_case': v:true,
+            \ })
 
-" imap <expr><TAB> <SID>neosnippet_complete()
-" inoremap <silent><expr><CR>  pumvisible() ? "\<C-y>" : "\<CR>"
+" <C-h>, <BS>: close popup and delete backword char.
+inoremap <expr><C-h> deoplete#smart_close_popup()."\<C-h>"
+inoremap <expr><BS>  deoplete#smart_close_popup()."\<C-h>"
 
-" " <CR>: close popup and save indent.
-" inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
-" function! s:my_cr_function()
-"     return deoplete#mappings#smart_close_popup() . "\<CR>"
-" endfunction
+" imap <expr><TAB>
+"             \ neosnippet#expandable_or_jumpable() ?
+"             \    "\<Plug>(neosnippet_expand_or_jump)" :
+"             \    pumvisible() ? "\<C-n>" : "\<TAB>"
+
+" SuperTab like snippets behavior.
+" Note: It must be "imap" and "smap".  It uses <Plug> mappings.
 
 imap <expr><TAB>
+            \ pumvisible() ? "\<C-n>" :
             \ neosnippet#expandable_or_jumpable() ?
-            \    "\<Plug>(neosnippet_expand_or_jump)" :
-            \    pumvisible() ? "\<C-n>" : "\<TAB>"
-autocmd CompleteDone * pclose!
+            \    "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+
+xmap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+            \ "\<Plug>(neosnippet_expand_or_jump)"
+            \: "\>"
+
+smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+            \ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+
+" Expand the completed snippet trigger by <CR>.
+imap <expr><CR>
+            \ (pumvisible() && neosnippet#expandable()) ?
+            \ "\<Plug>(neosnippet_expand)" : "\<CR>"
+
+" let g:neosnippet#enable_snipmate_compatibility = 1
+let g:neosnippet#snippets_directory='~/.local/share/nvim/plugged/neosnippet-snippets/neosnippets,~/.local/share/nvim/plugged/vim-snippets/snippets'
+
+let g:neosnippet#enable_completed_snippet = 1
+autocmd CompleteDone * call neosnippet#complete_done()
+
+autocmd InsertLeave * NeoSnippetClearMarkers
+
+" autocmd CompleteDone * pclose!
 
 
 " For conceal markers.
@@ -296,28 +316,28 @@ let g:gutentags_file_list_command = {
             \}
 
 
-if !executable('zeal') || exists('g:loaded_zeal') | finish | endif
+" if !executable('zeal') || exists('g:loaded_zeal') | finish | endif
 
-let g:loaded_zeal = 1
+" let g:loaded_zeal = 1
 
-let s:dict = {
-            \ 'make' : 'make',
-            \ 'markdown' : 'markdown',
-            \ 'perl' : 'perl',
-            \ 'python' : 'python',
-            \ 'tex' : 'latex',
-            \ 'sh' : 'bash',
-            \ 'zsh' : 'bash',
-            \}
+" let s:dict = {
+"             \ 'make' : 'make',
+"             \ 'markdown' : 'markdown',
+"             \ 'perl' : 'perl',
+"             \ 'python' : 'python',
+"             \ 'tex' : 'latex',
+"             \ 'sh' : 'bash',
+"             \ 'zsh' : 'bash',
+"             \}
 
-augroup zeal
-    autocmd!
-    for [s:ft, s:kwrd] in items(s:dict)
-        execute 'autocmd! FileType' s:ft
-                    \ 'nnoremap <silent><buffer> <leader>z'
-                    \ ':silent !zeal ' . s:kwrd . ':<cword> 2>&1 >/dev/null &<cr>'
-    endfor
-augroup END
+" augroup zeal
+"     autocmd!
+"     for [s:ft, s:kwrd] in items(s:dict)
+"         execute 'autocmd! FileType' s:ft
+"                     \ 'nnoremap <silent><buffer> <leader>z'
+"                     \ ':silent !zeal ' . s:kwrd . ':<cword> 2>&1 >/dev/null &<cr>'
+"     endfor
+" augroup END
 
 let g:grammarous#default_comments_only_filetypes = {
             \ '*' : 1, 'help' : 0, 'markdown' : 0, 'latex' : 0, 'text' : 0, 'pandoc' : 0,
@@ -453,3 +473,8 @@ let g:qf_auto_open_quickfix = 0
 
 let g:licenses_copyright_holders_name = 'Gopalakrishnan, Krishnakumar <krishnak@vt.edu>'
 let g:licenses_authors_name = 'Gopalakrishnan, Krishnakumar <krishnak@vt.edu>'
+
+let g:deoplete#sources#biblatex#bibfile = '~/Documents/phd_thesis/9_backmatter/thesis_refs.bib'
+
+let g:matchup_transmute_enabled=0
+
