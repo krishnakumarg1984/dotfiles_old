@@ -8,7 +8,7 @@ augroup END
 
 augroup ft_latex
     autocmd!
-    au BufRead,BufNewFile *.tex set filetype=tex
+    au BufRead,BufNewFile *.tex,*.tikz set filetype=tex
     autocmd FileType tex setlocal textwidth=80
     " autocmd FileType tex setlocal formatprg=par\ -jw80
     autocmd FileType tex vmap <A-q> !par -jw80<CR>
@@ -21,8 +21,8 @@ augroup ft_latex
     autocmd FileType bib setlocal foldmethod=syntax
     autocmd FileType tex set colorcolumn=+1        " highlight column after 'textwidth'
     " autocmd BufWritePost * !rsync --checksum .git/gitHeadInfo.gin .
-    autocmd BufReadPost,BufNewFile *.tex silent! execute "!rsync --checksum .git/gitHeadInfo.gin gitHeadLocal.gin  >/dev/null 2>&1" | redraw!
-    autocmd BufWritePre *.tex silent! execute "!rsync --checksum .git/gitHeadInfo.gin gitHeadLocal.gin  >/dev/null 2>&1" | redraw!
+    " autocmd BufReadPost,BufNewFile *.tex silent! execute "!rsync --checksum .git/gitHeadInfo.gin gitHeadLocal.gin  >/dev/null 2>&1" | redraw!
+    " autocmd BufWritePre *.tex silent! execute "!rsync --checksum .git/gitHeadInfo.gin gitHeadLocal.gin  >/dev/null 2>&1" | redraw!
     " support for gitinfo2 package
     " au BufReadPost,BufNewFile *.tex Limelight 0.7
 augroup END

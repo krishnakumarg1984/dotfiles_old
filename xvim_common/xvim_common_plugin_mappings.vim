@@ -212,6 +212,7 @@ call deoplete#custom#option({
             \ 'auto_complete_delay': 40,
             \ 'auto_refresh_delay': 40,
             \ 'smart_case': v:true,
+            \ 'auto_complete_start_length': 1,
             \ })
 
 " <C-h>, <BS>: close popup and delete backword char.
@@ -242,6 +243,13 @@ smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
 imap <expr><CR>
             \ (pumvisible() && neosnippet#expandable()) ?
             \ "\<Plug>(neosnippet_expand)" : "\<CR>"
+
+
+imap <expr><S-TAB>
+            \ pumvisible() ? "\<C-p>" :
+            \ neosnippet#expandable_or_jumpable() ?
+            \    "\<Plug>(neosnippet_expand_or_jump)" : "\<S-TAB>"
+
 
 " let g:neosnippet#enable_snipmate_compatibility = 1
 let g:neosnippet#snippets_directory='~/.local/share/nvim/plugged/neosnippet-snippets/neosnippets,~/.local/share/nvim/plugged/vim-snippets/snippets'
@@ -470,9 +478,6 @@ let g:qf_auto_open_quickfix = 0
 " function! WC()
 " 	return b:wc
 " endfunction
-
-let g:licenses_copyright_holders_name = 'Gopalakrishnan, Krishnakumar <krishnak@vt.edu>'
-let g:licenses_authors_name = 'Gopalakrishnan, Krishnakumar <krishnak@vt.edu>'
 
 let g:deoplete#sources#biblatex#bibfile = '~/Documents/phd_thesis/9_backmatter/thesis_refs.bib'
 

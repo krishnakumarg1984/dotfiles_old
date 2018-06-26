@@ -48,6 +48,7 @@ export PATH="/home/kg314/anaconda3/bin:$PATH"
 export PATH="/home/kg314/.gem/ruby/2.5.0/bin:$PATH"
 # Path to the bash it configuration
 export BASH_IT="/home/kg314/.bash_it"
+export LATEXMKRCSYS="~/.latexmkrc"
 
 # Lock and Load a custom theme file
 # location /.bash_it/themes/
@@ -138,15 +139,18 @@ alias :x=' exit'
 alias cd..='cd ..'
 
 export LESSOPEN="| /usr/bin/source-highlight-esc.sh %s"
-export LESS='-R '
-# export LESS=-R
-# export LESS_TERMCAP_mb=$'\E[1;31m'     # begin bold
-# export LESS_TERMCAP_md=$'\E[1;36m'     # begin blink
-# export LESS_TERMCAP_me=$'\E[0m'        # reset bold/blink
-# export LESS_TERMCAP_so=$'\E[01;44;33m' # begin reverse video
-# export LESS_TERMCAP_se=$'\E[0m'        # reset reverse video
-# export LESS_TERMCAP_us=$'\E[1;32m'     # begin underline
-# export LESS_TERMCAP_ue=$'\E[0m'        # reset underline
+# export LESS='-R '
+export LESS='-R -c -M -I -j 10 -# 4'
+# -C  Make full-screen reprints faster by not scrolling from the bottom.
+# -M  Show more information from the last (status) line. You can customize the information shown with -PM, but I usually
+# do not bother.
+# -I  Ignore letter case (upper/lower) in searches.
+# -j 10  Show search results in line 10 of the terminal, instead of the first line. This way you have 10 lines of
+# context each time you press n (or N) to jump to the next (or previous) match.
+# -# 4  Jump four characters to the right or left when pressing the Right or Left arrow key. The default is to jump
+# half of the screen, which I usually find to be too much. Generally speaking, less seems to be (at least partially)
+# optimized to the environment it was initially developed in, with slow modems and low-bandwidth internet connections,
+# when it made sense to jump half a screen.
 
 
 if [ -n "$NVIM_LISTEN_ADDRESS" ]; then

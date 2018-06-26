@@ -1,9 +1,3 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =7
-let g:netrw_dirhist_1='/home/kg314/Documents/phd_thesis/.git'
-let g:netrw_dirhist_2='/home/kg314/Documents/phd_thesis/4'
-let g:netrw_dirhist_3='/home/kg314/.local/share/nvim/plugged/lexima.vim'
-let g:netrw_dirhist_4='/home/kg314/.local/share/nvim/plugged/lexima.vim/autoload'
-let g:netrw_dirhist_5='/home/kg314/Documents/MATLAB/KalmanFiltering_WIP/SPM_codes/Current_input_SPM_codes'
-let g:netrw_dirhist_6='/home/kg314/Documents/phd_thesis/4'
-let g:netrw_dirhist_7='/home/kg314/Documents/MATLAB/SPM_thesis/cell_params/Northrop_cell'
+let g:netrw_dirhist_cnt =1
+let g:netrw_dirhist_1='/home/kg314/Documents/phd_thesis/0_frontmatter'
