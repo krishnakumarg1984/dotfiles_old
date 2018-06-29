@@ -48,11 +48,12 @@ export PATH="/home/kg314/anaconda3/bin:$PATH"
 export PATH="/home/kg314/.gem/ruby/2.5.0/bin:$PATH"
 # Path to the bash it configuration
 export BASH_IT="/home/kg314/.bash_it"
-export LATEXMKRCSYS="~/.latexmkrc"
+export LATEXMKRCSYS="/home/kg314/.latexmkrc"
 
 # Lock and Load a custom theme file
 # location /.bash_it/themes/
-export BASH_IT_THEME='zork'
+# export BASH_IT_THEME='zork'
+export BASH_IT_THEME='bakke'
 
 # (Advanced): Change this to the name of your remote repo if you
 # cloned bash-it with a remote other than origin such as `bash-it`.

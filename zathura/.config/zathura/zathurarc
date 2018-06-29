@@ -31,7 +31,7 @@ set statusbar-v-padding 0
 set synctex true
 set window-title-basename true
 set zoom-step 5
-set synctex-editor-command 'nvim %{input}:%{line}'
+set synctex-editor-command 'nvim %{line} %{input}'
 
 
 

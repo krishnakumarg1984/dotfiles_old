@@ -10,6 +10,7 @@ augroup ft_latex
     autocmd!
     au BufRead,BufNewFile *.tex,*.tikz set filetype=tex
     autocmd FileType tex setlocal textwidth=80
+    autocmd FileType tex setlocal isfname-={,}
     " autocmd FileType tex setlocal formatprg=par\ -jw80
     autocmd FileType tex vmap <A-q> !par -jw80<CR>
     autocmd FileType tex map <A-q> {v}!par -jw80<CR>
@@ -19,6 +20,9 @@ augroup ft_latex
     " autocmd FileType tex setlocal formatoptions=at
     autocmd FileType tex setlocal keywordprg=texdoc
     autocmd FileType bib setlocal foldmethod=syntax
+    autocmd FileType tex setlocal foldenable
+    autocmd FileType tex setlocal foldlevel=1
+    autocmd FileType tex setlocal foldlevelstart=1
     autocmd FileType tex set colorcolumn=+1        " highlight column after 'textwidth'
     " autocmd BufWritePost * !rsync --checksum .git/gitHeadInfo.gin .
     " autocmd BufReadPost,BufNewFile *.tex silent! execute "!rsync --checksum .git/gitHeadInfo.gin gitHeadLocal.gin  >/dev/null 2>&1" | redraw!

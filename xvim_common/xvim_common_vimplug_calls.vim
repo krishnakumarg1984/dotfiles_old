@@ -29,13 +29,6 @@
 " Plug 'zhamlin/tiler.vim'
 " Plug 'gregsexton/gitv', { 'on' : 'Gitv' }
 
-Plug 'JamieJQuinn/vim-madoko',{'for':['madoko']}
-Plug 'KabbAmine/zeavim.vim'
-Plug 'Konfekt/FastFold'
-Plug 'Shougo/context_filetype.vim'
-Plug 'Shougo/echodoc.vim'
-Plug 'Shougo/neosnippet'
-Plug 'Shougo/neosnippet-snippets'
 Plug 'andymass/vim-matchup' " %, a%, i%, ]%, g%, [%
 Plug 'antoyo/vim-licenses'
 Plug 'cohama/lexima.vim'
@@ -49,6 +42,7 @@ Plug 'godlygeek/tabular',{'for':['matlab']}
 Plug 'google/vim-searchindex'
 Plug 'honza/vim-snippets'
 Plug 'jacoborus/tender.vim'
+Plug 'JamieJQuinn/vim-madoko',{'for':['madoko']}
 Plug 'joom/latex-unicoder.vim',{'for':['latex','tex']}
 Plug 'junegunn/fzf',{'dir': '~/.fzf', 'do': '.install --all'}
 Plug 'junegunn/fzf.vim'
@@ -56,7 +50,9 @@ Plug 'junegunn/goyo.vim',{'for':['tex','text','matlab','txt','markdown']} " :Goy
 Plug 'junegunn/limelight.vim'
 Plug 'junegunn/vim-easy-align'
 Plug 'junegunn/vim-peekaboo'
+Plug 'KabbAmine/zeavim.vim'
 Plug 'kana/vim-textobj-user'
+Plug 'Konfekt/FastFold'
 Plug 'kshenoy/vim-signature' "place, toggle and display marks. Navigate forward/backward by position/alphabetical order. Any arbitrary sign for marks is possible
 Plug 'leafgarland/typescript-vim',{'for': 'typescript'}
 Plug 'lervag/file-line'
@@ -79,6 +75,10 @@ Plug 'romainl/vim-qf'
 Plug 'roman/golden-ratio'
 Plug 'ron89/thesaurus_query.vim'
 Plug 'sgur/vim-editorconfig'
+Plug 'Shougo/context_filetype.vim'
+Plug 'Shougo/echodoc.vim'
+Plug 'Shougo/neosnippet'
+Plug 'Shougo/neosnippet-snippets'
 Plug 'sjl/gundo.vim'
 Plug 'thaerkh/vim-indentguides',{'for':['tex','markdown','vim']}
 Plug 'thaerkh/vim-workspace'
