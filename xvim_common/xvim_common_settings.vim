@@ -50,7 +50,9 @@ set nostartofline               " The cursor is kept in the same column (if poss
 set nrformats-=octal
 set number
 set numberwidth=5               " Width of the line-no. column
-set path=.,**
+" set path=.,**
+set path=$PWD/**
+" set path+=**
 set previewheight=20
 set pumheight=15                " Set popup menu max height
 set relativenumber
@@ -170,8 +172,9 @@ match OverLength /\%121v/
 
 
 " if (has("termguicolors"))|| has('termguicolors')
-"     " set t_8f=[38;2;%lu;%lu;%lum
-"     " set t_8b=[48;2;%lu;%lu;%lum
+"     " set Vim-specific sequences for RGB colors
+"     let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+"     let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 "     set termguicolors
 " else
 "     set t_Co=256

@@ -23,6 +23,7 @@ augroup ft_latex
     autocmd FileType tex setlocal foldenable
     autocmd FileType tex setlocal foldlevel=1
     autocmd FileType tex setlocal foldlevelstart=1
+    autocmd FileType tex setlocal iskeyword-=:
     autocmd FileType tex set colorcolumn=+1        " highlight column after 'textwidth'
     " autocmd BufWritePost * !rsync --checksum .git/gitHeadInfo.gin .
     " autocmd BufReadPost,BufNewFile *.tex silent! execute "!rsync --checksum .git/gitHeadInfo.gin gitHeadLocal.gin  >/dev/null 2>&1" | redraw!
