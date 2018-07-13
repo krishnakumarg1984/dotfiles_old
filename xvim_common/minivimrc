@@ -79,17 +79,17 @@ if has('nvim')
 	let g:vimtex_compiler_progname = 'nvr'
 endif
 
-" " \ 'build_dir' : 'build_dir',
-" let g:vimtex_compiler_latexmk = {
-" 			\ 'options' : [
-" 			\   '-verbose',
-" 			\   '-shell-escape',
-" 			\   '-bibtex',
-" 			\   '-file-line-error',
-" 			\   '-synctex=1',
-" 			\   '-interaction=nonstopmode',
-" 			\ ],
-" 			\}
+" \ 'build_dir' : 'build_dir',
+let g:vimtex_compiler_latexmk = {
+			\ 'options' : [
+			\   '-verbose',
+			\   '-shell-escape',
+			\   '-bibtex',
+			\   '-file-line-error',
+			\   '-synctex=1',
+			\   '-interaction=nonstopmode',
+			\ ],
+			\}
 
 let g:vimtex_doc_handlers = ['MyHandler']
 function! MyHandler(context)

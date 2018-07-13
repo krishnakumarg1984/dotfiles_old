@@ -141,7 +141,8 @@ alias cd..='cd ..'
 
 export LESSOPEN="| /usr/bin/source-highlight-esc.sh %s"
 # export LESS='-R '
-export LESS='-R -c -M -I -j 10 -# 4'
+# export LESS='-R -c -M -I -j 10 -# 4'
+# export LESS='-R -F -X'
 # -C  Make full-screen reprints faster by not scrolling from the bottom.
 # -M  Show more information from the last (status) line. You can customize the information shown with -PM, but I usually
 # do not bother.
