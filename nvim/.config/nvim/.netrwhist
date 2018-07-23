@@ -1,3 +1,5 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =1
+let g:netrw_dirhist_cnt =3
 let g:netrw_dirhist_1='/home/kg314/Documents/phd_thesis/0_frontmatter'
+let g:netrw_dirhist_2='/home/kg314/Documents/phd_thesis/0_frontmatter/figures'
+let g:netrw_dirhist_3='/home/kg314/Documents/phd_thesis/0_frontmatter'

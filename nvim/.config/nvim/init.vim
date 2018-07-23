@@ -19,7 +19,8 @@ if empty(glob(&undodir))
 endif
 
 source ~/xvim_common_settings.vim
-source ~/xvim_common_plugin_mappings.vim
+" source ~/xvim_common_plugin_mappings.vim
+source ~/xvim_plugin_mappings_ncm2.vim
 source ~/dotfiles/xvim_common/minivimrc
 " set guicursor=n-v-c:block-Cursor/lCursor-blinkon0,i-ci:ver25-Cursor/lCursor,r-cr:hor20-Cursor/lCursor
 

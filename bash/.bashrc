@@ -139,8 +139,11 @@ alias :Q=' exit'
 alias :x=' exit'
 alias cd..='cd ..'
 
-export LESSOPEN="| /usr/bin/source-highlight-esc.sh %s"
-# export LESS='-R '
+# export LESSOPEN="| /usr/bin/source-highlight-esc.sh %s"
+export LESSOPEN="| /usr/bin/src-hilite-lesspipe.sh %s"
+export LESS=" -R "
+alias less='less -m -N -g -i -J --underline-special --SILENT'
+alias more=less
 # export LESS='-R -c -M -I -j 10 -# 4'
 # export LESS='-R -F -X'
 # -C  Make full-screen reprints faster by not scrolling from the bottom.
