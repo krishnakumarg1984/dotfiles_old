@@ -46,6 +46,8 @@ export BROWSER=/usr/bin/chromium
 # added by Anaconda3 installer
 export PATH="/home/kg314/anaconda3/bin:$PATH"
 export PATH="/home/kg314/.gem/ruby/2.5.0/bin:$PATH"
+export PATH="/home/kg314/makeglossariesgui/bin/:$PATH"
+
 # Path to the bash it configuration
 export BASH_IT="/home/kg314/.bash_it"
 export LATEXMKRCSYS="/home/kg314/.latexmkrc"
@@ -139,13 +141,19 @@ alias :Q=' exit'
 alias :x=' exit'
 alias cd..='cd ..'
 
-# export LESSOPEN="| /usr/bin/source-highlight-esc.sh %s"
-export LESSOPEN="| /usr/bin/src-hilite-lesspipe.sh %s"
-export LESS=" -R "
+export LESS="-c -R -X -F -I -c -j 10 -# 4"
 alias less='less -m -N -g -i -J --underline-special --SILENT'
 alias more=less
-# export LESS='-R -c -M -I -j 10 -# 4'
-# export LESS='-R -F -X'
+# export LESSOPEN="| bat %s"
+export LESSOPEN="| /usr/bin/source-highlight-esc.sh %s"
+# export LESSOPEN="| /usr/bin/src-hilite-lesspipe.sh %s"
+# export LESS_TERMCAP_mb=$'\E[1;31m'     # begin bold
+# export LESS_TERMCAP_md=$'\E[1;36m'     # begin blink
+# export LESS_TERMCAP_me=$'\E[0m'        # reset bold/blink
+# export LESS_TERMCAP_so=$'\E[01;44;33m' # begin reverse video
+# export LESS_TERMCAP_se=$'\E[0m'        # reset reverse video
+# export LESS_TERMCAP_us=$'\E[1;32m'     # begin underline
+# export LESS_TERMCAP_ue=$'\E[0m'        # reset underline
 # -C  Make full-screen reprints faster by not scrolling from the bottom.
 # -M  Show more information from the last (status) line. You can customize the information shown with -PM, but I usually
 # do not bother.
@@ -172,7 +180,7 @@ export MANPAGER="nvim -c 'set ft=man' -"
 export PDFVIEWER_texdoc='zathura'
 export PDFVIEWER='zathura'
 
-export PATH="/usr/local/latexmk:$PATH"
+# export PATH="/usr/local/latexmk:$PATH"
 
 glog ()
 {
@@ -243,6 +251,32 @@ alias mc='tmux split -h lf; lf'
 if [ -f ~/.git-completion.bash ]; then
     source ~/.git-completion.bash
 fi
+eval "$(pandoc --bash-completion)"
 
 # added by travis gem
 [ -f /home/kg314/.travis/travis.sh ] && source /home/kg314/.travis/travis.sh
+
+eval $( dircolors -b $HOME/dotfiles/dir_colors/dircolors )
+
+# rg() {
+#     if [ -t 1 ]; then
+#         command rg -p "$@" | less -RFX
+#     else
+#         command rg "$@"
+#     fi
+# }
+
+PATH="/home/kg314/perl5/bin${PATH:+:${PATH}}"; export PATH;
+PERL5LIB="/home/kg314/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
+PERL_LOCAL_LIB_ROOT="/home/kg314/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
+PERL_MB_OPT="--install_base \"/home/kg314/perl5\""; export PERL_MB_OPT;
+PERL_MM_OPT="INSTALL_BASE=/home/kg314/perl5"; export PERL_MM_OPT;
+
+export PATH="$PATH:~/shell_scripts/"
+
+# Setting for the new UTF-8 terminal support in Lion
+export LC_CTYPE=en_GB.UTF-8
+export LC_ALL=en_GB.UTF-8
+
+export XDG_CONFIG_HOME=$HOME/.config
+

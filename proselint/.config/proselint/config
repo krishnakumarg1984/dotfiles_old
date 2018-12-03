@@ -1,0 +1,6 @@
+{
+  "checks": {
+    "consistency.spacing": false,
+    "needless_variants.misc": false,
+  }
+}

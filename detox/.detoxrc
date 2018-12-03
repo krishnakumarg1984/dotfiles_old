@@ -1,0 +1,34 @@
+sequence "default" {
+    iso8859_1;
+    safe;
+    wipeup { remove_trailing; };
+};
+
+sequence "utf_8" {
+    utf_8;
+    safe;
+    wipeup;
+};
+
+ignore {
+    filename ".git";
+    filename ".svn";
+    filename ".hg";
+    filename "_darcs";
+    filename ".arch-params";
+    filename ".evolution";
+    filename ".gnome";
+    filename ".mozilla";
+    filename ".themes";
+    filename "{arch}";
+    filename "README.md";
+    filename "LICENSE";
+    filename "CONTRIBUTING.md";
+};
+
+sequence "uncgi" {
+    uncgi;
+    safe;
+    wipeup;
+};
+

@@ -50,11 +50,11 @@ let g:vimtex_toc_refresh_always=0
 "             \ }
 "             \]
 
-augroup vimtex
-	autocmd!
-	autocmd BufWritePost *.tex call vimtex#labels#refresh()
-	autocmd BufWritePost *.tex call vimtex#toc#refresh()
-augroup END
+" augroup vimtex
+" 	autocmd!
+" 	autocmd BufWritePost *.tex call vimtex#labels#refresh()
+" 	autocmd BufWritePost *.tex call vimtex#toc#refresh()
+" augroup END
 
 augroup vimtex_event_1
 	au!

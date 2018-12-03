@@ -1,5 +1,9 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =3
-let g:netrw_dirhist_1='/home/kg314/Documents/phd_thesis/0_frontmatter'
-let g:netrw_dirhist_2='/home/kg314/Documents/phd_thesis/0_frontmatter/figures'
-let g:netrw_dirhist_3='/home/kg314/Documents/phd_thesis/0_frontmatter'
+let g:netrw_dirhist_cnt =7
+let g:netrw_dirhist_1='/home/kg314/Documents/phd_thesis_local_copy/chapters/spm_analysis'
+let g:netrw_dirhist_2='/home/kg314/Documents/phd_thesis_local_copy/chapters'
+let g:netrw_dirhist_3='/home/kg314/Documents/phd_thesis_local_copy/chapters/sys_id'
+let g:netrw_dirhist_4='/home/kg314/Documents/phd_thesis_local_copy/chapters/introduction'
+let g:netrw_dirhist_5='/home/kg314/Documents/phd_thesis_local_copy/chapters/introduction/figures'
+let g:netrw_dirhist_6='/home/kg314/Documents/phd_thesis_local_copy/chapters/introduction'
+let g:netrw_dirhist_7='/home/kg314/Documents/phd_thesis_local_copy/fonts'

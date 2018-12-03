@@ -23,8 +23,8 @@ let g:ale_echo_msg_format = '[%linter%] [%severity%] %s'
 let g:ale_statusline_format = ['Errors: %d', 'Warnings: %d', '']
 
 let g:ale_linters = {
-            \   'tex': ['chktex','lacheck'],
-            \   'latex': ['chktex','lacheck'],
+            \   'tex': ['chktex','lacheck','alex','vale'],
+            \   'latex': ['alex','chktex','lacheck','proselint','redpen','vale','write-good'],
             \}
 
 

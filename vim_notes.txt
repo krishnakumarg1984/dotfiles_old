@@ -1,0 +1,4 @@
+https://github.com/soywod/phonetics.vim
+https://github.com/arthurxavierx/vim-caser
+traces.vim
+https://github.com/wesQ3/vim-windowswap

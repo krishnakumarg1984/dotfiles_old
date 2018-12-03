@@ -13,7 +13,7 @@ augroup ft_latex
     autocmd FileType tex setlocal isfname-={,}
     " autocmd FileType tex setlocal formatprg=par\ -jw80
     autocmd FileType tex vmap <A-q> !par -jw80<CR>
-    autocmd FileType tex map <A-q> {v}!par -jw80<CR>
+    autocmd FileType tex map <A-q> my{v}!par -jw80<CR>`y
     autocmd FileType tex setlocal formatoptions-=t
     autocmd FileType tex setlocal spell
     autocmd FileType tex setlocal spelllang=en_gb
