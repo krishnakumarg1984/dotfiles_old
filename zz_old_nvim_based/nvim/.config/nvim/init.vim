@@ -13,7 +13,6 @@ call plug#begin('~/.local/share/nvim/plugged')
     source ~/nvimplug_calls.vim
 call plug#end()
 
-set undodir=~/.local/share/nvim/undo
 if empty(glob(&undodir))
     :call mkdir(&undodir,'&p')
 endif
