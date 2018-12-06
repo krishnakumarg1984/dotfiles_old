@@ -563,7 +563,7 @@ augroup filetypedetect
   autocmd BufNewFile,BufRead,StdinReadPost
         \ *
         \ if !did_filetype()
-        \|  runtime scripts.vim
+        \|  runtime shebang_detection.vim
         \|endif
 
   " On leaving insert mode, check whether the first line was changed and looks
@@ -571,3 +571,108 @@ augroup filetypedetect
   autocmd InsertLeave * call s:CheckShebang()
 
 augroup END
+ 
+ 
+if exists("+omnifunc")
+
+    augroup omnifunc
+        autocmd!
+
+        autocmd FileType python set omnifunc=pythoncomplete#Complete
+        " autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
+        autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
+        autocmd FileType handlebars set omnifunc=htmlcomplete#CompleteTags
+        autocmd FileType xhtml set omnifunc=htmlcomplete#CompleteTags
+        autocmd FileType css set omnifunc=csscomplete#CompleteCSS
+        autocmd FileType xml set omnifunc=xmlcomplete#CompleteTags
+        autocmd FileType php set omnifunc=phpcomplete#CompletePHP
+        autocmd FileType c set omnifunc=ccomplete#Complete
+
+
+        autocmd Filetype *
+                    \ if &omnifunc == "" |
+                    \ setlocal omnifunc=syntaxcomplete#Complete |
+                    \ endif
+
+    augroup END
+
+endif
+
+
+" if has("autocmd")
+"     let pandoc_pipeline  = "pandoc --from=html --to=html"
+"     autocmd FileType html let &l:formatprg=pandoc_pipeline
+" endif
+  
+
+augroup ft_matlab
+    autocmd!
+    au BufRead,BufNewFile *.m set filetype=matlab
+    autocmd FileType matlab setlocal textwidth=80
+    autocmd FileType matlab setlocal formatprg=fmt\ -w80
+    autocmd FileType matlab setlocal formatoptions=croql
+    autocmd FileType matlab setlocal commentstring=%\ %s
+    autocmd FileType matlab set colorcolumn=81        " highlight column after 'textwidth'
+augroup END
+
+if executable('ant')
+    augroup JavaMakeSettings
+        autocmd!
+        autocmd FileType java setlocal makeprg=ant\ -find\ 'build.xml'
+        autocmd FileType java compiler ant
+        autocmd FileType java setlocal shellpipe=2>&1\ \|\ tee
+    augroup END
+endif
+ 
+
+augroup filetypes_other
+    autocmd!
+
+    " support for cmake files
+    autocmd BufNewFile,BufRead CMakeLists.txt set filetype=cmake
+
+    " support for stylus syntax highlighting
+    autocmd BufRead,BufNewFile *.styl set filetype=stylus
+
+    " vim-vue workaround for randomly stopping syntax highlighting
+    autocmd FileType vue syntax sync fromstart
+
+augroup END
+ 
+augroup MscFileTypeSettings
+    autocmd!
+    " Use the java docs for keyword help
+    autocmd FileType less setlocal makeprg=lessc\ %\ >\ ../css/%:t:r.css
+
+    " When editing plain text I don't need to see the ends of lines.
+    " autocmd FileType txt setlocal wrap linebreak nolist textwidth=0 wrapmargin=0
+    autocmd BufEnter *.js setlocal foldmethod=indent
+    autocmd BufEnter *.gitignore setlocal commentstring=#\ %s
+augroup END
+
+" augroup ft_conf
+"     autocmd!
+" 
+"     au BufNewFile,BufRead *.conf set filetype=conf
+"     autocmd FileType conf setlocal foldmethod=marker
+"     autocmd Filetype conf setlocal foldmarker={{{,}}}
+" augroup END
+ 
+  
+augroup ft_gitcommit
+    autocmd!
+
+    autocmd BufEnter,BufRead,BufNewFile gitcommit setlocal textwidth=72
+    autocmd FileType gitcommit setlocal spell
+    autocmd FileType gitcommit setlocal textwidth=72
+augroup END
+
+" augroup ft_html
+"     autocmd!
+" 
+"     autocmd Filetype html setlocal foldmethod=indent
+"     let pandoc_pipeline  = "pandoc --from=html --to=markdown"
+"     let pandoc_pipeline .= " | pandoc --from=markdown --to=html"
+"     autocmd FileType html setlocal formatexpr=FormatprgLocal(pandoc_pipeline)
+" augroup END
+ 

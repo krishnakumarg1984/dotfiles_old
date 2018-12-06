@@ -1,0 +1,570 @@
+" Tom Ryder (tejr)'s vimrc: <https://sanctum.geek.nz/cgit/dotfiles.git>
+
+if empty(glob('~/.vim/autoload/plug.vim'))
+    silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+                \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+    augroup vimplug
+        autocmd!
+        autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+    augroup END
+endif
+
+" Require at least Vim 7.0 (released 2006-05-08); otherwise, self-suppress as much of this config as possible
+if v:version < 700
+  if has('win32') || has('win64')
+    set runtimepath-=~/vimfiles
+    set runtimepath-=~/vimfiles/after
+  else
+    set runtimepath-=~/.vim
+    set runtimepath-=~/.vim/after
+  endif
+  finish
+endif
+ 
+filetype plugin indent on
+syntax enable
+set background=dark
+
+" " Use my colorscheme if using the GUI or if we have 256 colors
+" if has('gui_running')||(has("termguicolors"))||has('termguicolors')
+" 	" set Vim-specific sequences for RGB colors
+" 	set termguicolors
+" 	let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+" 	let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+" 	silent! colorscheme sahara
+" endif
+
+
+" The all-important default indent settings; filetypes to tweak
+set copyindent     " Copy the previous indentation on autoindenting
+set preserveindent
+set autoindent     " Use indent of previous line on new lines
+set smartindent
+set expandtab      " Use spaces instead of tabs
+set shiftwidth=4   " Indent with four spaces
+set softtabstop=4  " Insert four spaces with tab key
+
+" Let me backspace over pretty much anything
+set backspace+=eol     " Line breaks
+set backspace+=indent  " Spaces from 'autoindent'
+set backspace+=start   " The start of current insertion
+
+" Try to keep backups in one system-appropriate dir
+if has('win32') || has('win64')
+    if empty(glob(&backupdir))
+        silent call system('mkdir -p ~/vimfiles/cache/backup') 
+    endif
+    set backupdir=~/vimfiles/cache/backup 
+else
+    let myBackupDir= '~/.vim/cache/backup'   " is it allowed to have a space after the = symbol?
+    if empty(glob(&backupdir))
+        silent call system('mkdir -p ~/.vim/cache/backup') 
+    endif
+    set backupdir=~/.vim/cache/backup 
+endif
+set backup
+
+" Add some paths not to back up
+set backupskip^=/dev/shm/*  " Shared memory RAM disk
+set backupskip^=/var/tmp/*  " Debian's $TMPDIR for sudoedit(8)
+if !has('unix')
+    set backupskip-=/dev/shm/*
+    set backupskip-=/var/tmp/*
+endif
+
+" Indent wrapped lines
+if has('linebreak')
+    set linebreak               " Wrap lines at convenient point (only affects the on-screen display, not actual content in file) " Break lines at word boundaries
+    let &showbreak='↪ '
+    " set showbreak=…
+    set breakat=\ \ ;:,!?
+    if exists('+breakindent')
+        silent! set breakindent
+    endif
+endif
+
+" Clear default 'comments' value, let the filetype handle it
+set comments=
+
+" Add completion options
+if exists('+completeopt')
+    " set completeopt+=longest  " Insert longest common substring
+    " set completeopt+=menuone  " Show the menu even if only one match
+    set completeopt+=longest,menu,menuone,noselect,preview
+    set completeopt+=noinsert
+endif
+
+set complete=.,w,b,u,t,i,kspell ". till i is the default. . = current buffer. w  = any other windows, b = any other buffers opened, u = unopened buffers, t = tags, i = current and included files
+set complete+=U,s,k,d,]
+
+" Give me a prompt instead of just rejecting risky :write, :saveas
+set confirm
+
+" Only turn on 'cursorline' if my colorscheme loaded
+if exists('+cursorline')
+    " if exists('g:colors_name') && g:colors_name ==# 'sahara'
+    "   set cursorline
+    " endif
+    " Only show cursorline in the current window and in normal mode.
+    augroup cline
+        autocmd!
+        autocmd WinLeave,InsertEnter * setlocal nocursorline
+        autocmd WinEnter,InsertLeave * setlocal cursorline
+    augroup END
+endif
+
+" Try to keep swapfiles in one system-appropriate dir
+set directory^=~/.vim/cache/swap//
+if has('win32') || has('win64')
+    set directory-=~/.vim/cache/swap//
+    set directory^=~/vimfiles/cache/swap//
+endif
+set updatecount=100               " After typing this many characters the swap file will be written to disk.  When zero, no swap file will be created at all (see chapter on recovery |crash-recovery|).  "
+set updatetime=250              " milliseconds elapsed before which swap file will be written to disk (250 ms is recommende by gitgutter plugin)
+
+" Use UTF-8 if we can and env LANG didn't tell us not to
+if has('multi_byte') && !exists('$LANG') && &encoding ==# 'latin1'
+    set encoding=utf-8
+endif
+
+" Don't wait for a key after Escape in insert mode
+" In vim-tiny but not NeoVim, so just suppress errors
+silent! set noesckeys
+
+" Fold based on indent, but only when I ask
+if has('folding')
+    set foldenable
+    set foldlevelstart=99
+    " set foldmethod=indent
+endif
+
+" Delete comment leaders when joining lines, if supported
+silent! set formatoptions+=j
+" set formatoptions+=ronl1j
+
+" If available, use GNU grep niceties for searching
+if system('grep --version') =~# '^grep (GNU grep)'
+    set grepprg=grep\ -HnRs\ --exclude='.git*'
+endif
+
+" Don't load GUI menus; set here before GUI starts
+if has('gui_running')
+    set guioptions+=M
+endif
+
+" Allow buffers to have changes without being displayed
+set hidden
+
+" Keep much more command and search history
+set history=2000
+
+" Highlight completed searches; clear on reload
+set hlsearch
+
+" Don't assume I'm editing C; let the filetype set this
+set include=
+
+" Show search matches as I type my pattern
+set incsearch
+
+" Don't join lines with two spaces at the end of sentences
+set nojoinspaces
+
+" Don't show a statusline if there's only one window
+" This is the Vim default, but NeoVim changed it
+" if &laststatus != 1
+" set laststatus=1
+" endif
+set laststatus=2
+
+" Don't redraw the screen during batch execution
+set lazyredraw
+
+" Define extra 'list' display characters
+set listchars+=extends:>       " Unwrapped text to screen right
+set listchars+=precedes:<      " Unwrapped text to screen left
+set listchars=tab:▸\           " Tab characters, preserve width
+set listchars+=trail:_         " Trailing spaces
+silent! set listchars+=nbsp:+  " Non-breaking spaces
+
+" Don't allow setting options via buffer content
+" set nomodeline
+
+" Treat numbers with a leading zero as decimal, not octal
+set nrformats-=octal
+
+" Options for file search with gf/:find
+set path-=/usr/include  " Let the C/C++ filetypes set that
+set path+=**            " Search current directory's whole tree
+
+" Disable command line display of file position
+" This is the Vim default, but NeoVim changed it
+" if &ruler
+" set noruler
+" endif
+
+if has('cmdline_info')
+    set ruler                   " Show the ruler
+    set rulerformat=%30(%=\:b%n%y%m%r%w\ %l,%c%V\ %P%)
+    set showcmd
+endif
+
+" Make sessions usable
+if exists('+sessionoptions')
+    set sessionoptions-=localoptions  " No buffer options or mappings
+    set sessionoptions-=options       " No global options or mappings
+endif
+
+" Don't show startup splash screen (I donated)
+set shortmess+=I
+" set shortmess=aoOtT
+" silent! set shortmess+=F
+" silent! set shortmess+=cI
+
+" New window positioning
+set splitbelow  " Below the current window, not above
+set splitright  " Right of the current window, not left
+
+" Give me a bit longer to complete mappings
+set timeoutlen=3000
+set timeout       " time out on mappings and keycodes (stronger of the two conditions)
+set ttimeoutlen=0 " A non-negative number here will make the delay to be timeoutlen
+set ttyfast
+
+
+" No terminal mouse, even if we could
+silent! set ttymouse=
+
+" Keep undo files, hopefully in a dedicated directory
+if has('persistent_undo')
+    if has('win32') || has('win64')
+        if empty(glob(&undodir))
+            silent call system('mkdir -p ~/vimfiles/cache/undo/') 
+        endif
+        set undodir=~/vimfiles/cache/undo
+    else
+        if empty(glob(&undodir))
+            silent call system('mkdir -p ~/.vim/cache/undo') 
+        endif
+        set undodir=~/.vim/cache/undo
+    endif
+    set undofile " Looks like this needs to go after the undodir is set
+endif
+
+" Wildmenu settings; see also plugin/wildignore.vim
+set wildmenu                " Use wildmenu
+set wildmode=list:longest   " Tab press completes and lists
+" set wildmode=longest,list:full
+silent! set wildignorecase  " Case insensitive, if supported
+set wildchar=<TAB> " Character for CLI expansion (TAB-completion)
+
+" Let me move beyond buffer text in visual block mode
+if exists('+virtualedit')
+    set virtualedit+=block
+endif
+
+" Never beep at me
+set visualbell t_vb=
+set belloff=all
+set cmdheight=2                 " Height of command-line (easy-readable)
+
+set autoread                        " Autoread when a file is changed from outside
+augroup FileChangedAlert
+    " Helps if you have to use another editor on the same file
+    autocmd! FileChangedShell * echoerr "File has been changed outside of Vim."
+augroup END
+
+
+set cpoptions+=J
+
+set display+=lastline
+set fileformat=unix          " Default fileformat
+set fileformats=unix,dos,mac
+
+set formatlistpat=^\\s*[-*]\\s\\+
+set formatlistpat+=\\\|^\\s*(\\(\\d\\+\\\|[a-z]\\))\\s\\+
+set formatlistpat+=\\\|^\\s*\\(\\d\\+\\\|[a-z]\\)[:).]\\s\\+
+set helpheight=12
+
+set ignorecase  " Ignore case search for normal letters
+set incsearch
+set infercase   " Ignore case on insert completion
+set smartcase   " Do case-sensitive search if pattern contains upper case letters
+
+" set diffopt=filler,foldcolumn:0,context:4
+" set fillchars=vert:│,fold:\ ,diff:⣿
+
+set isfname-={,}
+set keywordprg=:help
+set linespace=0                 " No extra spaces between rows
+
+set magic                       " Make regex a little easier to type
+set nolist
+
+" set noshowmode                    " Display the current mode
+set nostartofline               " The cursor is kept in the same column (if possible)
+
+set number
+set relativenumber
+" set numberwidth=5               " Width of the line-no. column
+augroup changenumbering
+    autocmd!
+    autocmd InsertEnter * :set norelativenumber
+    autocmd InsertLeave * :set relativenumber
+augroup END
+
+
+" set report=0                    " Threshold for reporting number of lines changed.
+
+set previewheight=20
+set pumheight=15                " Set popup menu max height
+
+set scrolljump=5       " How many lines to scroll at a time, make scrolling appears faster (i.e. when you move the cursor close to the vertical limits of display, how many more lines to reveal ?)
+set scrolloff=3        " Minimal number of screen lines to keep above and below the cursor
+set sidescroll=3       " The minimal number of columns to scroll horizontally
+set sidescrolloff=5    " The minimal number of screen columns to keep to the left and to the right of the cursor
+
+set showmatch
+set matchtime=2
+
+set suffixesadd=.py,.m,.mat,.gv,.tex      "Find will work harder for these filetypes
+set synmaxcol=300   "Boost performance in rendering long lines
+
+set tabpagemax=15      " Maximum number of tab pages to be opened by the |-p| command line argument or the ":tab all" command. |tabpage|
+
+set title
+set titleold="Terminal"
+
+set viewoptions=cursor,folds,slash,unix
+
+" set winminheight=4              " Minimum height of windows 
+
+" Ignore the following stuff when tab completing
+set wildignore+=.hg,.git,*.jpeg,*.gif,*.bmp,*.pdf,*.class,*.dmg,*.DS_Store,*.lnk,*.ini,*.mod,*.jpg,*.png
+set wildignore+=*/tmp/*,*.so,*.db,*.sqlite
+set wildignore+=*.pyc,*.a,*.dll,*.bak,*.exe
+
+" Disable output and VCS files
+set wildignore+=*.o,*.out,*.rbc,*.rbo,*.gem,CVS/*,*.svn
+
+" Disable archive files
+set wildignore+=*.zip,*.tar.gz,*.tar.bz2,*.rar,*.tar.xz
+
+" Ignore bundler and sass cache
+set wildignore+=*/vendor/gems/*,*/vendor/cache/*,*/.bundle/*,*/.sass-cache/*
+
+" Ignore build dir
+set wildignore+=build/*,media/*
+
+" Ignore node modules
+set wildignore+=node_modules/*,bower_components/*
+
+" Disable temp and backup files
+set wildignore+=*.swp,*~,._*
+set wildignore+=*.obj,*.luac,*.dats,__pycache__
+set wildignore+=types_*taghl,tags
+
+" enable italics for comments
+let &t_ZH="\e[3m"
+let &t_ZR="\e[23m"
+
+highlight clear SignColumn      " SignColumn should match background,SignColumn column where |signs| are displayed
+highlight Comment cterm=italic
+
+hi link HelpBar Normal
+hi link HelpStar Normal
+
+" Vim needs a more POSIX compatible shell than fish for certain functionality
+" to work, such as :%!, compressed help pages and many third-party addons.  If
+" you use fish as your login shell or launch Vim from fish, you need to set
+" shell to something else in your ~/.vimrc.
+" Seriously... god dammit Vim.
+if &shell =~# 'fish$'
+    set shell=/usr/bin/sh
+endif
+
+augroup completedone
+    autocmd!
+    autocmd CompleteDone * silent! pclose!
+augroup END
+
+highlight OverLength ctermfg=0 ctermbg=3
+match OverLength /\%121v/
+
+nnoremap J      mzJ`z
+nnoremap dp     dp]c
+nnoremap do     do]c
+" nnoremap '      `
+
+nnoremap <leader>q gqip
+nnoremap : ;
+nnoremap ; :
+nnoremap Y y$
+
+nnoremap <c-h> <c-w>h
+nnoremap <c-j> <c-w>j
+nnoremap <c-k> <c-w>k
+nnoremap <c-l> <c-w>l
+
+nnoremap <Space> za
+
+" Use sane regexes
+nnoremap / /\v
+vnoremap / /\v
+nnoremap ? ?\v
+vnoremap ? ?\v
+
+" Move across wrapped lines like regular lines
+noremap 0 ^
+" Go to the first non-blank character of a line
+noremap ^ 0
+" Just in case you need to go to the very beginning of a line
+
+" Visual line repeat
+xnoremap . :normal .<CR>
+xnoremap @ :<C-u>call ExecuteMacroOverVisualRange()<CR>
+
+function! ExecuteMacroOverVisualRange()
+    echo '@'.getcmdline()
+    execute ":'<,'>normal @".nr2char(getchar())
+endfunction
+
+:map k gk
+:map j gj
+:map <Up> gk
+:map <Down> gj
+
+nnoremap <expr> j v:count ? 'j' : 'gj'
+nnoremap <expr> k v:count ? 'k' : 'gk'
+nnoremap gV     `[V`]
+
+cnoremap <c-n>  <down>
+cnoremap <c-p> <up>
+
+noremap <Leader>f :filetype detect<CR>
+
+" Reselect visual block after indent/outdent
+vnoremap < <gv
+vnoremap > >gv
+xnoremap > >gv
+xnoremap < <gvoremap w!! w !sudo tee > /dev/null %
+
+vnoremap y myy`y
+vnoremap Y myY`y
+
+"" Move visual block
+vnoremap J :m '>+1<CR>gv=gv
+vnoremap K :m '<-2<CR>gv=gv
+
+" Disable some mappings
+noremap  <f1>   <nop>
+inoremap <f1>   <nop>
+nnoremap Q      <nop>
+
+" Navigate folds
+nnoremap          zf zMzvzz
+nnoremap <silent> zj :silent! normal! zc<cr>zjzvzz
+nnoremap <silent> zk :silent! normal! zc<cr>zkzvzz[z
+
+cnoreabbrev <expr> w getcmdtype() == ":" && getcmdline() == 'w' ? 'up' : 'w'
+
+augroup disableTempUndo
+    autocmd!
+    autocmd BufWritePre /tmp/* setlocal noundofile
+augroup END
+
+let g:netrw_liststyle=3 " Use tree-mode as default view
+let g:netrw_browse_split=4 " Open file in previous buffer
+let g:netrw_preview=1 " preview window shown in a vertically split
+let g:netrw_winsize=20
+let g:netrw_sort_options = 'i'
+let g:netrw_sort_sequence = '[\/]$,*'
+let g:netrw_keepdir=0
+let g:netrw_list_hide='\.un\~$'
+let g:netrw_banner       = 0
+let g:netrw_keepdir      = 0
+
+augroup reload_vimrc
+    autocmd!
+    autocmd! BufWritePost $MYVIMRC,$MYGVIMRC nested source %
+    au FocusLost * :wa
+augroup END
+
+" "" The PC is fast enough, do syntax highlight syncing from start unless 200 lines
+" augroup vimrc-sync-fromstart
+"     autocmd!
+"     autocmd BufEnter * :syntax sync maxlines=200
+" augroup END
+
+"" Remember cursor position
+augroup vimrc-remember-cursor-position
+    autocmd!
+    autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
+augroup END
+
+" Disable a lot of unnecessary internal plugins
+" let g:loaded_2html_plugin = 1
+let g:loaded_getscriptPlugin = 1
+let g:loaded_gzip = 1
+let g:loaded_logipat = 1
+let g:loaded_rrhelper = 1
+let g:loaded_spellfile_plugin = 1
+let g:loaded_tarPlugin = 1
+let g:loaded_vimballPlugin = 1
+let g:loaded_zipPlugin = 1
+
+augroup checktimeaugroup
+    autocmd!
+    au FocusGained,BufEnter * :checktime
+augroup END
+
+" Remap normal/visual & to preserve substitution flags
+nnoremap <silent> & :&&<CR>
+xnoremap <silent> & :&&<CR>
+
+" \e forces a buffer to be editable
+nnoremap <Bslash>e :<C-U>setlocal modifiable noreadonly<CR>
+
+" \g changes directory to the current file's location
+nnoremap <Bslash>g :<C-U>cd %:h<CR>:pwd<CR>
+
+" \h toggles highlighting search results
+nnoremap <Bslash>h :<C-U>set hlsearch! hlsearch?<CR>
+
+" \R reloads ~/.vimrc
+nnoremap <Bslash>R :<C-U>source $MYVIMRC<CR>
+
+" \s toggles spell checking
+nnoremap <Bslash>s :<C-U>setlocal spell! spell?<CR>
+
+" \t shows current filetype
+nnoremap <Bslash>t :<C-U>setlocal filetype?<CR>
+" \T clears filetype
+nnoremap <Bslash>T :<C-U>setlocal filetype=<CR>
+
+" \= runs the whole buffer through =, preserving position
+nnoremap <Bslash>= :<C-U>call vimrc#Anchor('1G=G')<CR>
+" \+ runs the whole buffer through gq, preserving position
+nnoremap <Bslash>+ :<C-U>call vimrc#Anchor('1GgqG')<CR>
+
+" Source any .vim files from ~/.vim/config
+" runtime! config/*.vim
+
+" runtime! shebang_detection.vim
+" runtime! filetype.vim
+"
+source ~/dotfiles/vim/vimrc_config/shebang_detection.vim
+source ~/dotfiles/vim/vimrc_config/filetype.vim
+
+" https://vi.stackexchange.com/questions/7179/preventing-ex-commands-from-altering-the-screen
+" keep screen view while executing ex command
+" function! KeepEx(arg)
+"   let l:winview = winsaveview()
+"   execute a:arg
+"   call winrestview(l:winview)
+" endfunction
+" 
+" command! -nargs=+ -completion=command K :call KeepEx("<args>")
+
+
