@@ -734,3 +734,10 @@ augroup ft_latex
     " au BufReadPost,BufNewFile *.tex Limelight 0.7
 augroup END
 
+" https://vimrcfu.com/snippet/168
+" In CSS, hyphens are part of identifiers (keywords, properties, selectors...). By adding it to the iskeyword list, vim will consider identifiers as a whole word.
+augroup csshyphen
+    autocmd!
+    autocmd FileType css,scss setl iskeyword+=-
+augroup END
+

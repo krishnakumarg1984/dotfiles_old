@@ -10,6 +10,23 @@ if empty(glob('~/.vim/autoload/plug.vim'))
     augroup END
 endif
 
+call plug#begin('~/.vim/plugged')
+    " source ~/xvim_common_vimplug_calls.vim
+    Plug 'tpope/vim-eunuch'
+    " Plug 'jszakmeister/vim-togglecursor'
+    Plug 'wincent/terminus' 
+    Plug 'google/vim-searchindex'
+    Plug 'tpope/vim-repeat'
+    Plug 'machakann/vim-sandwich'
+    Plug 'wellle/targets.vim' 
+    Plug 'Yggdroot/LeaderF', { 'do': './install.sh' }
+    Plug 'markonm/traces.vim'
+    Plug 'w0rp/ale'
+    Plug 'vim-airline/vim-airline'
+    Plug 'vim-airline/vim-airline-themes'
+    Plug 'flazz/vim-colorschemes'
+call plug#end()
+
 " Require at least Vim 7.0 (released 2006-05-08); otherwise, self-suppress as much of this config as possible
 if v:version < 700
   if has('win32') || has('win64')
@@ -27,13 +44,22 @@ syntax enable
 set background=dark
 
 " " Use my colorscheme if using the GUI or if we have 256 colors
-" if has('gui_running')||(has("termguicolors"))||has('termguicolors')
-" 	" set Vim-specific sequences for RGB colors
-" 	set termguicolors
-" 	let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
-" 	let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
-" 	silent! colorscheme sahara
-" endif
+if has('gui_running')||(has("termguicolors"))||has('termguicolors')
+	" set Vim-specific sequences for RGB colors
+"	set termguicolors
+	let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+	let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+	silent! colorscheme hybrid
+endif
+
+" let &t_SI = "\e[6 q"
+" let &t_EI = "\e[2 q"
+" 
+" " optional reset cursor on start:
+" augroup mycursorshapeCmds
+"     au!
+"     autocmd VimEnter * silent !echo -ne "\e[2 q"
+" augroup END
 
 
 " The all-important default indent settings; filetypes to tweak
@@ -100,6 +126,14 @@ set complete+=U,s,k,d,]
 
 " Give me a prompt instead of just rejecting risky :write, :saveas
 set confirm
+
+" if exists('$TMUX')
+"     let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
+"     let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
+" else
+"     let &t_SI = "\<Esc>]50;CursorShape=1\x7"
+"     let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+" endif
 
 " Only turn on 'cursorline' if my colorscheme loaded
 if exists('+cursorline')
@@ -254,8 +288,8 @@ endif
 
 " Wildmenu settings; see also plugin/wildignore.vim
 set wildmenu                " Use wildmenu
-set wildmode=list:longest   " Tab press completes and lists
-" set wildmode=longest,list:full
+" set wildmode=list:longest   " Tab press completes and lists
+set wildmode=longest,list:full
 silent! set wildignorecase  " Case insensitive, if supported
 set wildchar=<TAB> " Character for CLI expansion (TAB-completion)
 
@@ -277,6 +311,7 @@ augroup END
 
 
 set cpoptions+=J
+set cpoptions-=a "Stop :read from annoyingly setting the alternative buffer
 
 set display+=lastline
 set fileformat=unix          " Default fileformat
@@ -442,7 +477,7 @@ nnoremap gV     `[V`]
 cnoremap <c-n>  <down>
 cnoremap <c-p> <up>
 
-noremap <Leader>f :filetype detect<CR>
+" noremap <Leader>f :filetype detect<CR>
 
 " Reselect visual block after indent/outdent
 vnoremap < <gv
@@ -556,6 +591,7 @@ nnoremap <Bslash>+ :<C-U>call vimrc#Anchor('1GgqG')<CR>
 "
 source ~/dotfiles/vim/vimrc_config/shebang_detection.vim
 source ~/dotfiles/vim/vimrc_config/filetype.vim
+source ~/dotfiles/vim/vimrc_config/xvim_common_plugin_mappings.vim
 
 " https://vi.stackexchange.com/questions/7179/preventing-ex-commands-from-altering-the-screen
 " keep screen view while executing ex command
@@ -567,4 +603,23 @@ source ~/dotfiles/vim/vimrc_config/filetype.vim
 " 
 " command! -nargs=+ -completion=command K :call KeepEx("<args>")
 
+" https://vimrcfu.com/snippet/186  " let terminal resize scale the internal windows
+augroup autoresizewindows
+    autocmd!
+    autocmd VimResized * :wincmd =
+augroup END
+
+" https://vimrcfu.com/snippet/116
+" Display the numbered registers, press a key and paste it to the buffer
+function! Reg()
+    reg
+    echo "Register: "
+    let char = nr2char(getchar())
+    if char != "\<Esc>"
+        execute "normal! \"".char."p"
+    endif
+    redraw
+endfunction
+
+command! -nargs=0 Reg call Reg()
 
