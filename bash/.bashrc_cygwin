@@ -118,3 +118,8 @@ export LC_ALL=en_GB.UTF-8
 
 export XDG_CONFIG_HOME=$HOME/.config
 
+# source ~/dotfiles/bash/extraterm-commands/setup_extraterm_bash.sh
+export PATH="$PATH:/cygdrive/h/portable_win_utilities/"
+export NNN_COPIER="~/Documents/nnn/copier.sh"
+ 
+export EDITOR=vim
