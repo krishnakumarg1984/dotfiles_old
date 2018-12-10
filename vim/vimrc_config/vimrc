@@ -11,20 +11,45 @@ if empty(glob('~/.vim/autoload/plug.vim'))
 endif
 
 call plug#begin('~/.vim/plugged')
-    " source ~/xvim_common_vimplug_calls.vim
-    Plug 'tpope/vim-eunuch'
-    " Plug 'jszakmeister/vim-togglecursor'
-    Plug 'wincent/terminus' 
-    Plug 'google/vim-searchindex'
-    Plug 'tpope/vim-repeat'
-    Plug 'machakann/vim-sandwich'
-    Plug 'wellle/targets.vim' 
-    Plug 'Yggdroot/LeaderF', { 'do': './install.sh' }
-    Plug 'markonm/traces.vim'
-    Plug 'w0rp/ale'
-    Plug 'vim-airline/vim-airline'
-    Plug 'vim-airline/vim-airline-themes'
-    Plug 'flazz/vim-colorschemes'
+        Plug 'andymass/vim-matchup' " %, a%, i%, ]%, g%, [%
+        Plug 'critiqjo/husk-x.vim' " for command line mode (readline bindings)
+        Plug 'flazz/vim-colorschemes'
+        Plug 'google/vim-searchindex'
+        Plug 'honza/vim-snippets'
+        Plug 'junegunn/goyo.vim'
+        Plug 'junegunn/limelight.vim'
+        Plug 'junegunn/vim-easy-align'
+        Plug 'kana/vim-textobj-user'
+        Plug 'Konfekt/FastFold'
+        Plug 'kshenoy/vim-signature' "place, toggle and display marks. Navigate forward/backward by position/alphabetical order. Any arbitrary sign for marks is possible
+        Plug 'lervag/file-line'
+        Plug 'lervag/vimtex',{'for':'tex'}
+        Plug 'machakann/vim-highlightedyank'
+        Plug 'machakann/vim-sandwich'
+        Plug 'markonm/traces.vim'
+        Plug 'mhinz/vim-grepper'
+        Plug 'ntpeters/vim-better-whitespace'
+        Plug 'romainl/vim-cool'
+        Plug 'romainl/vim-qf'
+        Plug 'schickling/vim-bufonly'
+        Plug 'sgur/vim-editorconfig'
+        Plug 'thaerkh/vim-indentguides',{'for':['tex','markdown','vim']}
+        Plug 'tpope/vim-abolish'
+        Plug 'tpope/vim-commentary'
+        Plug 'tpope/vim-eunuch'
+        Plug 'tpope/vim-fugitive'
+        Plug 'tpope/vim-repeat'
+        Plug 'tpope/vim-unimpaired'
+        Plug 'vim-airline/vim-airline'
+        Plug 'w0rp/ale'
+        Plug 'wellle/targets.vim'
+        Plug 'wincent/terminus'
+Plug 'Yggdroot/LeaderF', { 'do': './install.sh' }
+" Plug 'ncm2/ncm2'
+" Plug 'roxma/nvim-yarp'
+" Plug 'ncm2/ncm2-bufword'
+" Plug 'ncm2/ncm2-tmux'
+" Plug 'ncm2/ncm2-path'
 call plug#end()
 
 " Require at least Vim 7.0 (released 2006-05-08); otherwise, self-suppress as much of this config as possible
@@ -38,7 +63,7 @@ if v:version < 700
   endif
   finish
 endif
- 
+
 filetype plugin indent on
 syntax enable
 set background=dark
@@ -54,7 +79,7 @@ endif
 
 " let &t_SI = "\e[6 q"
 " let &t_EI = "\e[2 q"
-" 
+"
 " " optional reset cursor on start:
 " augroup mycursorshapeCmds
 "     au!
@@ -79,15 +104,15 @@ set backspace+=start   " The start of current insertion
 " Try to keep backups in one system-appropriate dir
 if has('win32') || has('win64')
     if empty(glob(&backupdir))
-        silent call system('mkdir -p ~/vimfiles/cache/backup') 
+        silent call system('mkdir -p ~/vimfiles/cache/backup')
     endif
-    set backupdir=~/vimfiles/cache/backup 
+    set backupdir=~/vimfiles/cache/backup
 else
     let myBackupDir= '~/.vim/cache/backup'   " is it allowed to have a space after the = symbol?
     if empty(glob(&backupdir))
-        silent call system('mkdir -p ~/.vim/cache/backup') 
+        silent call system('mkdir -p ~/.vim/cache/backup')
     endif
-    set backupdir=~/.vim/cache/backup 
+    set backupdir=~/.vim/cache/backup
 endif
 set backup
 
@@ -251,10 +276,7 @@ if exists('+sessionoptions')
 endif
 
 " Don't show startup splash screen (I donated)
-set shortmess+=I
-" set shortmess=aoOtT
-" silent! set shortmess+=F
-" silent! set shortmess+=cI
+silent! set shortmess+=cI
 
 " New window positioning
 set splitbelow  " Below the current window, not above
@@ -274,12 +296,12 @@ silent! set ttymouse=
 if has('persistent_undo')
     if has('win32') || has('win64')
         if empty(glob(&undodir))
-            silent call system('mkdir -p ~/vimfiles/cache/undo/') 
+            silent call system('mkdir -p ~/vimfiles/cache/undo/')
         endif
         set undodir=~/vimfiles/cache/undo
     else
         if empty(glob(&undodir))
-            silent call system('mkdir -p ~/.vim/cache/undo') 
+            silent call system('mkdir -p ~/.vim/cache/undo')
         endif
         set undodir=~/.vim/cache/undo
     endif
@@ -373,7 +395,7 @@ set titleold="Terminal"
 
 set viewoptions=cursor,folds,slash,unix
 
-" set winminheight=4              " Minimum height of windows 
+" set winminheight=4              " Minimum height of windows
 
 " Ignore the following stuff when tab completing
 set wildignore+=.hg,.git,*.jpeg,*.gif,*.bmp,*.pdf,*.class,*.dmg,*.DS_Store,*.lnk,*.ini,*.mod,*.jpg,*.png
@@ -497,6 +519,10 @@ noremap  <f1>   <nop>
 inoremap <f1>   <nop>
 nnoremap Q      <nop>
 
+" CTRL-C doesn't trigger the InsertLeave autocmd . map to <ESC> instead.
+inoremap <c-c> <ESC>
+
+
 " Navigate folds
 nnoremap          zf zMzvzz
 nnoremap <silent> zj :silent! normal! zc<cr>zjzvzz
@@ -600,7 +626,7 @@ source ~/dotfiles/vim/vimrc_config/xvim_common_plugin_mappings.vim
 "   execute a:arg
 "   call winrestview(l:winview)
 " endfunction
-" 
+"
 " command! -nargs=+ -completion=command K :call KeepEx("<args>")
 
 " https://vimrcfu.com/snippet/186  " let terminal resize scale the internal windows
