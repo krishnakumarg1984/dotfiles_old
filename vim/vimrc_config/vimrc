@@ -4,52 +4,17 @@ else
         silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
                     \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
         autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
-        augroup vimplug
-            autocmd!
-            autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
-        augroup END
     endif
 endif
 
 if has('win32') || has('win64')
-call plug#begin('~/vimfiles/plugged')
-        Plug 'tpope/vim-sensible'
-        Plug 'andymass/vim-matchup' " %, a%, i%, ]%, g%, [%
-        Plug 'critiqjo/husk-x.vim' " for command line mode (readline bindings)
-        Plug 'flazz/vim-colorschemes'
-        Plug 'google/vim-searchindex'
-        Plug 'honza/vim-snippets'
-        Plug 'junegunn/goyo.vim'
-        Plug 'junegunn/limelight.vim'
-        Plug 'junegunn/vim-easy-align'
-        Plug 'kana/vim-textobj-user'
-        Plug 'Konfekt/FastFold'
-        Plug 'kshenoy/vim-signature' "place, toggle and display marks. Navigate forward/backward by position/alphabetical order. Any arbitrary sign for marks is possible
-        Plug 'lervag/file-line'
-        Plug 'lervag/vimtex',{'for':'tex'}
-        Plug 'machakann/vim-highlightedyank'
-        Plug 'machakann/vim-sandwich'
-        Plug 'markonm/traces.vim'
-        Plug 'mhinz/vim-grepper'
-        Plug 'ntpeters/vim-better-whitespace'
-        Plug 'romainl/vim-cool'
-        Plug 'romainl/vim-qf'
-        Plug 'schickling/vim-bufonly'
-        Plug 'sgur/vim-editorconfig'
-        Plug 'thaerkh/vim-indentguides',{'for':['tex','markdown','vim']}
-        Plug 'tpope/vim-abolish'
-        Plug 'tpope/vim-commentary'
-        Plug 'tpope/vim-eunuch'
-        Plug 'tpope/vim-fugitive'
-        Plug 'tpope/vim-repeat'
-        Plug 'tpope/vim-unimpaired'
-        Plug 'vim-airline/vim-airline'
-        Plug 'w0rp/ale'
-        Plug 'wellle/targets.vim'
-        Plug 'wincent/terminus'
-call plug#end()
+    call plug#begin('~/vimfiles/plugged')
+    source ~\dotfiles\vim\vimrc_config\plugcalls.vim
+    call plug#end()
 else
-" call plug#begin('~/.vim/plugged')
+    call plug#begin('~/.vim/plugged')
+    source ~/dotfiles/vim/vimrc_config/plugcalls.vim
+    call plug#end()
 endif
 
 " Require at least Vim 7.0 (released 2006-05-08); otherwise, self-suppress as much of this config as possible
@@ -105,13 +70,12 @@ set backspace+=start   " The start of current insertion
 if has('win32') || has('win64')
     set backupdir=~/vimfiles/cache/backup
 else
-    let myBackupDir= '~/.vim/cache/backup'   " is it allowed to have a space after the = symbol?
-    if empty(glob(&backupdir))
-        silent call system('mkdir -p ~/.vim/cache/backup')
+    if !isdirectory($HOME."/.vim/backup-dir")
+        call mkdir($HOME."/.vim/backup-dir", "", 0700)
     endif
-    set backupdir=~/.vim/cache/backup
+    set backupdir=~/.vim/backup-dir
+    set backup
 endif
-set backup
 
 " Add some paths not to back up
 set backupskip^=/dev/shm/*  " Shared memory RAM disk
@@ -307,12 +271,12 @@ if has('persistent_undo')
         endif
         set undodir=~/vimfiles/cache/undo
     else
-        if empty(glob(&undodir))
-            silent call system('mkdir -p ~/.vim/cache/undo')
+        if !isdirectory($HOME."/.vim/undo-dir")
+            call mkdir($HOME."/.vim/undo-dir", "", 0700)
         endif
-        set undodir=~/.vim/cache/undo
+        set undodir=~/.vim/undo-dir
     endif
-    set undofile " Looks like this needs to go after the undodir is set
+    set undofile
 endif
 
 " Wildmenu settings; see also plugin/wildignore.vim
