@@ -1,4 +1,3 @@
-Plug 'tpope/vim-sensible'
 Plug 'andymass/vim-matchup' " %, a%, i%, ]%, g%, [%
 Plug 'critiqjo/husk-x.vim' " for command line mode (readline bindings)
 Plug 'flazz/vim-colorschemes'
@@ -27,8 +26,10 @@ Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-unimpaired'
 Plug 'vim-airline/vim-airline'
 Plug 'w0rp/ale'
 Plug 'wellle/targets.vim'
 Plug 'wincent/terminus'
+

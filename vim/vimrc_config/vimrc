@@ -586,10 +586,13 @@ nnoremap <Bslash>+ :<C-U>call vimrc#Anchor('1GgqG')<CR>
 " runtime! shebang_detection.vim
 " runtime! filetype.vim
 "
-
+if has('win32') || has('win64')
+    source ~\dotfiles\vim\vimrc_config\xvim_common_plugin_mappings.vim
+else
+    source ~/dotfiles/vim/vimrc_config/xvim_common_plugin_mappings.vim
+endi
 " source ~/dotfiles/vim/vimrc_config/shebang_detection.vim
 " source ~/dotfiles/vim/vimrc_config/filetype.vim
-" source ~/dotfiles/vim/vimrc_config/xvim_common_plugin_mappings.vim
 
 " https://vi.stackexchange.com/questions/7179/preventing-ex-commands-from-altering-the-screen
 " keep screen view while executing ex command
