@@ -129,23 +129,36 @@ autocmd! User GoyoLeave Limelight!
 " nmap <Leader>L <Plug>(Limelight)
 " xmap <Leader>L <Plug>(Limelight)
 
-augroup textobj_sentence
-  autocmd!
-  autocmd FileType markdown call textobj#sentence#init()
-  autocmd FileType textile call textobj#sentence#init()
-  autocmd FileType tex call textobj#sentence#init()
-  autocmd FileType latex call textobj#sentence#init()
-  autocmd FileType text call textobj#sentence#init()
-augroup END
-
-augroup textobj_quote
-  autocmd!
-  autocmd FileType markdown call textobj#quote#init()
-  autocmd FileType textile call textobj#quote#init()
-  autocmd FileType text call textobj#quote#init({'educate': 0})
-  autocmd FileType latex call textobj#quote#init({'educate': 0})
-  autocmd FileType tex call textobj#quote#init({'educate': 0})
-augroup END
-
 let g:qf_auto_open_quickfix = 0
+
+let g:vimtex_compiler_latexmk = {
+    \ 'options' : [
+    \   '-pdf',
+    \   '-shell-escape',
+    \   '-verbose',
+    \   '-file-line-error',
+    \   '-synctex=1',
+    \   '-interaction=nonstopmode',
+    \ ],
+    \}
+
+
+let g:vimtex_view_general_viewer = 'SumatraPDF'
+let g:vimtex_view_general_options
+            \ = '-reuse-instance -forward-search @tex @line @pdf'
+            \ . ' -inverse-search "nvim-qt --servername ' . v:servername
+            \ . ' --remote-send \"^<C-\^>^<C-n^>'
+            \ . ':drop \%f^<CR^>:\%l^<CR^>:normal\! zzzv^<CR^>'
+            \ . ':execute ''drop '' . fnameescape(''\%f'')^<CR^>'
+            \ . ':\%l^<CR^>:normal\! zzzv^<CR^>'
+            \ . ':call remote_foreground('''.v:servername.''')^<CR^>^<CR^>\""'
+
+
+
+
+
+
+
+
+
 

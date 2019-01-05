@@ -1,16 +1,6 @@
-#
-# ~/.bashrc
-#
-
-
 # [ -r /usr/share/bash-completion/bash_completion   ] && . /usr/share/bash-completion/bash_completion
 
 complete -cf sudo
-
-# added by Anaconda2 installer
-export PATH="/home/kg314/anaconda2/bin:$PATH"
-# added by Anaconda3 installer
-export PATH="/home/kg314/anaconda3/bin:$PATH"
 
 # Don't check mail when opening terminal.
 unset MAILCHECK
@@ -125,4 +115,3 @@ export NNN_COPIER="~/Documents/nnn/copier.sh"
  
 export EDITOR=vim
 
-alias vi=vim

@@ -1,4 +1,5 @@
 Plug 'tpope/vim-sensible'
+
 Plug 'andymass/vim-matchup' " %, a%, i%, ]%, g%, [%
 Plug 'critiqjo/husk-x.vim' " for command line mode (readline bindings)
 Plug 'flazz/vim-colorschemes'
@@ -32,3 +33,7 @@ Plug 'vim-airline/vim-airline'
 Plug 'w0rp/ale'
 Plug 'wellle/targets.vim'
 Plug 'wincent/terminus'
+Plug 'prabirshrestha/asyncomplete-buffer.vim'
+if executable('ctags')
+    Plug 'ludovicchabant/vim-gutentags'
+endif

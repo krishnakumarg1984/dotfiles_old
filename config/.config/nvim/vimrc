@@ -1,14 +1,78 @@
+if empty(glob('~/.vim/autoload/plug.vim'))
+    silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+                \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+    augroup vimplug
+        autocmd!
+        autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+    augroup END
+endif
+
+call plug#begin('~/.vim/plugged')
+        Plug 'andymass/vim-matchup' " %, a%, i%, ]%, g%, [%
+        Plug 'critiqjo/husk-x.vim' " for command line mode (readline bindings)
+        Plug 'flazz/vim-colorschemes'
+        Plug 'google/vim-searchindex'
+        Plug 'honza/vim-snippets'
+        Plug 'junegunn/goyo.vim'
+        Plug 'junegunn/limelight.vim'
+        Plug 'junegunn/vim-easy-align'
+        Plug 'kana/vim-textobj-user'
+        Plug 'Konfekt/FastFold'
+        Plug 'kshenoy/vim-signature' "place, toggle and display marks. Navigate forward/backward by position/alphabetical order. Any arbitrary sign for marks is possible
+        Plug 'lervag/file-line'
+        Plug 'lervag/vimtex',{'for':'tex'}
+        Plug 'machakann/vim-highlightedyank'
+        Plug 'machakann/vim-sandwich'
+        Plug 'markonm/traces.vim'
+        Plug 'mhinz/vim-grepper'
+        Plug 'ntpeters/vim-better-whitespace'
+        Plug 'romainl/vim-cool'
+        Plug 'romainl/vim-qf'
+        Plug 'schickling/vim-bufonly'
+        Plug 'sgur/vim-editorconfig'
+        Plug 'thaerkh/vim-indentguides',{'for':['tex','markdown','vim']}
+        Plug 'tpope/vim-abolish'
+        Plug 'tpope/vim-commentary'
+        Plug 'tpope/vim-eunuch'
+        Plug 'tpope/vim-fugitive'
+        Plug 'tpope/vim-repeat'
+        Plug 'tpope/vim-unimpaired'
+        Plug 'vim-airline/vim-airline'
+        Plug 'w0rp/ale'
+        Plug 'wellle/targets.vim'
+        Plug 'wincent/terminus'
+Plug 'Yggdroot/LeaderF', { 'do': './install.sh' }
+" Plug 'ncm2/ncm2'
+" Plug 'roxma/nvim-yarp'
+" Plug 'ncm2/ncm2-bufword'
+" Plug 'ncm2/ncm2-tmux'
+" Plug 'ncm2/ncm2-path'
+call plug#end()
+
+" Require at least Vim 7.0 (released 2006-05-08); otherwise, self-suppress as much of this config as possible
+if v:version < 700
+  if has('win32') || has('win64')
+    set runtimepath-=~/vimfiles
+    set runtimepath-=~/vimfiles/after
+  else
+    set runtimepath-=~/.vim
+    set runtimepath-=~/.vim/after
+  endif
+  finish
+endif
+
 filetype plugin indent on
 syntax enable
 set background=dark
 
 " " Use my colorscheme if using the GUI or if we have 256 colors
 if has('gui_running')||(has("termguicolors"))||has('termguicolors')
-        " set Vim-specific sequences for RGB colors
-"       set termguicolors
-        let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
-        let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
-        silent! colorscheme hybrid
+	" set Vim-specific sequences for RGB colors
+"	set termguicolors
+	let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+	let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+	silent! colorscheme hybrid
 endif
 
 " let &t_SI = "\e[6 q"
@@ -37,21 +101,18 @@ set backspace+=start   " The start of current insertion
 
 " Try to keep backups in one system-appropriate dir
 if has('win32') || has('win64')
-    if has('nvim')
-        " if !isdirectory("H:\cygwin_64_install\home\kg314\AppData\Local\nvim-data\backup-dir")
-        "     call mkdir('H:\cygwin_64_install\home\kg314\AppData\Local\nvim-data\backup-dir','p')
-        " endif
-        " set backupdir='H:\cygwin_64_install\home\kg314\AppData\Local\nvim-data\backup-dir'
-    else
-        set backupdir=~/vimfiles/cache/backup
+    if empty(glob(&backupdir))
+        silent call system('mkdir -p ~/vimfiles/cache/backup')
     endif
-    set backup
+    set backupdir=~/vimfiles/cache/backup
 else
-    if !isdirectory($HOME."/.vim/backup-dir")
-        call mkdir($HOME."/.vim/backup-dir", "", 0700)
+    let myBackupDir= '~/.vim/cache/backup'   " is it allowed to have a space after the = symbol?
+    if empty(glob(&backupdir))
+        silent call system('mkdir -p ~/.vim/cache/backup')
     endif
-    set backupdir=~/.vim/backup-dir
+    set backupdir=~/.vim/cache/backup
 endif
+set backup
 
 " Add some paths not to back up
 set backupskip^=/dev/shm/*  " Shared memory RAM disk
@@ -114,11 +175,7 @@ endif
 set directory^=~/.vim/cache/swap//
 if has('win32') || has('win64')
     set directory-=~/.vim/cache/swap//
-    if has('nvim')
-        " set directory^=H:\cygwin_64_install\home\kg314\AppData\Local\nvim-data\backup-dir\
-    else
-        set directory^=~/vimfiles/cache/swap//
-    endif
+    set directory^=~/vimfiles/cache/swap//
 endif
 set updatecount=100               " After typing this many characters the swap file will be written to disk.  When zero, no swap file will be created at all (see chapter on recovery |crash-recovery|).  "
 set updatetime=250              " milliseconds elapsed before which swap file will be written to disk (250 ms is recommende by gitgutter plugin)
@@ -139,15 +196,9 @@ if has('folding')
     " set foldmethod=indent
 endif
 
-" " Delete comment leaders when joining lines, if supported
-" set formatoptions+=j
-" set formatoptions-=cro
-" " set formatoptions+=ronl1j
-augroup formatoptionsctrl
-    autocmd!
-    autocmd FileType * setlocal formatoptions+=j formatoptions-=c formatoptions-=r formatoptions-=o
-augroup END
-
+" Delete comment leaders when joining lines, if supported
+silent! set formatoptions+=j
+" set formatoptions+=ronl1j
 
 " If available, use GNU grep niceties for searching
 if system('grep --version') =~# '^grep (GNU grep)'
@@ -156,20 +207,7 @@ endif
 
 " Don't load GUI menus; set here before GUI starts
 if has('gui_running')
-    set guioptions-=m  "remove menu bar
-    set guioptions-=T  "remove toolbar
-    set guioptions-=r  "remove right-hand scroll bar
-    set guioptions-=L  "remove left-hand scroll bar
-endif
-
-if has("gui_running")
-    if has("gui_gtk2")
-        set guifont=Inconsolata\ 12
-    elseif has("gui_macvim")
-        set guifont=Menlo\ Regular:h14
-    elseif has("gui_win32")
-        set guifont=Consolas:h12:cANSI
-    endif
+    set guioptions+=M
 endif
 
 " Allow buffers to have changes without being displayed
@@ -201,13 +239,11 @@ set laststatus=2
 set lazyredraw
 
 " Define extra 'list' display characters
-if !has('gui_running')
-    set listchars+=extends:>       " Unwrapped text to screen right
-    set listchars+=precedes:<      " Unwrapped text to screen left
-    set listchars=tab:▸\           " Tab characters, preserve width
-    set listchars+=trail:·         " Trailing spaces
-    set listchars+=nbsp:+          " Non-breaking spaces
-endif
+set listchars+=extends:>       " Unwrapped text to screen right
+set listchars+=precedes:<      " Unwrapped text to screen left
+set listchars=tab:▸\           " Tab characters, preserve width
+set listchars+=trail:_         " Trailing spaces
+silent! set listchars+=nbsp:+  " Non-breaking spaces
 
 " Don't allow setting options via buffer content
 " set nomodeline
@@ -262,12 +298,12 @@ if has('persistent_undo')
         endif
         set undodir=~/vimfiles/cache/undo
     else
-        if !isdirectory($HOME."/.vim/undo-dir")
-            call mkdir($HOME."/.vim/undo-dir", "", 0700)
+        if empty(glob(&undodir))
+            silent call system('mkdir -p ~/.vim/cache/undo')
         endif
-        set undodir=~/.vim/undo-dir
+        set undodir=~/.vim/cache/undo
     endif
-    set undofile
+    set undofile " Looks like this needs to go after the undodir is set
 endif
 
 " Wildmenu settings; see also plugin/wildignore.vim
@@ -405,8 +441,7 @@ endif
 
 augroup completedone
     autocmd!
-    " autocmd CompleteDone * silent! pclose!
-    autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
+    autocmd CompleteDone * silent! pclose!
 augroup END
 
 highlight OverLength ctermfg=0 ctermbg=3
@@ -578,9 +613,19 @@ nnoremap <Bslash>+ :<C-U>call vimrc#Anchor('1GgqG')<CR>
 " runtime! shebang_detection.vim
 " runtime! filetype.vim
 "
+source ~/dotfiles/vim/vimrc_config/shebang_detection.vim
+source ~/dotfiles/vim/vimrc_config/filetype.vim
+source ~/dotfiles/vim/vimrc_config/xvim_common_plugin_mappings.vim
 
-" source ~/dotfiles/vim/vimrc_config/shebang_detection.vim
-" source ~/dotfiles/vim/vimrc_config/filetype.vim
+" https://vi.stackexchange.com/questions/7179/preventing-ex-commands-from-altering-the-screen
+" keep screen view while executing ex command
+" function! KeepEx(arg)
+"   let l:winview = winsaveview()
+"   execute a:arg
+"   call winrestview(l:winview)
+" endfunction
+"
+" command! -nargs=+ -completion=command K :call KeepEx("<args>")
 
 " https://vimrcfu.com/snippet/186  " let terminal resize scale the internal windows
 augroup autoresizewindows
@@ -600,16 +645,5 @@ function! Reg()
     redraw
 endfunction
 
-command! -nargs=0 Reg call Reg() " Provides the useful :Reg command
-
-inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<cr>"
-
-if has('win32') || has('win64')
-     source H:\cygwin_64_install\home\kg314\dotfiles\vim\vimrc_config\xvim_common_plugin_mappings.vim
-else
-    source ~/dotfiles/vim/vimrc_config/xvim_common_plugin_mappings.vim
-endif
-
+command! -nargs=0 Reg call Reg()
 
