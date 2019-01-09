@@ -1,6 +1,5 @@
-Plug 'tpope/vim-sensible'
-
 Plug 'andymass/vim-matchup' " %, a%, i%, ]%, g%, [%
+Plug 'jiangmiao/auto-pairs'
 Plug 'critiqjo/husk-x.vim' " for command line mode (readline bindings)
 Plug 'flazz/vim-colorschemes'
 Plug 'google/vim-searchindex'
@@ -18,6 +17,7 @@ Plug 'machakann/vim-sandwich'
 Plug 'markonm/traces.vim'
 Plug 'mhinz/vim-grepper'
 Plug 'ntpeters/vim-better-whitespace'
+Plug 'prabirshrestha/asyncomplete-buffer.vim'
 Plug 'romainl/vim-cool'
 Plug 'romainl/vim-qf'
 Plug 'schickling/vim-bufonly'
@@ -28,12 +28,13 @@ Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-unimpaired'
 Plug 'vim-airline/vim-airline'
 Plug 'w0rp/ale'
 Plug 'wellle/targets.vim'
 Plug 'wincent/terminus'
-Plug 'prabirshrestha/asyncomplete-buffer.vim'
+
 if executable('ctags')
     Plug 'ludovicchabant/vim-gutentags'
 endif

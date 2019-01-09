@@ -578,9 +578,18 @@ nnoremap <Bslash>+ :<C-U>call vimrc#Anchor('1GgqG')<CR>
 " runtime! shebang_detection.vim
 " runtime! filetype.vim
 "
-
 " source ~/dotfiles/vim/vimrc_config/shebang_detection.vim
 " source ~/dotfiles/vim/vimrc_config/filetype.vim
+
+" https://vi.stackexchange.com/questions/7179/preventing-ex-commands-from-altering-the-screen
+" keep screen view while executing ex command
+" function! KeepEx(arg)
+"   let l:winview = winsaveview()
+"   execute a:arg
+"   call winrestview(l:winview)
+" endfunction
+"
+" command! -nargs=+ -completion=command K :call KeepEx("<args>")
 
 " https://vimrcfu.com/snippet/186  " let terminal resize scale the internal windows
 augroup autoresizewindows
@@ -607,7 +616,7 @@ inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<cr>"
 
 if has('win32') || has('win64')
-     source H:\cygwin_64_install\home\kg314\dotfiles\vim\vimrc_config\xvim_common_plugin_mappings.vim
+    source H:\cygwin_64_install\home\kg314\dotfiles\vim\vimrc_config\xvim_common_plugin_mappings.vim
 else
     source ~/dotfiles/vim/vimrc_config/xvim_common_plugin_mappings.vim
 endif
