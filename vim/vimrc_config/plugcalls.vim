@@ -4,6 +4,8 @@ Plug 'critiqjo/husk-x.vim' " for command line mode (readline bindings)
 Plug 'flazz/vim-colorschemes'
 Plug 'google/vim-searchindex'
 Plug 'honza/vim-snippets'
+" Plug 'SirVer/ultisnips'
+Plug 'RRethy/vim-illuminate'
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/limelight.vim'
 Plug 'junegunn/vim-easy-align'
@@ -31,10 +33,24 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-unimpaired'
 Plug 'vim-airline/vim-airline'
-Plug 'w0rp/ale'
 Plug 'wellle/targets.vim'
 Plug 'wincent/terminus'
 
 if executable('ctags')
     Plug 'ludovicchabant/vim-gutentags'
+endif
+
+" Plugin: Completion and snippets
+if has('nvim') || v:version >= 800
+  Plug 'Shougo/deoplete.nvim',
+        \ has('nvim') ? { 'do': ':UpdateRemotePlugins' } : {}
+endif
+Plug 'roxma/vim-hug-neovim-rpc', has('nvim') ? { 'on' : [] } : {}
+Plug 'roxma/nvim-yarp'
+Plug 'Shougo/neoinclude.vim'
+Plug 'Shougo/neco-vim'
+Plug 'Shougo/neco-syntax'
+
+if has('nvim') || v:version >= 800
+  Plug 'w0rp/ale'
 endif

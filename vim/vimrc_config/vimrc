@@ -22,13 +22,14 @@ endif
 
 
 " The all-important default indent settings; filetypes to tweak
+set expandtab      " Use spaces instead of tabs
+set autoindent     " Use indent of previous line on new lines
 set copyindent     " Copy the previous indentation on autoindenting
 set preserveindent
-set autoindent     " Use indent of previous line on new lines
 set smartindent
-set expandtab      " Use spaces instead of tabs
 set shiftwidth=4   " Indent with four spaces
 set softtabstop=4  " Insert four spaces with tab key
+set matchpairs+=<:>
 
 " Let me backspace over pretty much anything
 set backspace+=eol     " Line breaks
@@ -83,7 +84,7 @@ if exists('+completeopt')
     set completeopt+=noinsert
 endif
 
-set complete=.,w,b,u,t,i,kspell ". till i is the default. . = current buffer. w  = any other windows, b = any other buffers opened, u = unopened buffers, t = tags, i = current and included files
+set complete=.,w,b,u,t,i,kspell,U,s,k,d,] ". till i is the default. . = current buffer. w  = any other windows, b = any other buffers opened, u = unopened buffers, t = tags, i = current and included files
 set complete+=U,s,k,d,]
 
 " Give me a prompt instead of just rejecting risky :write, :saveas
@@ -148,6 +149,7 @@ augroup formatoptionsctrl
     autocmd FileType * setlocal formatoptions+=j formatoptions-=c formatoptions-=r formatoptions-=o
 augroup END
 
+set winaltkeys=no
 
 " If available, use GNU grep niceties for searching
 if system('grep --version') =~# '^grep (GNU grep)'
@@ -218,6 +220,7 @@ set nrformats-=octal
 " Options for file search with gf/:find
 set path-=/usr/include  " Let the C/C++ filetypes set that
 set path+=**            " Search current directory's whole tree
+set tags=tags;~,.tags;~
 
 " Disable command line display of file position
 " This is the Vim default, but NeoVim changed it
@@ -268,6 +271,9 @@ if has('persistent_undo')
         set undodir=~/.vim/undo-dir
     endif
     set undofile
+    set undolevels=1000
+    set undoreload=10000
+    set undodir=$HOME/.cache/vim/undo
 endif
 
 " Wildmenu settings; see also plugin/wildignore.vim
@@ -298,7 +304,9 @@ set cpoptions+=J
 set cpoptions-=a "Stop :read from annoyingly setting the alternative buffer
 
 set display+=lastline
-set fileformat=unix          " Default fileformat
+if &modifiable
+    set fileformat=unix
+endif
 set fileformats=unix,dos,mac
 
 set formatlistpat=^\\s*[-*]\\s\\+
@@ -312,7 +320,7 @@ set infercase   " Ignore case on insert completion
 set smartcase   " Do case-sensitive search if pattern contains upper case letters
 
 " set diffopt=filler,foldcolumn:0,context:4
-" set fillchars=vert:│,fold:\ ,diff:⣿
+set fillchars=vert:│,fold:\ ,diff:⣿
 
 set isfname-={,}
 set keywordprg=:help
@@ -360,12 +368,13 @@ set viewoptions=cursor,folds,slash,unix
 " set winminheight=4              " Minimum height of windows
 
 " Ignore the following stuff when tab completing
-set wildignore+=.hg,.git,*.jpeg,*.gif,*.bmp,*.pdf,*.class,*.dmg,*.DS_Store,*.lnk,*.ini,*.mod,*.jpg,*.png
+set wildignore+=*.jpeg,*.gif,*.bmp,*.pdf,*.class,*.dmg,*.DS_Store,*.lnk,*.ini,*.mod,*.jpg,*.png
 set wildignore+=*/tmp/*,*.so,*.db,*.sqlite
 set wildignore+=*.pyc,*.a,*.dll,*.bak,*.exe
 
 " Disable output and VCS files
-set wildignore+=*.o,*.out,*.rbc,*.rbo,*.gem,CVS/*,*.svn
+set wildignore+=*.o,*.out,*.rbc,*.rbo,*.gem,CVS/*,*.svn,*.hg,*.git
+set wildignore+=*.mod
 
 " Disable archive files
 set wildignore+=*.zip,*.tar.gz,*.tar.bz2,*.rar,*.tar.xz
@@ -383,6 +392,7 @@ set wildignore+=node_modules/*,bower_components/*
 set wildignore+=*.swp,*~,._*
 set wildignore+=*.obj,*.luac,*.dats,__pycache__
 set wildignore+=types_*taghl,tags
+set wildignore+=*~
 
 " enable italics for comments
 let &t_ZH="\e[3m"
@@ -528,7 +538,7 @@ augroup vimrc-remember-cursor-position
 augroup END
 
 " Disable a lot of unnecessary internal plugins
-" let g:loaded_2html_plugin = 1
+let g:loaded_2html_plugin = 1
 let g:loaded_getscriptPlugin = 1
 let g:loaded_gzip = 1
 let g:loaded_logipat = 1
@@ -617,8 +627,18 @@ inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<cr>"
 
 if has('win32') || has('win64')
     source H:\cygwin_64_install\home\kg314\dotfiles\vim\vimrc_config\xvim_common_plugin_mappings.vim
+    source H:\cygwin_64_install\home\kg314\dotfiles\vim\vimrc_config\filetype.vim
 else
     source ~/dotfiles/vim/vimrc_config/xvim_common_plugin_mappings.vim
 endif
 
+let g:tex_flavor = 'latex'
+" let g:tex_stylish = 1
+let g:tex_conceal = ''
+let g:tex_isk='48-57,a-z,A-Z,192-255,:'
+
+set diffopt=filler,vertical,foldcolumn:0,context:4
+if has('patch-8.1.360')
+  set diffopt+=indent-heuristic,algorithm:patience
+endif
 

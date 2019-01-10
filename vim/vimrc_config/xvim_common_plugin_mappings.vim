@@ -4,6 +4,7 @@ command! PU PlugUpdate | PlugUpgrade
 " For JavaScript files, use `eslint` (and only eslint)
 let g:ale_linters = {
             \   'javascript': ['eslint'],
+            \   'tex': ['chktex, lacheck'],
             \ }
 
 " Mappings in the style of unimpaired-next
@@ -143,22 +144,45 @@ let g:vimtex_compiler_latexmk = {
     \}
 
 
-let g:vimtex_view_general_viewer = 'SumatraPDF'
-let g:vimtex_view_general_options
-            \ = '-reuse-instance -forward-search @tex @line @pdf'
-            \ . ' -inverse-search "nvim-qt --servername ' . v:servername
-            \ . ' --remote-send \"^<C-\^>^<C-n^>'
-            \ . ':drop \%f^<CR^>:\%l^<CR^>:normal\! zzzv^<CR^>'
-            \ . ':execute ''drop '' . fnameescape(''\%f'')^<CR^>'
-            \ . ':\%l^<CR^>:normal\! zzzv^<CR^>'
-            \ . ':call remote_foreground('''.v:servername.''')^<CR^>^<CR^>\""'
+let g:vimtex_fold_enabled = 1
+let g:vimtex_fold_types = {
+      \ 'sections' : {'parse_levels': 1},
+      \}
+let g:vimtex_format_enabled = 1
+let g:vimtex_view_automatic = 0
+let g:vimtex_view_forward_search_on_start = 0
+let g:vimtex_toc_config = {
+      \ 'split_pos' : 'full',
+      \ 'mode' : 2,
+      \ 'fold_enable' : 1,
+      \ 'hotkeys_enabled' : 1,
+      \ 'hotkeys_leader' : '',
+      \ 'refresh_always' : 0,
+      \}
+let g:vimtex_quickfix_open_on_warning = 0
+let g:vimtex_quickfix_autoclose_after_keystrokes = 3
+let g:vimtex_complete_img_use_tail = 1
+let g:vimtex_complete_bib = {
+      \ 'simple' : 1,
+      \ 'menu_fmt' : '@year, @author_short, @title',
+      \}
 
+let g:vimtex_echo_verbose_input = 0
 
+if has('win32') || has('win64')
+    let g:vimtex_view_general_viewer = 'SumatraPDF'
+    let g:vimtex_view_general_options
+                \ = '-reuse-instance -forward-search @tex @line @pdf'
+                \ . ' -inverse-search "nvim-qt --servername ' . v:servername
+                \ . ' --remote-send \"^<C-\^>^<C-n^>'
+                \ . ':drop \%f^<CR^>:\%l^<CR^>:normal\! zzzv^<CR^>'
+                \ . ':execute ''drop '' . fnameescape(''\%f'')^<CR^>'
+                \ . ':\%l^<CR^>:normal\! zzzv^<CR^>'
+                \ . ':call remote_foreground('''.v:servername.''')^<CR^>^<CR^>\""'
+else
+    let g:vimtex_view_method = 'zathura'
+endif
 
-
-
-
-
-
-
-
+if has('nvim') && exists('g:GuiLoaded')
+  let g:vimtex_compiler_progname = 'nvr'
+endif

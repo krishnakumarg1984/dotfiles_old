@@ -1,108 +1,7 @@
-" Override system filetype.vim if sufficiently new
-if exists('g:did_load_filetypes') || v:version < 700
-  finish
-endif
-let g:did_load_filetypes = 1
-
-" If we don't have +autocmd or are 'compatible', do nothing, and don't try
-" again later
-if !has('autocmd') || &compatible
-  finish
-endif
-
-" Helper function to run the 'filetypedetect' group on a file with its
-" extension stripped off
-function! s:StripRepeat()
-
-  " Check we have the fnameescape() function
-  if !exists('*fnameescape')
-    return
-  endif
-
-  " Expand the match result
-  let l:fn = expand('<afile>')
-
-  " Strip leading and trailing #hashes#
-  if l:fn =~# '^#\+.*#\+$'
-    let l:fn = substitute(l:fn, '^#\+\(.\+\)#\+$', '\1', '')
-
-  " Strip trailing tilde~
-  elseif l:fn =~# '\~$'
-    let l:fn = substitute(l:fn, '\~$', '', '')
-
-  " Strip generic .extension
-  else
-    let l:fn = expand('<afile>:r')
-  endif
-
-  " Re-run the group if there's anything left
-  if strlen(l:fn)
-    execute 'doautocmd filetypedetect BufRead ' . fnameescape(l:fn)
-  endif
-
-endfunction
-
-" Helper function to run the 'filetypedetect' group on a file in a temporary
-" sudoedit(8) directory, modifying it with an attempt to reverse the temporary
-" filename change
-function! s:SudoRepeat()
-
-  " Check we have the fnameescape() function
-  if !exists('*fnameescape')
-    return
-  endif
-
-  " Expand the match result
-  let l:fn = expand('<afile>')
-
-  " myfileXXQGS16A.conf: strip eight chars before final period
-  if l:fn =~# '/[^./]\+\w\{8}\.[^./]\+$'
-    let l:fr = expand('<afile>:r')
-    let l:fe = expand('<afile>:e')
-    let l:fn = strpart(l:fr, -8, strlen(l:fr)) . '.' . l:fe
-
-  " myfile.XXQGS16A: strip extension
-  elseif l:fn =~# '/[^./]\+\.\w\{8}$'
-    let l:fn = expand('<afile>:r')
-
-  " Unrecognised pattern; return, don't repeat
-  else
-    return
-  endif
-
-  " Re-run the group if there's anything left
-  if strlen(l:fn)
-    execute 'doautocmd filetypedetect BufRead ' . fnameescape(l:fn)
-  endif
-
-endfunction
-
-" Check whether the first line was changed and looks like a shebang, and if
-" so, re-run filetype detection
-function! s:CheckShebang()
-  if line('''[') == 1 && getline(1) =~# '^#!'
-    doautocmd filetypedetect BufRead
-  endif
-endfunction
-
 " Use our own filetype detection rules
 augroup filetypedetect
   autocmd!
 
-  " Unwrap hashes, tildes, generic extensions, and Debian packaging working
-  " extensions (if we can do so safely), and repeat the filetype detection to
-  " see if there's a match beneath them
-  autocmd BufNewFile,BufRead
-        \ #?*#
-        \,?*~
-        \,?*.{bak,example,in,new,old,orig,sample,test}
-        \,?*.dpkg-{bak,dist,new,old}
-        \ call s:StripRepeat()
-
-  " Stuff Tom cares about enough and edits often enough to type based on
-  " filename patterns follows.
-
-  " Apache config
   autocmd BufNewFile,BufRead
         \ .htaccess
         \,*/apache*/?*.conf
@@ -525,18 +424,6 @@ augroup filetypedetect
         \,zshrc
         \ setfiletype zsh
 
-  " Load any extra rules in ftdetect directories
-  runtime! ftdetect/*.vim
-
-  " Clumsy attempt at typing files in `sudo -e` if a filename hasn't already
-  " been found
-  autocmd BufNewFile,BufRead
-        \ /var/tmp/?*????????.*
-        \,/var/tmp/?*.????????
-        \ if !did_filetype()
-        \|  call s:SudoRepeat()
-        \|endif
-
   " Generic text, config, and log files, if no type assigned yet
   autocmd BufNewFile,BufRead
         \ ?*.text
@@ -557,22 +444,8 @@ augroup filetypedetect
         \,?*.log
         \ setfiletype messages
 
-  " If we still don't have a filetype, run the scripts.vim file that performs
-  " cleverer checks including looking at actual file contents--but only my
-  " custom one; don't load the system one at all.
-  autocmd BufNewFile,BufRead,StdinReadPost
-        \ *
-        \ if !did_filetype()
-        \|  runtime shebang_detection.vim
-        \|endif
-
-  " On leaving insert mode, check whether the first line was changed and looks
-  " like a shebang format, and if so, re-run filetype detection
-  autocmd InsertLeave * call s:CheckShebang()
-
 augroup END
- 
- 
+
 if exists("+omnifunc")
 
     augroup omnifunc
@@ -603,7 +476,7 @@ endif
 "     let pandoc_pipeline  = "pandoc --from=html --to=html"
 "     autocmd FileType html let &l:formatprg=pandoc_pipeline
 " endif
-  
+
 
 augroup ft_matlab
     autocmd!
@@ -623,7 +496,7 @@ if executable('ant')
         autocmd FileType java setlocal shellpipe=2>&1\ \|\ tee
     augroup END
 endif
- 
+
 
 augroup filetypes_other
     autocmd!
@@ -638,7 +511,7 @@ augroup filetypes_other
     autocmd FileType vue syntax sync fromstart
 
 augroup END
- 
+
 augroup MscFileTypeSettings
     autocmd!
     " Use the java docs for keyword help
@@ -652,13 +525,13 @@ augroup END
 
 " augroup ft_conf
 "     autocmd!
-" 
+"
 "     au BufNewFile,BufRead *.conf set filetype=conf
 "     autocmd FileType conf setlocal foldmethod=marker
 "     autocmd Filetype conf setlocal foldmarker={{{,}}}
 " augroup END
- 
-  
+
+
 augroup ft_gitcommit
     autocmd!
 
@@ -669,13 +542,13 @@ augroup END
 
 " augroup ft_html
 "     autocmd!
-" 
+"
 "     autocmd Filetype html setlocal foldmethod=indent
 "     let pandoc_pipeline  = "pandoc --from=html --to=markdown"
 "     let pandoc_pipeline .= " | pandoc --from=markdown --to=html"
 "     autocmd FileType html setlocal formatexpr=FormatprgLocal(pandoc_pipeline)
 " augroup END
- 
+
 augroup ft_vim
     autocmd!
 
