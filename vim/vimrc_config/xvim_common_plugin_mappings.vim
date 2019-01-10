@@ -158,7 +158,14 @@ let g:vimtex_toc_config = {
       \ 'hotkeys_enabled' : 1,
       \ 'hotkeys_leader' : '',
       \ 'refresh_always' : 0,
+      \ 'split_width' : 50,
       \}
+
+augroup vimtextoc
+    autocmd!
+    autocmd BufWritePost *.tex call vimtex#toc#refresh()
+augroup END
+
 let g:vimtex_quickfix_open_on_warning = 0
 let g:vimtex_quickfix_autoclose_after_keystrokes = 3
 let g:vimtex_complete_img_use_tail = 1
@@ -167,7 +174,15 @@ let g:vimtex_complete_bib = {
       \ 'menu_fmt' : '@year, @author_short, @title',
       \}
 
-let g:vimtex_echo_verbose_input = 0
+let g:vimtex_env_change_autofill = 1
+let g:vimtex_doc_handlers = ['MyHandler']
+function! MyHandler(context)
+    call vimtex#doc#make_selection(a:context)
+    if !empty(a:context.selected)
+        execute '!texdoc' a:context.selected '&'
+    endif
+    return 1
+endfunction
 
 if has('win32') || has('win64')
     let g:vimtex_view_general_viewer = 'SumatraPDF'
@@ -186,3 +201,62 @@ endif
 if has('nvim') && exists('g:GuiLoaded')
   let g:vimtex_compiler_progname = 'nvr'
 endif
+
+
+let g:deoplete#enable_at_startup = 1
+
+try
+  call deoplete#custom#option('smart_case', v:true)
+  call deoplete#custom#option('ignore_sources', {
+        \ '_': ['around'],
+        \ 'dagbok': ['syntax'],
+        \})
+
+  call deoplete#custom#source('_', 'disabled_syntaxes', ['Comment', 'String'])
+  call deoplete#custom#source('ultisnips', 'rank', 1000)
+
+  call deoplete#custom#option({
+              \ 'auto_complete_delay': 40,
+              \ 'auto_refresh_delay': 40,
+              \ 'smart_case': v:true,
+              \ 'auto_complete_start_length': 1,
+              \ })
+
+
+  call deoplete#custom#var('omni', 'input_patterns', {
+              \ 'tex': g:vimtex#re#deoplete
+              \})
+catch
+endtry
+
+
+" <C-h>, <BS>: close popup and delete backword char.
+inoremap <expr><C-h> deoplete#smart_close_popup()."\<C-h>"
+inoremap <expr><BS>  deoplete#smart_close_popup()."\<C-h>"
+
+imap <expr><TAB>
+            \ pumvisible() ? "\<C-n>" :
+            \ neosnippet#expandable_or_jumpable() ?
+            \    "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+
+xmap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+            \ "\<Plug>(neosnippet_expand_or_jump)"
+            \: "\>"
+
+smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+            \ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+
+" Expand the completed snippet trigger by <CR>.
+imap <expr><CR>
+            \ (pumvisible() && neosnippet#expandable()) ?
+            \ "\<Plug>(neosnippet_expand)" : "\<CR>"
+
+
+imap <expr><S-TAB>
+            \ pumvisible() ? "\<C-p>" :
+            \ neosnippet#expandable_or_jumpable() ?
+            \    "\<Plug>(neosnippet_expand_or_jump)" : "\<S-TAB>"
+
+let g:neosnippet#enable_completed_snippet = 1
+autocmd CompleteDone * call neosnippet#complete_done()
+autocmd InsertLeave * NeoSnippetClearMarkers

@@ -3,7 +3,7 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'critiqjo/husk-x.vim' " for command line mode (readline bindings)
 Plug 'flazz/vim-colorschemes'
 Plug 'google/vim-searchindex'
-Plug 'honza/vim-snippets'
+" Plug 'honza/vim-snippets'
 " Plug 'SirVer/ultisnips'
 Plug 'RRethy/vim-illuminate'
 Plug 'junegunn/goyo.vim'
@@ -50,6 +50,8 @@ Plug 'roxma/nvim-yarp'
 Plug 'Shougo/neoinclude.vim'
 Plug 'Shougo/neco-vim'
 Plug 'Shougo/neco-syntax'
+Plug 'Shougo/neosnippet.vim'
+Plug 'Shougo/neosnippet-snippets'
 
 if has('nvim') || v:version >= 800
   Plug 'w0rp/ale'
