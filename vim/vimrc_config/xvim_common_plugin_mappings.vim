@@ -59,8 +59,13 @@ nnoremap <Leader>g :Grepper -tool git<CR>
 nnoremap <Leader>G :Grepper -tool rg<CR>
 
 
-let g:better_whitespace_enabled=1
+" whether to highlight trailing whitespace with the default red color (I find it distracting so I turn it off)
+let g:better_whitespace_enabled=0
 let g:strip_whitespace_on_save=1
+" strip white line at the end of the file
+let g:strip_whitelines_at_eof=1
+" disable whitespace operator
+let g:better_whitespace_operator=''
 
 nnoremap <leader>s :ToggleWorkspace<CR>
 " let g:workspace_autosave_always = 1
@@ -203,7 +208,12 @@ if has('nvim') && exists('g:GuiLoaded')
 endif
 
 
-let g:deoplete#enable_at_startup = 1
+let g:deoplete#enable_at_startup = 0
+" start deoplete when we go to insert mode
+augroup deoplete_start
+    autocmd!
+    autocmd InsertEnter * call deoplete#enable()
+augroup END
 
 try
   call deoplete#custom#option('smart_case', v:true)
@@ -269,4 +279,27 @@ let g:gruvbox_italic=1
 let g:gruvbox_italicize_strings=1
 let g:gruvbox_sign_column='bg0'
 
+" function! Noscrollbar(...)
+"     let w:airline_section_z = '%{noscrollbar#statusline()}'
+" endfunction
+" call airline#add_statusline_func('Noscrollbar')
 
+"""""""""""""""""""""""""plasticboy/vim-markdown settings"""""""""""""""""""
+
+" disable header folding
+let g:vim_markdown_folding_disabled = 1
+
+" whether to use conceal feature in markdown
+let g:vim_markdown_conceal = 1
+
+" disable math tex conceal and syntax highlight
+let g:tex_conceal = ''
+let g:vim_markdown_math = 0
+
+" support front matter of various format
+let g:vim_markdown_frontmatter = 1  " for YAML format
+let g:vim_markdown_toml_frontmatter = 1  " for TOML format
+let g:vim_markdown_json_frontmatter = 1  " for JSON format
+
+" let the TOC window autofit so that it doesn't take too much space
+let g:vim_markdown_toc_autofit = 1

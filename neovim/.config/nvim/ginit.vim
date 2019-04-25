@@ -1,3 +1,7 @@
+GuiTabline 0
+GuiPopupmenu 0
+call GuiWindowMaximized(1)
+
 if has('win32') || has('win64')
     if empty(glob('H:\cygwin_64_install\home\kg314\AppData\Local\nvim\autoload\plug.vim'))
 	silent !curl -fLo H:\cygwin_64_install\home\kg314\AppData\Local\nvim\autoload\plug.vim --create-dirs

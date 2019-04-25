@@ -1,6 +1,55 @@
-filetype plugin indent on
-syntax enable
-set background=dark
+if !has('nvim')
+    filetype plugin indent on
+    syntax enable
+    set autoindent     " Use indent of previous line on new lines
+    set autoread       " Autoread when a file is changed from outside
+    set background=dark
+    " Let me backspace over pretty much anything
+    set backspace+=eol     " Line breaks
+    set backspace+=indent  " Spaces from 'autoindent'
+    set backspace+=start   " The start of current insertion
+    set belloff=all
+    cscopeverbose enable
+    " Keep much more command and search history
+    set history=10000
+
+    " Highlight completed searches; clear on reload
+    set hlsearch
+
+    " Show search matches as I type my pattern
+    set incsearch
+
+    " Don't show a statusline if there's only one window
+    " This is the Vim default, but NeoVim changed it
+    " if &laststatus != 1
+    " set laststatus=1
+    " endif
+    set laststatus=2
+
+    " Treat numbers with a leading zero as decimal, not octal
+    set nrformats-=octal
+
+    if has('cmdline_info')
+        set ruler                   " Show the ruler
+        set showcmd
+    endif
+
+    " Make sessions usable
+    if exists('+sessionoptions')
+        set sessionoptions-=options       " No global options or mappings
+    endif
+
+    set smarttab
+    set tabpagemax=50
+
+    sets tags=./tags;,tags
+    " set tags=tags;~,.tags;~
+    " set tags=./tags;/   " recurse up directories looking for tag files
+
+    set ttyfast
+
+    set wildmenu
+endif
 
 " " Use my colorscheme if using the GUI or if we have 256 colors
 if has('gui_running')||(has("termguicolors"))||has('termguicolors')
@@ -23,18 +72,12 @@ endif
 
 " The all-important default indent settings; filetypes to tweak
 set expandtab      " Use spaces instead of tabs
-set autoindent     " Use indent of previous line on new lines
 set copyindent     " Copy the previous indentation on autoindenting
 set preserveindent
-set smartindent
+" set smartindent
 set shiftwidth=4   " Indent with four spaces
 set softtabstop=4  " Insert four spaces with tab key
 set matchpairs+=<:>
-
-" Let me backspace over pretty much anything
-set backspace+=eol     " Line breaks
-set backspace+=indent  " Spaces from 'autoindent'
-set backspace+=start   " The start of current insertion
 
 " Try to keep backups in one system-appropriate dir
 if has('win32') || has('win64')
@@ -126,7 +169,9 @@ set updatetime=250              " milliseconds elapsed before which swap file wi
 
 " Use UTF-8 if we can and env LANG didn't tell us not to
 if has('multi_byte') && !exists('$LANG') && &encoding ==# 'latin1'
-    set encoding=utf-8
+    if !has('nvim')
+        set encoding=utf-8
+    endif
 endif
 
 " Don't wait for a key after Escape in insert mode
@@ -177,27 +222,11 @@ endif
 " Allow buffers to have changes without being displayed
 set hidden
 
-" Keep much more command and search history
-set history=2000
-
-" Highlight completed searches; clear on reload
-set hlsearch
-
 " Don't assume I'm editing C; let the filetype set this
 set include=
 
-" Show search matches as I type my pattern
-set incsearch
-
 " Don't join lines with two spaces at the end of sentences
 set nojoinspaces
-
-" Don't show a statusline if there's only one window
-" This is the Vim default, but NeoVim changed it
-" if &laststatus != 1
-" set laststatus=1
-" endif
-set laststatus=2
 
 " Don't redraw the screen during batch execution
 set lazyredraw
@@ -214,14 +243,9 @@ endif
 " Don't allow setting options via buffer content
 " set nomodeline
 
-" Treat numbers with a leading zero as decimal, not octal
-set nrformats-=octal
-
 " Options for file search with gf/:find
 set path-=/usr/include  " Let the C/C++ filetypes set that
 set path+=**            " Search current directory's whole tree
-set tags=tags;~,.tags;~
-" set tags=./tags;/   " recurse up directories looking for tag files
 
 
 " Disable command line display of file position
@@ -230,16 +254,9 @@ set tags=tags;~,.tags;~
 " set noruler
 " endif
 
-if has('cmdline_info')
-    set ruler                   " Show the ruler
-    set rulerformat=%30(%=\:b%n%y%m%r%w\ %l,%c%V\ %P%)
-    set showcmd
-endif
-
 " Make sessions usable
 if exists('+sessionoptions')
     set sessionoptions-=localoptions  " No buffer options or mappings
-    set sessionoptions-=options       " No global options or mappings
 endif
 
 " Don't show startup splash screen (I donated)
@@ -253,7 +270,6 @@ set splitright  " Right of the current window, not left
 set timeoutlen=3000
 set timeout       " time out on mappings and keycodes (stronger of the two conditions)
 set ttimeoutlen=0 " A non-negative number here will make the delay to be timeoutlen
-set ttyfast
 
 
 " No terminal mouse, even if we could
@@ -279,7 +295,6 @@ if has('persistent_undo')
 endif
 
 " Wildmenu settings; see also plugin/wildignore.vim
-set wildmenu                " Use wildmenu
 " set wildmode=list:longest   " Tab press completes and lists
 set wildmode=longest,list:full
 silent! set wildignorecase  " Case insensitive, if supported
@@ -292,10 +307,8 @@ endif
 
 " Never beep at me
 set visualbell t_vb=
-set belloff=all
 set cmdheight=2                 " Height of command-line (easy-readable)
 
-set autoread                        " Autoread when a file is changed from outside
 augroup FileChangedAlert
     " Helps if you have to use another editor on the same file
     autocmd! FileChangedShell * echoerr "File has been changed outside of Vim."
@@ -330,8 +343,9 @@ set formatlistpat+=^\\s*[-–+o*•]\\s\\+      " Bullet points
 
 set helpheight=12
 
-set ignorecase  " Ignore case search for normal letters
 set incsearch
+
+set ignorecase  " Ignore case search for normal letters
 set infercase   " Ignore case on insert completion
 set smartcase   " Do case-sensitive search if pattern contains upper case letters
 
@@ -351,11 +365,11 @@ set nostartofline               " The cursor is kept in the same column (if poss
 set number
 set relativenumber
 " set numberwidth=5               " Width of the line-no. column
-augroup changenumbering
-    autocmd!
-    autocmd InsertEnter * :set norelativenumber
-    autocmd InsertLeave * :set relativenumber
-augroup END
+" augroup changenumbering
+"     autocmd!
+"     autocmd InsertEnter * :set norelativenumber
+"     autocmd InsertLeave * :set relativenumber
+" augroup END
 
 
 " set report=0                    " Threshold for reporting number of lines changed.
@@ -386,12 +400,15 @@ set viewoptions=cursor,folds,slash,unix
 " set winminheight=4              " Minimum height of windows
 
 " Ignore the following stuff when tab completing
-set wildignore+=*.jpeg,*.gif,*.bmp,*.pdf,*.class,*.dmg,*.DS_Store,*.lnk,*.ini,*.mod,*.jpg,*.png
+set wildignore+=*.jpeg,*.gif,*.bmp,*.pdf,*.class,*.dmg,*.DS_Store,*.lnk,*.ini,*.mod,*.jpg,*.png,*.tiff
 set wildignore+=*/tmp/*,*.so,*.db,*.sqlite
-set wildignore+=*.pyc,*.a,*.dll,*.bak,*.exe
+set wildignore+=*.pyc,*.a,*.dll,*.bak,*.exe,*.bin,*.dll
+set wildignore+=*.aux,*.bbl,*.blg,*.brf,*.fls,*.fdb_latexmk,*.synctex.gz,*.pdf
+
 
 " Disable output and VCS files
 set wildignore+=*.o,*.out,*.rbc,*.rbo,*.gem,CVS/*,*.svn,*.hg,*.git
+set wildignore+=*/.git/*,*/.svn/*,*/__pycache__/*,*/build/**
 set wildignore+=*.mod
 
 " Disable archive files
@@ -462,6 +479,10 @@ nnoremap / /\v
 vnoremap / /\v
 nnoremap ? ?\v
 vnoremap ? ?\v
+
+" " Center screen on next/previous selection.
+" nnoremap n nzz
+" nnoremap N Nzz
 
 " Move across wrapped lines like regular lines
 noremap 0 ^
@@ -563,15 +584,18 @@ augroup vimrc-remember-cursor-position
 augroup END
 
 " Disable a lot of unnecessary internal plugins
-let g:loaded_2html_plugin = 1
-let g:loaded_getscriptPlugin = 1
-let g:loaded_gzip = 1
-let g:loaded_logipat = 1
-let g:loaded_rrhelper = 1
+let g:loaded_2html_plugin     = 1
+let g:loaded_getscriptPlugin  = 1
+let g:loaded_gzip             = 1
+let g:loaded_logipat          = 1
+let g:loaded_rrhelper         = 1
 let g:loaded_spellfile_plugin = 1
-let g:loaded_tarPlugin = 1
-let g:loaded_vimballPlugin = 1
-let g:loaded_zipPlugin = 1
+let g:loaded_tarPlugin        = 1
+let g:loaded_vimballPlugin    = 1
+let g:loaded_zipPlugin        = 1
+let g:loaded_matchparen       = 1
+
+let loaded_matchit = 1
 
 augroup checktimeaugroup
     autocmd!
@@ -658,7 +682,7 @@ if has('win32') || has('win64')
     source H:\cygwin_64_install\home\kg314\dotfiles\vim\vimrc_config\filetype.vim
 else
     source ~/dotfiles/vim/vimrc_config/xvim_common_plugin_mappings.vim
-	source ~/dotfiles/vim/vimrc_config/filetype.vim
+    source ~/dotfiles/vim/vimrc_config/filetype.vim
 endif
 
 set conceallevel=0
@@ -678,3 +702,19 @@ tnoremap <Esc> <C-\><C-n>
 if has('nvim')
   set fillchars+=eob:\ |  " no ~ for end-of-buffer lines.
 endif
+
+if exists('&inccommand')
+    set inccommand=split
+endif
+
+" https://www.reddit.com/r/neovim/comments/b7ie4e/where_to_find_added_features_ie_vscodeesque/
+if has('nvim')
+    set wildoptions+="pum"
+    if &wildoptions=="pum"
+        cnoremap <up> <c-p>
+        cnoremap <down> <c-n>
+    endif
+endif
+
+set rulerformat=%30(%=\:b%n%y%m%r%w\ %l,%c%V\ %P%)
+
