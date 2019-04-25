@@ -29,4 +29,8 @@ if v:version < 700
   finish
 endif
 
-source ~/dotfiles/vim/vimrc_config/vimrc
+if has('win32') || has('win64')
+    source H:\cygwin_64_install\home\kg314\dotfiles\vim\vimrc_config\vimrc
+else
+	source ~/dotfiles/vim/vimrc_config/vimrc
+endif

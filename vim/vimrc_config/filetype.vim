@@ -413,7 +413,7 @@ augroup filetypedetect
         \ setfiletype yacc
   " YAML files
   autocmd BufNewFile,BufRead
-        \ ?*.yaml
+        \ ?*.yaml,?*.yml
         \ setfiletype yaml
   " Z shell files
   autocmd BufNewFile,BufRead
@@ -583,7 +583,8 @@ augroup END
 
 augroup ft_latex
     autocmd!
-    au BufRead,BufNewFile *.tex,*.tikz set filetype=tex
+    au BufRead,BufNewFile *.tex,*.tikz,*.cls,*.sty set filetype=tex
+    au BufRead,BufNewFile latexmkrc set filetype=perl
     autocmd FileType tex setlocal textwidth=80
     autocmd FileType tex setlocal isfname-={,}
     " autocmd FileType tex setlocal formatprg=par\ -jw80

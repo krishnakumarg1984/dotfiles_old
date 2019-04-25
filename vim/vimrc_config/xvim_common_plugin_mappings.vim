@@ -167,7 +167,7 @@ augroup vimtextoc
 augroup END
 
 let g:vimtex_quickfix_open_on_warning = 0
-let g:vimtex_quickfix_autoclose_after_keystrokes = 3
+let g:vimtex_quickfix_autoclose_after_keystrokes = 2
 let g:vimtex_complete_img_use_tail = 1
 let g:vimtex_complete_bib = {
       \ 'simple' : 1,

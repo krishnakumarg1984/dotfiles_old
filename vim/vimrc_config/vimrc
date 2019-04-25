@@ -5,10 +5,10 @@ set background=dark
 " " Use my colorscheme if using the GUI or if we have 256 colors
 if has('gui_running')||(has("termguicolors"))||has('termguicolors')
         " set Vim-specific sequences for RGB colors
-"       set termguicolors
+        set termguicolors
         let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
         let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
-        silent! colorscheme hybrid
+        silent! colorscheme gruvbox
 endif
 
 " let &t_SI = "\e[6 q"
@@ -561,21 +561,21 @@ xnoremap <silent> & :&&<CR>
 nnoremap <Bslash>e :<C-U>setlocal modifiable noreadonly<CR>
 
 " \g changes directory to the current file's location
-nnoremap <Bslash>g :<C-U>cd %:h<CR>:pwd<CR>
+" nnoremap <Bslash>g :<C-U>cd %:h<CR>:pwd<CR>
 
 " \h toggles highlighting search results
-nnoremap <Bslash>h :<C-U>set hlsearch! hlsearch?<CR>
+" nnoremap <Bslash>h :<C-U>set hlsearch! hlsearch?<CR>
 
 " \R reloads ~/.vimrc
-nnoremap <Bslash>R :<C-U>source $MYVIMRC<CR>
+" nnoremap <Bslash>R :<C-U>source $MYVIMRC<CR>
 
 " \s toggles spell checking
 nnoremap <Bslash>s :<C-U>setlocal spell! spell?<CR>
 
 " \t shows current filetype
-nnoremap <Bslash>t :<C-U>setlocal filetype?<CR>
+" nnoremap <Bslash>t :<C-U>setlocal filetype?<CR>
 " \T clears filetype
-nnoremap <Bslash>T :<C-U>setlocal filetype=<CR>
+" nnoremap <Bslash>T :<C-U>setlocal filetype=<CR>
 
 " \= runs the whole buffer through =, preserving position
 nnoremap <Bslash>= :<C-U>call vimrc#Anchor('1G=G')<CR>
@@ -609,27 +609,28 @@ augroup END
 
 " https://vimrcfu.com/snippet/116
 " Display the numbered registers, press a key and paste it to the buffer
-function! Reg()
-    reg
-    echo "Register: "
-    let char = nr2char(getchar())
-    if char != "\<Esc>"
-        execute "normal! \"".char."p"
-    endif
-    redraw
-endfunction
+" function! Reg()
+"     reg
+"     echo "Register: "
+"     let char = nr2char(getchar())
+"     if char != "\<Esc>"
+"         execute "normal! \"".char."p"
+"     endif
+"     redraw
+" endfunction
 
-command! -nargs=0 Reg call Reg() " Provides the useful :Reg command
+" command! -nargs=0 Reg call Reg() " Provides the useful :Reg command
 
-inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<cr>"
+" inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+" inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+" inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<cr>"
 
 if has('win32') || has('win64')
     source H:\cygwin_64_install\home\kg314\dotfiles\vim\vimrc_config\xvim_common_plugin_mappings.vim
     source H:\cygwin_64_install\home\kg314\dotfiles\vim\vimrc_config\filetype.vim
 else
     source ~/dotfiles/vim/vimrc_config/xvim_common_plugin_mappings.vim
+	source ~/dotfiles/vim/vimrc_config/filetype.vim
 endif
 
 let g:tex_flavor = 'latex'
@@ -641,4 +642,6 @@ set diffopt=filler,vertical,foldcolumn:0,context:4
 if has('patch-8.1.360')
   set diffopt+=indent-heuristic,algorithm:patience
 endif
+
+
 
