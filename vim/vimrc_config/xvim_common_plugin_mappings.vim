@@ -260,3 +260,6 @@ imap <expr><S-TAB>
 let g:neosnippet#enable_completed_snippet = 1
 autocmd CompleteDone * call neosnippet#complete_done()
 autocmd InsertLeave * NeoSnippetClearMarkers
+
+let g:CoolTotalMatches = 1
+

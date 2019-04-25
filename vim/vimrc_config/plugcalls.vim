@@ -1,11 +1,14 @@
+" Plug 'broesler/jupyter-vim'
+" Plug 'goerz/jupytext.vim'
+" Plug 'google/vim-searchindex'
 " Plug 'honza/vim-snippets'
+" Plug 'mwouts/jupytext'
 " Plug 'Sammyalhashe/random_colorscheme.vim'
 " Plug 'SirVer/ultisnips'
 
 Plug 'andymass/vim-matchup' " %, a%, i%, ]%, g%, [%
 Plug 'critiqjo/husk-x.vim' " for command line mode (readline bindings)
 Plug 'flazz/vim-colorschemes'
-Plug 'google/vim-searchindex'
 Plug 'jiangmiao/auto-pairs'
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/limelight.vim'
@@ -39,6 +42,11 @@ Plug 'tpope/vim-unimpaired'
 Plug 'vim-airline/vim-airline'
 Plug 'wellle/targets.vim'
 Plug 'wincent/terminus'
+Plug 'eiginn/netrw'
+Plug 'Vimjas/vim-python-pep8-indent'
+Plug 'octol/vim-cpp-enhanced-highlight'
+Plug 'jeetsukumaran/vim-pythonsense'
+Plug 'tmhedberg/SimpylFold'
 
 if executable('ctags')
     Plug 'ludovicchabant/vim-gutentags'
