@@ -3,12 +3,12 @@
 " Plug 'digitaltoad/vim-pug', { 'for': ['pug', 'vue'] }
 " Plug 'goerz/jupytext.vim'
 " Plug 'google/vim-searchindex'
+" Plug 'HerringtonDarkholme/yats.vim'
 " Plug 'honza/vim-snippets'
 " Plug 'hsanson/vim-android'
 " Plug 'jparise/vim-graphql', { 'for': ['javascript', 'javascript.jsx', 'graphql'] }
 " Plug 'kchmck/vim-coffee-script', { 'for': 'coffee' }
 " Plug 'keith/swift.vim'
-" Plug 'leafgarland/typescript-vim'
 " Plug 'mwouts/jupytext'
 " Plug 'othree/javascript-libraries-syntax.vim', { 'for': ['javascript', 'javascript.jsx'] }
 " Plug 'pangloss/vim-javascript', { 'for': ['javascript', 'javascript.jsx', 'vue'] }
