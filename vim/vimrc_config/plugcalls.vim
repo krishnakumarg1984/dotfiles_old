@@ -1,5 +1,7 @@
 " Plug 'honza/vim-snippets'
+" Plug 'Sammyalhashe/random_colorscheme.vim'
 " Plug 'SirVer/ultisnips'
+
 Plug 'andymass/vim-matchup' " %, a%, i%, ]%, g%, [%
 Plug 'critiqjo/husk-x.vim' " for command line mode (readline bindings)
 Plug 'flazz/vim-colorschemes'
@@ -43,10 +45,10 @@ if executable('ctags')
 endif
 
 " Plugin: Completion and snippets
-" if has('nvim') || v:version >= 800
-"   Plug 'Shougo/deoplete.nvim',
-"         \ has('nvim') ? { 'do': ':UpdateRemotePlugins' } : {}
-" endif
+if has('nvim') || v:version >= 800
+  Plug 'Shougo/deoplete.nvim',
+        \ has('nvim') ? { 'do': ':UpdateRemotePlugins' } : {}
+endif
 Plug 'roxma/vim-hug-neovim-rpc', has('nvim') ? { 'on' : [] } : {}
 Plug 'roxma/nvim-yarp'
 Plug 'Shougo/neoinclude.vim'

@@ -60,7 +60,7 @@ nnoremap <Leader>G :Grepper -tool rg<CR>
 
 
 let g:better_whitespace_enabled=1
-" let g:strip_whitespace_on_save=1
+let g:strip_whitespace_on_save=1
 
 nnoremap <leader>s :ToggleWorkspace<CR>
 " let g:workspace_autosave_always = 1

@@ -362,6 +362,8 @@ set tabpagemax=15      " Maximum number of tab pages to be opened by the |-p| co
 
 set title
 set titleold="Terminal"
+set titlestring=%f%(\ [%M]%)
+
 
 set viewoptions=cursor,folds,slash,unix
 
@@ -643,5 +645,6 @@ if has('patch-8.1.360')
   set diffopt+=indent-heuristic,algorithm:patience
 endif
 
+tnoremap <Esc> <C-\><C-n>
 
 
