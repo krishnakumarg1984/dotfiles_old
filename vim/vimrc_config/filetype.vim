@@ -172,7 +172,7 @@ augroup filetypedetect
   autocmd BufNewFile,BufRead
         \ ?*.markdown
         \,?*.md
-        \ setfiletype markdown
+        \ setfiletype markdown shiftwidth=4 softtabstop=4 spell set omnifunc=htmlcomplete#CompleteTags
   " Mutt configuration files
   autocmd BufNewFile,BufRead
         \ Muttrc
@@ -444,6 +444,15 @@ augroup filetypedetect
         \,?*.log
         \ setfiletype messages
 
+  " RVM .ruby-env
+  autocmd BufNewFile,BufReadPost *.ruby-env setlocal filetype=sh
+
+  " JSON RC files
+  autocmd BufNewFile,BufReadPost .babelrc,.stylelintrc setlocal filetype=json
+
+  " Conf files
+  autocmd BufNewFile,BufReadPost .dockerignore setlocal filetype=conf
+
 augroup END
 
 if exists("+omnifunc")
@@ -451,12 +460,13 @@ if exists("+omnifunc")
     augroup omnifunc
         autocmd!
 
-        autocmd FileType python set omnifunc=pythoncomplete#Complete
-        " autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
+        " autocmd FileType python set omnifunc=pythoncomplete#Complete
+        autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
         autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
         autocmd FileType handlebars set omnifunc=htmlcomplete#CompleteTags
         autocmd FileType xhtml set omnifunc=htmlcomplete#CompleteTags
         autocmd FileType css set omnifunc=csscomplete#CompleteCSS
+        autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete
         autocmd FileType xml set omnifunc=xmlcomplete#CompleteTags
         autocmd FileType php set omnifunc=phpcomplete#CompletePHP
         autocmd FileType c set omnifunc=ccomplete#Complete
@@ -613,5 +623,11 @@ augroup END
 augroup csshyphen
     autocmd!
     autocmd FileType css,scss setl iskeyword+=-
+augroup END
+
+" React in Javascript files
+augroup JavascriptLibraries
+  autocmd!
+  autocmd BufReadPre *.js let b:javascript_lib_use_react=1
 augroup END
 

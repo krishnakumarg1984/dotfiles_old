@@ -221,6 +221,8 @@ set nrformats-=octal
 set path-=/usr/include  " Let the C/C++ filetypes set that
 set path+=**            " Search current directory's whole tree
 set tags=tags;~,.tags;~
+" set tags=./tags;/   " recurse up directories looking for tag files
+
 
 " Disable command line display of file position
 " This is the Vim default, but NeoVim changed it
@@ -379,7 +381,7 @@ set wildignore+=*.o,*.out,*.rbc,*.rbo,*.gem,CVS/*,*.svn,*.hg,*.git
 set wildignore+=*.mod
 
 " Disable archive files
-set wildignore+=*.zip,*.tar.gz,*.tar.bz2,*.rar,*.tar.xz
+set wildignore+=*.zip,*.tar.gz,*.tar.bz2,*.rar,*.tar.xz,,*\\tmp\\*
 
 " Ignore bundler and sass cache
 set wildignore+=*/vendor/gems/*,*/vendor/cache/*,*/.bundle/*,*/.sass-cache/*
@@ -566,6 +568,9 @@ augroup END
 nnoremap <silent> & :&&<CR>
 xnoremap <silent> & :&&<CR>
 
+" show options if tag has multiple matches
+nnoremap <C-]> g<C-]>
+
 " \e forces a buffer to be editable
 nnoremap <Bslash>e :<C-U>setlocal modifiable noreadonly<CR>
 
@@ -642,6 +647,8 @@ else
 	source ~/dotfiles/vim/vimrc_config/filetype.vim
 endif
 
+set conceallevel=0
+
 let g:tex_flavor = 'latex'
 " let g:tex_stylish = 1
 let g:tex_conceal = ''
@@ -654,4 +661,6 @@ endif
 
 tnoremap <Esc> <C-\><C-n>
 
-
+if has('nvim')
+  set fillchars+=eob:\ |  " no ~ for end-of-buffer lines.
+endif
