@@ -4,6 +4,7 @@
 " Plug 'gcavallanti/vim-noscrollbar'
 " Plug 'goerz/jupytext.vim'
 " Plug 'google/vim-searchindex'
+" Plug 'hauleth/asyncdo.vim'
 " Plug 'HerringtonDarkholme/yats.vim'
 " Plug 'honza/vim-snippets'
 " Plug 'hsanson/vim-android'
@@ -16,8 +17,10 @@
 " Plug 'rust-lang/rust.vim'
 " Plug 'Sammyalhashe/random_colorscheme.vim'
 " Plug 'SirVer/ultisnips'
+" Plug 'skywind3000/asyncrun.vim'
 " Plug 'tfnico/vim-gradle'
 " Plug 'thinca/vim-quickrun'
+" Plug 'tpope/vim-dispatch'
 " Plug 'udalov/kotlin-vim'
 
 Plug 'andymass/vim-matchup' " %, a%, i%, ]%, g%, [%
@@ -31,6 +34,7 @@ Plug 'flazz/vim-colorschemes'
 Plug 'jeetsukumaran/vim-pythonsense'
 Plug 'jeffkreeftmeijer/vim-numbertoggle'
 Plug 'jiangmiao/auto-pairs'
+Plug 'joereynolds/gq.vim'
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/limelight.vim'
 Plug 'junegunn/vim-easy-align'
@@ -48,6 +52,7 @@ Plug 'moll/vim-bbye'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'octol/vim-cpp-enhanced-highlight'
 Plug 'othree/html5.vim', { 'for': ['html', 'vue'] }
+Plug 'paroxayte/vwm.vim'
 Plug 'pdurbin/vim-tsv'
 Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
 Plug 'prabirshrestha/asyncomplete-buffer.vim'
@@ -68,7 +73,6 @@ Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-rhubarb'
-Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-unimpaired'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-python/python-syntax'
@@ -76,6 +80,17 @@ Plug 'Vimjas/vim-python-pep8-indent'
 Plug 'wellle/targets.vim'
 Plug 'wincent/terminus'
 
+
+if has('win32') || has('win64')
+    Plug 'tbodt/deoplete-tabnine', { 'do': 'powershell.exe .\install.ps1' }
+else
+    Plug 'tbodt/deoplete-tabnine', { 'do': './install.sh' }
+endif
+
+if !has('win32') || !has('win64')
+    Plug 'junegunn/fzf',  { 'dir': '~/.fzf' }
+    Plug 'junegunn/fzf.vim'
+endif
 
 if executable('tmux')
 
@@ -107,4 +122,8 @@ Plug 'deathlyfrantic/deoplete-spell'
 
 if has('nvim') || v:version >= 800
   Plug 'w0rp/ale'
+endif
+
+if !has('nvim')
+    Plug 'tpope/vim-sensible'
 endif

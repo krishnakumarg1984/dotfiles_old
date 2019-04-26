@@ -42,7 +42,7 @@ if !has('nvim')
     set smarttab
     set tabpagemax=50
 
-    sets tags=./tags;,tags
+    set tags=./tags;,tags
     " set tags=tags;~,.tags;~
     " set tags=./tags;/   " recurse up directories looking for tag files
 
@@ -542,10 +542,12 @@ nnoremap <silent> zk :silent! normal! zc<cr>zkzvzz[z
 
 cnoreabbrev <expr> w getcmdtype() == ":" && getcmdline() == 'w' ? 'up' : 'w'
 
-augroup disableTempUndo
-    autocmd!
-    autocmd BufWritePre /tmp/* setlocal noundofile
-augroup END
+if !has('win32') || !has('win64')
+    augroup disableTempUndo
+        autocmd!
+        autocmd BufWritePre /tmp/* setlocal noundofile
+    augroup END
+endif
 
 let g:netrw_altv           = 1
 let g:netrw_banner         = 0
@@ -565,11 +567,11 @@ let g:netrw_winsize        = 20
 
 
 
-augroup reload_vimrc
-    autocmd!
-    autocmd! BufWritePost $MYVIMRC,$MYGVIMRC nested source %
-    au FocusLost * :wa
-augroup END
+" augroup reload_vimrc
+"     autocmd!
+"     autocmd! BufWritePost $MYVIMRC,$MYGVIMRC nested source %
+"     au FocusLost * :wa
+" augroup END
 
 " "" The PC is fast enough, do syntax highlight syncing from start unless 200 lines
 " augroup vimrc-sync-fromstart
@@ -693,7 +695,11 @@ let g:tex_conceal = ''
 let g:tex_isk='48-57,a-z,A-Z,192-255,:'
 
 set diffopt=filler,vertical,foldcolumn:0,context:4
-if has('patch-8.1.360')
+set diffopt+=iwhiteall
+set diffopt+=hiddenoff
+
+
+if has('patch-8.1.360') || has('nvim')
   set diffopt+=indent-heuristic,algorithm:patience
 endif
 
@@ -717,4 +723,5 @@ if has('nvim')
 endif
 
 set rulerformat=%30(%=\:b%n%y%m%r%w\ %l,%c%V\ %P%)
+set tagrelative " use relative paths for tags
 

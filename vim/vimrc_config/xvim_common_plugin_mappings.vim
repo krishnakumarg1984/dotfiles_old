@@ -236,6 +236,7 @@ try
   call deoplete#custom#var('omni', 'input_patterns', {
               \ 'tex': g:vimtex#re#deoplete
               \})
+  call deoplete#custom#source('tabnine', 'rank', 50)
 catch
 endtry
 
@@ -303,3 +304,13 @@ let g:vim_markdown_json_frontmatter = 1  " for JSON format
 
 " let the TOC window autofit so that it doesn't take too much space
 let g:vim_markdown_toc_autofit = 1
+
+
+
+
+
+
+
+
+
+

@@ -464,15 +464,13 @@ if exists("+omnifunc")
         autocmd FileType c setlocal omnifunc=ccomplete#Complete
         autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
         autocmd FileType handlebars setlocal omnifunc=htmlcomplete#CompleteTags
-        autocmd FileType html setlocal omnifunc=htmlcomplete#CompleteTags
+        autocmd FileType html,xhtml setl ofu=htmlcomplete#CompleteTags
         autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
         autocmd FileType php setlocal omnifunc=phpcomplete#CompletePHP
         autocmd FileType python setlocal omnifunc=jedi#completions
-        autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete
+        autocmd FileType ruby,eruby setlocal omnifunc=rubycomplete#Complete
         autocmd FileType sql setlocal omnifunc=sqlcomplete#CompleteTags
-        autocmd FileType xhtml setlocal omnifunc=htmlcomplete#CompleteTags
         autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-
 
         autocmd Filetype *
                     \ if &omnifunc == "" |
@@ -632,4 +630,5 @@ augroup JavascriptLibraries
   autocmd!
   autocmd BufReadPre *.js let b:javascript_lib_use_react=1
 augroup END
+
 
