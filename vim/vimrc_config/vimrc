@@ -1,7 +1,7 @@
 if !has('nvim')
+    set autoindent     " Use indent of previous line on new lines
     filetype plugin indent on
     syntax enable
-    set autoindent     " Use indent of previous line on new lines
     set autoread       " Autoread when a file is changed from outside
     set background=dark
     " Let me backspace over pretty much anything

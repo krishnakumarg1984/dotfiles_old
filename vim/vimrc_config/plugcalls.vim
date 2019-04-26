@@ -22,6 +22,7 @@
 " Plug 'thinca/vim-quickrun'
 " Plug 'tpope/vim-dispatch'
 " Plug 'udalov/kotlin-vim'
+" Plug 'liuchengxu/vista.vim'
 
 Plug 'andymass/vim-matchup' " %, a%, i%, ]%, g%, [%
 Plug 'cespare/vim-toml'
@@ -62,6 +63,7 @@ Plug 'romainl/vim-qf'
 Plug 'RRethy/vim-illuminate'
 Plug 'schickling/vim-bufonly', { 'on': 'BufOnly' }
 Plug 'sgur/vim-editorconfig'
+Plug 'simnalamburt/vim-mundo'
 Plug 'tell-k/vim-autopep8'
 Plug 'thaerkh/vim-indentguides',{'for':['tex','markdown','vim']} "nathanaelkane's version is also available
 Plug 'tmhedberg/SimpylFold'
@@ -80,14 +82,13 @@ Plug 'Vimjas/vim-python-pep8-indent'
 Plug 'wellle/targets.vim'
 Plug 'wincent/terminus'
 
-
 if has('win32') || has('win64')
     Plug 'tbodt/deoplete-tabnine', { 'do': 'powershell.exe .\install.ps1' }
+    " Plug 'ctrlpvim/ctrlp.vim'
+    " Plug 'raghur/fruzzy', {'do': { -> fruzzy#install()}}
+     Plug 'Yggdroot/LeaderF' ", { 'do': '.\install.bat' }
 else
     Plug 'tbodt/deoplete-tabnine', { 'do': './install.sh' }
-endif
-
-if !has('win32') || !has('win64')
     Plug 'junegunn/fzf',  { 'dir': '~/.fzf' }
     Plug 'junegunn/fzf.vim'
 endif

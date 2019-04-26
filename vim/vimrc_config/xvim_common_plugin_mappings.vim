@@ -305,12 +305,3 @@ let g:vim_markdown_json_frontmatter = 1  " for JSON format
 " let the TOC window autofit so that it doesn't take too much space
 let g:vim_markdown_toc_autofit = 1
 
-
-
-
-
-
-
-
-
-
