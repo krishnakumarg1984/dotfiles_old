@@ -81,6 +81,7 @@ Plug 'vim-python/python-syntax'
 Plug 'Vimjas/vim-python-pep8-indent'
 Plug 'wellle/targets.vim'
 Plug 'wincent/terminus'
+Plug 'haya14busa/vim-edgemotion'
 
 if has('win32') || has('win64')
     Plug 'tbodt/deoplete-tabnine', { 'do': 'powershell.exe .\install.ps1' }
@@ -105,6 +106,7 @@ endif
 
 if executable('ctags')
     Plug 'ludovicchabant/vim-gutentags'
+    Plug 'skywind3000/gutentags_plus'
 endif
 
 " Plugin: Completion and snippets

@@ -305,3 +305,24 @@ let g:vim_markdown_json_frontmatter = 1  " for JSON format
 " let the TOC window autofit so that it doesn't take too much space
 let g:vim_markdown_toc_autofit = 1
 
+map <C-j> <Plug>(edgemotion-j)
+map <C-k> <Plug>(edgemotion-k)
+
+let g:gutentags_project_root = ['Makefile','.root']
+
+" enable gtags module
+let g:gutentags_modules = ['ctags', 'gtags_cscope']
+
+" " generate datebases in my cache directory, prevent gtags files polluting my project
+" let g:gutentags_cache_dir = expand('~/.cache/tags')
+
+" change focus to quickfix window after search (optional).
+let g:gutentags_plus_switch = 1
+
+
+
+
+
+
+
+
