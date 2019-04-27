@@ -95,6 +95,8 @@ else
         call mkdir($HOME."/.vim/backup-dir", "", 0700)
     endif
     set backupdir=~/.vim/backup-dir
+    " Make Vim able to edit crontab files again.
+    " set backupskip=/tmp/*,/private/tmp/*"
 endif
 
 " Add some paths not to back up
@@ -112,6 +114,7 @@ if has('linebreak')
     " set showbreak=…
     set breakat=\ \ ;:,!?
     if exists('+breakindent')
+        set breakindentopt=shift:2,sbr
         silent! set breakindent
     endif
 endif
@@ -170,6 +173,8 @@ set updatetime=250              " milliseconds elapsed before which swap file wi
 " Use UTF-8 if we can and env LANG didn't tell us not to
 if has('multi_byte') && !exists('$LANG') && &encoding ==# 'latin1'
     if !has('nvim')
+        setglobal termencoding=utf-8 fileencodings=
+        scriptencoding utf-8
         set encoding=utf-8
     endif
 endif
@@ -402,8 +407,8 @@ set viewoptions=cursor,folds,slash,unix
 " Ignore the following stuff when tab completing
 set wildignore+=*.jpeg,*.gif,*.bmp,*.pdf,*.class,*.dmg,*.DS_Store,*.lnk,*.ini,*.mod,*.jpg,*.png,*.tiff
 set wildignore+=*/tmp/*,*.so,*.db,*.sqlite
-set wildignore+=*.pyc,*.a,*.dll,*.bak,*.exe,*.bin,*.dll
-set wildignore+=*.aux,*.bbl,*.blg,*.brf,*.fls,*.fdb_latexmk,*.synctex.gz,*.pdf
+set wildignore+=*.pyc,*.a,*.dll,*.bak,*.exe,*.bin,*.dll,*.manifest
+set wildignore+=*.aux,*.bbl,*.blg,*.brf,*.fls,*.fdb_latexmk,*.synctex.gz,*.pdf,*.out,*.spl,*.sw?,*.luac,migrations,*.orig,*.fasl,*.dx64fsl,*.lx64fsl
 
 
 " Disable output and VCS files
@@ -554,17 +559,17 @@ let g:netrw_banner         = 0
 let g:netrw_browse_split   = 4 " Open file in previous buffer
 let g:netrw_fastbrowse     = 2
 let g:netrw_keepdir        = 0
-let g:netrw_keepdir        = 0
 let g:netrw_list_hide      = '\.un\~$'
 let g:netrw_liststyle      = 3 " Use tree-mode as default view
 let g:netrw_preview        = 1 " preview window shown in a vertically split
 let g:netrw_retmap         = 1
 let g:netrw_silent         = 1
+" let g:netrw_sort_by        = 'time'
+" let g:netrw_sort_direction = 'reverse'
 let g:netrw_sort_options   = 'i'
 let g:netrw_sort_sequence  = '[\/]$,*'
 let g:netrw_special_syntax = 1
 let g:netrw_winsize        = 20
-
 
 
 " augroup reload_vimrc
@@ -607,6 +612,11 @@ augroup END
 " Remap normal/visual & to preserve substitution flags
 nnoremap <silent> & :&&<CR>
 xnoremap <silent> & :&&<CR>
+
+"=====[ Make jump-selections work better in visual block mode ]=================
+xnoremap <expr>  G   'G' . virtcol('.') . "\|"
+xnoremap <expr>  }   '}' . virtcol('.') . "\|"
+xnoremap <expr>  {   '{' . virtcol('.') . "\|"
 
 " show options if tag has multiple matches
 nnoremap <C-]> g<C-]>
@@ -678,6 +688,9 @@ augroup END
 " inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 " inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 " inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<cr>"
+
+" My brain can't ever remember digraph codes
+inoremap <c-k><c-k> <esc>:help digraph-table<cr>
 
 if has('win32') || has('win64')
     source H:\cygwin_64_install\home\kg314\dotfiles\vim\vimrc_config\xvim_common_plugin_mappings.vim
