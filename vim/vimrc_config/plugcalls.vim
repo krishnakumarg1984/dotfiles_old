@@ -52,6 +52,7 @@ Plug 'machakann/vim-highlightedyank'
 Plug 'machakann/vim-sandwich'
 Plug 'mhinz/vim-grepper'
 Plug 'mhinz/vim-signify'
+Plug 'mhinz/vim-startify'
 Plug 'moll/vim-bbye'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'octol/vim-cpp-enhanced-highlight'
@@ -113,7 +114,6 @@ if has('nvim') || v:version >= 800
     Plug 'Shougo/deoplete.nvim',
                 \ has('nvim') ? { 'do': ':UpdateRemotePlugins' } : {}
     Plug 'w0rp/ale'
-    Plug 'tpope/vim-sensible'
     Plug 'deathlyfrantic/deoplete-spell'
     if has('win32') || has('win64')
         Plug 'tbodt/deoplete-tabnine', { 'do': 'powershell.exe .\install.ps1' }
@@ -123,6 +123,10 @@ if has('nvim') || v:version >= 800
 elseif v:version>= 800 && has('python3')
     Plug 'roxma/nvim-yarp'
 endif
+
+if has('nvim')
+    Plug 'tpope/vim-sensible'
+end
 
 Plug 'roxma/vim-hug-neovim-rpc', has('nvim') ? { 'on' : [] } : {}
 Plug 'Shougo/neoinclude.vim'

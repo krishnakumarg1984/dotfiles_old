@@ -49,6 +49,10 @@ if !has('nvim')
     set ttyfast
 
     set wildmenu
+
+    set cpoptions+=J
+    set cpoptions-=a "Stop :read from annoyingly setting the alternative buffer
+
 endif
 
 " " Use my colorscheme if using the GUI or if we have 256 colors
@@ -317,9 +321,6 @@ augroup FileChangedAlert
 augroup END
 
 
-set cpoptions+=J
-set cpoptions-=a "Stop :read from annoyingly setting the alternative buffer
-
 set display+=lastline
 if &modifiable
     set fileformat=unix
@@ -403,7 +404,7 @@ set viewoptions=cursor,folds,slash,unix
 " set winminheight=4              " Minimum height of windows
 
 " Ignore the following stuff when tab completing
-set wildignore+=*.jpeg,*.gif,*.bmp,*.pdf,*.class,*.dmg,*.DS_Store,*.lnk,*.ini,*.mod,*.jpg,*.png,*.tiff
+set wildignore+=*.jpeg,*.gif,*.bmp,*.pdf,*.class,*.dmg,*.DS_Store,*.lnk,*.ini,*.mod,*.jpg,*.png,*.tiff,*.psd
 set wildignore+=*/tmp/*,*.so,*.db,*.sqlite
 set wildignore+=*.pyc,*.a,*.dll,*.bak,*.exe,*.bin,*.dll,*.manifest
 set wildignore+=*.aux,*.bbl,*.blg,*.brf,*.fls,*.fdb_latexmk,*.synctex.gz,*.pdf,*.out,*.spl,*.sw?,*.luac,migrations,*.orig,*.fasl,*.dx64fsl,*.lx64fsl
