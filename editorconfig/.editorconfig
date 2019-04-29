@@ -14,15 +14,38 @@ indent_size = 2
 
 [Makefile]
 indent_style = tab
+indent_size = 2
 
 [*.md]
 trim_trailing_whitespace = false
 
+[README.md]
+indent_style = space
+indent_size = 4
+
 [*.py]
+indent_style = space
 indent_size = 4
 
 # Matches the exact files either package.json or .travis.yml
 [{package.json,.travis.yml}]
 indent_style = space
 indent_size = 2
+
+[vimrc]
+indent_style = space
+indent_size = 2
+
+[zshrc]
+indent_style = space
+indent_size = 4
+
+[gnome-terminal/**.xml]
+indent_style = tab
+indent_size = 4
+
+[*.hs]
+indent_style = space
+indent_size = 4
+
 
