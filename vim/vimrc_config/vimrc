@@ -2,7 +2,7 @@ if !has('nvim')
     set autoindent     " Use indent of previous line on new lines
     filetype plugin indent on
     syntax enable
-    set autoread       " Autoread when a file is changed from outside
+    set autoread       " Autoread when a file is changed from outside. Also set by the terminus plugin
     set background=dark
     " Let me backspace over pretty much anything
     set backspace+=eol     " Line breaks
@@ -190,18 +190,15 @@ if has('folding')
     " set foldmethod=indent
 endif
 
-" " Delete comment leaders when joining lines, if supported
-" set formatoptions+=j
-" set formatoptions-=cro
-" " set formatoptions+=ronl1j
+" Delete comment leaders when joining lines, if supported (+j)
 augroup formatoptionsctrl
     autocmd!
-    autocmd FileType * setlocal formatoptions+=j formatoptions-=c formatoptions-=r formatoptions-=o
+    autocmd FileType * setlocal formatoptions+=j formatoptions-=c formatoptions-=r formatoptions-=o "default is tcq
 augroup END
 
 set winaltkeys=no
 
-" If available, use GNU grep niceties for searching
+" If available, use GNU grep niceties for searching, but system calls are very expensive for startup
 if system('grep --version') =~# '^grep (GNU grep)'
     set grepprg=grep\ -HnRs\ --exclude='.git*'
 endif
@@ -329,9 +326,10 @@ if &modifiable
 endif
 set fileformats=unix,dos,mac
 
-set formatlistpat=^\\s*[-*]\\s\\+
-set formatlistpat+=\\\|^\\s*(\\(\\d\\+\\\|[a-z]\\))\\s\\+
-set formatlistpat+=\\\|^\\s*\\(\\d\\+\\\|[a-z]\\)[:).]\\s\\+
+" set formatlistpat=^\\s*[-*]\\s\\+
+" set formatlistpat+=\\\|^\\s*(\\(\\d\\+\\\|[a-z]\\))\\s\\+
+" set formatlistpat+=\\\|^\\s*\\(\\d\\+\\\|[a-z]\\)[:).]\\s\\+
+
 set formatlistpat=^\\s*                     " Optional leading whitespace
 set formatlistpat+=[                        " Start character class
 set formatlistpat+=\\[({]\\?                " |  Optionally match opening punctuation
@@ -472,10 +470,10 @@ nnoremap : ;
 nnoremap ; :
 nnoremap Y y$
 
-nnoremap <c-h> <c-w>h
-nnoremap <c-j> <c-w>j
-nnoremap <c-k> <c-w>k
-nnoremap <c-l> <c-w>l
+" nnoremap <c-h> <c-w>h
+" nnoremap <c-j> <c-w>j
+" nnoremap <c-k> <c-w>k
+" nnoremap <c-l> <c-w>l
 
 nnoremap <Space> za
 
@@ -604,10 +602,12 @@ let g:loaded_matchparen       = 1
 
 let loaded_matchit = 1
 
-augroup checktimeaugroup
-    autocmd!
-    au FocusGained,BufEnter * :checktime
-augroup END
+" checktime is set by the wincent/terminus plugin
+" augroup checktimeaugroup
+"     autocmd!
+"     au FocusGained,BufEnter * :checktime
+"     " autocmd FocusGained,CursorHold ?* if getcmdwintype() == '' | checktime
+" augroup END
 
 " Remap normal/visual & to preserve substitution flags
 nnoremap <silent> & :&&<CR>
@@ -737,4 +737,18 @@ endif
 
 set rulerformat=%30(%=\:b%n%y%m%r%w\ %l,%c%V\ %P%)
 set tagrelative " use relative paths for tags
+
+" https://vimways.org/2018/vim-and-git/
+match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
+
+function! EmptyBuffer()
+  if @% == ""
+    setfiletype txt
+  endif
+endfunction
+
+augroup EmptyTheBuffer
+    autocmd!
+    autocmd BufEnter * call EmptyBuffer()
+augroup END
 

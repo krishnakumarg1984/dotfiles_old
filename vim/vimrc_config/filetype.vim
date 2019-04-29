@@ -453,6 +453,17 @@ augroup filetypedetect
   " Conf files
   autocmd BufNewFile,BufReadPost .dockerignore setlocal filetype=conf
 
+  autocmd BufRead,BufNewFile * setfiletype txt
+
+augroup END
+
+function! PlainText()
+  setlocal comments=
+endfunction
+
+augroup plaintextbuffer
+  autocmd!
+  autocmd FileType txt call PlainText()
 augroup END
 
 if exists("+omnifunc")
@@ -548,6 +559,8 @@ augroup ft_gitcommit
     autocmd BufEnter,BufRead,BufNewFile gitcommit setlocal textwidth=72
     autocmd FileType gitcommit setlocal spell
     autocmd FileType gitcommit setlocal textwidth=72
+    autocmd FileType gitcommit setlocal colorcolumn=73
+    autocmd FileType gitcommit match ErrorMsg /\%1l.\%>51v/ " warning if first line too long
 augroup END
 
 " augroup ft_html

@@ -319,7 +319,9 @@ let g:gutentags_modules = ['ctags', 'gtags_cscope']
 " change focus to quickfix window after search (optional).
 let g:gutentags_plus_switch = 1
 
-
+let g:editorconfig_blacklist = {
+    \ 'filetype': ['git.*', 'fugitive'],
+    \ 'pattern': ['\.un~$']}
 
 
 
