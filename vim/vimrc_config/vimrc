@@ -349,7 +349,7 @@ set helpheight=12
 
 set incsearch
 
-set ignorecase  " Ignore case search for normal letters
+" set ignorecase  " Ignore case search for normal letters
 set infercase   " Ignore case on insert completion
 set smartcase   " Do case-sensitive search if pattern contains upper case letters
 
