@@ -755,3 +755,6 @@ augroup EmptyTheBuffer
     autocmd BufEnter * call EmptyBuffer()
 augroup END
 
+" https://bluz71.github.io/2017/05/15/vim-tips-tricks.html
+nnoremap <silent> \c :let @/='\<'.expand('<cword>').'\>'<CR>cgn
+xnoremap <silent> \c "sy:let @/=@s<CR>cgn
