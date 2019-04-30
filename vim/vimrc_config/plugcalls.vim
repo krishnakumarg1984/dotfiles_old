@@ -30,6 +30,7 @@
 " Plug 'tpope/vim-dispatch'
 " Plug 'udalov/kotlin-vim'
 " Plug 'tomarrell/vim-npr'
+" Plug 'fcpg/vim-osc52'
 
 Plug 'andymass/vim-matchup' " %, a%, i%, ]%, g%, [%
 Plug 'critiqjo/husk-x.vim' " for command line mode (readline bindings)
