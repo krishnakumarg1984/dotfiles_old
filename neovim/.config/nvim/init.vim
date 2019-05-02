@@ -22,17 +22,17 @@ endif
 
 if has('win32') || has('win64')
     call plug#begin('H:\cygwin_64_install\home\kg314\AppData\Local\nvim\plugged')
-    source H:\cygwin_64_install\home\kg314\dotfiles\vim\vimrc_config\plugcalls.vim
+    source H:\cygwin_64_install\home\kg314\dotfiles\vim\plugcalls.vim
     call plug#end()
 else
     call plug#begin('~/.local/share/nvim/plugged')
-    source ~/dotfiles/vim/vimrc_config/plugcalls.vim
+    source ~/dotfiles/vim/plugcalls.vim
     call plug#end()
 endif
 
 if has('win32') || has('win64')
     source H:\cygwin_64_install\home\kg314\dotfiles\vim\vimrc
 else
-    source ~/dotfiles/vim/vimrc_config/vimrc
+    source ~/dotfiles/vim/vimrc
 endif
 

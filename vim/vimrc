@@ -349,7 +349,7 @@ set helpheight=12
 
 set incsearch
 
-set ignorecase  " Ignore case search for normal letters
+" set ignorecase  " Ignore case search for normal letters
 set infercase   " Ignore case on insert completion
 set smartcase   " Do case-sensitive search if pattern contains upper case letters
 
@@ -558,7 +558,9 @@ let g:netrw_banner         = 0
 let g:netrw_browse_split   = 4 " Open file in previous buffer
 let g:netrw_fastbrowse     = 2
 let g:netrw_keepdir        = 0
-let g:netrw_list_hide      = '\.un\~$'
+let g:netrw_list_hide      = netrw_gitignore#Hide()
+let g:netrw_list_hide     .= ',\(^\|\s\s\)\zs\.\S\+'
+let g:netrw_list_hide     .= '\.un\~$'
 let g:netrw_liststyle      = 3 " Use tree-mode as default view
 let g:netrw_preview        = 1 " preview window shown in a vertically split
 let g:netrw_retmap         = 1
@@ -653,8 +655,6 @@ nnoremap <Bslash>+ :<C-U>call vimrc#Anchor('1GgqG')<CR>
 " runtime! shebang_detection.vim
 " runtime! filetype.vim
 "
-" source ~/dotfiles/vim/vimrc_config/shebang_detection.vim
-" source ~/dotfiles/vim/vimrc_config/filetype.vim
 
 " https://vi.stackexchange.com/questions/7179/preventing-ex-commands-from-altering-the-screen
 " keep screen view while executing ex command
@@ -694,11 +694,11 @@ augroup END
 inoremap <c-k><c-k> <esc>:help digraph-table<cr>
 
 if has('win32') || has('win64')
-    source H:\cygwin_64_install\home\kg314\dotfiles\vim\vimrc_config\xvim_common_plugin_mappings.vim
-    source H:\cygwin_64_install\home\kg314\dotfiles\vim\vimrc_config\filetype.vim
+    source H:\cygwin_64_install\home\kg314\dotfiles\vim\xvim_common_plugin_mappings.vim
+    source H:\cygwin_64_install\home\kg314\dotfiles\vim\filetype.vim
 else
-    source ~/dotfiles/vim/vimrc_config/xvim_common_plugin_mappings.vim
-    source ~/dotfiles/vim/vimrc_config/filetype.vim
+    source ~/dotfiles/vim/xvim_common_plugin_mappings.vim
+    source ~/dotfiles/vim/filetype.vim
 endif
 
 set conceallevel=0
@@ -753,3 +753,6 @@ augroup EmptyTheBuffer
     autocmd BufEnter * call EmptyBuffer()
 augroup END
 
+" https://bluz71.github.io/2017/05/15/vim-tips-tricks.html
+nnoremap <silent> \c :let @/='\<'.expand('<cword>').'\>'<CR>cgn
+xnoremap <silent> \c "sy:let @/=@s<CR>cgn

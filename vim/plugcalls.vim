@@ -35,6 +35,8 @@
 " Plug 'udalov/kotlin-vim'
 " Plug 'flazz/vim-colorschemes'
 " Plug 'tommcdo/vim-exchange' " a bit code-heavy vimscript plugin (scc cloc)
+" Plug 'tomarrell/vim-npr'
+" Plug 'fcpg/vim-osc52'
 
 Plug 'andymass/vim-matchup' " %, a%, i%, ]%, g%, [%
 Plug 'critiqjo/husk-x.vim' " for command line mode (readline bindings)
