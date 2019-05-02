@@ -341,10 +341,14 @@ augroup vimcommentary
 augroup END
 
 " Smart pairs are disabled by default:
-let g:pear_tree_smart_openers = 1
-let g:pear_tree_smart_closers = 1
-let g:pear_tree_smart_backspace = 1
+let g:pear_tree_smart_openers = 0
+let g:pear_tree_smart_closers = 0
+let g:pear_tree_smart_backspace = 0
 
+" http://vim.1045645.n5.nabble.com/How-can-I-set-cursorline-only-during-a-search-td5731475.html#a5731476
+nnoremap <script><silent> n  n:set cul<CR><SID>_search__
+nnoremap <script><silent> N  N:set cul<CR><SID>_search__
 
-
-
+nnoremap <script> <SID>_search__n  n<SID>_search__
+nnoremap <script> <SID>_search__N  N<SID>_search__
+nnoremap <silent> <SID>_search__   :set nocul<CR>

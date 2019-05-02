@@ -349,7 +349,7 @@ set helpheight=12
 
 set incsearch
 
-" set ignorecase  " Ignore case search for normal letters
+set ignorecase  " Ignore case search for normal letters
 set infercase   " Ignore case on insert completion
 set smartcase   " Do case-sensitive search if pattern contains upper case letters
 
@@ -714,7 +714,7 @@ set diffopt+=hiddenoff
 
 
 if has('patch-8.1.360') || has('nvim')
-  set diffopt+=indent-heuristic,algorithm:patience
+  set diffopt+=internal,algorithm:patience,indent-heuristic
 endif
 
 tnoremap <Esc> <C-\><C-n>
