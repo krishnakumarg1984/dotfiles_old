@@ -59,7 +59,7 @@ Plug 'mhinz/vim-grepper'
 Plug 'mhinz/vim-signify'
 Plug 'moll/vim-bbye'
 Plug 'ntpeters/vim-better-whitespace'
-Plug 'octol/vim-cpp-enhanced-highlight',{'for':['c',cpp']}  " a bit code-heavy vimscript plugin (scc cloc)
+Plug 'octol/vim-cpp-enhanced-highlight',{'for':['c','cpp']}  " a bit code-heavy vimscript plugin (scc cloc)
 Plug 'paroxayte/vwm.vim'
 Plug 'pdurbin/vim-tsv'
 Plug 'plasticboy/vim-markdown', {'for':'markdown'}
