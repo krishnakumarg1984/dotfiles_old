@@ -13,28 +13,28 @@ nmap <silent> [w <Plug>(ale_previous)
 nmap <silent> ]w <Plug>(ale_next)
 nmap <silent> ]W <Plug>(ale_last)
 
-" " some other plugin which sets quickfix errors, etc.
-" " This can be useful if you are combining ALE with
-" let g:ale_lint_on_filetype_changed = 1    " default
-" Set this if you want to.
-let g:ale_echo_msg_error_str = 'E'
-let g:ale_echo_msg_format = '[%linter%] [%severity%] %s'
-let g:ale_echo_msg_warning_str = 'W'
-let g:ale_keep_list_window_open = 0
-let g:ale_lint_on_enter = 1               " default
-let g:ale_lint_on_save = 1                " default
-let g:ale_lint_on_text_changed = 'never'
-let g:ale_list_window_size = 4
-let g:ale_open_list = 0
-let g:ale_set_loclist = 1
-let g:ale_set_quickfix = 0
-let g:ale_sign_column_always = 1
-let g:ale_statusline_format = ['Errors: %d', 'Warnings: %d', '']
+" " " some other plugin which sets quickfix errors, etc.
+" " " This can be useful if you are combining ALE with
+" " let g:ale_lint_on_filetype_changed = 1    " default
+" " Set this if you want to.
+" let g:ale_echo_msg_error_str = 'E'
+" let g:ale_echo_msg_format = '[%linter%] [%severity%] %s'
+" let g:ale_echo_msg_warning_str = 'W'
+" let g:ale_keep_list_window_open = 0
+" let g:ale_lint_on_enter = 1               " default
+" let g:ale_lint_on_save = 1                " default
+" let g:ale_lint_on_text_changed = 'never'
+" let g:ale_list_window_size = 4
+" let g:ale_open_list = 0
+" let g:ale_set_loclist = 1
+" let g:ale_set_quickfix = 0
+" let g:ale_sign_column_always = 1
+" let g:ale_statusline_format = ['Errors: %d', 'Warnings: %d', '']
 
-let g:ale_linters = {
-            \   'tex': ['chktex','lacheck','alex','vale'],
-            \   'latex': ['alex','chktex','lacheck','proselint','redpen','vale','write-good'],
-            \}
+" let g:ale_linters = {
+"             \   'tex': ['chktex','lacheck','alex','vale'],
+"             \   'latex': ['alex','chktex','lacheck','proselint','redpen','vale','write-good'],
+"             \}
 
 
 let g:grepper       = {}
@@ -81,7 +81,18 @@ nmap <leader>ga <Plug>(EasyAlign)
 nnoremap <leader>gu :GundoToggle<CR>
 " nnoremap <leader>gu :UndotreeToggle<CR>
 
-
+let g:markdown_folding = 1
+let g:tex_fold_enabled = 1
+let g:vimsyn_folding = 'af'
+let g:xml_syntax_folding = 1
+let g:javaScript_fold = 1
+let g:sh_fold_enabled= 7
+let g:ruby_fold = 1
+let g:perl_fold = 1
+let g:perl_fold_blocks = 1
+let g:r_syntax_folding = 1
+let g:rust_fold = 1
+let g:php_folding = 1
 xnoremap iz :<c-u>FastFoldUpdate<cr><esc>:<c-u>normal! ]zv[z<cr>
 xnoremap az :<c-u>FastFoldUpdate<cr><esc>:<c-u>normal! ]zV[z<cr>
 
@@ -329,6 +340,10 @@ augroup vimcommentary
     autocmd FileType pico8 setlocal commentstring=--\ %s
 augroup END
 
+" Smart pairs are disabled by default:
+let g:pear_tree_smart_openers = 1
+let g:pear_tree_smart_closers = 1
+let g:pear_tree_smart_backspace = 1
 
 
 
