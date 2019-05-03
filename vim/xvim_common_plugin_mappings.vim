@@ -1,11 +1,16 @@
 command! PU PlugUpdate | PlugUpgrade
 
-
 " For JavaScript files, use `eslint` (and only eslint)
 let g:ale_linters = {
             \   'javascript': ['eslint'],
             \   'tex': ['chktex, lacheck'],
             \ }
+
+" let g:ale_linters = {
+"             \   'tex': ['chktex','lacheck','alex','vale'],
+"             \   'latex': ['alex','chktex','lacheck','proselint','redpen','vale','write-good'],
+"             \}
+
 
 " Mappings in the style of unimpaired-next
 nmap <silent> [W <Plug>(ale_first)
@@ -13,29 +18,23 @@ nmap <silent> [w <Plug>(ale_previous)
 nmap <silent> ]w <Plug>(ale_next)
 nmap <silent> ]W <Plug>(ale_last)
 
-" " " some other plugin which sets quickfix errors, etc.
-" " " This can be useful if you are combining ALE with
-" " let g:ale_lint_on_filetype_changed = 1    " default
-" " Set this if you want to.
-" let g:ale_echo_msg_error_str = 'E'
-" let g:ale_echo_msg_format = '[%linter%] [%severity%] %s'
-" let g:ale_echo_msg_warning_str = 'W'
-" let g:ale_keep_list_window_open = 0
-" let g:ale_lint_on_enter = 1               " default
-" let g:ale_lint_on_save = 1                " default
-" let g:ale_lint_on_text_changed = 'never'
-" let g:ale_list_window_size = 4
-" let g:ale_open_list = 0
-" let g:ale_set_loclist = 1
-" let g:ale_set_quickfix = 0
-" let g:ale_sign_column_always = 1
-" let g:ale_statusline_format = ['Errors: %d', 'Warnings: %d', '']
-
-" let g:ale_linters = {
-"             \   'tex': ['chktex','lacheck','alex','vale'],
-"             \   'latex': ['alex','chktex','lacheck','proselint','redpen','vale','write-good'],
-"             \}
-
+" some other plugin which sets quickfix errors, etc.
+" This can be useful if you are combining ALE with
+" let g:ale_lint_on_filetype_changed = 1    " default
+let g:ale_disable_lsp = 1
+let g:ale_echo_msg_error_str = 'E'
+let g:ale_echo_msg_format = '[%linter%] [%severity%] %s'
+let g:ale_echo_msg_warning_str = 'W'
+let g:ale_keep_list_window_open = 0
+let g:ale_lint_on_enter = 1               " default
+let g:ale_lint_on_save = 1                " default
+let g:ale_lint_on_text_changed = 'never'
+let g:ale_list_window_size = 4
+let g:ale_open_list = 0
+let g:ale_set_loclist = 1
+let g:ale_set_quickfix = 0
+let g:ale_sign_column_always = 1
+let g:ale_statusline_format = ['Errors: %d', 'Warnings: %d', '']
 
 let g:grepper       = {}
 let g:grepper.tools = ['git', 'rg', 'grep']
@@ -299,7 +298,7 @@ let g:gruvbox_sign_column='bg0'
 """""""""""""""""""""""""plasticboy/vim-markdown settings"""""""""""""""""""
 
 " disable header folding
-let g:vim_markdown_folding_disabled = 1
+" let g:vim_markdown_folding_disabled = 1
 
 " whether to use conceal feature in markdown
 let g:vim_markdown_conceal = 1
@@ -334,16 +333,16 @@ let g:editorconfig_blacklist = {
     \ 'filetype': ['git.*', 'fugitive'],
     \ 'pattern': ['\.un~$']}
 
-augroup vimcommentary
-    autocmd!
-    autocmd FileType lua setlocal commentstring=--\ %s
-    autocmd FileType pico8 setlocal commentstring=--\ %s
-augroup END
+" augroup vimcommentary
+"     autocmd!
+"     autocmd FileType lua setlocal commentstring=--\ %s
+"     autocmd FileType pico8 setlocal commentstring=--\ %s
+" augroup END
 
-" Smart pairs are disabled by default:
-let g:pear_tree_smart_openers = 0
-let g:pear_tree_smart_closers = 0
-let g:pear_tree_smart_backspace = 0
+" " Smart pairs are disabled by default:
+" let g:pear_tree_smart_openers = 0
+" let g:pear_tree_smart_closers = 0
+" let g:pear_tree_smart_backspace = 0
 
 " http://vim.1045645.n5.nabble.com/How-can-I-set-cursorline-only-during-a-search-td5731475.html#a5731476
 nnoremap <script><silent> n  n:set cul<CR><SID>_search__
@@ -352,3 +351,18 @@ nnoremap <script><silent> N  N:set cul<CR><SID>_search__
 nnoremap <script> <SID>_search__n  n<SID>_search__
 nnoremap <script> <SID>_search__N  N<SID>_search__
 nnoremap <silent> <SID>_search__   :set nocul<CR>
+
+nnoremap <Leader>q :Bdelete<CR> " can also try Bwipeout
+
+" if !has('nvim')
+"     let g:readline_meta = 1
+" endif
+
+" nnoremap <c-h> :SidewaysLeft<cr>
+" nnoremap <c-l> :SidewaysRight<cr>
+
+" let g:pyparens_hl_group = 'MatchParen'
+
+" Trigger a highlight in the appropriate direction when pressing these keys:
+" let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
+

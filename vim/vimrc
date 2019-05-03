@@ -279,7 +279,7 @@ set ttimeoutlen=0 " A non-negative number here will make the delay to be timeout
 
 
 " No terminal mouse, even if we could
-silent! set ttymouse=
+" silent! set ttymouse=
 
 " Keep undo files, hopefully in a dedicated directory
 if has('persistent_undo')
@@ -452,11 +452,11 @@ if &shell =~# 'fish$'
     set shell=/usr/bin/sh
 endif
 
-augroup completedone
-    autocmd!
-    " autocmd CompleteDone * silent! pclose!
-    autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
-augroup END
+" augroup completedone
+"     autocmd!
+"     " autocmd CompleteDone * silent! pclose!
+"     " autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
+" augroup END
 
 highlight OverLength ctermfg=0 ctermbg=3
 match OverLength /\%121v/
@@ -742,16 +742,16 @@ set tagrelative " use relative paths for tags
 " https://vimways.org/2018/vim-and-git/
 match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
 
-function! EmptyBuffer()
-  if @% == ""
-    setfiletype txt
-  endif
-endfunction
+" function! EmptyBuffer()
+"   if @% == ""
+"     setfiletype txt
+"   endif
+" endfunction
 
-augroup EmptyTheBuffer
-    autocmd!
-    autocmd BufEnter * call EmptyBuffer()
-augroup END
+"augroup EmptyTheBuffer
+"    autocmd!
+"    autocmd BufEnter * call EmptyBuffer()
+"augroup END
 
 " https://bluz71.github.io/2017/05/15/vim-tips-tricks.html
 nnoremap <silent> \c :let @/='\<'.expand('<cword>').'\>'<CR>cgn
