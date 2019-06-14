@@ -22,11 +22,11 @@ endif
 
 
 if has('win32') || has('win64')
-    call plug#begin('H:\cygwin_64_install\home\kg314\AppData\Local\nvim\plugged')
+    silent! call plug#begin('H:\cygwin_64_install\home\kg314\AppData\Local\nvim\plugged')
     source H:\cygwin_64_install\home\kg314\dotfiles\vim\plugcalls.vim
     call plug#end()
 else
-    call plug#begin('~/.local/share/nvim/plugged')
+    silent! call plug#begin('~/.local/share/nvim/plugged')
     source ~/dotfiles/vim/plugcalls.vim
     call plug#end()
 endif
@@ -108,20 +108,20 @@ set matchpairs+=<:>
 " Try to keep backups in one system-appropriate dir
 if has('win32') || has('win64')
     if has('nvim')
-        if !isdirectory("H:\cygwin_64_install\home\kg314\AppData\Local\nvim\backup-dir")
-            call mkdir('H:\cygwin_64_install\home\kg314\AppData\Local\nvim\backup-dir','p')
-        endif
+        " if !isdirectory("H:\cygwin_64_install\home\kg314\AppData\Local\nvim\backup-dir")
+        "     call mkdir('H:\cygwin_64_install\home\kg314\AppData\Local\nvim\backup-dir','p')
+        " endif
         set backupdir=H:\cygwin_64_install\home\kg314\AppData\Local\nvim\backup-dir
     else
         set backupdir=~\vimfiles\cache\backup
     endif
-    set backup
 else
     if !isdirectory($HOME."/.vim/backup-dir")
         call mkdir($HOME."/.vim/backup-dir", "", 0700)
     endif
     set backupdir=~/.vim/backup-dir
 endif
+" set backup
 
 " Add some paths not to back up
 if !has('unix')
@@ -183,15 +183,15 @@ if exists('+cursorline')
 endif
 
 " Try to keep swapfiles in one system-appropriate dir
-set directory^=~/.vim/cache/swap//
-if has('win32') || has('win64')
-    set directory-=~/.vim/cache/swap//
-    if has('nvim')
-        set directory^=H:\cygwin_64_install\home\kg314\AppData\Local\nvim\backup-dir\
-    else
-        set directory^=~/vimfiles/cache/swap//
-    endif
-endif
+" set directory^=~/.vim/cache/swap//
+" if has('win32') || has('win64')
+"     set directory-=~/.vim/cache/swap//
+"     if has('nvim')
+"         set directory^=H:\cygwin_64_install\home\kg314\AppData\Local\nvim\backup-dir\
+"     else
+"         set directory^=~/vimfiles/cache/swap//
+"     endif
+" endif
 
 set updatecount=100 " After typing these no. of characters, the swap file will be written to disk.  When zero, no swap file will be created at all (see chapter on recovery |crash-recovery|).
 set updatetime=250  " milliseconds elapsed before which swap file will be written to disk (250 ms is recommende by gitgutter plugin)
