@@ -333,11 +333,12 @@ let g:editorconfig_blacklist = {
     \ 'filetype': ['git.*', 'fugitive'],
     \ 'pattern': ['\.un~$']}
 
-" augroup vimcommentary
-"     autocmd!
-"     autocmd FileType lua setlocal commentstring=--\ %s
-"     autocmd FileType pico8 setlocal commentstring=--\ %s
-" augroup END
+augroup vimcommentary
+    autocmd!
+    " autocmd FileType lua setlocal commentstring=--\ %s
+    " autocmd FileType pico8 setlocal commentstring=--\ %s
+    autocmd FileType bib setlocal commentstring=%\ %s
+augroup END
 
 " " Smart pairs are disabled by default:
 " let g:pear_tree_smart_openers = 0

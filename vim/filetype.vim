@@ -17,6 +17,10 @@ augroup filetypedetect
     "             \ ?*.awk
     "             \ setfiletype awk
 
+    autocmd BufNewFile,BufRead
+                \ ?*.bib
+                \ setfiletype bib
+
     " " BIND zone file
     " autocmd BufNewFile,BufRead
     "             \ */bind/db.?*
@@ -39,11 +43,11 @@ augroup filetypedetect
     "             \ setfiletype cpp
 
     " crontab(5) files
-    " autocmd BufNewFile,BufRead
-    "             \ crontab
-    "             \,crontab.*
-    "             \,cron.d/*
-    "             \ setfiletype crontab
+    autocmd BufNewFile,BufRead
+                \ crontab
+                \,crontab.*
+                \,cron.d/*
+                \ setfiletype crontab
 
     " " CSS files
     " autocmd BufNewFile,BufRead
@@ -78,9 +82,9 @@ augroup filetypedetect
     "             \ setfiletype forth
 
     " fstab(5) files
-    " autocmd BufNewFile,BufRead
-    "             \ fstab
-    "             \ setfiletype fstab
+    autocmd BufNewFile,BufRead
+                \ fstab?*
+                \ setfiletype fstab
 
     " GDB init files
     " autocmd BufNewFile,BufRead
@@ -318,45 +322,49 @@ augroup filetypedetect
     " autocmd BufNewFile,BufRead
     "             \ /etc/services
     "             \ setfiletype services
+
     " Bash shell
-    " autocmd BufNewFile,BufRead
-    "             \ ?*.bash
-    "             \,.bash_aliases
-    "             \,.bash_completion
-    "             \,.bash_logout
-    "             \,.bash_profile
-    "             \,.bashrc
-    "             \,bash-fc.?*
-    "             \,bash_aliases
-    "             \,bash_completion
-    "             \,bash_logout
-    "             \,bash_profile
-    "             \,bashrc
-    "             \ let b:is_bash = 1
-    "             \|setfiletype sh
+    autocmd BufNewFile,BufRead
+                \ ?*.bash
+                \,.bash_aliases
+                \,.bash_completion
+                \,.bash_logout
+                \,.bash_profile
+                \,.bashrc
+                \,bash-fc.?*
+                \,bash_aliases
+                \,bash_completion
+                \,bash_logout
+                \,bash_profile
+                \,bashrc
+                \ let b:is_bash = 1
+                \|setfiletype sh
+
     " Korn shell
-    " autocmd BufNewFile,BufRead
-    "             \ ?*.ksh
-    "             \,.kshrc
-    "             \,kshrc
-    "             \ let b:is_kornshell = 1
-    "             \|setfiletype sh
+    autocmd BufNewFile,BufRead
+                \ ?*.ksh
+                \,.kshrc
+                \,kshrc
+                \ let b:is_kornshell = 1
+                \|setfiletype sh
+
     " POSIX/Bourne shell
-    " autocmd BufNewFile,BufRead
-    "             \ ?*.sh
-    "             \,$ENV
-    "             \,.profile
-    "             \,.shinit
-    "             \,.shrc
-    "             \,.xinitrc
-    "             \,/etc/default/*
-    "             \,configure
-    "             \,profile
-    "             \,shinit
-    "             \,shrc
-    "             \,xinitrc
-    "             \ let b:is_posix = 1
-    "             \|setfiletype sh
+    autocmd BufNewFile,BufRead
+                \ ?*.sh
+                \,$ENV
+                \,.profile
+                \,.shinit
+                \,.shrc
+                \,.xinitrc
+                \,/etc/default/*
+                \,configure
+                \,profile
+                \,shinit
+                \,shrc
+                \,xinitrc
+                \ let b:is_posix = 1
+                \|setfiletype sh
+
     " SQL
     " autocmd BufNewFile,BufRead
     "             \ ?*.sql
@@ -458,14 +466,15 @@ augroup filetypedetect
     " autocmd BufNewFile,BufRead
     "             \ ?*.yaml,?*.yml
     "             \ setfiletype yaml
+
     " Z shell files
-    " autocmd BufNewFile,BufRead
-    "             \ ?*.zsh
-    "             \,.zprofile
-    "             \,.zshrc
-    "             \,zprofile
-    "             \,zshrc
-    "             \ setfiletype zsh
+    autocmd BufNewFile,BufRead
+                \ ?*.zsh
+                \,.zprofile
+                \,.zshrc
+                \,zprofile
+                \,zshrc
+                \ setfiletype zsh
 
     " Generic text, config, and log files, if no type assigned yet
     " autocmd BufNewFile,BufRead
@@ -476,12 +485,14 @@ augroup filetypedetect
     "             \,/etc/issue
     "             \,/etc/motd
     "             \ setfiletype text
-    " autocmd BufNewFile,BufRead
-    "             \ ?*.cfg
-    "             \,?*.conf
-    "             \,?*.config
-    "             \,/etc/*
-    "             \ setfiletype config
+
+    autocmd BufNewFile,BufRead
+                \ ?*.cfg
+                \,?*.conf
+                \,?*.config
+                \,/etc/*
+                \ setfiletype config
+
     " autocmd BufNewFile,BufRead
     "             \ */log/*
     "             \,?*.log

@@ -248,7 +248,7 @@ endif
 " set nomodeline " Don't allow setting options via buffer content
 
 " Options for file search with gf/:find
-if !has(win32) || !has('win64')
+if !has('win32') || !has('win64')
     set path-=/usr/include  " Let the C/C++ filetypes set that
 endif
 " set path+=**            " Search current directory's whole tree
