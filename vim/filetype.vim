@@ -3,6 +3,59 @@ augroup cppjavamatchpairs
   autocmd FileType c,cpp,java set matchpairs+==:;
 augroup END
 
+augroup ft_vim_help
+    autocmd!
+
+    " Make vim resize on host window resize.  Great for increaseing/decreasing
+    " font or when you disconnect from your external monitor.
+    " autocmd FileType vim setlocal foldmethod=marker
+    " autocmd FileType vim setlocal list!
+
+    " autocmd FileType help setlocal textwidth=80
+    " autocmd FileType help set number relativenumber
+
+    " Press Enter to follow a help tag
+    autocmd FileType help nnoremap <buffer><CR> <c-]>
+
+    " Press Backspace to go back to the location of the previous tag
+    autocmd FileType help nnoremap <buffer><BS> <c-T>
+
+    " Press q to exit the help
+    autocmd FileType help nnoremap <buffer>q :q<CR>
+
+    autocmd FileType help setlocal foldmethod=marker
+    autocmd FileType help setlocal foldenable
+    " autocmd FileType help setlocal foldlevel=1
+    autocmd FileType help setlocal foldlevelstart=0
+    autocmd BufWinEnter *.txt if &ft == 'help' | wincmd L | endif
+augroup END
+
+if exists("+omnifunc")
+
+    augroup omnifunc
+        autocmd!
+
+        " autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+        autocmd FileType c setlocal omnifunc=ccomplete#Complete
+        autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+        " autocmd FileType handlebars setlocal omnifunc=htmlcomplete#CompleteTags
+        " autocmd FileType html,xhtml setl ofu=htmlcomplete#CompleteTags
+        " autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+        " autocmd FileType php setlocal omnifunc=phpcomplete#CompletePHP
+        autocmd FileType python setlocal omnifunc=jedi#completions
+        " autocmd FileType ruby,eruby setlocal omnifunc=rubycomplete#Complete
+        " autocmd FileType sql setlocal omnifunc=sqlcomplete#CompleteTags
+        " autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+
+        autocmd Filetype *
+                    \ if &omnifunc == "" |
+                    \ setlocal omnifunc=syntaxcomplete#Complete |
+                    \ endif
+
+    augroup END
+
+endif
+
 " Use our own filetype detection rules
 " augroup filetypedetect
 "     autocmd!
@@ -530,31 +583,6 @@ augroup END
 "   autocmd FileType txt call PlainText()
 " augroup END
 
-if exists("+omnifunc")
-
-    augroup omnifunc
-        autocmd!
-
-        " autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-        autocmd FileType c setlocal omnifunc=ccomplete#Complete
-        autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-        " autocmd FileType handlebars setlocal omnifunc=htmlcomplete#CompleteTags
-        autocmd FileType html,xhtml setl ofu=htmlcomplete#CompleteTags
-        " autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-        " autocmd FileType php setlocal omnifunc=phpcomplete#CompletePHP
-        autocmd FileType python setlocal omnifunc=jedi#completions
-        " autocmd FileType ruby,eruby setlocal omnifunc=rubycomplete#Complete
-        " autocmd FileType sql setlocal omnifunc=sqlcomplete#CompleteTags
-        " autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-
-        autocmd Filetype *
-                    \ if &omnifunc == "" |
-                    \ setlocal omnifunc=syntaxcomplete#Complete |
-                    \ endif
-
-    augroup END
-
-endif
 
 
 " if has("autocmd")
@@ -562,16 +590,15 @@ endif
 "     autocmd FileType html let &l:formatprg=pandoc_pipeline
 " endif
 
-
-augroup ft_matlab
-    autocmd!
-    au BufRead,BufNewFile *.m set filetype=matlab
-    autocmd FileType matlab setlocal textwidth=80
-    autocmd FileType matlab setlocal formatprg=fmt\ -w80
-    autocmd FileType matlab setlocal formatoptions=croql
-    autocmd FileType matlab setlocal commentstring=%\ %s
-    autocmd FileType matlab set colorcolumn=81        " highlight column after 'textwidth'
-augroup END
+" augroup ft_matlab
+"     autocmd!
+"     au BufRead,BufNewFile *.m set filetype=matlab
+"     autocmd FileType matlab setlocal textwidth=80
+"     autocmd FileType matlab setlocal formatprg=fmt\ -w80
+"     autocmd FileType matlab setlocal formatoptions=croql
+"     autocmd FileType matlab setlocal commentstring=%\ %s
+"     autocmd FileType matlab set colorcolumn=81        " highlight column after 'textwidth'
+" augroup END
 
 " if executable('ant')
 "     augroup JavaMakeSettings
@@ -639,33 +666,6 @@ augroup END
 "     autocmd FileType html set matchpairs+=<:>
 " augroup END
 
-augroup ft_vim_help
-    autocmd!
-
-    " Make vim resize on host window resize.  Great for increaseing/decreasing
-    " font or when you disconnect from your external monitor.
-    " autocmd FileType vim setlocal foldmethod=marker
-    " autocmd FileType vim setlocal list!
-
-    " autocmd FileType help setlocal textwidth=80
-    autocmd FileType help set number relativenumber
-    " autocmd FileType help set relativenumber
-
-    " Press Enter to follow a help tag
-    autocmd FileType help nnoremap <buffer><CR> <c-]>
-
-    " Press Backspace to go back to the location of the previous tag
-    autocmd FileType help nnoremap <buffer><BS> <c-T>
-
-    " Press q to exit the help
-    autocmd FileType help nnoremap <buffer>q :q<CR>
-
-    autocmd FileType help setlocal foldmethod=marker
-    autocmd FileType help setlocal foldenable
-    autocmd FileType help setlocal foldlevel=1
-    autocmd FileType help setlocal foldlevelstart=1
-    autocmd BufWinEnter *.txt if &ft == 'help' | wincmd L | endif
-augroup END
 
 " augroup ft_dot
 "     autocmd!
