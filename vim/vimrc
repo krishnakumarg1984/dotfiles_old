@@ -33,46 +33,84 @@ endif
 
 
 if !has('nvim') " The below are already the default options in neovim
-  set autoindent " Use indent of previous line on new lines
-  filetype plugin indent on
-  syntax enable
-  set autoread   " Autoread when a file is changed from outside. Also set by the terminus plugin
-  set background=dark
+    if has('autocmd')
+        filetype plugin indent on
+    endif
+    if has('syntax') && !exists('g:syntax_on')
+        syntax enable
+    endif
 
-  " Let me backspace over pretty much anything
-  set backspace+=eol    " Line breaks
-  set backspace+=indent " Spaces from 'autoindent'
-  set backspace+=start  " The start of current insertion
+    set autoindent " Use indent of previous line on new lines
 
-  set belloff=all
-  " cscopeverbose enable
-  set history=10000   " Keep much more command and search history
-  set hlsearch          " Highlight completed searches; clear on reload
-  set incsearch         " Show search matches as I type my pattern
-  set laststatus=2
-  set nrformats-=octal  " Treat numbers with a leading zero as decimal, not octal
+    " Let me backspace over pretty much anything
+    set backspace+=eol    " Line breaks
+    set backspace+=indent " Spaces from 'autoindent'
+    set backspace+=start  " The start of current insertion
 
-  if has('cmdline_info')
-      set ruler         " Show the ruler
-      set showcmd
-  endif
+    set smarttab
+    set nrformats-=octal  " Treat numbers with a leading zero as decimal, not octal
+    set incsearch         " Show search matches as I type my pattern
+    set laststatus=2
 
-  " Make sessions usable
-  if exists('+sessionoptions')
-      set sessionoptions-=options       " No global options or mappings
-      set sessionoptions-=localoptions  " No buffer options or mappings
-  endif
+    if has('cmdline_info')
+        set ruler         " Show the ruler
+        set showcmd
+    endif
 
-  set smarttab
-  set tabpagemax=50
+    set wildmenu
+    set display+=lastline " Same as :registers.Display the contents of all
 
-  set tags=./tags;,tags
-  " set tags=tags;~,.tags;~
-  " set tags=./tags;/   " recurse up directories looking for tag files
+    " Use UTF-8 if we can and env LANG didn't tell us not to
+    if has('multi_byte') && !exists('$LANG') && &encoding ==# 'latin1'
+        setglobal termencoding=utf-8 fileencodings= " termencoding has been removed in neovim
+        scriptencoding utf-8
+        set encoding=utf-8 " String-encoding used internally and for |RPC| communication. Always UTF-8.
+    endif
 
-  set ttyfast
-  set wildmenu
-  " set cpoptions+=J
+    if v:version > 703 || v:version == 703 && has("patch541")
+        set formatoptions+=j " Delete comment character when joining commented lines
+    endif
+
+    " set tags=./tags;,tags
+    " set tags=tags;~,.tags;~
+    " set tags=./tags;/   " recurse up directories looking for tag files
+    if has('path_extra')
+        setglobal tags-=./tags tags-=./tags; tags^=./tags;
+    endif
+
+    set autoread   " Autoread when a file is changed from outside. Also set by the terminus plugin
+
+    if &history < 1000
+        set history=1000
+    endif
+
+    if &tabpagemax < 50
+        set tabpagemax=50
+    endif
+
+    if !empty(&viminfo)
+        set viminfo^=!
+    endif
+
+    " Make sessions usable
+    if exists('+sessionoptions')
+        set sessionoptions-=options       " No global options or mappings
+        set sessionoptions-=localoptions  " No buffer options or mappings
+    endif
+
+    " Allow color schemes to do bright colors without forcing bold.
+    if &t_Co == 8 && $TERM !~# '^linux\|^Eterm'
+        set t_Co=16
+    endif
+
+    set belloff=all
+    " cscopeverbose enable
+    set hlsearch          " Highlight completed searches; clear on reload
+    set ttyfast
+    " set cpoptions+=J
+    set background=dark
+    silent! set ttymouse= " No terminal mouse, even if we could
+    silent! set noesckeys " Don't wait for a key after Escape in insert mode. In vim-tiny but not Neovim, so just suppress errors
 
 endif
 
@@ -84,6 +122,7 @@ else
     source ~/dotfiles/vim/filetype.vim
 endif
 
+inoremap <C-U> <C-G>u<C-U>
 set cpoptions-=a " stop the :read command from annoyingly setting the alternative buffer
 
 if has('gui_running')||has('termguicolors')
@@ -96,6 +135,7 @@ endif
 " enable italics for comments
 let &t_ZH="\e[3m"
 let &t_ZR="\e[23m"
+
 
 " The all-important default indent settings; filetypes to tweak
 set expandtab      " Use spaces instead of tabs
@@ -183,20 +223,6 @@ endif
 set updatecount=100 " After typing these no. of characters, the swap file will be written to disk.  When zero, no swap file will be created at all (see chapter on recovery).
 set updatetime=250  " milliseconds elapsed before which swap file will be written to disk (250ms is recommende by the gitgutter plugin)
 
-" Use UTF-8 if we can and env LANG didn't tell us not to
-if has('multi_byte') && !exists('$LANG') && &encoding ==# 'latin1'
-    if !has('nvim')
-        setglobal termencoding=utf-8 fileencodings= " termencoding has been removed in neovim
-        scriptencoding utf-8
-        set encoding=utf-8 " String-encoding used internally and for |RPC| communication. Always UTF-8.
-    endif
-endif
-
-" Don't wait for a key after Escape in insert mode
-" In vim-tiny but not NeoVim, so just suppress errors
-if !has('nvim')
-    silent! set noesckeys
-endif
 
 " Delete comment leaders when joining lines, if supported (+j)
 augroup formatoptionsctrl
@@ -219,13 +245,13 @@ set nojoinspaces " Don't join lines with two spaces at the end of sentences
 set lazyredraw   " Don't redraw the screen during batch execution
 
 " Define extra 'list' display characters
-" if !has('gui_running')
-set listchars+=extends:>  " Unwrapped text to screen right
-set listchars+=precedes:< " Unwrapped text to screen left
-set listchars=tab:▸\      " Tab characters, preserve width
-set listchars+=trail:·    " Trailing spaces
-set list
-" endif
+if &listchars ==# 'eol:$'
+    set listchars+=extends:>  " Unwrapped text to screen right
+    set listchars+=precedes:< " Unwrapped text to screen left
+    set listchars+=tab:▸\     " Tab characters, preserve width
+    set listchars+=trail:·    " Trailing spaces
+endif
+set list!
 
 " Options for file search with gf/:find
 if !has('win32') || !has('win64')
@@ -242,9 +268,14 @@ set splitbelow  " Below the current window, not above
 set splitright  " Right of the current window, not left
 
 " Give me a bit longer to complete mappings
+if !has('nvim') && &ttimeoutlen == -1
+    set ttimeout
+    set ttimeoutlen=100
+else
+    set ttimeoutlen=0 " A non-negative number here will make the delay to be timeoutlen
+endif
 set timeoutlen=3000 " Default is 1000
 " set timeout       " Default. Timeout on mappings and keycodes (stronger of the two conditions)
-set ttimeoutlen=0 " A non-negative number here will make the delay to be timeoutlen
 
 
 " Keep undo files, hopefully in a dedicated directory
@@ -329,10 +360,14 @@ set report=0            " Threshold for reporting number of lines changed.
 " set previewheight=20
 set pumheight=15          " Set popup menu max height
 
+if !&scrolloff
+  set scrolloff=3     " Minimal number of screen lines to keep above and below the cursor
+endif
+if !&sidescrolloff
+  set sidescrolloff=5 " The minimal number of screen columns to keep to the left and to the right of the cursor
+endif
 set scrolljump=5    " How many lines to scroll at a time, make scrolling appears faster (i.e. when you move the cursor close to the vertical limits of display, how many more lines to reveal ?)
-set scrolloff=3     " Minimal number of screen lines to keep above and below the cursor
 set sidescroll=3    " The minimal number of columns to scroll horizontally
-set sidescrolloff=5 " The minimal number of screen columns to keep to the left and to the right of the cursor
 
 set showmatch
 set matchtime=2
@@ -380,8 +415,8 @@ match OverLength /\%121v/
 " Vim needs a more POSIX compatible shell than fish for certain functionality to work, such as :%!, compressed help pages and many third-party addons.  If
 " you use fish as your login shell or launch Vim from fish, you need to set shell to something else in your ~/.vimrc.
 if !has('win32') || !has('win64')
-    if &shell =~# 'fish$'
-        set shell=/usr/bin/sh
+    if &shell =~# 'fish$' && (v:version < 704 || v:version == 704 && !has('patch276'))
+        set shell=/usr/bin/env\ bash
     endif
 endif
 
@@ -555,11 +590,13 @@ endif
 
 " https://www.reddit.com/r/neovim/comments/b7ie4e/where_to_find_added_features_ie_vscodeesque/
 if has('nvim')
-    set wildoptions+=pum
+    set wildoptions+=tagfile,pum
+    " set wildoptions+=pum
 
-    if &wildoptions=="pum"
-        cnoremap <up> <c-p>
-        cnoremap <down> <c-n>
+    " https://github.com/neovim/neovim/issues/9953
+    if &wildoptions == "pum"
+        cnoremap <expr> <up>   pumvisible() ? "<C-p>" : "\<up>"
+        cnoremap <expr> <down> pumvisible() ? "<C-n>" : "\<down>"
     endif
 endif
 
@@ -568,11 +605,9 @@ set rulerformat=%30(%=\:b%n%y%m%r%w\ %l,%c%V\ %P%)
 " https://vimways.org/2018/vim-and-git/
 match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$' " Nobody wants to commit merge conflict markers, so let’s highlight these so we can’t miss them:
 
-if !has('nvim')
-    " No terminal mouse, even if we could
-    silent! set ttymouse=
-    " " Never beep at me
-    " set visualbell t_vb=
+" Use <C-L> to clear the highlighting of :set hlsearch.
+if maparg('<C-L>', 'n') ==# ''
+  nnoremap <silent> <C-L> :nohlsearch<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR><C-L>
 endif
 
 " nnoremap <c-h> <c-w>h
@@ -698,7 +733,6 @@ endif
 "     " set foldmethod=indent
 " endif
 
-" set display+=lastline " Same as :registers.Display the contents of all
 " numbered and named registers. lastline is already in the default options. 
 
 " if &modifiable
