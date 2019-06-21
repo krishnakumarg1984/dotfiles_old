@@ -584,9 +584,9 @@ if has('nvim')
     set fillchars+=eob:\ |  " no ~ for end-of-buffer lines.
 endif
 
-" if exists('&inccommand')
-"     set inccommand=split
-" endif
+if exists('&inccommand')
+    set inccommand=split
+endif
 
 " https://www.reddit.com/r/neovim/comments/b7ie4e/where_to_find_added_features_ie_vscodeesque/
 if has('nvim')
