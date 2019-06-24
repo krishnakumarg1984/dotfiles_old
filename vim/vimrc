@@ -1,38 +1,36 @@
-if has('win32') || has('win64')
-    if empty(glob('H:\cygwin_64_install\home\kg314\AppData\Local\nvim\autoload\plug.vim'))
-        silent !curl -fLo H:\cygwin_64_install\home\kg314\AppData\Local\nvim\autoload\plug.vim --create-dirs
-                    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-        autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
-        augroup vimplug
-            autocmd!
-            autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
-        augroup END
+if has('nvim') " Check if using Neovim & execute non-blocking vim-plug calls (i.e. withouot the --sync flag)
+    if has('win32') || has('win64') " Check for windows platform (Neovim)
+        if empty(glob('H:\cygwin_64_install\home\kg314\AppData\Local\nvim\autoload\plug.vim'))
+            silent !curl -fLo H:\cygwin_64_install\home\kg314\AppData\Local\nvim\autoload\plug.vim --create-dirs
+                        \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+            autocmd VimEnter * PlugInstall | source $MYVIMRC
+            augroup vimplug
+                autocmd!
+                autocmd VimEnter * PlugInstall | source $MYVIMRC
+            augroup END
+        endif
+        silent! call plug#begin('H:\cygwin_64_install\home\kg314\AppData\Local\nvim\plugged') " Initiate actual plugin names (Neovim on WINDOWS)
+        source H:\cygwin_64_install\home\kg314\dotfiles\vim\plugcalls.vim
+        silent! call plug#end()  " Finish loading plugins (Neovim on WINDOWS)
+    else
+        if empty(glob('~/.local/share/nvim/site/autoload/plug.vim'))  " *nix platform (Neovim)
+            silent !curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs
+                        \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+            autocmd VimEnter * PlugInstall | source $MYVIMRC
+            augroup vimplug
+                autocmd!
+                autocmd VimEnter * PlugInstall | source $MYVIMRC
+            augroup END
+        endif
+        silent! call plug#begin('~/.local/share/nvim/plugged') " Initiate actual plugin names (Neovim on *NIX)
+        source ~/dotfiles/vim/plugcalls.vim
+        silent! call plug#end()  " Finish loading plugins (Neovim on *NIX)
     endif
 else
-    if empty(glob('~/.local/share/nvim/site/autoload/plug.vim'))
-        silent !curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs
-                    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-        autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
-        augroup vimplug
-            autocmd!
-            autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
-        augroup END
-    endif
-endif
 
+    " Placeholder for vim-plug install (replicate above lines with the --sync flag) on regular Vim
 
-if has('win32') || has('win64')
-    silent! call plug#begin('H:\cygwin_64_install\home\kg314\AppData\Local\nvim\plugged')
-    source H:\cygwin_64_install\home\kg314\dotfiles\vim\plugcalls.vim
-    call plug#end()
-else
-    silent! call plug#begin('~/.local/share/nvim/plugged')
-    source ~/dotfiles/vim/plugcalls.vim
-    call plug#end()
-endif
-
-
-if !has('nvim') " The below are already the default options in neovim
+    " Set the below config options only for regular Vim, since the below options are already the default in Neovim
     if has('autocmd')
         filetype plugin indent on
     endif
@@ -111,7 +109,6 @@ if !has('nvim') " The below are already the default options in neovim
     set background=dark
     silent! set ttymouse= " No terminal mouse, even if we could
     silent! set noesckeys " Don't wait for a key after Escape in insert mode. In vim-tiny but not Neovim, so just suppress errors
-
 endif
 
 if has('win32') || has('win64')
