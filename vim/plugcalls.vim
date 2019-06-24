@@ -11,6 +11,11 @@ if has('nvim') || has('patch-7.4-399')
     Plug 'andymass/vim-matchup' " %, g%, [%,]%, a%, i%, 1i%, ]%, g%, [%
 endif
 
+if executable('ctags')
+    Plug 'ludovicchabant/vim-gutentags'
+    " Plug 'skywind3000/gutentags_plus'
+endif
+
 Plug 'jeffkreeftmeijer/vim-numbertoggle' " Toggles between hybrid and absolute line numbers automatically
 Plug 'mhinz/vim-signify' " uses the sign column to indicate added, modified and removed lines in a file that is managed by a version control system (VCS).   ]c   Jump to next hunk. [c   Jump to previous hunk. ]C   Jump to last hunk. [C Jump to first hunk. 
 Plug 'moll/vim-bbye' " delete buffers and close files without closing your windows or messing up your layout.
@@ -54,3 +59,6 @@ Plug 'wincent/terminus' " Allows Vim to receive FocusGained and FocusLost events
 
 " Language-specific
 Plug 'lervag/vimtex'
+
+" Completion, LSP
+Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}

@@ -155,11 +155,6 @@
 "     Plug 'christoomey/vim-tmux-navigator'
 " endif
 
-" if executable('ctags')
-"     Plug 'ludovicchabant/vim-gutentags'
-"     Plug 'skywind3000/gutentags_plus'
-" endif
-
 " Plugin: Completion and snippets
 " if has('nvim') || v:version >= 800
 "     Plug 'Shougo/deoplete.nvim',

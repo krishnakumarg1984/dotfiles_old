@@ -123,6 +123,8 @@ set nowritebackup
 inoremap <C-U> <C-G>u<C-U>
 set cpoptions-=a " stop the :read command from annoyingly setting the alternative buffer
 
+set pyxversion=3
+
 if has('gui_running')||has('termguicolors')
     set termguicolors
     " let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
