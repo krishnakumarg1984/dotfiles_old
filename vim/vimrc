@@ -76,7 +76,7 @@ else
         setglobal tags-=./tags tags-=./tags; tags^=./tags;
     endif
 
-    set autoread   " Autoread when a file is changed from outside. Also set by the terminus plugin
+    " set autoread   " Autoread when a file is changed from outside. Also set by the Terminus plugin
 
     if &history < 1000
         set history=1000
@@ -119,6 +119,7 @@ else
     source ~/dotfiles/vim/filetype.vim
 endif
 
+set nowritebackup
 inoremap <C-U> <C-G>u<C-U>
 set cpoptions-=a " stop the :read command from annoyingly setting the alternative buffer
 
@@ -141,31 +142,6 @@ set preserveindent
 " set smartindent
 set shiftwidth=4   " Indent with four spaces
 set softtabstop=4  " Insert four spaces with tab key
-
-" Try to keep backups in one system-appropriate dir
-if has('win32') || has('win64')
-    if has('nvim')
-        " if !isdirectory("H:\cygwin_64_install\home\kg314\AppData\Local\nvim\backup-dir")
-        "     call mkdir('H:\cygwin_64_install\home\kg314\AppData\Local\nvim\backup-dir','p')
-        " endif
-        set backupdir=H:\cygwin_64_install\home\kg314\AppData\Local\nvim\backup-dir
-    else
-        set backupdir=~\vimfiles\cache\backup
-    endif
-else
-    if !isdirectory($HOME."/.vim/backup-dir")
-        call mkdir($HOME."/.vim/backup-dir", "", 0700)
-    endif
-    set backupdir=~/.vim/backup-dir
-endif
-
-" Add some paths not to back up
-if has('unix')
-    set backupskip^=/dev/shm/*  " Shared memory RAM disk
-    set backupskip^=/var/tmp/*  " Debian's $TMPDIR for sudoedit(8)
-    set backupskip=/tmp/*,/private/tmp/*" " Make Vim able to edit crontab files again.
-endif
-set backup
 
 " Indent wrapped lines
  if has('linebreak')
@@ -218,7 +194,7 @@ else
 endif
 
 set updatecount=100 " After typing these no. of characters, the swap file will be written to disk.  When zero, no swap file will be created at all (see chapter on recovery).
-set updatetime=250  " milliseconds elapsed before which swap file will be written to disk (250ms is recommende by the gitgutter plugin)
+set updatetime=275  " milliseconds elapsed before which swap file will be written to disk (250ms is recommended by the gitgutter plugin, 300 ms by coc.nvim). " You will have bad experience for diagnostic messages when it's default 4000.
 
 
 " Delete comment leaders when joining lines, if supported (+j)
@@ -264,13 +240,8 @@ silent! set shortmess+=c " don't give |ins-completion-menu| messages.  For examp
 set splitbelow  " Below the current window, not above
 set splitright  " Right of the current window, not left
 
-" Give me a bit longer to complete mappings
-if !has('nvim') && &ttimeoutlen == -1
-    set ttimeout
-    set ttimeoutlen=100
-else
-    set ttimeoutlen=0 " A non-negative number here will make the delay to be timeoutlen
-endif
+" " Give me a bit longer to complete mappings. 
+
 set timeoutlen=3000 " Default is 1000
 " set timeout       " Default. Timeout on mappings and keycodes (stronger of the two conditions)
 
@@ -307,7 +278,7 @@ if exists('+virtualedit')
     set virtualedit+=block
 endif
 
-set cmdheight=2 " Height of command-line (easy-readable)
+set cmdheight=2 " Height of command-line (easy-readable). Better display for messages.
 
 augroup FileChangedAlert
     " Helps if you have to use another editor on the same file
@@ -398,6 +369,9 @@ set wildignore+=*.swp,*~,._*
 set wildignore+=*.obj,*.dats
 set wildignore+=types_*taghl,tags,./tags,tags
 set wildignore+=_site,*/venv/*,*/.vim$,\~$
+
+
+set signcolumn=yes " always show signcolumns
 
 highlight clear SignColumn     " SignColumn should match background,SignColumn is the column where |signs| are displayed
 highlight Comment cterm=italic gui=italic
@@ -597,7 +571,7 @@ if has('nvim')
     endif
 endif
 
-set rulerformat=%30(%=\:b%n%y%m%r%w\ %l,%c%V\ %P%)
+set rulerformat=%30(%=\:b%n%y%m%r%w\ %l,%c%V\ %P%) " Probably overridden by status-line plugins
 
 " https://vimways.org/2018/vim-and-git/
 match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$' " Nobody wants to commit merge conflict markers, so let’s highlight these so we can’t miss them:
@@ -750,4 +724,37 @@ endif
 " augroup END
 
 " " nnoremap <leader>q gqip
+
+" ttimeoutlen is set by the Terminus plugin
+" if !has('nvim') && &ttimeoutlen == -1
+"     set ttimeout
+"     set ttimeoutlen=100
+" else
+"     set ttimeoutlen=0 " A non-negative number here will make the delay to be timeoutlen
+" endif
+
+" " Try to keep backups in one system-appropriate dir
+" if has('win32') || has('win64')
+"     if has('nvim')
+"         " if !isdirectory("H:\cygwin_64_install\home\kg314\AppData\Local\nvim\backup-dir")
+"         "     call mkdir('H:\cygwin_64_install\home\kg314\AppData\Local\nvim\backup-dir','p')
+"         " endif
+"         set backupdir=H:\cygwin_64_install\home\kg314\AppData\Local\nvim\backup-dir
+"     else
+"         set backupdir=~\vimfiles\cache\backup
+"     endif
+" else
+"     if !isdirectory($HOME."/.vim/backup-dir")
+"         call mkdir($HOME."/.vim/backup-dir", "", 0700)
+"     endif
+"     set backupdir=~/.vim/backup-dir
+" endif
+
+" " Add some paths not to back up
+" if has('unix')
+"     set backupskip^=/dev/shm/*  " Shared memory RAM disk
+"     set backupskip^=/var/tmp/*  " Debian's $TMPDIR for sudoedit(8)
+"     set backupskip=/tmp/*,/private/tmp/*" " Make Vim able to edit crontab files again.
+" endif
+" set backup
 

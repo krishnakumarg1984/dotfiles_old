@@ -86,7 +86,6 @@
 " Plug 'chrisbra/Colorizer',{'for':'tex'} " need to check this against tex for now
 " Plug 'gastonsimone/vim-dokumentary' " Dokumentary improves what the K command does in Vim by customizing its behaviour, depending on the type of file you are editing.
 " Plug 'jeetsukumaran/vim-indentwise' " <count>[- : Move to previous line of lesser indent than the current line., [+, [=, ]-, ]+, ]=, [_,]_,[%, ]%
-" Plug 'jeffkreeftmeijer/vim-numbertoggle'
 " Plug 'jiangmiao/auto-pairs' " a bit code-heavy vimscript plugin (scc cloc)
 " Plug 'junegunn/goyo.vim'
 " Plug 'junegunn/limelight.vim'
@@ -99,18 +98,13 @@
 " Plug 'machakann/vim-sandwich' " a bit code-heavy vimscript plugin (scc cloc)
 " Plug 'machakann/vim-swap'
 " Plug 'mhinz/vim-grepper'
-" Plug 'mhinz/vim-signify'
 " Plug 'michaeljsmith/vim-indent-object'
-" Plug 'moll/vim-bbye'
 " Plug 'pdurbin/vim-tsv'
-" Plug 'romainl/vim-cool'
-" " Plug 'romainl/vim-qf'
-" " Plug 'romainl/vim-qlist'
+" Plug 'romainl/vim-cool' " disables search highlighting when you are done searching and re-enables it when you search again
+" Plug 'romainl/vim-qf' " collection of settings, commands and mappings put together to make working with the location list/window and the quickfix list/window smoother. Do NOT recommend vim-qf to Syntastic/Neomake/ALE users.
+" Plug 'romainl/vim-qlist' " Persist the results of :ilist and related commands via the quickfix list. adds two custom commands to your configuration, |:Ilist| and |:Dlist|, overrides these four normal mode commands: |[I|, |]I|, |[D|, |]D| and adds their visual mode equivalents.
 " Plug 'roxma/vim-hug-neovim-rpc', has('nvim') ? { 'on' : [] } : {}
-" Plug 'RRethy/vim-illuminate'
 " Plug 'ryvnf/readline.vim'
-" Plug 'schickling/vim-bufonly', {'on':'BufOnly'}
-" Plug 'sgur/vim-editorconfig'
 " Plug 'Shougo/neco-syntax'
 " Plug 'Shougo/neco-vim'
 " Plug 'Shougo/neoinclude.vim'
@@ -118,19 +112,9 @@
 " Plug 'Shougo/neosnippet.vim'
 " Plug 'simnalamburt/vim-mundo'
 " Plug 'stefandtw/quickfix-reflector.vim'
-" Plug 'TaDaa/vimade'
 " Plug 'thaerkh/vim-indentguides',{'for':['tex','markdown','vim','python']} "nathanaelkane's & Yggdroot/indentLine versions are also available
-" Plug 'thirtythreeforty/lessspace.vim'
-" Plug 'tpope/vim-abolish'
-Plug 'tpope/vim-commentary'
-" Plug 'tpope/vim-eunuch'
-" Plug 'tpope/vim-repeat'
-" Plug 'tpope/vim-unimpaired'
-" Plug 'wellle/targets.vim'
-" Plug 'wincent/terminus' " sets up checktime & autoread even for neovim
 " Plug 'wsdjeg/vim-fetch'
 
-" Plug 'lervag/vimtex'
 " Plug 'octol/vim-cpp-enhanced-highlight',{'for':['c','cpp']}  " a bit code-heavy vimscript plugin (scc cloc)
 " Plug 'derekwyatt/vim-fswitch',{'for':['c','cpp']}
 " Plug 'apalmer1377/factorus',{'for':['c','cpp','java']}
@@ -146,12 +130,7 @@ Plug 'tpope/vim-commentary'
 " Plug 'jeetsukumaran/vim-pythonsense',{'for':'python'}
 " " Plug 'bps/vim-textobj-python'
 
-" Plug 'morhetz/gruvbox'
-Plug 'gruvbox-community/gruvbox'
 
-" Plug 'vim-airline/vim-airline'
-
-" Plug 'tpope/vim-fugitive'
 " Plug 'rbong/vim-flog', { 'on': ['Flog','Flogsplit', 'Floggit!'] } " a bit code-heavy vimscript plugin (scc cloc)
 " Plug 'tpope/vim-rhubarb'
 
@@ -180,11 +159,6 @@ Plug 'gruvbox-community/gruvbox'
 "     Plug 'ludovicchabant/vim-gutentags'
 "     Plug 'skywind3000/gutentags_plus'
 " endif
-
-if has('nvim') || has('patch-7.4-399')
-  Plug 'andymass/vim-matchup' " %, g%, [%,]%, a%, i%, 1i%, ]%, g%, [%
-endif
-
 
 " Plugin: Completion and snippets
 " if has('nvim') || v:version >= 800
