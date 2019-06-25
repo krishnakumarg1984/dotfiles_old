@@ -1,3 +1,5 @@
+" vim: ft=vim:
+
 " Aesthetics
 Plug 'gruvbox-community/gruvbox'
 
@@ -19,7 +21,7 @@ endif
 Plug 'jeffkreeftmeijer/vim-numbertoggle' " Toggles between hybrid and absolute line numbers automatically
 Plug 'mhinz/vim-signify' " uses the sign column to indicate added, modified and removed lines in a file that is managed by a version control system (VCS).   ]c   Jump to next hunk. [c   Jump to previous hunk. ]C   Jump to last hunk. [C Jump to first hunk. 
 Plug 'moll/vim-bbye' " delete buffers and close files without closing your windows or messing up your layout.
-Plug 'RRethy/vim-illuminate'
+" Plug 'RRethy/vim-illuminate'
 Plug 'schickling/vim-bufonly', {'on':'BufOnly'} " Delete all buffers except the current buffer. :BufOnly without an argument will delete all buffers but the current one.
 Plug 'sgur/vim-editorconfig'
 Plug 'TaDaa/vimade' " fades inactive buffers and preserves syntax highlighting
@@ -60,16 +62,29 @@ Plug 'wincent/terminus' " Allows Vim to receive FocusGained and FocusLost events
 " Language-specific
 Plug 'lervag/vimtex'
 
-" Completion, LSP
-" Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
+" coc.nvim
+Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
+ " Plug 'neoclide/coc.nvim', {'tag': '*', 'do': { -> coc#util#install()}}
+Plug 'neoclide/coc-json', {'do': 'yarn install --frozen-lockfile'} " Json language extension for coc.nvim
+
 Plug 'Shougo/neco-vim'
-Plug 'neoclide/coc-neco'
-Plug 'honza/vim-snippets' | Plug 'neoclide/coc-snippets'
+Plug 'neoclide/coc-neco', {'do': 'yarn install --frozen-lockfile'}
+Plug 'honza/vim-snippets'
+Plug 'Shougo/neosnippet.vim' | Plug 'Shougo/neosnippet-snippets'
+Plug 'neoclide/coc-snippets', {'do': 'yarn install --frozen-lockfile'}
+Plug 'Shougo/neoinclude.vim' | Plug 'jsfaint/coc-neoinclude', {'do': 'yarn install --frozen-lockfile'}
+" Plug 'neoclide/coc.nvim', {'tag': '*', 'do': { -> coc#util#install()}}
+Plug 'weirongxu/coc-calc', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc-lists', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc-yank', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc-pairs', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc-vimtex', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc-highlight', {'do': 'yarn install --frozen-lockfile'}
+Plug 'iamcco/coc-diagnostic', {'do': 'yarn install --frozen-lockfile'}
 
-Plug 'Shougo/neoinclude.vim'
-Plug 'jsfaint/coc-neoinclude'
+" coc-extension Language Servers
+Plug 'josa42/coc-sh', {'do': 'yarn install --frozen-lockfile'}
 
-Plug 'Shougo/neosnippet.vim'
-
-Plug 'neoclide/coc.nvim', {'tag': '*', 'do': { -> coc#util#install()}}
+" Custom Language Servers
+Plug 'iamcco/coc-vimlsp'
 
