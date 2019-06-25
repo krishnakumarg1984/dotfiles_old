@@ -61,4 +61,15 @@ Plug 'wincent/terminus' " Allows Vim to receive FocusGained and FocusLost events
 Plug 'lervag/vimtex'
 
 " Completion, LSP
-Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
+" Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
+Plug 'Shougo/neco-vim'
+Plug 'neoclide/coc-neco'
+Plug 'honza/vim-snippets' | Plug 'neoclide/coc-snippets'
+
+Plug 'Shougo/neoinclude.vim'
+Plug 'jsfaint/coc-neoinclude'
+
+Plug 'Shougo/neosnippet.vim'
+
+Plug 'neoclide/coc.nvim', {'tag': '*', 'do': { -> coc#util#install()}}
+

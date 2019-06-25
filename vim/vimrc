@@ -182,19 +182,6 @@ if exists('+cursorline')
     augroup END
 endif
 
-" Try to keep swapfiles in one system-appropriate dir
-if has('win32') || has('win64')
-    if has('nvim')
-        set directory^=H:\cygwin_64_install\home\kg314\AppData\Local\nvim\backup-dir\
-    else
-        set directory^=~/.vim/cache/swap//
-    endif
-else
-    if !has('nvim')
-        set directory^=~/.vim/cache/swap/
-    endif
-endif
-
 set updatecount=100 " After typing these no. of characters, the swap file will be written to disk.  When zero, no swap file will be created at all (see chapter on recovery).
 set updatetime=275  " milliseconds elapsed before which swap file will be written to disk (250ms is recommended by the gitgutter plugin, 300 ms by coc.nvim). " You will have bad experience for diagnostic messages when it's default 4000.
 
@@ -760,3 +747,15 @@ endif
 " endif
 " set backup
 
+" " Try to keep swapfiles in one system-appropriate dir
+" if has('win32') || has('win64')
+"     if has('nvim')
+"         set directory^=~\AppData\Local\nvim\backup-dir\
+"     else
+"         set directory^=~/.vim/cache/swap//
+"     endif
+" else
+"     if !has('nvim')
+"         set directory^=~/.vim/cache/swap/
+"     endif
+" endif
