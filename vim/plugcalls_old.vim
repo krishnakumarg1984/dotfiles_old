@@ -100,7 +100,6 @@
 " Plug 'mhinz/vim-grepper'
 " Plug 'michaeljsmith/vim-indent-object'
 " Plug 'pdurbin/vim-tsv'
-" Plug 'romainl/vim-cool' " disables search highlighting when you are done searching and re-enables it when you search again
 " Plug 'romainl/vim-qf' " collection of settings, commands and mappings put together to make working with the location list/window and the quickfix list/window smoother. Do NOT recommend vim-qf to Syntastic/Neomake/ALE users.
 " Plug 'romainl/vim-qlist' " Persist the results of :ilist and related commands via the quickfix list. adds two custom commands to your configuration, |:Ilist| and |:Dlist|, overrides these four normal mode commands: |[I|, |]I|, |[D|, |]D| and adds their visual mode equivalents.
 " Plug 'roxma/vim-hug-neovim-rpc', has('nvim') ? { 'on' : [] } : {}

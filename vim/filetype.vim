@@ -51,3 +51,12 @@ augroup jsonfiles
     autocmd FileType json setlocal commentstring=//\ %s
 augroup END
 
+" augroup ftdetection
+"     autocmd!
+
+"     " Makefiles
+"     autocmd BufNewFile,BufRead
+"                 \ Makefile
+"                 \,makefile
+"                 \ setfiletype make
+" augroup END

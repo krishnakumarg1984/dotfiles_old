@@ -54,69 +54,52 @@ let g:signify_vcs_list = [ 'git']
 
 let g:vimtex_compiler_progname = 'nvr'
 
-let g:gutentags_project_root = ['Makefile','.root']
+let g:gutentags_project_root = ['GNUmakefile','makefile','Makefile','.root']
 set statusline+=%{gutentags#statusline()}
 
-" coc.nvim setup. https://vi.stackexchange.com/questions/19461/integrating-autocomplete-and-snippets
+let g:CoolTotalMatches = 1
 
-" Use tab for trigger completion with characters ahead and navigate.
-" Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
-inoremap <silent><expr> <TAB>
-            \ pumvisible() ? "\<C-n>" :
-            \ <SID>check_back_space() ? "\<TAB>" :
-            \ coc#refresh()
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+let g:coc_global_extensions = [
+            \ 'coc-vimtex',
+            \ 'coc-snippets',
+            \ 'coc-python',
+            \ 'coc-json',
+            \ 'coc-yaml',
+            \]
 
-" When using coc-snippets
-" inoremap <silent><expr> <TAB>
-"             \ pumvisible() ? coc#_select_confirm() :
-"             \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
-"             \ <SID>check_back_space() ? "\<TAB>" :
-"             \ coc#refresh()
+inoremap <expr><cr>    pumvisible() ? "\<c-y>\<cr>" : "\<cr>"
+inoremap <expr><tab>   pumvisible() ? "\<c-n>" : "\<tab>"
+inoremap <expr><s-tab> pumvisible() ? "\<c-p>" : "\<s-tab>"
 
-function! s:check_back_space() abort
-    let col = col('.') - 1
-    return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
-
-" Navigate snippet placeholders using tab
-let g:coc_snippet_next = '<Tab>'
-let g:coc_snippet_prev = '<S-Tab>'
-
-" Use `[gc` and `]gc` to navigate diagnostics
-nmap <silent> [gc <Plug>(coc-diagnostic-prev)
-nmap <silent> ]gc <Plug>(coc-diagnostic-next)
-
-" Use enter to accept snippet expansion
-inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<CR>"
-
-" " https://github.com/neoclide/coc.nvim/wiki/Completion-with-sources
-" inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-" inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-" inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 
 " Remap keys for gotos
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
+nmap <silent> <leader>ld <plug>(coc-definition)
+nmap <silent> <leader>lt <plug>(coc-type-definition)
+nmap <silent> <leader>li <plug>(coc-implementation)
+nmap <silent> <leader>lf <plug>(coc-references)
+nmap <leader>lr <plug>(coc-rename)
+
+nmap <silent> <leader>lp <plug>(coc-diagnostic-prev)
+nmap <silent> <leader>ln <plug>(coc-diagnostic-next)
+
 
 " Use K to show documentation in preview window
-nnoremap <silent> K :call <SID>show_documentation()<CR>
-
+nnoremap <silent> K :call <sid>show_documentation()<cr>
 function! s:show_documentation()
-    if (index(['vim','help'], &filetype) >= 0)
-        execute 'h '.expand('<cword>')
-    else
-        call CocAction('doHover')
-    endif
+  if &filetype ==# 'vim'
+    execute 'help ' . expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
 endfunction
 
 " Highlight symbol under cursor on CursorHold
-autocmd CursorHold * silent call CocActionAsync('highlight')
-
-" Remap for rename current word
-nmap <leader>rn <Plug>(coc-rename)
+if exists('*CocActionAsync')
+  augroup coc_settings
+    autocmd!
+    autocmd CursorHold * silent call CocActionAsync('highlight')
+  augroup END
+endif
 
 " Using CocList
 " Show all diagnostics
@@ -136,15 +119,30 @@ nnoremap <silent> <leader>k  :<C-u>CocPrev<CR>
 " Resume latest coc list
 nnoremap <silent> <leader>p  :<C-u>CocListResume<CR>
 
-" Use <tab> for select selections ranges, needs server support, like: coc-tsserver, coc-python
-nmap <silent> <TAB> <Plug>(coc-range-select)
-xmap <silent> <TAB> <Plug>(coc-range-select)
-xmap <silent> <S-TAB> <Plug>(coc-range-select-backword)
+let g:ale_set_signs = 0
 
-nnoremap <silent> <leader>y  :<C-u>CocList -A --normal yank<cr> " -A means auto preview, and --normal means open list on normal mode.
+if exists('*nvim_buf_set_virtual_text')
+  let g:ale_virtualtext_cursor = 1
+  let g:ale_echo_cursor = 0
+endif
 
-augroup augroup_name
-    autocmd!
-    autocmd FileType tex let b:coc_pairs = [["$", "$"]]
-    autocmd FileType tex let b:coc_pairs_disabled = ['`']
-augroup END
+let g:ale_lint_on_enter = 0
+let g:ale_lint_on_filetype_changed = 0
+let g:ale_lint_on_text_changed = 'never'
+let g:ale_lint_delay = 0
+
+let g:ale_echo_msg_error_str = 'E'
+let g:ale_echo_msg_warning_str = 'W'
+let g:ale_echo_msg_format = '[%linter%] [%severity%] %s'
+
+let g:ale_statusline_format = ['Errors: %d', 'Warnings: %d', '']
+
+let g:ale_linters = {
+      \ 'tex': [],
+      \ 'python': ['pylint'],
+      \}
+
+nmap <silent> <leader>aa <Plug>(ale_lint)
+nmap <silent> <leader>aj <Plug>(ale_next_wrap)
+nmap <silent> <leader>ak <Plug>(ale_previous_wrap)
+
