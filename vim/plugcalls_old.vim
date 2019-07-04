@@ -92,11 +92,8 @@
 " Plug 'junegunn/vim-easy-align'
 " Plug 'kana/vim-textobj-user' " a bit code-heavy vimscript plugin (scc cloc)
 " Plug 'Konfekt/FastFold'
-" Plug 'kshenoy/vim-signature' " place, toggle and display marks. Navigate forward/backward by position/alphabetical order. Any arbitrary sign for marks is possible
 " Plug 'lervag/file-line',{'for':'tex'}
-" Plug 'machakann/vim-highlightedyank'
 " Plug 'machakann/vim-sandwich' " a bit code-heavy vimscript plugin (scc cloc)
-" Plug 'machakann/vim-swap'
 " Plug 'mhinz/vim-grepper'
 " Plug 'michaeljsmith/vim-indent-object'
 " Plug 'pdurbin/vim-tsv'

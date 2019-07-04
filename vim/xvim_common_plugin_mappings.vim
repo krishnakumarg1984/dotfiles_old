@@ -55,21 +55,23 @@ let g:signify_vcs_list = [ 'git']
 let g:vimtex_compiler_progname = 'nvr'
 
 let g:gutentags_project_root = ['GNUmakefile','makefile','Makefile','.root']
-set statusline+=%{gutentags#statusline()}
 
 let g:CoolTotalMatches = 1
 
 let g:coc_global_extensions = [
             \ 'coc-vimtex',
+            \ 'coc-dictionary',
+            \ 'coc-tag',
+            \ 'coc-word',
             \ 'coc-snippets',
             \ 'coc-python',
             \ 'coc-json',
             \ 'coc-yaml',
             \]
 
-inoremap <expr><cr>    pumvisible() ? "\<c-y>\<cr>" : "\<cr>"
-inoremap <expr><tab>   pumvisible() ? "\<c-n>" : "\<tab>"
-inoremap <expr><s-tab> pumvisible() ? "\<c-p>" : "\<s-tab>"
+" inoremap <expr><cr>    pumvisible() ? "\<c-y>\<cr>" : "\<cr>"
+" inoremap <expr><tab>   pumvisible() ? "\<c-n>" : "\<tab>"
+" inoremap <expr><s-tab> pumvisible() ? "\<c-p>" : "\<s-tab>"
 
 
 " Remap keys for gotos
@@ -119,17 +121,23 @@ nnoremap <silent> <leader>k  :<C-u>CocPrev<CR>
 " Resume latest coc list
 nnoremap <silent> <leader>p  :<C-u>CocListResume<CR>
 
-let g:ale_set_signs = 0
+" let g:ale_set_signs = 0
+let g:ale_sign_column_always = 1 " keep the sign gutter open at all times
 
-if exists('*nvim_buf_set_virtual_text')
-  let g:ale_virtualtext_cursor = 1
-  let g:ale_echo_cursor = 0
-endif
+let g:ale_fixers = {
+            \   '*': ['remove_trailing_lines', 'trim_whitespace'],
+            \   'cpp': ['uncrustify'],
+            \}
 
-let g:ale_lint_on_enter = 0
-let g:ale_lint_on_filetype_changed = 0
+" if exists('*nvim_buf_set_virtual_text')
+"   let g:ale_virtualtext_cursor = 1
+"   let g:ale_echo_cursor = 0
+" endif
+
+" let g:ale_lint_on_enter = 0
+" let g:ale_lint_on_filetype_changed = 0
 let g:ale_lint_on_text_changed = 'never'
-let g:ale_lint_delay = 0
+" let g:ale_lint_delay = 0
 
 let g:ale_echo_msg_error_str = 'E'
 let g:ale_echo_msg_warning_str = 'W'
@@ -138,11 +146,38 @@ let g:ale_echo_msg_format = '[%linter%] [%severity%] %s'
 let g:ale_statusline_format = ['Errors: %d', 'Warnings: %d', '']
 
 let g:ale_linters = {
-      \ 'tex': [],
-      \ 'python': ['pylint'],
+      \ 'cpp': ['ccls','clangcheck','clangtidy','cppcheck','gcc','cppcheck','cpplint','flawfinder'],
       \}
 
-nmap <silent> <leader>aa <Plug>(ale_lint)
+" nmap <silent> <leader>aa <Plug>(ale_lint)
 nmap <silent> <leader>aj <Plug>(ale_next_wrap)
 nmap <silent> <leader>ak <Plug>(ale_previous_wrap)
+
+let g:clang_format#style_options = {
+            \ "AccessModifierOffset" : -4,
+            \ "AllowShortIfStatementsOnASingleLine" : "true",
+            \ "AlwaysBreakTemplateDeclarations" : "true",
+            \ "Standard" : "C++14"}
+
+augroup CoscoMappings
+    autocmd!
+    autocmd FileType javascript,css,c,cpp nmap <silent> <Leader>; <Plug>(cosco-commaOrSemiColon)
+    autocmd FileType javascript,css,c,cpp imap <silent> <Leader>; <c-o><Plug>(cosco-commaOrSemiColon)
+augroup END
+
+" augroup clangformatsettings
+"     " map to <Leader>cf in C++ code
+"     autocmd!
+"     autocmd FileType c,cpp,objc nnoremap <buffer><Leader>cf :<C-u>ClangFormat<CR>
+"     autocmd FileType c,cpp,objc vnoremap <buffer><Leader>cf :ClangFormat<CR>
+"     " if you install vim-operator-user
+"     autocmd FileType c,cpp,objc map <buffer><Leader>x <Plug>(operator-clang-format)
+"     " Toggle auto formatting:
+"     nmap <Leader>C :ClangFormatAutoToggle<CR>
+"     autocmd FileType c,cpp,objc ClangFormatAutoEnable
+" augroup END
+
+" vim-swap
+nmap <leader><  <Plug>(swap-prev)
+nmap <leader>>  <Plug>(swap-next)
 

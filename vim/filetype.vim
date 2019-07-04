@@ -1,7 +1,13 @@
-augroup cppjavamatchpairs
+augroup CppJavaSettings
     autocmd!
     autocmd FileType c,cpp,java set matchpairs+==:;
 augroup END
+
+augroup SpellSettings
+    autocmd!
+    autocmd FileType c,cpp,markdown,mail,rst,text,yaml,gitcommit setlocal spell spelllang=en_gb
+augroup END
+
 
 augroup ft_vim_help
     autocmd!

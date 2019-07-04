@@ -565,10 +565,19 @@ set rulerformat=%30(%=\:b%n%y%m%r%w\ %l,%c%V\ %P%) " Probably overridden by stat
 " https://vimways.org/2018/vim-and-git/
 match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$' " Nobody wants to commit merge conflict markers, so let’s highlight these so we can’t miss them:
 
-" Use <C-L> to clear the highlighting of :set hlsearch.
-if maparg('<C-L>', 'n') ==# ''
-  nnoremap <silent> <C-L> :nohlsearch<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR><C-L>
-endif
+augroup focuslostaucmd
+  autocmd!
+  " this one is which you're most likely to use?
+  autocmd FocusLost * stopinsert
+augroup END
+
+" https://unix.stackexchange.com/questions/31154/spell-check-comments-in-vim
+
+
+" " Use <C-L> to clear the highlighting of :set hlsearch.
+" if maparg('<C-L>', 'n') ==# ''
+"   nnoremap <silent> <C-L> :nohlsearch<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR><C-L>
+" endif
 
 " nnoremap <c-h> <c-w>h
 " nnoremap <c-j> <c-w>j
