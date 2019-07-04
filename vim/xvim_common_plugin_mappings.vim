@@ -86,7 +86,8 @@ nmap <silent> <leader>ln <plug>(coc-diagnostic-next)
 
 
 " Use K to show documentation in preview window
-nnoremap <silent> K :call <sid>show_documentation()<cr>
+" nnoremap <silent><leader> k :call <sid>show_documentation()<cr>
+nnoremap <leader> k :call <sid>show_documentation()<cr>
 function! s:show_documentation()
   if &filetype ==# 'vim'
     execute 'help ' . expand('<cword>')
@@ -181,3 +182,9 @@ augroup END
 nmap <leader><  <Plug>(swap-prev)
 nmap <leader>>  <Plug>(swap-next)
 
+let g:chromatica#libclang_path='/home/krishna/pkg/lib'
+
+" augroup fswitchConfig
+"     autocmd!
+"     autocmd BufEnter *.cpp let b:fswitchdst = 'hpp,h' | let b:fswitchlocs = '../inc'
+" augroup end

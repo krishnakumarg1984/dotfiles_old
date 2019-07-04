@@ -77,7 +77,18 @@ Plug 'dbmrq/vim-dialect'  " Words you add with zG and zW will be added to ./.dia
 
 " For Specific Programming Languages
 Plug 'lervag/vimtex'
+
+Plug 'gauteh/vim-cppman'
+Plug 'jackguo380/vim-lsp-cxx-highlight'
+Plug 'octol/vim-cpp-enhanced-highlight'
+
+" Plug 'arakashic/chromatica.nvim', {'do': ':UpdateRemotePlugins'}
+" Plug 'bfrg/vim-cpp-modern'
+" Plug 'derekwyatt/vim-fswitch'
+" Plug 'LucHermitte/VimFold4C'
 " Plug 'rhysd/vim-clang-format'
+
+
 
 " coc.nvim
 Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
