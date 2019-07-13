@@ -2,7 +2,7 @@
 
 " Plugins that serve dependencies, serve as support infrastructure & other task-runners
 Plug 'tpope/vim-repeat'
-" Plug 'kana/vim-operator-user'
+Plug 'kana/vim-operator-user'  " Recommended for clang-format
 " Plug 'skywind3000/asyncrun.vim'
 
 " VCS plugins
@@ -18,6 +18,7 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } | Plug 'junegu
 Plug 'kshenoy/vim-signature' " place, toggle and display marks. Navigate forward/backward by position/alphabetical order. Any arbitrary sign for marks is possible
 Plug 'moll/vim-bbye' " delete buffers and close files without closing your windows or messing up your layout.
 Plug 'romainl/vim-cool' " disables search highlighting when you are done searching and re-enables it when you search again
+Plug 'roman/golden-ratio'
 Plug 'schickling/vim-bufonly', {'on':['BufOnly','Bonly','BOnly','Bufonly']} " Delete all buffers except the current buffer. :BufOnly without an argument will delete all buffers but the current one.
 Plug 'TaDaa/vimade' " fades inactive buffers and preserves syntax highlighting
 Plug 'wincent/terminus' " Allows Vim to receive FocusGained and FocusLost events, sets up checktime & autoread even for neovim, automatic bracketed paste, improved mouse support & cursor shape change
@@ -86,7 +87,7 @@ Plug 'octol/vim-cpp-enhanced-highlight'
 " Plug 'bfrg/vim-cpp-modern'
 " Plug 'derekwyatt/vim-fswitch'
 " Plug 'LucHermitte/VimFold4C'
-" Plug 'rhysd/vim-clang-format'
+Plug 'rhysd/vim-clang-format'
 
 
 

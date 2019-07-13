@@ -166,17 +166,21 @@ augroup CoscoMappings
     autocmd FileType javascript,css,c,cpp imap <silent> <Leader>; <c-o><Plug>(cosco-commaOrSemiColon)
 augroup END
 
-" augroup clangformatsettings
-"     " map to <Leader>cf in C++ code
-"     autocmd!
-"     autocmd FileType c,cpp,objc nnoremap <buffer><Leader>cf :<C-u>ClangFormat<CR>
-"     autocmd FileType c,cpp,objc vnoremap <buffer><Leader>cf :ClangFormat<CR>
-"     " if you install vim-operator-user
-"     autocmd FileType c,cpp,objc map <buffer><Leader>x <Plug>(operator-clang-format)
-"     " Toggle auto formatting:
-"     nmap <Leader>C :ClangFormatAutoToggle<CR>
-"     autocmd FileType c,cpp,objc ClangFormatAutoEnable
-" augroup END
+augroup clangformatsettings
+    " map to <Leader>cf in C++ code
+    autocmd!
+    " autocmd FileType c,cpp,objc nnoremap <buffer><Leader>cf :<C-u>ClangFormat<CR>
+    " autocmd FileType c,cpp,objc vnoremap <buffer><Leader>cf :ClangFormat<CR>
+    " if you install vim-operator-user
+    " autocmd FileType c,cpp,objc map <buffer><Leader>x <Plug>(operator-clang-format)
+    " Toggle auto formatting:
+    " nmap <Leader>C :ClangFormatAutoToggle<CR>
+    autocmd FileType c,cpp,objc ClangFormatAutoEnable
+    autocmd FileType c,cpp,objc set equalprg='clang-format'
+    autocmd FileType c,cpp,objc set formatprg='clang-format'
+    autocmd FileType c,cpp,objc set iskeyword-=<
+    autocmd FileType c,cpp,objc set iskeyword-=>
+augroup END
 
 " vim-swap
 nmap <leader><  <Plug>(swap-prev)
@@ -188,3 +192,5 @@ let g:chromatica#libclang_path='/home/krishna/pkg/lib'
 "     autocmd!
 "     autocmd BufEnter *.cpp let b:fswitchdst = 'hpp,h' | let b:fswitchlocs = '../inc'
 " augroup end
+
+
