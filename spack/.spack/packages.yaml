@@ -1,0 +1,59 @@
+packages:
+  all:
+    compiler: [gcc@9.1.0]
+  graphviz:
+    paths:
+      graphviz@2.40.1: /shared/ucl/apps/graphviz/2.40.1/gnu-4.9.2
+    buildable: False 
+  dealii:
+    version: ['develop']
+    variants: +doc +optflags ~python
+  adol-c:
+    version: ['develop']
+    variants: +boost +openmp +sparse
+  boost:
+    version: ['1.68.0']
+    variants: +python +mpi +numpy
+  cgns:
+    variants: +fortran
+  cmake:
+    version: ['3.14.4']
+    variants: +doc
+  doxygen:
+    variants: +graphviz
+  fftw:
+    variants: +openmp
+  ginkgo:
+    variants: +full_optimizations
+  gmsh:
+    variants:  +hdf5 +metis +netgen  +openmp +petsc +slepc +tetgen
+  hdf5:
+    variants: +fortran +cxx +hl
+  metis:
+    variants: +gdb
+  mumps:
+    variants: +metis +parmetis +scotch +ptscotch
+  netcdf:
+    version: ['4.6.3']
+  p4est:
+    variants: +openmp
+  parmetis:
+    variants: +gdb
+  petsc:
+    version: ['3.11.0']
+    variants: +mumps +trilinos +suite-sparse +fftw
+  python:
+    version: ['3.7.4']
+  scotch:
+    variants: +esmumps
+  slepc:
+    version: ['3.11.0']
+  suite-sparse:
+    variants: +openmp
+  sundials:
+    version: ['3.2.1']
+    variants: +examples-cxx +examples-f90 +fcmix +hypre +klu +lapack +openmp +petsc +pthread +superlu-mt
+  symengine:
+    variants: +openmp
+  trilinos:
+    variants: +rol +superlu-dist
