@@ -54,6 +54,24 @@ let g:signify_vcs_list = [ 'git']
 
 let g:vimtex_compiler_progname = 'nvr'
 
+function! Callback(msg)
+    let l:m = matchlist(a:msg, '\vRun number (\d+) of rule ''(.*)''')
+    if !empty(l:m)
+        echomsg l:m[2] . ' (' . l:m[1] . ')'
+    endif
+endfunction
+
+let g:vimtex_compiler_latexmk = {
+    \ 'hooks' : [function('Callback')],
+    \ 'options' : [
+    \   '-verbose',
+    \   '-file-line-error',
+    \   '-synctex=1',
+    \   '-interaction=nonstopmode',
+    \   '-shell-escape',
+    \ ],
+    \}
+
 let g:gutentags_project_root = ['GNUmakefile','makefile','Makefile','.root']
 
 let g:CoolTotalMatches = 1
@@ -69,12 +87,14 @@ let g:coc_global_extensions = [
             \ 'coc-yaml',
             \]
 
-" inoremap <expr><cr>    pumvisible() ? "\<c-y>\<cr>" : "\<cr>"
-" inoremap <expr><tab>   pumvisible() ? "\<c-n>" : "\<tab>"
-" inoremap <expr><s-tab> pumvisible() ? "\<c-p>" : "\<s-tab>"
+
+inoremap <expr><cr>    pumvisible() ? "\<c-y>\<cr>" : "\<cr>"
+inoremap <expr><tab>   pumvisible() ? "\<c-n>" : "\<tab>"
+inoremap <expr><s-tab> pumvisible() ? "\<c-p>" : "\<s-tab>"
 
 
 " Remap keys for gotos
+imap <silent> <c-u>      <plug>(coc-snippets-expand)
 nmap <silent> <leader>ld <plug>(coc-definition)
 nmap <silent> <leader>lt <plug>(coc-type-definition)
 nmap <silent> <leader>li <plug>(coc-implementation)
@@ -89,11 +109,13 @@ nmap <silent> <leader>ln <plug>(coc-diagnostic-next)
 " nnoremap <silent><leader> k :call <sid>show_documentation()<cr>
 nnoremap <leader> k :call <sid>show_documentation()<cr>
 function! s:show_documentation()
-  if &filetype ==# 'vim'
-    execute 'help ' . expand('<cword>')
-  else
-    call CocAction('doHover')
-  endif
+    if &filetype ==# 'vim'
+        execute 'help ' . expand('<cword>')
+    elseif &filetype ==# 'tex'
+        VimtexDocPackage
+    else
+        call CocAction('doHover')
+    endif
 endfunction
 
 " Highlight symbol under cursor on CursorHold
@@ -123,12 +145,8 @@ nnoremap <silent> <leader>k  :<C-u>CocPrev<CR>
 nnoremap <silent> <leader>p  :<C-u>CocListResume<CR>
 
 " let g:ale_set_signs = 0
+let g:ale_lint_on_insert_leave = 0
 let g:ale_sign_column_always = 1 " keep the sign gutter open at all times
-
-let g:ale_fixers = {
-            \   '*': ['remove_trailing_lines', 'trim_whitespace'],
-            \   'cpp': ['uncrustify'],
-            \}
 
 " if exists('*nvim_buf_set_virtual_text')
 "   let g:ale_virtualtext_cursor = 1
@@ -136,9 +154,9 @@ let g:ale_fixers = {
 " endif
 
 " let g:ale_lint_on_enter = 0
-" let g:ale_lint_on_filetype_changed = 0
+let g:ale_lint_on_filetype_changed = 0
 let g:ale_lint_on_text_changed = 'never'
-" let g:ale_lint_delay = 0
+let g:ale_lint_delay = 0
 
 let g:ale_echo_msg_error_str = 'E'
 let g:ale_echo_msg_warning_str = 'W'
@@ -146,9 +164,17 @@ let g:ale_echo_msg_format = '[%linter%] [%severity%] %s'
 
 let g:ale_statusline_format = ['Errors: %d', 'Warnings: %d', '']
 
+      " \ 'cpp': ['ccls','clangcheck','clangtidy','cppcheck','gcc','cppcheck','flawfinder'],
 let g:ale_linters = {
-      \ 'cpp': ['ccls','clangcheck','clangtidy','cppcheck','gcc','cppcheck','cpplint','flawfinder'],
+      \ 'cpp': ['ccls','clangcheck','clangtidy','cppcheck','gcc','cppcheck','flawfinder'],
+      \ 'bash': ['shellcheck'],
       \}
+
+let g:ale_fixers = {
+            \   '*': ['remove_trailing_lines', 'trim_whitespace'],
+            \   'cpp': ['uncrustify'],
+            \}
+
 
 " nmap <silent> <leader>aa <Plug>(ale_lint)
 nmap <silent> <leader>aj <Plug>(ale_next_wrap)
@@ -193,4 +219,12 @@ let g:chromatica#libclang_path='/home/krishna/pkg/lib'
 "     autocmd BufEnter *.cpp let b:fswitchdst = 'hpp,h' | let b:fswitchlocs = '../inc'
 " augroup end
 
+let g:targets_argOpening = '[({[]'
+let g:targets_argClosing = '[]})]'
+let g:targets_separators = ', . ; : + - = ~ _ * # / | \ &'
+let g:targets_seekRanges = 'cc cr cb cB lc ac Ac lr lb ar ab lB Ar aB Ab AB rr ll rb al rB Al bb aa bB Aa BB AA'
 
+let g:vim_markdown_folding_style_pythonic = 1
+let g:vim_markdown_override_foldtext = 0
+let g:vim_markdown_follow_anchor = 1
+let g:vim_markdown_frontmatter = 1

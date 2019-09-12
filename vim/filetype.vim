@@ -5,9 +5,26 @@ augroup END
 
 augroup SpellSettings
     autocmd!
-    autocmd FileType c,cpp,markdown,mail,rst,text,yaml,gitcommit setlocal spell spelllang=en_gb
+    autocmd FileType c,cpp,markdown,mail,rst,text,yaml,toml,gitcommit setlocal spell spelllang=en_gb
 augroup END
 
+augroup LatexSettings
+    autocmd!
+    autocmd FileType tex setlocal spell
+    " prevent Vim from automatically inserting line breaks in newly entered text.
+    autocmd FileType tex setlocal textwidth=0 wrapmargin=0
+augroup END
+
+if exists(":Goyo")
+    augroup LatexGoyo
+        autocmd!
+        autocmd BufReadPost,BufNewFile *.tex Goyo
+    augroup END
+else
+    augroup LatexColumnSet
+        autocmd FileType tex setlocal columns=100 colorcolumn=94
+    augroup END
+endif
 
 augroup ft_vim_help
     autocmd!
@@ -28,6 +45,11 @@ augroup ft_vim_help
     " autocmd FileType help setlocal foldlevel=1
     autocmd FileType help setlocal foldlevelstart=0
     autocmd BufWinEnter *.txt if &ft == 'help' | wincmd L | endif
+augroup END
+
+augroup markdownformat
+    autocmd!
+    autocmd FileType markdown setlocal formatprg=par\ -w100
 augroup END
 
 if exists("+omnifunc")

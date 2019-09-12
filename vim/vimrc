@@ -172,15 +172,15 @@ set complete=.,w,b,u,t,i,kspell,U,s,k,d,] ". through t is the default. . = curre
 
 set confirm " Give me a prompt instead of just rejecting risky :write, :saveas
 
-if exists('+cursorline')
-    set cursorline  " at first, start vim with cursorline enabled
-    " Afterwards, only show the cursorline in the current window and in normal mode.
-    augroup cline
-        autocmd!
-        autocmd WinLeave,InsertEnter * setlocal nocursorline
-        autocmd WinEnter,InsertLeave * setlocal cursorline
-    augroup END
-endif
+" if exists('+cursorline')
+"     set cursorline  " at first, start vim with cursorline enabled
+"     " Afterwards, only show the cursorline in the current window and in normal mode.
+"     augroup cline
+"         autocmd!
+"         autocmd WinLeave,InsertEnter * setlocal nocursorline
+"         autocmd WinEnter,InsertLeave * setlocal cursorline
+"     augroup END
+" endif
 
 set updatecount=100 " After typing these no. of characters, the swap file will be written to disk.  When zero, no swap file will be created at all (see chapter on recovery).
 set updatetime=275  " milliseconds elapsed before which swap file will be written to disk (250ms is recommended by the gitgutter plugin, 300 ms by coc.nvim). " You will have bad experience for diagnostic messages when it's default 4000.
@@ -441,8 +441,8 @@ inoremap <c-c> <ESC> " CTRL-C doesn't trigger the InsertLeave autocmd . map to <
 
 " Navigate folds
 nnoremap          zf zMzvzz
-nnoremap <silent> zj :silent! normal! zc<cr>zjzvzz
-nnoremap <silent> zk :silent! normal! zc<cr>zkzvzz[z
+nnoremap <silent> zj zcjzOzz
+nnoremap <silent> zk zckzOzz
 nnoremap <Space> za
 
 " Remap normal/visual & to preserve substitution flags
@@ -465,6 +465,12 @@ nnoremap <C-]> g<C-]>
 cnoreabbrev <expr> w getcmdtype() == ":" && getcmdline() == 'w' ? 'up' : 'w' " Replace :w with :up
 
 tnoremap <Esc> <C-\><C-n>
+if has('nvim')
+  " nnoremap <silent> <c-c><c-c> :split term://zsh<cr>i
+  tnoremap <c-w>    <c-\><c-n><c-w>
+else
+  " nnoremap <silent> <c-c><c-c> :terminal<cr>
+endif
 
 if !has('win32') || !has('win64')
     augroup disableTempUndo
@@ -532,10 +538,11 @@ let g:tex_isk='48-57,a-z,A-Z,192-255,:'
 
 set diffopt=filler,vertical,foldcolumn:0,context:4
 set diffopt+=iwhiteall
-set diffopt+=hiddenoff
 
-if has('patch-8.1.360') || has('nvim')
-    set diffopt+=internal,algorithm:patience,indent-heuristic
+if has('patch-8.1.360') " || has('nvim')
+  " set diffopt+=internal,algorithm:patience,indent-heuristic
+  set diffopt+=indent-heuristic,algorithm:histogram
+  set diffopt+=hiddenoff
 endif
 
 set fillchars=vert:│,fold:\ " ,diff:⣿
@@ -570,6 +577,10 @@ augroup focuslostaucmd
   " this one is which you're most likely to use?
   autocmd FocusLost * stopinsert
 augroup END
+
+set pyxversion=3
+
+autocmd CompleteDone * if pumvisible() == 0 | silent! pclose | endif
 
 " https://unix.stackexchange.com/questions/31154/spell-check-comments-in-vim
 
@@ -768,3 +779,5 @@ augroup END
 "         set directory^=~/.vim/cache/swap/
 "     endif
 " endif
+
+let g:vimtex_view_method='zathura'

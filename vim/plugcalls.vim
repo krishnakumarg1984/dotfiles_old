@@ -38,8 +38,9 @@ Plug 'tpope/vim-eunuch' " Helpers for UNIX
 " :SudoEdit [file]        Edit a file using sudo.  This overrides any read permission issues, plus allows you to write the file with :w!.
 " :SudoWrite              Use sudo to write the file to disk.  Handy when you forgot to use sudo to invoke Vim.  This uses :SudoEdit internally, so after the first invocation you can subsequently use :w!.
 " :W                      It also writes files that haven't changed, which is useful for kicking off build and test suites (such as with watchr or guard).  Furthermore, it handily doubles as a safe fallback for people who, like me, accidentally type :W instead of :w a lot.
+Plug 'junegunn/goyo.vim'
 
-" General Purpose (with a smaller tilt towards coding)
+" General Purpose (with only a small tilt towards coding)
 Plug 'jeffkreeftmeijer/vim-numbertoggle' " Toggles between hybrid and absolute line numbers automatically
 Plug 'machakann/vim-highlightedyank'
 Plug 'RRethy/vim-illuminate'
@@ -48,6 +49,7 @@ Plug 'tpope/vim-abolish' " easily search for, substitute, and abbreviate multipl
 " crs (coerce to snake_case), MixedCase (crm), camelCase (crc), UPPER_CASE (cru), dash-case (cr-), dot.case (cr.), space case (cr<space>), and Title Case (crt)
 " Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-unimpaired' " a/A = args/first(last), b/B = buffers/first(last), l/L= location/first(last), q/Q = quickfix/first(last), t/T = tab/first(last), f= file, n = conflict marker, <space> = blank lines, e = exchange lines, oc = cursor line, od = diffthis/diffoff, oh = hlsearch, oi = ignorecase, ol = list, on = number, or = relativenumber, os = spell, ou = cursorcolumn, ov = virtualedit, ow = wrap, ox = crosshairs, >p/>P = linewise paste increasing indent, <p/<P = linewise paste decreasing indent, =p linewise paste (reindenting)
+Plug 'machakann/vim-sandwich'
 
 " Coding-focussed (but still generic enough)
 Plug 'honza/vim-snippets' | Plug 'SirVer/ultisnips'
@@ -56,7 +58,9 @@ Plug 'machakann/vim-swap'
 Plug 'sgur/vim-editorconfig'
 Plug 'tmsvg/pear-tree'
 Plug 'tomtom/tcomment_vim'
-Plug 'w0rp/ale'
+if has('nvim') || v:version >= 800
+    Plug 'dense-analysis/ale'
+endif
 Plug 'wellle/targets.vim' " accepts a count. Adds/improves text-objects i,I & a,A for ',\",`,),},B,],>,t,(,{,[,<.  Next pair & last pair
 " New thing is the concept of separators. , . ; : + - = ~ _ * # / | \ & $.
 " Another new thing is the concept of arguments - ia & aa,ina ana Ina Ana ila ala Ila Ala
@@ -89,10 +93,12 @@ Plug 'octol/vim-cpp-enhanced-highlight'
 " Plug 'LucHermitte/VimFold4C'
 Plug 'rhysd/vim-clang-format'
 
-
+Plug 'maralla/vim-toml-enhance' | Plug 'cespare/vim-toml'
+Plug 'stephpy/vim-yaml'
 
 " coc.nvim
 Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
+" Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'neoclide/coc-snippets', {'do':'yarn install --frozen-lockfile'}
 
 " Plug 'iamcco/coc-diagnostic', {'do': 'yarn install --frozen-lockfile'}
@@ -108,6 +114,7 @@ Plug 'neoclide/coc-snippets', {'do':'yarn install --frozen-lockfile'}
 
 " coc-extension Language Servers
 " Plug 'josa42/coc-sh', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc-yaml', {'do': 'yarn install --frozen-lockfile'}
 
 " Custom Language Servers
 " Plug 'iamcco/coc-vimlsp'
