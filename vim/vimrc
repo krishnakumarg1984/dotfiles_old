@@ -386,6 +386,7 @@ nnoremap '      `
 " nnoremap dp     dp]c
 " nnoremap do     do]c
 
+" Commented out the command-line shift colon mapping
 " nnoremap : ;
 " nnoremap ; :
 

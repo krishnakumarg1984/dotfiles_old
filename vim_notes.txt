@@ -1,3 +1,4 @@
+https://github.com/dan-t/vim-cpp-include
 https://github.com/soywod/phonetics.vim
 https://github.com/arthurxavierx/vim-caser
 traces.vim
