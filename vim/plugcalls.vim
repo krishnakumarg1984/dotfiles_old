@@ -39,12 +39,13 @@ Plug 'tpope/vim-eunuch' " Helpers for UNIX
 " :SudoWrite              Use sudo to write the file to disk.  Handy when you forgot to use sudo to invoke Vim.  This uses :SudoEdit internally, so after the first invocation you can subsequently use :w!.
 " :W                      It also writes files that haven't changed, which is useful for kicking off build and test suites (such as with watchr or guard).  Furthermore, it handily doubles as a safe fallback for people who, like me, accidentally type :W instead of :w a lot.
 Plug 'junegunn/goyo.vim'
+Plug 'mhinz/vim-grepper'
 
 " General Purpose (with only a small tilt towards coding)
 Plug 'jeffkreeftmeijer/vim-numbertoggle' " Toggles between hybrid and absolute line numbers automatically
 Plug 'machakann/vim-highlightedyank'
 Plug 'RRethy/vim-illuminate'
-Plug 'thirtythreeforty/lessspace.vim' " strip trailing whitespace only on the lines edited or visited in Insert mode; it leaves all the others untouched.
+" Plug 'thirtythreeforty/lessspace.vim' " strip trailing whitespace only on the lines edited or visited in Insert mode; it leaves all the others untouched.
 Plug 'tpope/vim-abolish' " easily search for, substitute, and abbreviate multiple variants of a word
 " crs (coerce to snake_case), MixedCase (crm), camelCase (crc), UPPER_CASE (cru), dash-case (cr-), dot.case (cr.), space case (cr<space>), and Title Case (crt)
 " Plug 'tpope/vim-commentary'
@@ -82,6 +83,7 @@ Plug 'dbmrq/vim-dialect'  " Words you add with zG and zW will be added to ./.dia
 
 " For Specific Programming Languages
 Plug 'lervag/vimtex'
+Plug 'Konfekt/vim-sentence-chopper'
 
 Plug 'gauteh/vim-cppman'
 Plug 'jackguo380/vim-lsp-cxx-highlight'
@@ -93,7 +95,8 @@ Plug 'octol/vim-cpp-enhanced-highlight'
 " Plug 'LucHermitte/VimFold4C'
 Plug 'rhysd/vim-clang-format'
 
-Plug 'maralla/vim-toml-enhance' | Plug 'cespare/vim-toml'
+Plug 'maralla/vim-toml-enhance', { 'for': 'toml' }
+Plug 'cespare/vim-toml', { 'for': 'toml' }
 Plug 'stephpy/vim-yaml'
 
 " coc.nvim

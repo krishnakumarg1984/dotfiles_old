@@ -386,8 +386,9 @@ nnoremap '      `
 " nnoremap dp     dp]c
 " nnoremap do     do]c
 
-nnoremap : ;
-nnoremap ; :
+" nnoremap : ;
+" nnoremap ; :
+
 nnoremap Y y$
 
 " Use sane regexes

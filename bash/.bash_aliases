@@ -1,6 +1,4 @@
 # User specific aliases and functions
-alias diff='diff --color=auto'
-alias grep='grep --color=auto'
 alias du='du -c -h'
 alias mkdir='mkdir -p -v'
 alias md='mkdir'
@@ -9,7 +7,6 @@ alias ping='ping -c 5'
 alias dmesg='dmesg -HL'
 
 ## ls
-alias ls='ls -hF --color=auto'
 alias sl='ls'
 alias ll='ls -l'
 alias la='ll -A'
@@ -51,13 +48,53 @@ alias -- -='cd -'        # Go back'
 alias h='history'
 # alias tree="find . -print | sed -e 's;[^/]*/;|____;g;s;____|; |;g'"
 
-alias vimdiff='nvim -d'
-alias oldvim="\vim"
-alias vim="nvim"
-alias vi="nvim"
+# alias vimdiff='nvim -d'
+# alias oldvim="\vim"
+# alias vim="nvim"
+# alias vi="nvim"
 
 alias bc='bc -l'
 alias mroe=more
 alias more=less
 
+# Find out what is taking so much space on your drives
+alias diskspace="du -S | sort -n -r | less"
 
+# Git related
+# alias gs='git status'
+alias gc='git commit'
+alias ga='git add'
+alias gd='git diff'
+alias gb='git branch'
+alias gl='git log'
+alias gsb='git show-branch'
+alias gco='git checkout'
+alias gg='git grep'
+alias gk='gitk --all'
+alias gr='git rebase'
+alias gri='git rebase --interactive'
+alias gcp='git cherry-pick'
+alias grm='git rm'
+
+#For when you've spent too much time in DOS
+# alias cls="clear"
+alias dir="ls"
+alias deltree="rm -r"
+# alias rmdir="rm -r"
+# alias rd="rm -r"
+# alias rename="mv"
+alias cd..="cd .."
+alias chdir="pwd"
+alias cmd="bash"
+# alias edit="nano -m -u -c -W --tabsize=4 --fill=100 --autoindent"
+# alias erase="rm"
+# alias del="rm"
+# alias delete="rm"
+alias tracert="traceroute"
+
+# alias cp='rsync -ae ssh'
+# alias cp='rsync -vhae ssh --progress'
+alias cpv='rsync -ah --info=progress2'
+alias cpa='rsync -vhae ssh --progress --append'
+
+alias gh='history|grep'

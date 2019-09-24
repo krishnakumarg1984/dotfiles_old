@@ -3,28 +3,36 @@ augroup CppJavaSettings
     autocmd FileType c,cpp,java set matchpairs+==:;
 augroup END
 
-augroup SpellSettings
+augroup FiletypeSpellSettings
     autocmd!
-    autocmd FileType c,cpp,markdown,mail,rst,text,yaml,toml,gitcommit setlocal spell spelllang=en_gb
+    autocmd FileType c,cpp,markdown,mail,rst,text,yaml,toml,gitcommit,tex setlocal spell
 augroup END
 
-augroup LatexSettings
+augroup LatexWrapSettings
     autocmd!
-    autocmd FileType tex setlocal spell
-    " prevent Vim from automatically inserting line breaks in newly entered text.
-    autocmd FileType tex setlocal textwidth=0 wrapmargin=0
+    autocmd FileType tex setlocal textwidth=0 wrapmargin=0 " prevent Vim from automatically inserting line breaks in newly entered text.
 augroup END
 
-if exists(":Goyo")
-    augroup LatexGoyo
-        autocmd!
-        autocmd BufReadPost,BufNewFile *.tex Goyo
-    augroup END
-else
-    augroup LatexColumnSet
-        autocmd FileType tex setlocal columns=100 colorcolumn=94
-    augroup END
-endif
+augroup LatexmkFTSettings
+    " this one is which you're most likely to use?
+    autocmd BufRead,BufNewFile *latexmkrc set ft=perl
+augroup ND
+
+function s:init()
+    if exists(":Goyo")
+        " autocmd BufReadPost,BufNewFile *.tex setlocal nomodeline
+        " augroup LatexGoyo
+        "     autocmd!
+        "     " autocmd BufReadPost,BufNewFile *.tex Goyo
+        "     autocmd BufReadPost,BufNewFile *.tex setlocal tw=80
+        " augroup END
+    else
+        " autocmd FileType tex setlocal columns=100 colorcolumn=94
+        " augroup LatexColumnSet
+        "     autocmd FileType tex setlocal columns=100 colorcolumn=94
+        " augroup END
+    endif
+endfun
 
 augroup ft_vim_help
     autocmd!
@@ -45,11 +53,6 @@ augroup ft_vim_help
     " autocmd FileType help setlocal foldlevel=1
     autocmd FileType help setlocal foldlevelstart=0
     autocmd BufWinEnter *.txt if &ft == 'help' | wincmd L | endif
-augroup END
-
-augroup markdownformat
-    autocmd!
-    autocmd FileType markdown setlocal formatprg=par\ -w100
 augroup END
 
 if exists("+omnifunc")
@@ -88,3 +91,9 @@ augroup END
 "                 \,makefile
 "                 \ setfiletype make
 " augroup END
+
+" augroup markdownformat
+"     autocmd!
+"     autocmd FileType markdown setlocal formatprg=par\ -w100
+" augroup END
+
