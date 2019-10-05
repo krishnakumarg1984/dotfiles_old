@@ -52,7 +52,16 @@ let g:editorconfig_blacklist = {
 
 let g:signify_vcs_list = [ 'git']
 
-let g:vimtex_compiler_progname = 'nvr'
+let g:matchup_override_vimtex = 1
+let g:matchup_matchparen_deferred = 1
+
+nmap <localleader>vi <plug>(vimtex-info)
+nmap <localleader>vt <plug>(vimtex-toc-open)
+nmap <localleader>vc <plug>(vimtex-cmd-create)|
+
+if has('nvim')
+    let g:vimtex_compiler_progname = 'nvr'
+endif
 
 function! Callback(msg)
     let l:m = matchlist(a:msg, '\vRun number (\d+) of rule ''(.*)''')
@@ -71,6 +80,73 @@ let g:vimtex_compiler_latexmk = {
     \   '-shell-escape',
     \ ],
     \}
+
+let g:vimtex_parser_bib_backend='bibparse'
+if has('win32') || has('win64') " Check for windows platform
+    let g:vimtex_view_general_viewer = 'SumatraPDF'
+    let g:vimtex_view_general_options
+                \ = '-reuse-instance -forward-search @tex @line @pdf'
+                \ . ' -inverse-search "gvim --servername ' . v:servername
+                \ . ' --remote-send \"^<C-\^>^<C-n^>'
+                \ . ':drop \%f^<CR^>:\%l^<CR^>:normal\! zzzv^<CR^>'
+                \ . ':execute ''drop '' . fnameescape(''\%f'')^<CR^>'
+                \ . ':\%l^<CR^>:normal\! zzzv^<CR^>'
+                \ . ':call remote_foreground('''.v:servername.''')^<CR^>^<CR^>\""'
+else
+    let g:vimtex_view_method='zathura'
+    let g:vimtex_view_use_temp_files=1
+endif
+
+let g:vimtex_delim_list = {'mods' : {}}
+let g:vimtex_delim_list.mods.name = [
+            \ ['\left', '\right'],
+            \ ['\mleft', '\mright'],
+            \ ['\bigl', '\bigr'],
+            \ ['\Bigl', '\Bigr'],
+            \ ['\biggl', '\biggr'],
+            \ ['\Biggl', '\Biggr'],
+            \ ['\big', '\big'],
+            \ ['\Big', '\Big'],
+            \ ['\bigg', '\bigg'],
+            \ ['\Bigg', '\Bigg'],
+            \]
+let g:vimtex_env_change_autofill=1
+let g:vimtex_fold_enabled=1
+let g:vimtex_view_forward_search_on_start=0
+
+let g:vimtex_doc_handlers = ['MyHandler']
+function! MyHandler(context)
+    call vimtex#doc#make_selection(a:context)
+    if !empty(a:context.selected)
+        execute '!texdoc' a:context.selected '&'
+    endif
+    return 1
+endfunction
+
+" if has('pplatex')
+    let g:vimtex_quickfix_method='pplatex'
+" endif
+let g:vimtex_quickfix_open_on_warning=0
+let g:vimtex_quickfix_autoclose_after_keystrokes=3
+let g:vimtex_view_automatic=0
+
+nmap zuz <Plug>(FastFoldUpdate)
+let g:fastfold_savehook = 1
+let g:fastfold_fold_command_suffixes =  ['x','X','a','A','o','O','c','C']
+let g:fastfold_fold_movement_commands = [']z', '[z', 'zj', 'zk']
+
+let g:markdown_folding = 1
+let g:tex_fold_enabled = 1
+let g:vimsyn_folding = 'af'
+let g:xml_syntax_folding = 1
+let g:javaScript_fold = 1
+let g:sh_fold_enabled= 7
+let g:ruby_fold = 1
+let g:perl_fold = 1
+let g:perl_fold_blocks = 1
+let g:r_syntax_folding = 1
+let g:rust_fold = 1
+let g:php_folding = 1
 
 let g:gutentags_project_root = ['GNUmakefile','makefile','Makefile','.root']
 
@@ -103,7 +179,6 @@ nmap <leader>lr <plug>(coc-rename)
 
 nmap <silent> <leader>lp <plug>(coc-diagnostic-prev)
 nmap <silent> <leader>ln <plug>(coc-diagnostic-next)
-
 
 " Use K to show documentation in preview window
 " nnoremap <silent><leader> k :call <sid>show_documentation()<cr>
@@ -168,6 +243,7 @@ let g:ale_statusline_format = ['Errors: %d', 'Warnings: %d', '']
 let g:ale_linters = {
       \ 'cpp': ['ccls','clangcheck','clangtidy','cppcheck','gcc','cppcheck','flawfinder'],
       \ 'bash': ['shellcheck'],
+      \ 'tex': ['lacheck','chktex','proselint'],
       \}
 
 let g:ale_fixers = {
@@ -180,11 +256,16 @@ let g:ale_fixers = {
 nmap <silent> <leader>aj <Plug>(ale_next_wrap)
 nmap <silent> <leader>ak <Plug>(ale_previous_wrap)
 
-let g:clang_format#style_options = {
-            \ "AccessModifierOffset" : -4,
-            \ "AllowShortIfStatementsOnASingleLine" : "true",
-            \ "AlwaysBreakTemplateDeclarations" : "true",
-            \ "Standard" : "C++14"}
+augroup fmt
+  autocmd!
+  autocmd BufWritePre * undojoin | Neoformat
+augroup END
+
+" let g:clang_format#style_options = {
+"             \ "AccessModifierOffset" : -4,
+"             \ "AllowShortIfStatementsOnASingleLine" : "true",
+"             \ "AlwaysBreakTemplateDeclarations" : "true",
+"             \ "Standard" : "C++14"}
 
 augroup CoscoMappings
     autocmd!
@@ -192,21 +273,21 @@ augroup CoscoMappings
     autocmd FileType javascript,css,c,cpp imap <silent> <Leader>; <c-o><Plug>(cosco-commaOrSemiColon)
 augroup END
 
-augroup clangformatsettings
-    " map to <Leader>cf in C++ code
-    autocmd!
-    " autocmd FileType c,cpp,objc nnoremap <buffer><Leader>cf :<C-u>ClangFormat<CR>
-    " autocmd FileType c,cpp,objc vnoremap <buffer><Leader>cf :ClangFormat<CR>
-    " if you install vim-operator-user
-    " autocmd FileType c,cpp,objc map <buffer><Leader>x <Plug>(operator-clang-format)
-    " Toggle auto formatting:
-    " nmap <Leader>C :ClangFormatAutoToggle<CR>
-    autocmd FileType c,cpp,objc ClangFormatAutoEnable
-    autocmd FileType c,cpp,objc set equalprg='clang-format'
-    autocmd FileType c,cpp,objc set formatprg='clang-format'
-    autocmd FileType c,cpp,objc set iskeyword-=<
-    autocmd FileType c,cpp,objc set iskeyword-=>
-augroup END
+" augroup clangformatsettings
+"     " map to <Leader>cf in C++ code
+"     autocmd!
+"     " autocmd FileType c,cpp,objc nnoremap <buffer><Leader>cf :<C-u>ClangFormat<CR>
+"     " autocmd FileType c,cpp,objc vnoremap <buffer><Leader>cf :ClangFormat<CR>
+"     " if you install vim-operator-user
+"     " autocmd FileType c,cpp,objc map <buffer><Leader>x <Plug>(operator-clang-format)
+"     " Toggle auto formatting:
+"     " nmap <Leader>C :ClangFormatAutoToggle<CR>
+"     autocmd FileType c,cpp,objc ClangFormatAutoEnable
+"     autocmd FileType c,cpp,objc set equalprg='clang-format'
+"     autocmd FileType c,cpp,objc set formatprg='clang-format'
+"     autocmd FileType c,cpp,objc set iskeyword-=<
+"     autocmd FileType c,cpp,objc set iskeyword-=>
+" augroup END
 
 " vim-swap
 nmap <leader><  <Plug>(swap-prev)
@@ -228,3 +309,13 @@ let g:vim_markdown_folding_style_pythonic = 1
 let g:vim_markdown_override_foldtext = 0
 let g:vim_markdown_follow_anchor = 1
 let g:vim_markdown_frontmatter = 1
+
+function! s:VisualMode()
+    let l:keys = "1v\<Esc>"
+    silent! let l:keys = visualrepeat#reapply#VisualMode(0)
+    return l:keys
+endfunction
+nnoremap <silent> <Plug>(MyPluginVisual)
+\ :<C-u>execute 'normal!' <SID>VisualMode()<Bar>
+\call MyPlugin#Operator('visual', "\<lt>Plug>(MyPluginVisual)")<CR>
+

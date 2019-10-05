@@ -3,6 +3,7 @@
 " Plugins that serve dependencies, serve as support infrastructure & other task-runners
 Plug 'tpope/vim-repeat'
 Plug 'kana/vim-operator-user'  " Recommended for clang-format
+Plug 'inkarkat/vim-visualrepeat'
 " Plug 'skywind3000/asyncrun.vim'
 
 " VCS plugins
@@ -40,6 +41,8 @@ Plug 'tpope/vim-eunuch' " Helpers for UNIX
 " :W                      It also writes files that haven't changed, which is useful for kicking off build and test suites (such as with watchr or guard).  Furthermore, it handily doubles as a safe fallback for people who, like me, accidentally type :W instead of :w a lot.
 Plug 'junegunn/goyo.vim'
 Plug 'mhinz/vim-grepper'
+Plug 'Konfekt/FastFold'
+Plug 'Konfekt/FoldText'
 
 " General Purpose (with only a small tilt towards coding)
 Plug 'jeffkreeftmeijer/vim-numbertoggle' " Toggles between hybrid and absolute line numbers automatically
@@ -77,7 +80,7 @@ if executable('ctags')
     " Plug 'skywind3000/gutentags_plus'
 endif
 
-" Project Management (specific to each project/directory)
+" Project specific helpful plugins
 Plug 'dbmrq/vim-dialect'  " Words you add with zG and zW will be added to ./.dialect.{encoding}.add, uses a spellfile for each directory
 
 
@@ -93,7 +96,8 @@ Plug 'octol/vim-cpp-enhanced-highlight'
 " Plug 'bfrg/vim-cpp-modern'
 " Plug 'derekwyatt/vim-fswitch'
 " Plug 'LucHermitte/VimFold4C'
-Plug 'rhysd/vim-clang-format'
+" Plug 'rhysd/vim-clang-format'
+Plug 'sbdchd/neoformat'
 
 Plug 'maralla/vim-toml-enhance', { 'for': 'toml' }
 Plug 'cespare/vim-toml', { 'for': 'toml' }
